@@ -29,7 +29,8 @@ public class Database {
             if (INSTANCE == null || INSTANCE.getConn().isClosed()) {
                 INSTANCE = new Database();
             }
-        } catch (SQLException throwables) {
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
             ApiException.showException(new ApiException(ErrorCode.FAIL_CONNECTING_TO_DB));
         }
     }
