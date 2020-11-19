@@ -14,36 +14,46 @@ public class SDatabase {
     private String user = "postgres";
     private String password = "951753";
 
-    public SDatabase() throws ApiException{
-        try{
+    public SDatabase() {
+        try {
             conn = DriverManager.getConnection(url, user, password);
             System.out.println("Connected to the PostgreSQL server successfully.");
-        }
-        catch (SQLException e){
+        } catch (SQLException e) {
             ApiException.showException(new ApiException(ErrorCode.FAIL_CONNECTING_TO_DB));
         }
     }
 
-    public Connection getConn(){
+    public Connection getConn() {
         return conn;
     }
-    private static void createInstance() throws ApiException {
-        if (INSTANCE == null){
-            INSTANCE = new SDatabase();
+
+    private static void createInstance() {
+        try {
+            if (INSTANCE == null || INSTANCE.getConn().isClosed()) {
+                INSTANCE = new SDatabase();
+            }
+        } catch (SQLException throwables) {
+            ApiException.showException(new ApiException(ErrorCode.FAIL_CONNECTING_TO_DB));
         }
     }
-    public static SDatabase getInstance() throws ApiException, SQLException {//me mete el SQLException con el metodo .isClosed()
-        if (INSTANCE == null){
-            createInstance();
-        }//else if x si la instancia esta cerrada?
-        else if (INSTANCE.getConn().isClosed()){
+
+    public static SDatabase getInstance() {//me mete el SQLException con el metodo .isClosed()
+        if (INSTANCE == null) {
             createInstance();
         }
         return INSTANCE;
     }
 
 
-
+    public void disconnect() {
+        try {
+            conn.close();
+            //System.out.println("Disconnected from the PostgreSQL server successfully.");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            ApiException.showException(new ApiException(ErrorCode.FAIL_DISCONNECTING_TO_DB));
+        }
+    }
 
 
 

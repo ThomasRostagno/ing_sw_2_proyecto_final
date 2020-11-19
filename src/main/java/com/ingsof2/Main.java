@@ -1,16 +1,17 @@
 package com.ingsof2;
 
 import com.ingsof2.database.SDatabase;
-import com.ingsof2.exceptions.ApiException;
 import com.ingsof2.frames.MainFrame;
+
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class Main {
 
     public static MainFrame mainFrame;
 
-    public static void main(String[] args) throws ApiException, SQLException {//sacar throws
+    public static void main(String[] args) {//sacar throws
 
 
         //mainFrame = new MainFrame();
@@ -19,27 +20,28 @@ public class Main {
         /*SDatabase sdbConn = SDatabase.getInstance();
         sdbConn.getConn();*/
         Connection sdbConn = SDatabase.getInstance().getConn();
-        Connection connection = Database.INSTANCE.connect();//ESTA NO CONECTA
+        //Connection connection = Database.INSTANCE.connect();//ESTA NO CONECTA
 
         //Connection con = (Connection) SDatabase.getInstance();
         /*SDatabase aux = new SDatabase();
         aux = aux.getInstance();*/
 
 
-        /*Connection connection = Database.INSTANCE.connect();
+        //Connection connection = Database.INSTANCE.connect();
 
-        Statement statement = null;
+        Statement statement;
         try {
-            statement = connection.createStatement();
-            statement.executeUpdate("DROP TABLE STUDENT");
+            statement = sdbConn.createStatement();
+            //statement.executeUpdate("DROP TABLE STUDENT");
             statement.executeUpdate("CREATE TABLE STUDENT(ID INT NOT NULL, NAME VARCHAR)");
             statement.executeUpdate("DROP TABLE STUDENT");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-            Main.mainFrame.showException(new ApiException(ErrorCode.FAIL_EXECUTING_QUERY));
+            //Main.mainFrame.showException(new ApiException(ErrorCode.FAIL_EXECUTING_QUERY));
         }
 
+        SDatabase.getInstance().disconnect();
 
-        Database.INSTANCE.disconnect(connection);*/
+        //Database.INSTANCE.disconnect(connection);//*/
     }
 }
