@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact build-on-make="true" name="Inmobiliaria">
+    <output-path>$PROJECT_DIR$/../Ejecutable</output-path>
+    <root id="root">
+      <element id="archive" name="Inmobiliaria.jar">
+        <element id="directory" name="META-INF">
+          <element id="file-copy" path="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
+        </element>
+        <element id="library" level="project" name="postgresql-42.2.18" />
+        <element id="module-output" name="ing_sw_2_proyecto_final" />
+      </element>
+    </root>
+  </artifact>
+</component>
