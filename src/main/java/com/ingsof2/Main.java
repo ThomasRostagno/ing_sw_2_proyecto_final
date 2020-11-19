@@ -15,11 +15,11 @@ public class Main {
 
         //mainFrame = new MainFrame();
 
-        Connection sdbConn = Database.getInstance().getConn();
+        Connection connection = Database.getInstance().getConnection();
 
         Statement statement;
         try {
-            statement = sdbConn.createStatement();
+            statement = connection.createStatement();
             statement.executeUpdate("CREATE TABLE STUDENT(ID INT NOT NULL, NAME VARCHAR)");
             statement.executeUpdate("DROP TABLE STUDENT");
         } catch (SQLException throwables) {

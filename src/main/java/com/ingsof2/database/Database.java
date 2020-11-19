@@ -9,14 +9,14 @@ import java.sql.SQLException;
 
 public class Database {
     private static Database INSTANCE;
-    private Connection conn;
+    private Connection connection;
     private String url = "jdbc:postgresql://34.95.188.39:5432/";
     private String user = "postgres";
     private String password = "951753";
 
     public Database() {
         try {
-            conn = DriverManager.getConnection(url, user, password);
+            connection = DriverManager.getConnection(url, user, password);
             System.out.println("Connected to the PostgreSQL server successfully.");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -26,7 +26,7 @@ public class Database {
 
     private static void createInstance() {
         try {
-            if (INSTANCE == null || INSTANCE.getConn().isClosed()) {
+            if (INSTANCE == null || INSTANCE.getConnection().isClosed()) {
                 INSTANCE = new Database();
             }
         } catch (SQLException e) {
@@ -42,13 +42,13 @@ public class Database {
         return INSTANCE;
     }
 
-    public Connection getConn() {
-        return conn;
+    public Connection getConnection() {
+        return connection;
     }
 
     public void disconnect() {
         try {
-            conn.close();
+            connection.close();
             System.out.println("Disconnected from the PostgreSQL server successfully.");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
