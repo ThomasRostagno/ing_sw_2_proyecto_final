@@ -14,10 +14,12 @@ public class Main {
 
 
         //mainFrame = new MainFrame();
+
         //Connection auxiliar = SDatabase.getInstance();
         /*SDatabase sdbConn = SDatabase.getInstance();
         sdbConn.getConn();*/
         Connection sdbConn = SDatabase.getInstance().getConn();
+        Connection connection = Database.INSTANCE.connect();//ESTA NO CONECTA
 
         //Connection con = (Connection) SDatabase.getInstance();
         /*SDatabase aux = new SDatabase();
