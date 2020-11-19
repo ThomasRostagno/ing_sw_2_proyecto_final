@@ -1,6 +1,5 @@
 package com.ingsof2.panels.delete;
 
-import com.ingsof2.Main;
 import com.ingsof2.exceptions.ApiException;
 import com.ingsof2.utils.Constants;
 import com.ingsof2.utils.ErrorCode;

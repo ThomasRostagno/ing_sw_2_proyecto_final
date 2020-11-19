@@ -1,6 +1,5 @@
 package com.ingsof2.database;
 
-import com.ingsof2.Main;
 import com.ingsof2.exceptions.ApiException;
 import com.ingsof2.utils.ErrorCode;
 

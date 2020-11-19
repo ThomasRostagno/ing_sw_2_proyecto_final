@@ -1,7 +1,6 @@
 package com.ingsof2.frames;
 
 import com.ingsof2.exceptions.ApiException;
-import com.ingsof2.utils.Constants;
 import com.ingsof2.panels.CancelButtonPanel;
 import com.ingsof2.panels.add.AddPanel;
 import com.ingsof2.panels.add.BackButtonAddPanel;
@@ -12,6 +11,7 @@ import com.ingsof2.panels.mainComponents.MainPanel;
 import com.ingsof2.panels.registrarAlquiler.RegistrarAlquiler;
 import com.ingsof2.panels.show.BackButtonShowPanel;
 import com.ingsof2.panels.show.ShowPanel;
+import com.ingsof2.utils.Constants;
 
 import javax.swing.*;
 import java.awt.*;
