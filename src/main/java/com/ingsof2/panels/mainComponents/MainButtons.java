@@ -45,4 +45,16 @@ public class MainButtons extends JPanel {
         add(showButton);
         add(deleteButton);
     }
+    @Override
+    protected void paintComponent(Graphics g) {
+        Color color1 = new Color(0, 153, 153); //$0x009999
+        Color color2 = new Color(0,0,0); //$0x000000
+        super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON);
+        GradientPaint gp = new GradientPaint(0, 0, color1, 0, getHeight(), color2);
+        g2d.setPaint(gp);
+        g2d.fillRect(0, 0, getWidth(), getHeight());
+    }
 }

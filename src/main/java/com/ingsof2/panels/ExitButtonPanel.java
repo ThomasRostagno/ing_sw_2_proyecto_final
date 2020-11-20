@@ -11,7 +11,8 @@ public class ExitButtonPanel extends JPanel {
 
     public ExitButtonPanel() {
         exitButton.addActionListener(e -> {
-            Main.mainFrame.exit();
+            //Main.mainFrame.exit();
+            System.exit(0);
         });
 
         setLayout(new FlowLayout(FlowLayout.LEFT));
