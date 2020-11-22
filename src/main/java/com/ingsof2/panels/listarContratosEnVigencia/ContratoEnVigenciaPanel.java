@@ -74,7 +74,7 @@ public class ContratoEnVigenciaPanel extends JPanel {
         add(scrollPane, BorderLayout.CENTER);
     }
 
-    static class ButtonRenderer extends JButton implements TableCellRenderer {
+    public static class ButtonRenderer extends JButton implements TableCellRenderer {
 
         public ButtonRenderer() {
             setOpaque(true);
@@ -94,7 +94,7 @@ public class ContratoEnVigenciaPanel extends JPanel {
         }
     }
 
-    static class ButtonEditor extends DefaultCellEditor {
+    public static class ButtonEditor extends DefaultCellEditor {
 
         protected JButton button;
         private String label;
