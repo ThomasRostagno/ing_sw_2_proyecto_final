@@ -1,4 +1,4 @@
-package com.ingsof2.panels.cargarInquilino;
+package com.ingsof2.panels.cargarEscribano;
 
 import com.ingsof2.exceptions.ApiException;
 import com.ingsof2.utils.Constants;
@@ -12,10 +12,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class CargarInquilino extends JPanel {
-    /**
-     * Creacion Labels y TextFields
-     **/
+public class CargarEscribano extends JPanel {
+
     private JLabel nombreLabel = new JLabel("caca");
     private JLabel nombreLabel1 = new JLabel("caca1");
     private JLabel nombreLabel2 = new JLabel("caca2");
@@ -23,6 +21,7 @@ public class CargarInquilino extends JPanel {
     private JLabel nombreLabel4 = new JLabel("caca4");
     private JLabel nombreLabel5 = new JLabel("caca5");
     private JLabel nombreLabel6 = new JLabel("caca6");
+    private JLabel nombreLabel7 = new JLabel("caca7");
 
     private JTextField nombreTextField = new JTextField();
     private JTextField nombreTextField1 = new JTextField();
@@ -31,8 +30,9 @@ public class CargarInquilino extends JPanel {
     private JTextField nombreTextField4 = new JTextField();
     private JTextField nombreTextField5 = new JTextField();
     private JTextField nombreTextField6 = new JTextField();
+    private JTextField nombreTextField7 = new JTextField();
 
-    private final int rows = 7;
+    private final int rows = 8;
 
     private final int margin = Constants.MARGIN;
 
@@ -48,8 +48,7 @@ public class CargarInquilino extends JPanel {
     private BufferedImage image;
 
 
-    public CargarInquilino() {
-        /**intenta poner el fondo pareciera**/
+    public CargarEscribano() {
         try {
             image = ImageIO.read(new File(Constants.BACKGROUND));
         } catch (IOException ex) {
@@ -79,8 +78,10 @@ public class CargarInquilino extends JPanel {
         nombreTextField6.setPreferredSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
         nombreTextField6.setMinimumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
         nombreTextField6.setMaximumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
+        nombreTextField7.setPreferredSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
+        nombreTextField7.setMinimumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
+        nombreTextField7.setMaximumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
 
-        /**Agregacion Labels y TextFields**/
         add(nombreLabel);
         add(nombreTextField);
         add(nombreLabel1);
@@ -95,8 +96,9 @@ public class CargarInquilino extends JPanel {
         add(nombreTextField5);
         add(nombreLabel6);
         add(nombreTextField6);
+        add(nombreLabel7);
+        add(nombreTextField7);
 
-        /**Hace el grid xdxdxddd**/
         SpringUtilities.makeCompactGrid(this, rows, 2, initialX, initialY, xPad, yPad);
     }
 

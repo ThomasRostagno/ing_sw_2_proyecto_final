@@ -52,25 +52,6 @@ public class ContratoEnVigenciaPanel extends JPanel {
         table.getColumnModel().getColumn(4).setPreferredWidth(100);
         table.getColumnModel().getColumn(5).setPreferredWidth(100);
 
-        JPanel jPanel = new JPanel();
-        jPanel.setPreferredSize(new Dimension(75, 75));
-
-        add(jPanel, BorderLayout.NORTH);
-
-        jPanel = new JPanel();
-        jPanel.setPreferredSize(new Dimension(75, 75));
-
-        add(jPanel, BorderLayout.SOUTH);
-
-        jPanel = new JPanel();
-        jPanel.setPreferredSize(new Dimension(75, 75));
-
-        add(jPanel, BorderLayout.WEST);
-
-        jPanel = new JPanel();
-        jPanel.setPreferredSize(new Dimension(75, 75));
-
-        add(jPanel, BorderLayout.EAST);
         add(scrollPane, BorderLayout.CENTER);
     }
 

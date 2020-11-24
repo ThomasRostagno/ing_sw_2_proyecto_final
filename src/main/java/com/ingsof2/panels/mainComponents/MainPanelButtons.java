@@ -17,5 +17,4 @@ public class MainPanelButtons extends JPanel {
         add(mainButtons, BorderLayout.CENTER);
         add(exitButtonPanel, BorderLayout.PAGE_END);
     }
-
 }

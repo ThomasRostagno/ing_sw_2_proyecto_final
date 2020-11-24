@@ -22,7 +22,7 @@ public class AddPanel extends JPanel {
     private final JLabel cargarDueñoLabel = new JLabel("Cargar dueño");
 
     private final JButton registrarAlquilerButton = new JButton("Button");
-    private final JButton cargarClienteButton = new JButton("Button");
+    private final JButton cargarInquilinoButton = new JButton("Button");
     private final JButton cargarEscribanoButton = new JButton("Button");
     private final JButton cargarPropiedadesButton = new JButton("Button");
     private final JButton cargarDueñoButton = new JButton("Button");
@@ -36,7 +36,7 @@ public class AddPanel extends JPanel {
     private final double y = cargarPropiedadesButton.getPreferredSize().getHeight() * rows + (rows - 1) * yPad;
 
     private final int initialX = (int) (Constants.WIDTH / 2 - x / 2);
-    private final int initialY = (int) (Constants.HEIGHT / 2 - y / 2);
+    private final int initialY = (int) (Constants.CENTER_HEIGHT / 2 - y / 2);
 
     private final int margin = Constants.MARGIN;
 
@@ -53,10 +53,11 @@ public class AddPanel extends JPanel {
         registrarAlquilerButton.addActionListener(e -> {
             Main.mainFrame.goRegistrarAlquiler();
         });
-        cargarClienteButton.addActionListener(e -> {//cambiar a inquilino
-            Main.mainFrame.goRegistrarInquilino();
+        cargarInquilinoButton.addActionListener(e -> {
+            Main.mainFrame.goCargarInquilino();
         });
         cargarEscribanoButton.addActionListener(e -> {
+            Main.mainFrame.goCargarEscribano();
         });
         cargarPropiedadesButton.addActionListener(e -> {
         });
@@ -69,7 +70,7 @@ public class AddPanel extends JPanel {
         add(registrarAlquilerButton);
 
         add(cargarClienteLabel);
-        add(cargarClienteButton);
+        add(cargarInquilinoButton);
 
         add(cargarEscribanoLabel);
         add(cargarEscribanoButton);
@@ -86,11 +87,11 @@ public class AddPanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(image, 0, 0, Constants.WIDTH, Constants.HEIGHT, this); // see javadoc for more info on the parameters
+        g.drawImage(image, 0, 0, Constants.WIDTH, Constants.CENTER_HEIGHT, this); // see javadoc for more info on the parameters
 
         Graphics2D g2d = (Graphics2D) g;
 
-        g2d.setColor(new Color(212, 212, 212));
+        g2d.setColor(new Color(212, 212, 212, 200));
         g2d.fillRect(initialX - margin, initialY - margin, ((int) x) + margin * 2, ((int) y) + margin * 2);
     }
 }
