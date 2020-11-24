@@ -121,16 +121,32 @@ public class MainFrame extends JFrame {
         repaint();
     }
 
-    public void goRegistrarInquilino(){
+    public void goRegistrarInquilino() {
         getContentPane().removeAll();
         getContentPane().add(registrarInquilino, BorderLayout.CENTER);
-        //getContentPane().add(backButtonAddPanel, BorderLayout.PAGE_END);
+        getContentPane().add(backButtonAddPanel, BorderLayout.PAGE_END);
         revalidate();
         repaint();
     }
 
     public void exit() {
         dispose();
+    }
+
+    public Dimension getBackButtonAddPanelPreferedSize() {
+        return backButtonAddPanel.getPreferredSize();
+    }
+
+    public Dimension getBackButtonDeletePanelPreferedSize() {
+        return backButtonDeletePanel.getPreferredSize();
+    }
+
+    public Dimension getBackButtonShowPanelPreferedSize() {
+        return backButtonShowPanel.getPreferredSize();
+    }
+
+    public Dimension getCancelButtonPanelPreferedSize() {
+        return cancelButtonPanel.getPreferredSize();
     }
 
 

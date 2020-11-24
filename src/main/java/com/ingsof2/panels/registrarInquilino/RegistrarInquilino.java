@@ -1,7 +1,6 @@
 package com.ingsof2.panels.registrarInquilino;
 
 import com.ingsof2.exceptions.ApiException;
-import com.ingsof2.panels.add.BackButtonAddPanel;
 import com.ingsof2.utils.Constants;
 import com.ingsof2.utils.ErrorCode;
 import com.ingsof2.utils.SpringUtilities;
@@ -14,7 +13,9 @@ import java.io.File;
 import java.io.IOException;
 
 public class RegistrarInquilino extends JPanel {
-    /**Creacion Labels y TextFields**/
+    /**
+     * Creacion Labels y TextFields
+     **/
     private JLabel nombreLabel = new JLabel("caca");
     private JLabel nombreLabel1 = new JLabel("caca1");
     private JLabel nombreLabel2 = new JLabel("caca2");
@@ -23,29 +24,31 @@ public class RegistrarInquilino extends JPanel {
     private JLabel nombreLabel5 = new JLabel("caca5");
     private JLabel nombreLabel6 = new JLabel("caca6");
 
-    private JTextField nombreTextField = new JTextField("caca");
-    private JTextField nombreTextField1 = new JTextField("caca");
-    private JTextField nombreTextField2 = new JTextField("caca");
-    private JTextField nombreTextField3 = new JTextField("caca");
-    private JTextField nombreTextField4 = new JTextField("caca");
-    private JTextField nombreTextField5 = new JTextField("caca");
-    private JTextField nombreTextField6 = new JTextField("caca");
-
-
-
+    private JTextField nombreTextField = new JTextField();
+    private JTextField nombreTextField1 = new JTextField();
+    private JTextField nombreTextField2 = new JTextField();
+    private JTextField nombreTextField3 = new JTextField();
+    private JTextField nombreTextField4 = new JTextField();
+    private JTextField nombreTextField5 = new JTextField();
+    private JTextField nombreTextField6 = new JTextField();
 
     private final int rows = 7;
+
+    private final int margin = Constants.MARGIN;
+
     private final int xPad = Constants.X_PAD;
     private final int yPad = Constants.Y_PAD;
-    private final double x = nombreLabel5.getPreferredSize().getWidth() + xPad + nombreTextField5.getPreferredSize().getWidth();
-    private final double y = nombreTextField5.getPreferredSize().getHeight() * rows + (rows - 1) * yPad;
+
+    private final double x = nombreLabel5.getPreferredSize().getWidth() + xPad + Constants.TEXTFIELD_WIDTH;
+    private final double y = Constants.TEXTFIELD_HIGH * rows + (rows - 1) * yPad;
+
     private final int initialX = (int) (Constants.WIDTH / 2 - x / 2);
-    private final int initialY = (int) (Constants.HEIGHT /2 - y / 2);
-    private final int margin = Constants.MARGIN;
+    private final int initialY = (int) (Constants.HEIGHT / 2 - y / 2);
+
     private BufferedImage image;
 
 
-    public RegistrarInquilino(){
+    public RegistrarInquilino() {
         /**intenta poner el fondo pareciera**/
         try {
             image = ImageIO.read(new File(Constants.BACKGROUND));
@@ -55,15 +58,27 @@ public class RegistrarInquilino extends JPanel {
 
         setLayout(new SpringLayout());
 
-
-
-        nombreTextField.setPreferredSize(new Dimension(200,30));
-        nombreTextField1.setPreferredSize(new Dimension(200,30));
-        nombreTextField2.setPreferredSize(new Dimension(200,30));
-        nombreTextField3.setPreferredSize(new Dimension(200,30));
-        nombreTextField4.setPreferredSize(new Dimension(200,30));
-        nombreTextField5.setPreferredSize(new Dimension(200,30));
-        nombreTextField6.setPreferredSize(new Dimension(200,30));
+        nombreTextField.setPreferredSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HIGH));
+        nombreTextField.setMinimumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HIGH));
+        nombreTextField.setMaximumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HIGH));
+        nombreTextField1.setPreferredSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HIGH));
+        nombreTextField1.setMinimumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HIGH));
+        nombreTextField1.setMaximumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HIGH));
+        nombreTextField2.setPreferredSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HIGH));
+        nombreTextField2.setMinimumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HIGH));
+        nombreTextField2.setMaximumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HIGH));
+        nombreTextField3.setPreferredSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HIGH));
+        nombreTextField3.setMinimumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HIGH));
+        nombreTextField3.setMaximumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HIGH));
+        nombreTextField4.setPreferredSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HIGH));
+        nombreTextField4.setMinimumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HIGH));
+        nombreTextField4.setMaximumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HIGH));
+        nombreTextField5.setPreferredSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HIGH));
+        nombreTextField5.setMinimumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HIGH));
+        nombreTextField5.setMaximumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HIGH));
+        nombreTextField6.setPreferredSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HIGH));
+        nombreTextField6.setMinimumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HIGH));
+        nombreTextField6.setMaximumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HIGH));
 
         /**Agregacion Labels y TextFields**/
         add(nombreLabel);

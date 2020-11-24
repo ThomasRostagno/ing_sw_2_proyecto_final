@@ -62,7 +62,7 @@ public class Constants {
     public static int MARGIN = 25;
     public static String BACKGROUND = "./pictures/background.jpg";
     public static String BANNER_MAIN_PANEL = "./pictures/banner-main-panel.jpg";
-    public static int HGAP = 0;
-    public static int VGAP = 0;
+    public static int TEXTFIELD_WIDTH = 200;
+    public static int TEXTFIELD_HIGH = 30;
 
 }

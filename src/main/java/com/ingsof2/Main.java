@@ -1,11 +1,6 @@
 package com.ingsof2;
 
-import com.ingsof2.database.Database;
 import com.ingsof2.frames.MainFrame;
-
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 public class Main {
 
