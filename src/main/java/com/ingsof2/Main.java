@@ -13,9 +13,9 @@ public class Main {
 
     public static void main(String[] args) {
 
-        //mainFrame = new MainFrame();
+        mainFrame = new MainFrame();
 
-        Connection connection = Database.getInstance().getConnection();
+        /*Connection connection = Database.getInstance().getConnection();
 
         Statement statement;
         try {
@@ -26,6 +26,6 @@ public class Main {
             throwables.printStackTrace();
         }
 
-        Database.getInstance().disconnect();
+        Database.getInstance().disconnect();*/
     }
 }

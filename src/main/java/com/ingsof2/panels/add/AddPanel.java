@@ -53,7 +53,8 @@ public class AddPanel extends JPanel {
         registrarAlquilerButton.addActionListener(e -> {
             Main.mainFrame.goRegistrarAlquiler();
         });
-        cargarClienteButton.addActionListener(e -> {
+        cargarClienteButton.addActionListener(e -> {//cambiar a inquilino
+            Main.mainFrame.goRegistrarInquilino();
         });
         cargarEscribanoButton.addActionListener(e -> {
         });

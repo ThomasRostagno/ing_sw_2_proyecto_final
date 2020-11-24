@@ -9,6 +9,7 @@ import com.ingsof2.panels.delete.DeletePanel;
 import com.ingsof2.panels.listarContratosEnVigencia.ListarContratosEnVigencia;
 import com.ingsof2.panels.mainComponents.MainPanel;
 import com.ingsof2.panels.registrarAlquiler.RegistrarAlquiler;
+import com.ingsof2.panels.registrarInquilino.RegistrarInquilino;
 import com.ingsof2.panels.show.BackButtonShowPanel;
 import com.ingsof2.panels.show.ShowPanel;
 import com.ingsof2.utils.Constants;
@@ -29,6 +30,7 @@ public class MainFrame extends JFrame {
 
     private ListarContratosEnVigencia listarContratosEnVigencia;
     private RegistrarAlquiler registrarAlquiler;
+    private RegistrarInquilino registrarInquilino;
 
     private CancelButtonPanel cancelButtonPanel;
 
@@ -64,6 +66,7 @@ public class MainFrame extends JFrame {
 
             listarContratosEnVigencia = new ListarContratosEnVigencia();
             registrarAlquiler = new RegistrarAlquiler();
+            registrarInquilino = new RegistrarInquilino();
 
             cancelButtonPanel = new CancelButtonPanel();
         } catch (ApiException e) {
@@ -114,6 +117,14 @@ public class MainFrame extends JFrame {
         getContentPane().removeAll();
         getContentPane().add(listarContratosEnVigencia, BorderLayout.CENTER);
         getContentPane().add(backButtonShowPanel, BorderLayout.PAGE_END);
+        revalidate();
+        repaint();
+    }
+
+    public void goRegistrarInquilino(){
+        getContentPane().removeAll();
+        getContentPane().add(registrarInquilino, BorderLayout.CENTER);
+        //getContentPane().add(backButtonAddPanel, BorderLayout.PAGE_END);
         revalidate();
         repaint();
     }
