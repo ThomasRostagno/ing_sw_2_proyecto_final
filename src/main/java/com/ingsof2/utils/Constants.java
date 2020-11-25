@@ -58,8 +58,12 @@ public class Constants {
     public static int HEIGHT = 600;
     public static final Dimension PANEL_DIMENSION = new Dimension(WIDTH, HEIGHT);
     public static int X_PAD = 250;
-    public static int Y_PAD = 40;
+    public static int Y_PAD = 35;
     public static int MARGIN = 25;
     public static String BACKGROUND = "./pictures/background.jpg";
     public static String BANNER_MAIN_PANEL = "./pictures/banner-main-panel.jpg";
+    public static int TEXTFIELD_WIDTH = 200;
+    public static int TEXTFIELD_HEIGHT = 30;
+    public static int CENTER_HEIGHT = HEIGHT - 36;
+
 }

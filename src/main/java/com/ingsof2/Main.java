@@ -1,11 +1,6 @@
 package com.ingsof2;
 
-import com.ingsof2.database.Database;
 import com.ingsof2.frames.MainFrame;
-
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 public class Main {
 
@@ -13,9 +8,9 @@ public class Main {
 
     public static void main(String[] args) {
 
-        //mainFrame = new MainFrame();
+        mainFrame = new MainFrame();
 
-        Connection connection = Database.getInstance().getConnection();
+        /*Connection connection = Database.getInstance().getConnection();
 
         Statement statement;
         try {
@@ -26,6 +21,6 @@ public class Main {
             throwables.printStackTrace();
         }
 
-        Database.getInstance().disconnect();
+        Database.getInstance().disconnect();*/
     }
 }
