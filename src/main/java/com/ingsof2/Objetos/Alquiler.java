@@ -3,6 +3,9 @@ package com.ingsof2.Objetos;
 public class Alquiler extends Contrato{
     private String fecha_fin;
 
+    public Alquiler(){
+    }
+
     public Alquiler(Contrato aux, String fecha_fin) {
         super(aux);
         this.fecha_fin = fecha_fin;

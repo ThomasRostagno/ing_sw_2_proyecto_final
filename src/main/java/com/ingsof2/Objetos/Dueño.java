@@ -1,6 +1,9 @@
 package com.ingsof2.Objetos;
 
 public class Dueño extends Persona{
+    public Dueño(){
+    };
+
     public Dueño(Persona aux) {
         super(aux);
     }

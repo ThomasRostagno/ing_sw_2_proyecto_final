@@ -9,7 +9,10 @@ public class Inmueble {
     private String fecha_construccion;
     private int antiguedad;
     private float valor;
-    private int clasificacion; //residencial, familiar, no habitable, etc
+    private String clasificacion; //residencial, familiar, no habitable, etc
+
+    public Inmueble() {
+    }
 
     public Inmueble(Inmueble aux) {
         this.tipo = aux.tipo;
@@ -23,7 +26,7 @@ public class Inmueble {
         this.clasificacion = aux.clasificacion;
     }
 
-    public Inmueble(String tipo, String condicion, String direccion, int superficie, int num_ambientes, String fecha_construccion, int antiguedad, float valor, int clasificacion) {
+    public Inmueble(String tipo, String condicion, String direccion, int superficie, int num_ambientes, String fecha_construccion, int antiguedad, float valor, String clasificacion) {
         this.tipo = tipo;
         this.condicion = condicion;
         this.direccion = direccion;
@@ -99,11 +102,11 @@ public class Inmueble {
         this.valor = valor;
     }
 
-    public int getClasificacion() {
+    public String getClasificacion() {
         return clasificacion;
     }
 
-    public void setClasificacion(int clasificacion) {
+    public void setClasificacion(String clasificacion) {
         this.clasificacion = clasificacion;
     }
 }
