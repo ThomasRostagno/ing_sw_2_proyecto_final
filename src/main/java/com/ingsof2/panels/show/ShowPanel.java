@@ -15,7 +15,7 @@ import java.io.IOException;
 
 public class ShowPanel extends JPanel {
 
-    private final JLabel listarClientesLabel = new JLabel("Listar clientes");
+    private final JLabel listarInquilinosLabel = new JLabel("Listar inquilinos");
     private final JLabel listarAlquileresEnVigenciaLabel = new JLabel("Listar alquileres en vigencia");
     private final JLabel listarAlquileresVencidosLabel = new JLabel("Listar alquileres vencidos");
     private final JLabel listarAlquileresAVencerLabel = new JLabel("Listar alquileres a vencer");
@@ -23,7 +23,7 @@ public class ShowPanel extends JPanel {
     private final JLabel listarEscribanosLabel = new JLabel("Listar escribanos");
     private final JLabel listarDueñosLabel = new JLabel("Listar dueños");
 
-    private final JButton listarClientesButton = new JButton("Button");
+    private final JButton listarInquilinosButton = new JButton("Button");
     private final JButton listarAlquileresEnVigenciaButton = new JButton("Button");
     private final JButton listarAlquileresVencidosButton = new JButton("Button");
     private final JButton listarAlquileresAVencerButton = new JButton("Button");
@@ -54,7 +54,7 @@ public class ShowPanel extends JPanel {
             ApiException.showException(new ApiException(ErrorCode.FAIL_GETTING_IMAGE));
         }
 
-        listarClientesButton.addActionListener(e -> {
+        listarInquilinosButton.addActionListener(e -> {
         });
         listarAlquileresEnVigenciaButton.addActionListener(e -> {
             Main.mainFrame.goListarAlquileresEnVigencia();
@@ -72,8 +72,8 @@ public class ShowPanel extends JPanel {
 
         setLayout(new SpringLayout());
 
-        add(listarClientesLabel);
-        add(listarClientesButton);
+        add(listarInquilinosLabel);
+        add(listarInquilinosButton);
 
         add(listarAlquileresEnVigenciaLabel);
         add(listarAlquileresEnVigenciaButton);

@@ -4,7 +4,9 @@ import com.ingsof2.exceptions.ApiException;
 import com.ingsof2.panels.CancelButtonPanel;
 import com.ingsof2.panels.add.AddPanel;
 import com.ingsof2.panels.add.BackButtonAddPanel;
+import com.ingsof2.panels.cargarDueño.CargarDueño;
 import com.ingsof2.panels.cargarEscribano.CargarEscribano;
+import com.ingsof2.panels.cargarPropiedad.CargarPropiedad;
 import com.ingsof2.panels.delete.BackButtonDeletePanel;
 import com.ingsof2.panels.delete.DeletePanel;
 import com.ingsof2.panels.listarContratosEnVigencia.ListarContratosEnVigencia;
@@ -33,6 +35,8 @@ public class MainFrame extends JFrame {
     private RegistrarAlquiler registrarAlquiler;
     private CargarInquilino cargarInquilino;
     private CargarEscribano cargarEscribano;
+    private CargarPropiedad cargarPropiedad;
+    private CargarDueño cargarDueño;
 
     private CancelButtonPanel cancelButtonPanel;
 
@@ -70,6 +74,8 @@ public class MainFrame extends JFrame {
             registrarAlquiler = new RegistrarAlquiler();
             cargarInquilino = new CargarInquilino();
             cargarEscribano = new CargarEscribano();
+            cargarPropiedad = new CargarPropiedad();
+            cargarDueño = new CargarDueño();
 
             cancelButtonPanel = new CancelButtonPanel();
         } catch (ApiException e) {
@@ -135,6 +141,22 @@ public class MainFrame extends JFrame {
     public void goCargarEscribano() {
         getContentPane().removeAll();
         getContentPane().add(cargarEscribano, BorderLayout.CENTER);
+        getContentPane().add(backButtonAddPanel, BorderLayout.PAGE_END);
+        revalidate();
+        repaint();
+    }
+
+    public void goCargarPropiedad() {
+        getContentPane().removeAll();
+        getContentPane().add(cargarPropiedad, BorderLayout.CENTER);
+        getContentPane().add(backButtonAddPanel, BorderLayout.PAGE_END);
+        revalidate();
+        repaint();
+    }
+
+    public void goCargarDueño() {
+        getContentPane().removeAll();
+        getContentPane().add(cargarDueño, BorderLayout.CENTER);
         getContentPane().add(backButtonAddPanel, BorderLayout.PAGE_END);
         revalidate();
         repaint();
