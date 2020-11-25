@@ -40,7 +40,7 @@ public class ShowPanel extends JPanel {
     private final double y = listarAlquileresEnVigenciaButton.getPreferredSize().getHeight() * rows + (rows - 1) * yPad;
 
     private final int initialX = (int) (Constants.WIDTH / 2 - x / 2);
-    private final int initialY = (int) (Constants.HEIGHT / 2 - y / 2);
+    private final int initialY = (int) (Constants.CENTER_HEIGHT / 2 - y / 2);
 
     private final int margin = Constants.MARGIN;
 
@@ -100,11 +100,11 @@ public class ShowPanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(image, 0, 0, Constants.WIDTH, Constants.HEIGHT, this); // see javadoc for more info on the parameters
+        g.drawImage(image, 0, 0, Constants.WIDTH, Constants.CENTER_HEIGHT, this); // see javadoc for more info on the parameters
 
         Graphics2D g2d = (Graphics2D) g;
 
-        g2d.setColor(new Color(212, 212, 212));
+        g2d.setColor(new Color(212, 212, 212, 200));
         g2d.fillRect(initialX - margin, initialY - margin, ((int) x) + margin * 2, ((int) y) + margin * 2);
     }
 }

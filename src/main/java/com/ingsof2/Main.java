@@ -1,6 +1,5 @@
 package com.ingsof2;
 
-import com.ingsof2.database.Database;
 import com.ingsof2.frames.MainFrame;
 
 import java.sql.Connection;
@@ -30,9 +29,6 @@ public class Main {
         System.out.println(mm);
         System.out.println(yy);
         System.out.println(age);*/
-
-
-
 
 
         /*Connection connection = Database.getInstance().getConnection();
