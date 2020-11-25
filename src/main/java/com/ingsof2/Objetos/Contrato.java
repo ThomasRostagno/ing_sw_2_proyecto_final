@@ -6,6 +6,9 @@ public class Contrato {
     private float precio; //puede ser por mes de alquiler o por venta final
     private int tipo;
 
+    public Contrato(){
+    }
+
     public Contrato(Contrato aux){
         this.codigo = aux.codigo;
         this.fecha = aux.fecha;
@@ -44,7 +47,7 @@ public class Contrato {
         this.precio = precio;
     }
 
-    public float getTipo() {
+    public int getTipo() {
         return tipo;
     }
 
