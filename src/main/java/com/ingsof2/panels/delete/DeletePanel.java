@@ -15,15 +15,15 @@ import java.io.IOException;
 public class DeletePanel extends JPanel {
 
     private final JLabel cancelarAlquilerLabel = new JLabel("Cancelar alquiler");
-    private final JLabel eliminarClienteLabel = new JLabel("Eliminar cliente");
+    private final JLabel eliminarInquilinoLabel = new JLabel("Eliminar inquilino");
     private final JLabel eliminarEscribanoLabel = new JLabel("Eliminar escribano");
-    private final JLabel eliminarPropiedadesLabel = new JLabel("Eliminar propiedades");
+    private final JLabel eliminarPropiedadLabel = new JLabel("Eliminar propiedad");
     private final JLabel eliminarDuenoLabel = new JLabel("Eliminar dueño");
 
     private final JButton cancelarAlquilerButton = new JButton("Button");
-    private final JButton eliminarClienteButton = new JButton("Button");
+    private final JButton eliminarInquilinoButton = new JButton("Button");
     private final JButton eliminarEscribanoButton = new JButton("Button");
-    private final JButton eliminarPropiedadesButton = new JButton("Button");
+    private final JButton eliminarPropiedadButton = new JButton("Button");
     private final JButton eliminarDuenoButton = new JButton("Button");
 
     private final int rows = 5;
@@ -31,8 +31,8 @@ public class DeletePanel extends JPanel {
     private final int xPad = Constants.X_PAD;
     private final int yPad = Constants.Y_PAD;
 
-    private final double x = eliminarPropiedadesLabel.getPreferredSize().getWidth() + xPad + eliminarPropiedadesButton.getPreferredSize().getWidth();
-    private final double y = eliminarPropiedadesButton.getPreferredSize().getHeight() * rows + (rows - 1) * yPad;
+    private final double x = eliminarPropiedadLabel.getPreferredSize().getWidth() + xPad + eliminarPropiedadButton.getPreferredSize().getWidth();
+    private final double y = eliminarPropiedadButton.getPreferredSize().getHeight() * rows + (rows - 1) * yPad;
 
     private final int initialX = (int) (Constants.WIDTH / 2 - x / 2);
     private final int initialY = (int) (Constants.CENTER_HEIGHT / 2 - y / 2);
@@ -51,11 +51,11 @@ public class DeletePanel extends JPanel {
 
         cancelarAlquilerButton.addActionListener(e -> {
         });
-        eliminarClienteButton.addActionListener(e -> {
+        eliminarInquilinoButton.addActionListener(e -> {
         });
         eliminarEscribanoButton.addActionListener(e -> {
         });
-        eliminarPropiedadesButton.addActionListener(e -> {
+        eliminarPropiedadButton.addActionListener(e -> {
         });
         eliminarDuenoButton.addActionListener(e -> {
         });
@@ -65,14 +65,14 @@ public class DeletePanel extends JPanel {
         add(cancelarAlquilerLabel);
         add(cancelarAlquilerButton);
 
-        add(eliminarClienteLabel);
-        add(eliminarClienteButton);
+        add(eliminarInquilinoLabel);
+        add(eliminarInquilinoButton);
 
         add(eliminarEscribanoLabel);
         add(eliminarEscribanoButton);
 
-        add(eliminarPropiedadesLabel);
-        add(eliminarPropiedadesButton);
+        add(eliminarPropiedadLabel);
+        add(eliminarPropiedadButton);
 
         add(eliminarDuenoLabel);
         add(eliminarDuenoButton);
