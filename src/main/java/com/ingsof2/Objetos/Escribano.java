@@ -8,8 +8,8 @@ public class Escribano extends Persona{
         this.matricula = matricula;
     }
 
-    public Escribano(String nombre, String apellido, String telefono, int dni, String direccion, String fecha_nac, String email, String matricula) {
-        super(nombre, apellido, telefono, dni, direccion, fecha_nac, email);
+    public Escribano(String nombre, String apellido, String telefono, int dni, String sexo, String direccion, String fecha_nac, String email, String matricula) {
+        super(nombre, apellido, telefono, dni, sexo, direccion, fecha_nac, email);
         this.matricula = matricula;
     }
 

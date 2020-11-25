@@ -5,25 +5,30 @@ public class Persona {
     private String apellido;
     private String telefono;
     private int dni;
+    private String sexo;
     private String direccion;
     private String fecha_nac;
     private String email;
+
+    public Persona(){}
 
     public Persona (Persona aux){
         this.nombre = aux.nombre;
         this.apellido = aux.apellido;
         this.telefono = aux.telefono;
         this.dni = aux.dni;
+        this.sexo = aux.sexo;
         this.direccion = aux.direccion;
         this.fecha_nac = aux.fecha_nac;
         this.email = aux.email;
     }
 
-    public Persona(String nombre, String apellido, String telefono, int dni, String direccion, String fecha_nac, String email){
+    public Persona(String nombre, String apellido, String telefono, int dni, String sexo, String direccion, String fecha_nac, String email){
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
         this.dni = dni;
+        this.sexo = sexo;
         this.direccion = direccion;
         this.fecha_nac = fecha_nac;
         this.email = email;
@@ -59,6 +64,14 @@ public class Persona {
 
     public void setDni(int dni) {
         this.dni = dni;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
     }
 
     public String getDireccion() {

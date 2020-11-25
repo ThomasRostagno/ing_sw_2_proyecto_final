@@ -5,7 +5,7 @@ public class Garante extends Persona{
         super(aux);
     }
 
-    public Garante(String nombre, String apellido, String telefono, int dni, String direccion, String fecha_nac, String email) {
-        super(nombre, apellido, telefono, dni, direccion, fecha_nac, email);
+    public Garante(String nombre, String apellido, String telefono, int dni, String sexo, String direccion, String fecha_nac, String email) {
+        super(nombre, apellido, telefono, dni, sexo, direccion, fecha_nac, email);
     }
 }

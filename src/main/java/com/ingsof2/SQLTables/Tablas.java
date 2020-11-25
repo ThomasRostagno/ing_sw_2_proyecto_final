@@ -1,22 +1,10 @@
-package com.ingsof2;
+package com.ingsof2.SQLTables;
 
-import com.ingsof2.database.Database;
-import com.ingsof2.frames.MainFrame;
+public class Tablas {
+    /**Querys de Creacion de Tablas de la DB**/
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
-
-public class Main {
-
-    public static MainFrame mainFrame;
-
-    public static void main(String[] args) {
-
-        //mainFrame = new MainFrame();
-
-
-        /*Connection connection = Database.getInstance().getConnection();
+    /*Creacion Inquilino*/
+    /*Connection connection = Database.getInstance().getConnection();
 
         Statement statement;
         try {
@@ -38,5 +26,6 @@ public class Main {
         }
 
         Database.getInstance().disconnect();*/
-    }
+
+    /*Creacion (...)*/
 }
