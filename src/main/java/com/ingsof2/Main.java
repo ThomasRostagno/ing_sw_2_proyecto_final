@@ -16,6 +16,7 @@ public class Main {
 
         mainFrame = new MainFrame();
 
+
         /*
         String aux = "30/12/1996";
         int dd= Integer.parseInt(aux.substring(0,2));
@@ -53,5 +54,6 @@ public class Main {
         }
 
         Database.getInstance().disconnect();*/
+
     }
 }

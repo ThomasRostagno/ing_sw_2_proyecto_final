@@ -1,6 +1,9 @@
 package com.ingsof2.Objetos;
 
 public class Garante extends Persona{
+
+    public Garante(){
+    }
     public Garante(Persona aux) {
         super(aux);
     }
