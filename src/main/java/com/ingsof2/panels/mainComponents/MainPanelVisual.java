@@ -15,7 +15,7 @@ public class MainPanelVisual extends JPanel {
 
     private BufferedImage image;
 
-    public MainPanelVisual() throws ApiException {
+    public MainPanelVisual() {
         try {
             image = ImageIO.read(new File(Constants.BANNER_MAIN_PANEL));
         } catch (IOException ex) {

@@ -51,7 +51,7 @@ public class AddPanel extends JPanel {
         }
 
         registrarAlquilerButton.addActionListener(e -> {
-            Main.mainFrame.goRegistrarAlquiler();
+            Main.mainFrame.goRegistrarContrato();
         });
         cargarInquilinoButton.addActionListener(e -> {
             Main.mainFrame.goCargarInquilino();
@@ -93,7 +93,7 @@ public class AddPanel extends JPanel {
 
         Graphics2D g2d = (Graphics2D) g;
 
-        g2d.setColor(new Color(212, 212, 212, 200));
+        g2d.setColor(Constants.RECT_COLOR);
         g2d.fillRect(initialX - margin, initialY - margin, ((int) x) + margin * 2, ((int) y) + margin * 2);
     }
 }

@@ -25,7 +25,7 @@ public class DAODueño implements BusinessObject<Dueño> {
                 dueño.setNombre(rs.getString("Nombre"));
                 dueño.setApellido(rs.getString("Apellido"));
                 dueño.setTelefono(rs.getString("Telefono"));
-                dueño.setDni(rs.getInt("DNI"));
+                dueño.setDni(rs.getString("DNI"));
                 dueño.setTelefono(rs.getString("Sexo"));
                 dueño.setTelefono(rs.getString("Direccion"));
                 dueño.setTelefono(rs.getString("Fecha_Nacimiento"));
@@ -52,7 +52,7 @@ public class DAODueño implements BusinessObject<Dueño> {
             statement.setString(1,dueño.getNombre());
             statement.setString(2,dueño.getApellido());
             statement.setString(3,dueño.getTelefono());
-            statement.setInt(4,dueño.getDni());
+            statement.setString(4,dueño.getDni());
             statement.setString(5,dueño.getSexo());
             statement.setString(6,dueño.getDireccion());
             statement.setString(7,dueño.getFecha_nac());

@@ -5,7 +5,7 @@ public class Comprador extends Persona {
         super(aux);
     }
 
-    public Comprador(String nombre, String apellido, String telefono, int dni, String sexo, String direccion, String fecha_nac, String email) {
+    public Comprador(String nombre, String apellido, String telefono, String dni, String sexo, String direccion, String fecha_nac, String email) {
         super(nombre, apellido, telefono, dni, sexo, direccion, fecha_nac, email);
     }
 }
