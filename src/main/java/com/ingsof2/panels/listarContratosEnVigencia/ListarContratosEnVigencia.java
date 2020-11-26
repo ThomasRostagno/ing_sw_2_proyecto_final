@@ -1,30 +1,39 @@
 package com.ingsof2.panels.listarContratosEnVigencia;
 
+import com.ingsof2.exceptions.ApiException;
+import com.ingsof2.utils.Constants;
+import com.ingsof2.utils.ErrorCode;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class ListarContratosEnVigencia extends JPanel {
 
-    //BufferedImage image;
+    private BufferedImage image;
 
     public ListarContratosEnVigencia() {
 
-        /*try {
+        try {
             image = ImageIO.read(new File(Constants.BACKGROUND));
         } catch (IOException ex) {
             ApiException.showException(new ApiException(ErrorCode.FAIL_GETTING_IMAGE));
-        }*/
+        }
 
-        BorderLayout borderLayout = new BorderLayout();
+        setLayout(new GridBagLayout());
 
-        setLayout(borderLayout);
+        JPanel contratoEnVigenciaPanel = new ContratoEnVigenciaPanel();
+        contratoEnVigenciaPanel.setPreferredSize(new Dimension(600, 450));
 
-        add(new ContratoEnVigenciaPanel(), BorderLayout.CENTER);
+        add(contratoEnVigenciaPanel);
     }
 
-    /*@Override
+    @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(image, 0, 0, Constants.WIDTH, Constants.HEIGHT, this); // see javadoc for more info on the parameters
-    }*/
+        g.drawImage(image, 0, 0, Constants.WIDTH, Constants.CENTER_HEIGHT, this); // see javadoc for more info on the parameters
+    }
 }

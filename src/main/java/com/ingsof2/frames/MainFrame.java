@@ -4,11 +4,15 @@ import com.ingsof2.exceptions.ApiException;
 import com.ingsof2.panels.CancelButtonPanel;
 import com.ingsof2.panels.add.AddPanel;
 import com.ingsof2.panels.add.BackButtonAddPanel;
+import com.ingsof2.panels.cargarDueño.CargarDueño;
+import com.ingsof2.panels.cargarEscribano.CargarEscribano;
+import com.ingsof2.panels.cargarPropiedad.CargarPropiedad;
 import com.ingsof2.panels.delete.BackButtonDeletePanel;
 import com.ingsof2.panels.delete.DeletePanel;
 import com.ingsof2.panels.listarContratosEnVigencia.ListarContratosEnVigencia;
 import com.ingsof2.panels.mainComponents.MainPanel;
 import com.ingsof2.panels.registrarAlquiler.RegistrarAlquiler;
+import com.ingsof2.panels.cargarInquilino.CargarInquilino;
 import com.ingsof2.panels.show.BackButtonShowPanel;
 import com.ingsof2.panels.show.ShowPanel;
 import com.ingsof2.utils.Constants;
@@ -29,6 +33,10 @@ public class MainFrame extends JFrame {
 
     private ListarContratosEnVigencia listarContratosEnVigencia;
     private RegistrarAlquiler registrarAlquiler;
+    private CargarInquilino cargarInquilino;
+    private CargarEscribano cargarEscribano;
+    private CargarPropiedad cargarPropiedad;
+    private CargarDueño cargarDueño;
 
     private CancelButtonPanel cancelButtonPanel;
 
@@ -64,6 +72,10 @@ public class MainFrame extends JFrame {
 
             listarContratosEnVigencia = new ListarContratosEnVigencia();
             registrarAlquiler = new RegistrarAlquiler();
+            cargarInquilino = new CargarInquilino();
+            cargarEscribano = new CargarEscribano();
+            cargarPropiedad = new CargarPropiedad();
+            cargarDueño = new CargarDueño();
 
             cancelButtonPanel = new CancelButtonPanel();
         } catch (ApiException e) {
@@ -118,8 +130,56 @@ public class MainFrame extends JFrame {
         repaint();
     }
 
+    public void goCargarInquilino() {
+        getContentPane().removeAll();
+        getContentPane().add(cargarInquilino, BorderLayout.CENTER);
+        getContentPane().add(backButtonAddPanel, BorderLayout.PAGE_END);
+        revalidate();
+        repaint();
+    }
+
+    public void goCargarEscribano() {
+        getContentPane().removeAll();
+        getContentPane().add(cargarEscribano, BorderLayout.CENTER);
+        getContentPane().add(backButtonAddPanel, BorderLayout.PAGE_END);
+        revalidate();
+        repaint();
+    }
+
+    public void goCargarPropiedad() {
+        getContentPane().removeAll();
+        getContentPane().add(cargarPropiedad, BorderLayout.CENTER);
+        getContentPane().add(backButtonAddPanel, BorderLayout.PAGE_END);
+        revalidate();
+        repaint();
+    }
+
+    public void goCargarDueño() {
+        getContentPane().removeAll();
+        getContentPane().add(cargarDueño, BorderLayout.CENTER);
+        getContentPane().add(backButtonAddPanel, BorderLayout.PAGE_END);
+        revalidate();
+        repaint();
+    }
+
     public void exit() {
         dispose();
+    }
+
+    public Dimension getBackButtonAddPanelPreferedSize() {
+        return backButtonAddPanel.getPreferredSize();
+    }
+
+    public Dimension getBackButtonDeletePanelPreferedSize() {
+        return backButtonDeletePanel.getPreferredSize();
+    }
+
+    public Dimension getBackButtonShowPanelPreferedSize() {
+        return backButtonShowPanel.getPreferredSize();
+    }
+
+    public Dimension getCancelButtonPanelPreferedSize() {
+        return cancelButtonPanel.getPreferredSize();
     }
 
 
