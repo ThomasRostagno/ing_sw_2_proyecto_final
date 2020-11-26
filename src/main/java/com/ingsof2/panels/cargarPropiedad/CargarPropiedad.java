@@ -1,11 +1,12 @@
 package com.ingsof2.panels.cargarPropiedad;
 
-import com.ingsof2.Objetos.Dueño;
 import com.ingsof2.Objetos.Inmueble;
+import com.ingsof2.Objetos.Zona;
 import com.ingsof2.exceptions.ApiException;
 import com.ingsof2.utils.Constants;
 import com.ingsof2.utils.ErrorCode;
 import com.ingsof2.utils.SpringUtilities;
+import com.ingsof2.utils.Utils;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -38,7 +39,7 @@ public class CargarPropiedad extends JPanel {
     private JTextField antiguedadTextField = new JTextField();
     private JComboBox<String> clasificacionComboBox = new JComboBox<>();
     private JTextField valorTextField = new JTextField();
-    private JTextField zonaTextField = new JTextField();
+    private JComboBox<Zona> zonaComboBox = new JComboBox<>();
 
     private final int rows = 5;
 
@@ -80,6 +81,12 @@ public class CargarPropiedad extends JPanel {
         clasificacionComboBox.addItem("Eventos");
         clasificacionComboBox.addItem("No habitable");
 
+        zonaComboBox.addItem(new Zona("1", "Centrica", "Zona centrica"));
+        zonaComboBox.addItem(new Zona("2", "Residencial", "Zona residencial"));
+        zonaComboBox.addItem(new Zona("3", "Escolar", "Zona escolar"));
+        zonaComboBox.addItem(new Zona("4", "Industrial", "Zona industrial"));
+        zonaComboBox.addItem(new Zona("5", "Rural", "Zona rural"));
+
         try {
             image = ImageIO.read(new File(Constants.BACKGROUND));
         } catch (IOException ex) {
@@ -89,6 +96,7 @@ public class CargarPropiedad extends JPanel {
         setLayout(new SpringLayout());
 
         setSizes();
+        checkers();
 
         add(tipoLabel);
         add(tipoComboBox);
@@ -109,7 +117,7 @@ public class CargarPropiedad extends JPanel {
         add(valorLabel);
         add(valorTextField);
         add(zonaLabel);
-        add(zonaTextField);
+        add(zonaComboBox);
 
         SpringUtilities.makeCompactGrid(this, rows, 4, initialX, initialY, xPad, yPad);
     }
@@ -142,105 +150,17 @@ public class CargarPropiedad extends JPanel {
         valorTextField.setPreferredSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
         valorTextField.setMinimumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
         valorTextField.setMaximumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
-        zonaTextField.setPreferredSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
-        zonaTextField.setMinimumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
-        zonaTextField.setMaximumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
+        zonaComboBox.setPreferredSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
+        zonaComboBox.setMinimumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
+        zonaComboBox.setMaximumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
     }
 
     private void checkers() {
-        nombreTextField.addKeyListener(new KeyAdapter() {
+        tipoComboBox.addActionListener(e -> Constants.comboBoxValidator(tipoComboBox));
 
-            @Override
-            public void keyTyped(KeyEvent e) {
-                super.keyTyped(e);
+        condicionComboBox.addActionListener(e -> Constants.comboBoxValidator(condicionComboBox));
 
-                char c = e.getKeyChar();
-                if (!(Character.isLetter(c) || (c == KeyEvent.VK_SPACE) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
-                    JOptionPane.showMessageDialog(null, "Por favor ingrese un caracter válido");
-                    e.consume();
-                }
-
-                Constants.nombreYApellidoValidator(nombreTextField);
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                super.keyPressed(e);
-
-                Constants.nombreYApellidoValidator(nombreTextField);
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-                super.keyReleased(e);
-
-                Constants.nombreYApellidoValidator(nombreTextField);
-            }
-        });
-
-        apellidoTextField.addKeyListener(new KeyAdapter() {
-
-            @Override
-            public void keyTyped(KeyEvent e) {
-                super.keyTyped(e);
-
-                char c = e.getKeyChar();
-                if (!(Character.isLetter(c) || (c == KeyEvent.VK_SPACE) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
-                    JOptionPane.showMessageDialog(null, "Por favor ingrese un caracter válido");
-                    e.consume();
-                }
-
-                Constants.nombreYApellidoValidator(apellidoTextField);
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                super.keyPressed(e);
-
-                Constants.nombreYApellidoValidator(apellidoTextField);
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-                super.keyReleased(e);
-
-                Constants.nombreYApellidoValidator(apellidoTextField);
-            }
-        });
-
-        dniTextField.addKeyListener(new KeyAdapter() {
-
-            @Override
-            public void keyTyped(KeyEvent e) {
-                super.keyTyped(e);
-
-                char c = e.getKeyChar();
-                if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
-                    JOptionPane.showMessageDialog(null, "Por favor ingrese un caracter válido");
-                    e.consume();
-                }
-
-                Constants.dniValidator(dniTextField);
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                super.keyPressed(e);
-
-                Constants.dniValidator(dniTextField);
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-                super.keyReleased(e);
-
-                Constants.dniValidator(dniTextField);
-            }
-        });
-
-        sexoComboBox.addActionListener(e -> Constants.sexoValidator(sexoComboBox));
-
-        direccionDeTrabajoTextField.addKeyListener(new KeyAdapter() {
+        direccionTextField.addKeyListener(new KeyAdapter() {
 
             @Override
             public void keyTyped(KeyEvent e) {
@@ -252,25 +172,85 @@ public class CargarPropiedad extends JPanel {
                     e.consume();
                 }
 
-                Constants.direccionValidator(direccionDeTrabajoTextField);
+                Constants.direccionValidator(direccionTextField);
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
                 super.keyPressed(e);
 
-                Constants.direccionValidator(direccionDeTrabajoTextField);
+                Constants.direccionValidator(direccionTextField);
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
                 super.keyReleased(e);
 
-                Constants.direccionValidator(direccionDeTrabajoTextField);
+                Constants.direccionValidator(direccionTextField);
             }
         });
 
-        fechaDeNacimientoTextField.addKeyListener(new KeyAdapter() {
+        superficieTextField.addKeyListener(new KeyAdapter() {
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                super.keyTyped(e);
+
+                char c = e.getKeyChar();
+                if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
+                    JOptionPane.showMessageDialog(null, "Por favor ingrese un caracter válido");
+                    e.consume();
+                }
+
+                Constants.numberValidator(superficieTextField);
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+
+                Constants.numberValidator(superficieTextField);
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                super.keyReleased(e);
+
+                Constants.numberValidator(superficieTextField);
+            }
+        });
+
+        numeroDeAmbientesTextField.addKeyListener(new KeyAdapter() {
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                super.keyTyped(e);
+
+                char c = e.getKeyChar();
+                if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
+                    JOptionPane.showMessageDialog(null, "Por favor ingrese un caracter válido");
+                    e.consume();
+                }
+
+                Constants.numberValidator(numeroDeAmbientesTextField);
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+
+                Constants.numberValidator(numeroDeAmbientesTextField);
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                super.keyReleased(e);
+
+                Constants.numberValidator(numeroDeAmbientesTextField);
+            }
+        });
+
+        fechaDeConstruccionTextField.addKeyListener(new KeyAdapter() {
 
             @Override
             public void keyTyped(KeyEvent e) {
@@ -282,111 +262,124 @@ public class CargarPropiedad extends JPanel {
                     e.consume();
                 }
 
-                Constants.fechaValidator(fechaDeNacimientoTextField);
+                if (Constants.fechaValidator(fechaDeConstruccionTextField)) {
+                    String fechaConstruccionString = fechaDeConstruccionTextField.getText();
+                    String[] fechaConstruccion = fechaConstruccionString.split("/");
+
+                    int dd = Integer.parseInt(fechaConstruccion[0]);
+                    int mm = Integer.parseInt(fechaConstruccion[1]);
+                    int yy = Integer.parseInt(fechaConstruccion[2]);
+
+                    antiguedadTextField.setText(String.format("%s", Utils.calculateAntiguedad(dd, mm, yy)));
+                }
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
                 super.keyPressed(e);
 
-                Constants.fechaValidator(fechaDeNacimientoTextField);
+                if (Constants.fechaValidator(fechaDeConstruccionTextField)) {
+                    String fechaConstruccionString = fechaDeConstruccionTextField.getText();
+                    String[] fechaConstruccion = fechaConstruccionString.split("/");
+
+                    int dd = Integer.parseInt(fechaConstruccion[0]);
+                    int mm = Integer.parseInt(fechaConstruccion[1]);
+                    int yy = Integer.parseInt(fechaConstruccion[2]);
+
+                    antiguedadTextField.setText(String.format("%s", Utils.calculateAntiguedad(dd, mm, yy)));
+                }
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
                 super.keyReleased(e);
 
-                Constants.fechaValidator(fechaDeNacimientoTextField);
+                if (Constants.fechaValidator(fechaDeConstruccionTextField)) {
+                    String fechaConstruccionString = fechaDeConstruccionTextField.getText();
+                    String[] fechaConstruccion = fechaConstruccionString.split("/");
+
+                    int dd = Integer.parseInt(fechaConstruccion[0]);
+                    int mm = Integer.parseInt(fechaConstruccion[1]);
+                    int yy = Integer.parseInt(fechaConstruccion[2]);
+
+                    antiguedadTextField.setText(String.format("%s", Utils.calculateAntiguedad(dd, mm, yy)));
+                }
             }
         });
 
-        telefonoTextField.addKeyListener(new KeyAdapter() {
+        antiguedadTextField.setFocusable(false);
+
+        clasificacionComboBox.addActionListener(e -> Constants.comboBoxValidator(clasificacionComboBox));
+
+        valorTextField.addKeyListener(new KeyAdapter() {
 
             @Override
             public void keyTyped(KeyEvent e) {
                 super.keyTyped(e);
 
                 char c = e.getKeyChar();
-                if (!(Character.isDigit(c) || (c == '+') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
+                if (!(Character.isDigit(c) || (c == '.') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
                     JOptionPane.showMessageDialog(null, "Por favor ingrese un caracter válido");
                     e.consume();
                 }
 
-                Constants.telefonoValidator(telefonoTextField);
+                Constants.floatValidator(valorTextField);
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
                 super.keyPressed(e);
 
-                Constants.telefonoValidator(telefonoTextField);
+                Constants.floatValidator(valorTextField);
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
                 super.keyReleased(e);
 
-                Constants.telefonoValidator(telefonoTextField);
+                Constants.floatValidator(valorTextField);
             }
         });
 
-        emailTextField.addKeyListener(new KeyAdapter() {
-
-            @Override
-            public void keyTyped(KeyEvent e) {
-                super.keyTyped(e);
-
-                char c = e.getKeyChar();
-                if (!(Character.isDigit(c) || Character.isLetter(c) || (c == '.') || (c == '-') || (c == '_') || (c == '@') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
-                    JOptionPane.showMessageDialog(null, "Por favor ingrese un caracter válido");
-                    e.consume();
-                }
-
-                Constants.emailValidator(emailTextField);
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                super.keyPressed(e);
-
-                Constants.emailValidator(emailTextField);
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-                super.keyReleased(e);
-
-                Constants.emailValidator(emailTextField);
-            }
-        });
+        zonaComboBox.addActionListener(e -> Constants.comboBoxValidator(zonaComboBox));
     }
 
     private boolean validateFields() {
-        return Constants.nombreYApellidoValidator(nombreTextField) &&
-                Constants.nombreYApellidoValidator(apellidoTextField) &&
-                Constants.dniValidator(dniTextField) &&
-                Constants.sexoValidator(sexoComboBox) &&
-                Constants.direccionValidator(direccionDeTrabajoTextField) &&
-                Constants.fechaValidator(fechaDeNacimientoTextField) &&
-                Constants.telefonoValidator(telefonoTextField) &&
-                Constants.emailValidator(emailTextField) &&
-                Constants.telefonoValidator(telefonoTextField) &&
-                Constants.emailValidator(emailTextField);
+        return Constants.comboBoxValidator(tipoComboBox) &&
+                Constants.comboBoxValidator(condicionComboBox) &&
+                Constants.direccionValidator(direccionTextField) &&
+                Constants.numberValidator(superficieTextField) &&
+                Constants.numberValidator(numeroDeAmbientesTextField) &&
+                Constants.fechaValidator(fechaDeConstruccionTextField) &&
+                Constants.floatValidator(valorTextField) &&
+                Constants.comboBoxValidator(clasificacionComboBox) &&
+                Constants.comboBoxValidator(zonaComboBox);
     }
 
     public Inmueble saveFields() {
         if (validateFields()) {
-            return new Inmueble(tipoComboBox.getSelectedItem().toString(),
-                    condicionComboBox.getSelectedItem().toString(),
+            String fechaConstruccionString = fechaDeConstruccionTextField.getText();
+            String[] fechaConstruccion = fechaConstruccionString.split("/");
+
+            int dd = Integer.parseInt(fechaConstruccion[0]);
+            int mm = Integer.parseInt(fechaConstruccion[1]);
+            int yy = Integer.parseInt(fechaConstruccion[2]);
+
+            int antiguedad = Utils.calculateAntiguedad(dd, mm, yy);
+
+            return new Inmueble(tipoComboBox.getItemAt(tipoComboBox.getSelectedIndex()),
+                    condicionComboBox.getItemAt(condicionComboBox.getSelectedIndex()),
                     direccionTextField.getText(),
                     Integer.parseInt(superficieTextField.getText()),
                     Integer.parseInt(numeroDeAmbientesTextField.getText()),
                     fechaDeConstruccionTextField.getText(),
-                    2,
+                    antiguedad,
                     Float.parseFloat(valorTextField.getText()),
-                    clasificacionComboBox.getSelectedItem().toString(),
-
-                    );
+                    clasificacionComboBox.getItemAt(clasificacionComboBox.getSelectedIndex()),
+                    null,
+                    null,
+                    null,
+                    zonaComboBox.getItemAt(zonaComboBox.getSelectedIndex()).getCodigo());
         } else {
             ApiException.showException(new ApiException(ErrorCode.INVALID_FIELDS));
             return null;

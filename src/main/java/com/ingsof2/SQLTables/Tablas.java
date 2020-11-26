@@ -10,8 +10,8 @@ public class Tablas {
     /**Querys de Creacion de Tablas de la DB**/
 
     /*Creacion Inquilino*/
-    /*Connection connection = Database.getInstance().getConnection();
-
+    public void TablaInquilino(){
+        Connection connection = Database.getInstance().getConnection();
         Statement statement;
         try {
             statement = connection.createStatement();
@@ -19,7 +19,32 @@ public class Tablas {
                     "Nombre VARCHAR(255) NOT NULL," +
                     "Apellido VARCHAR(255) NOT NULL," +
                     "Telefono VARCHAR(255) NOT NULL," +
-                    "DNI INT NOT NULL," +
+                    "DNI VARCHAR(255) NOT NULL," +
+                    "Sexo VARCHAR(255) NOT NULL," +
+                    "Direccion VARCHAR(255) NOT NULL," +
+                    "Fecha_Nacimiento VARCHAR(255) NOT NULL," +
+                    "Email VARCHAR(255) NOT NULL," +
+                    "Status INT NOT NULL," +
+                    "PRIMARY KEY(DNI,Sexo)" +
+                    ")");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        Database.getInstance().disconnect();
+    }
+
+    /*Creacion Duenio*/ //Es Duenio
+    public void TablaDuenio(){
+        Connection connection = Database.getInstance().getConnection();
+
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate("CREATE TABLE Dueno(" +
+                    "Nombre VARCHAR(255) NOT NULL," +
+                    "Apellido VARCHAR(255) NOT NULL," +
+                    "Telefono VARCHAR(255) NOT NULL," +
+                    "DNI VARCHAR(255) NOT NULL," +
                     "Sexo VARCHAR(255) NOT NULL," +
                     "Direccion VARCHAR(255) NOT NULL," +
                     "Fecha_Nacimiento VARCHAR(255) NOT NULL," +
@@ -31,35 +56,117 @@ public class Tablas {
             throwables.printStackTrace();
         }
 
-        Database.getInstance().disconnect();*/
-
-    /*Creacion Inmueble*/ //Falta la foreign key del dueño
-    /*Connection connection = Database.getInstance().getConnection();
-
-    Statement statement;
-        try {
-        statement = connection.createStatement();
-        statement.executeUpdate("CREATE TABLE Inmueble(" +
-                "Tipo VARCHAR(255) NOT NULL," +
-                "Condicion VARCHAR(255) NOT NULL," +
-                "Direccion VARCHAR(255) NOT NULL," +
-                "Superficie INT NOT NULL," +
-                "Num_Ambientes INT NOT NULL," +
-                "Fecha_Construccion VARCHAR(255) NOT NULL," +
-                "Valor FLOAT NOT NULL," +
-                "Clasficacion VARCHAR(255) NOT NULL," +
-                "Status INT NOT NULL," +
-                "PRIMARY KEY(Direccion)" +
-                ")");
-    } catch (
-    SQLException throwables) {
-        throwables.printStackTrace();
+        Database.getInstance().disconnect();
     }
 
-        Database.getInstance().disconnect();*/
+    /*Creacion Garante*/
+    public void TablaGarante(){
+        Connection connection = Database.getInstance().getConnection();
 
-    /*Creacion Alquiler*/ //Falta la Foreign Key del Inquilino e Inmueble y zona, asi devuelvo los datos de esas cosas xdxdxdddd
-    /*Connection connection = Database.getInstance().getConnection();
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate("CREATE TABLE Garante(" +
+                    "Nombre VARCHAR(255) NOT NULL," +
+                    "Apellido VARCHAR(255) NOT NULL," +
+                    "Telefono VARCHAR(255) NOT NULL," +
+                    "DNI VARCHAR(255) NOT NULL," +
+                    "Sexo VARCHAR(255) NOT NULL," +
+                    "Direccion VARCHAR(255) NOT NULL," +
+                    "Fecha_Nacimiento VARCHAR(255) NOT NULL," +
+                    "Email VARCHAR(255) NOT NULL," +
+                    "DNI_Inquilino INT NOT NULL," +
+                    "Status INT NOT NULL," +
+                    "PRIMARY KEY(DNI,Sexo)" +
+                    ")");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        Database.getInstance().disconnect();
+    }
+
+    /*Creacion Escribano*/
+    public void TablaEscribano(){
+        Connection connection = Database.getInstance().getConnection();
+
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate("CREATE TABLE Escribano(" +
+                    "Nombre VARCHAR(255) NOT NULL," +
+                    "Apellido VARCHAR(255) NOT NULL," +
+                    "Telefono VARCHAR(255) NOT NULL," +
+                    "DNI VARCHAR(255) NOT NULL," +
+                    "Sexo VARCHAR(255) NOT NULL," +
+                    "Direccion VARCHAR(255) NOT NULL," +
+                    "Fecha_Nacimiento VARCHAR(255) NOT NULL," +
+                    "Email VARCHAR(255) NOT NULL," +
+                    "Matricula VARCHAR(255) NOT NULL," +
+                    "Status INT NOT NULL," +
+                    "PRIMARY KEY(DNI,Sexo)" +
+                    ")");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        Database.getInstance().disconnect();
+    }
+
+    /*Creacion Inmueble*/
+    public void TablaInmueble(){
+        Connection connection = Database.getInstance().getConnection();
+
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate("CREATE TABLE Inmueble(" +
+                    "Tipo VARCHAR(255) NOT NULL," +
+                    "Condicion VARCHAR(255) NOT NULL," +
+                    "Direccion VARCHAR(255) NOT NULL," +
+                    "Superficie INT NOT NULL," +
+                    "Num_Ambientes INT NOT NULL," +
+                    "Fecha_Construccion VARCHAR(255) NOT NULL," +
+                    "Valor FLOAT NOT NULL," +
+                    "Clasficacion VARCHAR(255) NOT NULL," +
+                    "DNI_Inquilino VARCHAR(255)," +
+                    "DNI_Dueno VARCHAR(255) NOT NULL," +
+                    "Codigo_Alquiler VARCHAR(255)," +
+                    "Codigo_Zona VARCHAR(255) NOT NULL," +
+                    "Status INT NOT NULL," +
+                    "PRIMARY KEY(Direccion)" +
+                    ")");
+        } catch (
+                SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        Database.getInstance().disconnect();
+    }
+
+    /*Creacion Zona*/
+    public void TablaZona(){
+        Connection connection = Database.getInstance().getConnection();
+
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate("CREATE TABLE Zona(" +
+                    "Codigo VARCHAR(255) NOT NULL," +
+                    "Nombre VARCHAR(255) NOT NULL," +
+                    "Descripcion VARCHAR(255) NOT NULL," +
+                    "PRIMARY KEY(Codigo)" +
+                    ")");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        Database.getInstance().disconnect();
+    }
+
+    /*Creacion Alquiler*/
+    public void TablaAlquiler(){
+        Connection connection = Database.getInstance().getConnection();
 
         Statement statement;
         try {
@@ -70,37 +177,120 @@ public class Tablas {
                     "Fecha_Contrato VARCHAR(255) NOT NULL," +
                     "Fecha_Fin VARCHAR(255) NOT NULL," +
                     "Precio FLOAT NOT NULL," +
+                    "DNI_Inquilino INT NOT NULL," +
+                    "Domicilio_Inmueble VARCHAR(255)," +
+                    "DNI_Garante INT NOT NULL," +
+                    "DNI_Escribano INT NOT NULL," +
                     "PRIMARY KEY(Codigo)" +
                     ")");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
-        Database.getInstance().disconnect();*/
+        Database.getInstance().disconnect();
+    }
 
-    /*Creacion Dueño*/ //ESTE TIPO ES CACA, OSEA, SE LLAMA DUENO Y NO DUEñO EN LA DATABASE, TU CULO
-    /*Connection connection = Database.getInstance().getConnection();
+    /**Querys de Drop de las Tablas de la BD**/
+
+    public void DropInquilino(){
+        Connection connection = Database.getInstance().getConnection();
 
         Statement statement;
         try {
             statement = connection.createStatement();
-            statement.executeUpdate("CREATE TABLE Dueno(" +
-                    "Nombre VARCHAR(255) NOT NULL," +
-                    "Apellido VARCHAR(255) NOT NULL," +
-                    "Telefono VARCHAR(255) NOT NULL," +
-                    "DNI INT NOT NULL," +
-                    "Sexo VARCHAR(255) NOT NULL," +
-                    "Direccion VARCHAR(255) NOT NULL," +
-                    "Fecha_Nacimiento VARCHAR(255) NOT NULL," +
-                    "Email VARCHAR(255) NOT NULL," +
-                    "Status INT NOT NULL," +
-                    "PRIMARY KEY(DNI,Sexo)" +
-                    ")");
+            statement.executeUpdate("DROP TABLE Inquilino");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
-        Database.getInstance().disconnect();*/
+        Database.getInstance().disconnect();
+    }
 
-    /*Creacion (...)*/
+    public void DropDuenio(){
+        Connection connection = Database.getInstance().getConnection();
+
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate("DROP TABLE Dueno");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        Database.getInstance().disconnect();
+    }
+
+    public void DropGarante(){
+        Connection connection = Database.getInstance().getConnection();
+
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate("DROP TABLE Garante");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        Database.getInstance().disconnect();
+    }
+
+    public void DropEscribano(){
+        Connection connection = Database.getInstance().getConnection();
+
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate("DROP TABLE Escribano");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        Database.getInstance().disconnect();
+    }
+
+    public void DropInmueble(){
+        Connection connection = Database.getInstance().getConnection();
+
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate("DROP TABLE Inmueble");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        Database.getInstance().disconnect();
+    }
+
+    public void DropZona(){
+        Connection connection = Database.getInstance().getConnection();
+
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate("DROP TABLE Zona");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        Database.getInstance().disconnect();
+    }
+
+    public void DropAlquiler(){
+        Connection connection = Database.getInstance().getConnection();
+
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate("DROP TABLE Alquiler");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        Database.getInstance().disconnect();
+    }
+
+
+
+
 }

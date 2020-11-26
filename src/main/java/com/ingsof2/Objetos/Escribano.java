@@ -3,6 +3,9 @@ package com.ingsof2.Objetos;
 public class Escribano extends Persona{
     private String matricula;
 
+    public Escribano(){
+    }
+
     public Escribano(Persona aux, String matricula) {
         super(aux);
         this.matricula = matricula;

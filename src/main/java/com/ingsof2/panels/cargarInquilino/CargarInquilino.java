@@ -1,6 +1,5 @@
 package com.ingsof2.panels.cargarInquilino;
 
-import com.ingsof2.Objetos.Dueño;
 import com.ingsof2.Objetos.Inquilino;
 import com.ingsof2.exceptions.ApiException;
 import com.ingsof2.utils.Constants;
@@ -206,7 +205,7 @@ public class CargarInquilino extends JPanel {
             }
         });
 
-        sexoComboBox.addActionListener(e -> Constants.sexoValidator(sexoComboBox));
+        sexoComboBox.addActionListener(e -> Constants.comboBoxValidator(sexoComboBox));
 
         direccionTextField.addKeyListener(new KeyAdapter() {
 
@@ -333,7 +332,7 @@ public class CargarInquilino extends JPanel {
         return Constants.nombreYApellidoValidator(nombreTextField) &&
                 Constants.nombreYApellidoValidator(apellidoTextField) &&
                 Constants.dniValidator(dniTextField) &&
-                Constants.sexoValidator(sexoComboBox) &&
+                Constants.comboBoxValidator(sexoComboBox) &&
                 Constants.direccionValidator(direccionTextField) &&
                 Constants.fechaValidator(fechaDeNacimientoTextField) &&
                 Constants.telefonoValidator(telefonoTextField) &&
@@ -346,7 +345,7 @@ public class CargarInquilino extends JPanel {
                     apellidoTextField.getText(),
                     telefonoTextField.getText(),
                     dniTextField.getText(),
-                    sexoComboBox.getSelectedItem().toString(),
+                    sexoComboBox.getItemAt(sexoComboBox.getSelectedIndex()),
                     direccionTextField.getText(),
                     fechaDeNacimientoTextField.getText(),
                     emailTextField.getText());

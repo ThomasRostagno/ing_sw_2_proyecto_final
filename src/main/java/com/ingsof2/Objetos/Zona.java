@@ -1,27 +1,30 @@
 package com.ingsof2.Objetos;
 
 public class Zona {
-    private int codigo;
+    private String codigo;
     private String nombre;
     private String descripcion;
 
-    public Zona(int codigo, String nombre, String descripcion) {
+    public Zona(){
+    }
+
+    public Zona(String codigo, String nombre, String descripcion) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.descripcion = descripcion;
     }
 
-    public Zona (Zona aux){
-        this.codigo = aux.codigo;
-        this.nombre = aux.nombre;
-        this.descripcion = aux.descripcion;
+    public Zona (Zona zona){
+        this.codigo = zona.codigo;
+        this.nombre = zona.nombre;
+        this.descripcion = zona.descripcion;
     }
 
-    public int getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 
@@ -39,5 +42,10 @@ public class Zona {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    @Override
+    public String toString() {
+        return nombre;
     }
 }

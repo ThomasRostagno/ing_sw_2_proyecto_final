@@ -55,7 +55,7 @@ public class Constants {
             {"0002", "29/10/2000", "5500.65", "id inquilino", "id propiedad", "id dueño"},
             {"0002", "29/10/2000", "5500.65", "id inquilino", "id propiedad", "id dueño"}
     };
-    public static final Object[] HEADERS = new Object[]{"Codigo", "Fecha", "Monto", "Inquilino", "Propiedad", "Dueño"};
+    public static final Object[] HEADERS = new Object[]{"Codigo", "Fecha", "Monto", "Inquilino", "Propiedad", "Duenio"};
     public static int WIDTH = 800;
     public static int HEIGHT = 600;
     public static final Dimension PANEL_DIMENSION = new Dimension(WIDTH, HEIGHT);
@@ -92,13 +92,19 @@ public class Constants {
         }
     }
 
-    public static boolean sexoValidator (JComboBox<String> sexoComboBox) {
-        String sexo = sexoComboBox.getSelectedItem() != null ? sexoComboBox.getSelectedItem().toString() : null;
-        if (Utils.isNullOrEmpty(sexo)) {
-            sexoComboBox.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+    public static boolean comboBoxValidator(JComboBox jComboBox) {
+        Object value = jComboBox.getSelectedItem() != null ? jComboBox.getItemAt(jComboBox.getSelectedIndex()) : null;
+        if (value instanceof String) {
+            if (Utils.isNullOrEmpty(value.toString())) {
+                jComboBox.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                return false;
+            }
+        }
+        if (value == null) {
+            jComboBox.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
             return false;
         } else {
-            sexoComboBox.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
+            jComboBox.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
             return true;
         }
     }
@@ -154,6 +160,28 @@ public class Constants {
             return false;
         } else {
             matriculaTextField.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
+            return true;
+        }
+    }
+
+    public static boolean numberValidator(JTextField numberTextField) {
+        int number = Utils.isNullOrEmpty(numberTextField.getText()) ? 0 : Integer.parseInt(numberTextField.getText());
+        if (number < 1) {
+            numberTextField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+            return false;
+        } else {
+            numberTextField.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
+            return true;
+        }
+    }
+
+    public static boolean floatValidator(JTextField numberTextField) {
+        String floatNumber = numberTextField.getText();
+        if (FloatValidatorRegex.isValid(floatNumber)) {
+            numberTextField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+            return false;
+        } else {
+            numberTextField.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
             return true;
         }
     }

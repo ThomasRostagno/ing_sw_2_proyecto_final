@@ -1,10 +1,11 @@
 package com.ingsof2.frames;
 
+import com.ingsof2.DAO.*;
 import com.ingsof2.Objetos.*;
 import com.ingsof2.panels.CancelButtonPanel;
 import com.ingsof2.panels.add.AddPanel;
 import com.ingsof2.panels.add.ButtonsAddPanel;
-import com.ingsof2.panels.cargarDueño.CargarDueño;
+import com.ingsof2.panels.cargarDuenio.CargarDuenio;
 import com.ingsof2.panels.cargarEscribano.CargarEscribano;
 import com.ingsof2.panels.cargarPropiedad.CargarPropiedad;
 import com.ingsof2.panels.delete.BackButtonDeletePanel;
@@ -36,7 +37,7 @@ public class MainFrame extends JFrame {
     private CargarInquilino cargarInquilino;
     private CargarEscribano cargarEscribano;
     private CargarPropiedad cargarPropiedad;
-    private CargarDueño cargarDueño;
+    private CargarDuenio cargarDuenio;
 
     private CancelButtonPanel cancelButtonPanel;
 
@@ -74,7 +75,7 @@ public class MainFrame extends JFrame {
         cargarInquilino = new CargarInquilino();
         cargarEscribano = new CargarEscribano();
         cargarPropiedad = new CargarPropiedad();
-        cargarDueño = new CargarDueño();
+        cargarDuenio = new CargarDuenio();
 
         cancelButtonPanel = new CancelButtonPanel();
     }
@@ -98,7 +99,7 @@ public class MainFrame extends JFrame {
 
     public void goRegistrarContrato() {
         registrarContrato = new RegistrarContrato();
-        buttonsAddPanel = new ButtonsAddPanel(() -> {
+        /*buttonsAddPanel = new ButtonsAddPanel(() -> {
             Contrato contrato = registrarContrato.saveFields();
 
             if (contrato != null) {
@@ -106,7 +107,7 @@ public class MainFrame extends JFrame {
                 showAltaExitosa();
                 goAdd();
             }
-        });
+        });*/
         getContentPane().removeAll();
         getContentPane().add(registrarContrato, BorderLayout.CENTER);
         getContentPane().add(buttonsAddPanel, BorderLayout.PAGE_END);
@@ -120,7 +121,9 @@ public class MainFrame extends JFrame {
             Inquilino inquilino = cargarInquilino.saveFields();
 
             if (inquilino != null) {
-                System.out.println("CARGAR EN BASE DE DATOS:" + inquilino.toString());
+                BusinessObject<Inquilino> businessObject = new DAOInquilino();
+
+                businessObject.create(inquilino);
                 showAltaExitosa();
                 goAdd();
             }
@@ -138,7 +141,9 @@ public class MainFrame extends JFrame {
             Escribano escribano = cargarEscribano.saveFields();
 
             if (escribano != null) {
-                System.out.println("CARGAR EN BASE DE DATOS:" + escribano.toString());
+                BusinessObject<Escribano> businessObject = new DAOEscribano();
+
+                businessObject.create(escribano);
                 showAltaExitosa();
                 goAdd();
             }
@@ -156,7 +161,9 @@ public class MainFrame extends JFrame {
             Inmueble inmueble = cargarPropiedad.saveFields();
 
             if (inmueble != null) {
-                System.out.println("CARGAR EN BASE DE DATOS:" + inmueble.toString());
+                BusinessObject<Inmueble> businessObject = new DAOInmueble();
+
+                businessObject.create(inmueble);
                 showAltaExitosa();
                 goAdd();
             }
@@ -168,19 +175,21 @@ public class MainFrame extends JFrame {
         repaint();
     }
 
-    public void goCargarDueño() {
-        cargarDueño = new CargarDueño();
+    public void goCargarDuenio() {
+        cargarDuenio = new CargarDuenio();
         buttonsAddPanel = new ButtonsAddPanel(() -> {
-            Dueño dueño = cargarDueño.saveFields();
+            Duenio duenio = cargarDuenio.saveFields();
 
-            if (dueño != null) {
-                System.out.println("CARGAR EN BASE DE DATOS:" + dueño.toString());
+            if (duenio != null) {
+                BusinessObject<Duenio> businessObject = new DAODueio();
+
+                businessObject.create(duenio);
                 showAltaExitosa();
                 goAdd();
             }
         });
         getContentPane().removeAll();
-        getContentPane().add(cargarDueño, BorderLayout.CENTER);
+        getContentPane().add(cargarDuenio, BorderLayout.CENTER);
         getContentPane().add(buttonsAddPanel, BorderLayout.PAGE_END);
         revalidate();
         repaint();

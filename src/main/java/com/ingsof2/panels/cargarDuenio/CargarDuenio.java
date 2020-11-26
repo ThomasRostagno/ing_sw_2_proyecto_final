@@ -1,6 +1,6 @@
-package com.ingsof2.panels.cargarDueño;
+package com.ingsof2.panels.cargarDuenio;
 
-import com.ingsof2.Objetos.Dueño;
+import com.ingsof2.Objetos.Duenio;
 import com.ingsof2.exceptions.ApiException;
 import com.ingsof2.utils.Constants;
 import com.ingsof2.utils.ErrorCode;
@@ -17,7 +17,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class CargarDueño extends JPanel implements ActionListener {
+public class CargarDuenio extends JPanel implements ActionListener {
 
     private JLabel nombreLabel = new JLabel("Nombre:");
     private JLabel apellidoLabel = new JLabel("Apellido:");
@@ -53,7 +53,7 @@ public class CargarDueño extends JPanel implements ActionListener {
     private BufferedImage image;
 
 
-    public CargarDueño() {
+    public CargarDuenio() {
 
         sexoComboBox.addItem("");
         sexoComboBox.addItem("Masculino");
@@ -208,7 +208,7 @@ public class CargarDueño extends JPanel implements ActionListener {
             }
         });
 
-        sexoComboBox.addActionListener(e -> Constants.sexoValidator(sexoComboBox));
+        sexoComboBox.addActionListener(e -> Constants.comboBoxValidator(sexoComboBox));
 
         direccionDeTrabajoTextField.addKeyListener(new KeyAdapter() {
 
@@ -335,20 +335,20 @@ public class CargarDueño extends JPanel implements ActionListener {
         return Constants.nombreYApellidoValidator(nombreTextField) &&
                 Constants.nombreYApellidoValidator(apellidoTextField) &&
                 Constants.dniValidator(dniTextField) &&
-                Constants.sexoValidator(sexoComboBox) &&
+                Constants.comboBoxValidator(sexoComboBox) &&
                 Constants.direccionValidator(direccionDeTrabajoTextField) &&
                 Constants.fechaValidator(fechaDeNacimientoTextField) &&
                 Constants.telefonoValidator(telefonoTextField) &&
                 Constants.emailValidator(emailTextField);
     }
 
-    public Dueño saveFields() {
+    public Duenio saveFields() {
         if (validateFields()) {
-            return new Dueño(nombreTextField.getText(),
+            return new Duenio(nombreTextField.getText(),
                     apellidoTextField.getText(),
                     telefonoTextField.getText(),
                     dniTextField.getText(),
-                    sexoComboBox.getSelectedItem().toString(),
+                    sexoComboBox.getItemAt(sexoComboBox.getSelectedIndex()),
                     direccionDeTrabajoTextField.getText(),
                     fechaDeNacimientoTextField.getText(),
                     emailTextField.getText());

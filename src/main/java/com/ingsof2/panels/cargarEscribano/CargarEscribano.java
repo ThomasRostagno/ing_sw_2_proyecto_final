@@ -1,8 +1,6 @@
 package com.ingsof2.panels.cargarEscribano;
 
-import com.ingsof2.Objetos.Dueño;
 import com.ingsof2.Objetos.Escribano;
-import com.ingsof2.Objetos.Inmueble;
 import com.ingsof2.exceptions.ApiException;
 import com.ingsof2.utils.Constants;
 import com.ingsof2.utils.ErrorCode;
@@ -217,7 +215,7 @@ public class CargarEscribano extends JPanel {
             }
         });
 
-        sexoComboBox.addActionListener(e -> Constants.sexoValidator(sexoComboBox));
+        sexoComboBox.addActionListener(e -> Constants.comboBoxValidator(sexoComboBox));
 
         direccionDelEstudioTextField.addKeyListener(new KeyAdapter() {
 
@@ -374,7 +372,7 @@ public class CargarEscribano extends JPanel {
         return Constants.nombreYApellidoValidator(nombreTextField) &&
                 Constants.nombreYApellidoValidator(apellidoTextField) &&
                 Constants.dniValidator(dniTextField) &&
-                Constants.sexoValidator(sexoComboBox) &&
+                Constants.comboBoxValidator(sexoComboBox) &&
                 Constants.direccionValidator(direccionDelEstudioTextField) &&
                 Constants.fechaValidator(fechaDeNacimientoTextField) &&
                 Constants.telefonoValidator(telefonoTextField) &&
@@ -388,7 +386,7 @@ public class CargarEscribano extends JPanel {
                     apellidoTextField.getText(),
                     telefonoTextField.getText(),
                     dniTextField.getText(),
-                    sexoComboBox.getSelectedItem().toString(),
+                    sexoComboBox.getItemAt(sexoComboBox.getSelectedIndex()),
                     direccionDelEstudioTextField.getText(),
                     fechaDeNacimientoTextField.getText(),
                     emailTextField.getText(),

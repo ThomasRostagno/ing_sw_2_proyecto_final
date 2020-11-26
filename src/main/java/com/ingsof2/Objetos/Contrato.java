@@ -1,5 +1,7 @@
 package com.ingsof2.Objetos;
 
+import java.util.List;
+
 public class Contrato {
     private String codigo;
     private String fecha;
@@ -53,5 +55,22 @@ public class Contrato {
 
     public void setTipo(int tipo) {
         this.tipo = tipo;
+    }
+
+    public Object[][] getDataVector(List<Contrato> contratos) {
+        Object[][] objects = new Object[0][0];
+
+        for (int i = 0; i < contratos.size(); i++) {
+            objects[i] = contratos.get(i).toObject();
+        }
+        return objects;
+    }
+
+    private Object[] toObject() {
+        return new Object[]{codigo, fecha, precio, tipo};
+    }
+
+    public Object[] getHeaders() {
+        return new Object[]{"Codigo", "Fecha", "Monto", "Tipo"};
     }
 }
