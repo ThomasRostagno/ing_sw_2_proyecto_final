@@ -3,6 +3,11 @@ package com.ingsof2;
 import com.ingsof2.SQLTables.Tablas;
 import com.ingsof2.frames.MainFrame;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
 public class Main {
 
     public static MainFrame mainFrame;
@@ -18,9 +23,9 @@ public class Main {
         //tablas.TablaGarante();
         //tablas.TablaInmueble();
         //tablas.TablaInquilino();
-        //tablas.TablaZona();
 
-        mainFrame = new MainFrame();
+
+        //mainFrame = new MainFrame();
 
         /*
         String aux = "30/12/1996";

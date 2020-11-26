@@ -17,4 +17,10 @@ public enum Utils {
 
         return (int) ChronoUnit.YEARS.between(ageBuilding, today);
     }
+
+    public static boolean isValidVigencia(int dd, int mm, int yy) {
+        LocalDate today = LocalDate.now();
+        LocalDate agefvigencia = LocalDate.of(yy, mm, dd);
+        return (int) ChronoUnit.DAYS.between(today, agefvigencia) > 0;
+    }
 }

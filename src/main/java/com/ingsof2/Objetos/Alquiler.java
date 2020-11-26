@@ -1,5 +1,8 @@
 package com.ingsof2.Objetos;
 
+import com.ingsof2.utils.Utils;
+
+import java.time.LocalDate;
 import java.util.List;
 
 public class Alquiler extends Contrato {
@@ -75,9 +78,25 @@ public class Alquiler extends Contrato {
         Object[][] objects = new Object[0][0];
 
         for (int i = 0; i < alquileres.size(); i++) {
-            objects[i] = alquileres.get(i).toObject();
+            if(alquileres.get(i).metodo()){
+                objects[i] = alquileres.get(i).toObject();
+            }
+
         }
         return objects;
+    }
+
+    private boolean metodo(){
+
+        String fecha_fin = this.getFecha_fin();
+
+        String[] fechafin = fecha_fin.split("/");
+
+        int dd = Integer.parseInt(fechafin[0]);
+        int mm = Integer.parseInt(fechafin[1]);
+        int yy = Integer.parseInt(fechafin[2]);
+
+        return (Utils.isValidVigencia(dd,mm,yy));
     }
 
     private Object[] toObject() {
