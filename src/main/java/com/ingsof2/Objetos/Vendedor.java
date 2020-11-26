@@ -1,6 +1,6 @@
 package com.ingsof2.Objetos;
 
-public class Vendedor extends Persona{ // Este es el que vende el inmueble, me interesa ya que le doy una comision xdxdxddd
+public class Vendedor extends Persona { // Este es el que vende el inmueble, me interesa ya que le doy una comision xdxdxddd
     public Vendedor(Persona aux) {
         super(aux);
     }

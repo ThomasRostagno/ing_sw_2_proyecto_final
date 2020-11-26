@@ -1,7 +1,5 @@
 package com.ingsof2.panels.mainComponents;
 
-import com.ingsof2.exceptions.ApiException;
-
 import javax.swing.*;
 import java.awt.*;
 

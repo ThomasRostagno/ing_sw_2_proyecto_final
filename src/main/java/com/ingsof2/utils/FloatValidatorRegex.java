@@ -5,15 +5,15 @@ import java.util.regex.Pattern;
 
 public class FloatValidatorRegex {
 
-        private static final String FLOAT_PATTERN =
-                "[0-9]{0,9}(\\.[0-9]{1,2})?$";
+    private static final String FLOAT_PATTERN =
+            "[0-9]{0,9}(\\.[0-9]{1,2})?$";
 
 
-        private static final Pattern pattern = Pattern.compile(FLOAT_PATTERN);
+    private static final Pattern pattern = Pattern.compile(FLOAT_PATTERN);
 
-        public static boolean isValid(final String floatNumber) {
-            Matcher matcher = pattern.matcher(floatNumber);
+    public static boolean isValid(final String floatNumber) {
+        Matcher matcher = pattern.matcher(floatNumber);
 
-            return matcher.matches();
-        }
+        return matcher.matches();
     }
+}

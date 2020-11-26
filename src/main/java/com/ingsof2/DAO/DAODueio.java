@@ -19,7 +19,7 @@ public class DAODueio implements BusinessObject<Duenio> {
             statement = connection.createStatement();
             ResultSet rs = statement.executeQuery("SELECT * FROM Dueno WHERE (Status==1)");
             Duenio duenio;
-            while(rs.next()){
+            while (rs.next()) {
                 duenio = new Duenio();
                 duenio.setNombre(rs.getString("Nombre"));
                 duenio.setApellido(rs.getString("Apellido"));
@@ -46,7 +46,7 @@ public class DAODueio implements BusinessObject<Duenio> {
 
     @Override
     public int create(Duenio duenio) {
-        String sqlInsert =  " INSERT INTO Dueno (Nombre, Apellido, Telefono, DNI, Sexo, Direccion, Fecha_Nacimiento, Email, Status)" +
+        String sqlInsert = " INSERT INTO Dueno (Nombre, Apellido, Telefono, DNI, Sexo, Direccion, Fecha_Nacimiento, Email, Status)" +
                 " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         int exito = 0;
         Connection connection = Database.getInstance().getConnection();
@@ -61,7 +61,7 @@ public class DAODueio implements BusinessObject<Duenio> {
             statement.setString(6, duenio.getDireccion());
             statement.setString(7, duenio.getFecha_nac());
             statement.setString(8, duenio.getEmail());
-            statement.setInt(9,1);
+            statement.setInt(9, 1);
             statement.executeUpdate();
             exito = 1;
 
@@ -74,7 +74,7 @@ public class DAODueio implements BusinessObject<Duenio> {
 
     @Override
     public int update(Duenio duenio) {
-        String sqlUpdate =  " UPDATE Dueno SET Nombre = ?, Apellido = ?, Telefono = ?, Sexo = ?, Direccion = ?, Fecha_Nacimiento = ?, Email = ?" +
+        String sqlUpdate = " UPDATE Dueno SET Nombre = ?, Apellido = ?, Telefono = ?, Sexo = ?, Direccion = ?, Fecha_Nacimiento = ?, Email = ?" +
                 " VALUES (?, ?, ?, ?, ?, ?, ?) WHERE (DNI = '" + duenio.getDni() + "') AND ('" + "Sexo =" + duenio.getSexo() + "')";
         int exito = 0;
         Connection connection = Database.getInstance().getConnection();

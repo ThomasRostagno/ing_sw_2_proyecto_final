@@ -8,10 +8,10 @@ public class Contrato {
     private float precio; //puede ser por mes de alquiler o por venta final
     private int tipo;
 
-    public Contrato(){
+    public Contrato() {
     }
 
-    public Contrato(Contrato aux){
+    public Contrato(Contrato aux) {
         this.codigo = aux.codigo;
         this.fecha = aux.fecha;
         this.precio = aux.precio;

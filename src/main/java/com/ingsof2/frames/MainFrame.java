@@ -1,19 +1,22 @@
 package com.ingsof2.frames;
 
 import com.ingsof2.DAO.*;
-import com.ingsof2.Objetos.*;
+import com.ingsof2.Objetos.Duenio;
+import com.ingsof2.Objetos.Escribano;
+import com.ingsof2.Objetos.Inmueble;
+import com.ingsof2.Objetos.Inquilino;
 import com.ingsof2.panels.CancelButtonPanel;
 import com.ingsof2.panels.add.AddPanel;
 import com.ingsof2.panels.add.ButtonsAddPanel;
 import com.ingsof2.panels.cargarDuenio.CargarDuenio;
 import com.ingsof2.panels.cargarEscribano.CargarEscribano;
+import com.ingsof2.panels.cargarInquilino.CargarInquilino;
 import com.ingsof2.panels.cargarPropiedad.CargarPropiedad;
 import com.ingsof2.panels.delete.BackButtonDeletePanel;
 import com.ingsof2.panels.delete.DeletePanel;
 import com.ingsof2.panels.listarContratosEnVigencia.ListarContratosEnVigencia;
 import com.ingsof2.panels.mainComponents.MainPanel;
 import com.ingsof2.panels.registrarAlquiler.RegistrarContrato;
-import com.ingsof2.panels.cargarInquilino.CargarInquilino;
 import com.ingsof2.panels.show.BackButtonShowPanel;
 import com.ingsof2.panels.show.ShowPanel;
 import com.ingsof2.utils.Constants;

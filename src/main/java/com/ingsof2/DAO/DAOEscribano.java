@@ -1,7 +1,6 @@
 package com.ingsof2.DAO;
 
 import com.ingsof2.Objetos.Escribano;
-import com.ingsof2.Objetos.Garante;
 import com.ingsof2.database.Database;
 import com.ingsof2.exceptions.ApiException;
 import com.ingsof2.utils.ErrorCode;
@@ -20,7 +19,7 @@ public class DAOEscribano implements BusinessObject<Escribano> {
             statement = connection.createStatement();
             ResultSet rs = statement.executeQuery("SELECT * FROM Inquilino WHERE (Status==1)");
             Escribano escribano;
-            while(rs.next()){
+            while (rs.next()) {
                 escribano = new Escribano();
                 escribano.setNombre(rs.getString("Nombre"));
                 escribano.setApellido(rs.getString("Apellido"));
@@ -48,23 +47,23 @@ public class DAOEscribano implements BusinessObject<Escribano> {
 
     @Override
     public int create(Escribano escribano) {
-        String sqlInsert =  " INSERT INTO Escribano (Nombre, Apellido, Telefono, DNI, Sexo, Direccion, Fecha_Nacimiento, Email, Matricula, Status)" +
+        String sqlInsert = " INSERT INTO Escribano (Nombre, Apellido, Telefono, DNI, Sexo, Direccion, Fecha_Nacimiento, Email, Matricula, Status)" +
                 " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         int exito = 0;
         Connection connection = Database.getInstance().getConnection();
         PreparedStatement statement;
         try {
             statement = connection.prepareStatement(sqlInsert);
-            statement.setString(1,escribano.getNombre());
-            statement.setString(2,escribano.getApellido());
-            statement.setString(3,escribano.getTelefono());
-            statement.setString(4,escribano.getDni());
-            statement.setString(5,escribano.getSexo());
-            statement.setString(6,escribano.getDireccion());
-            statement.setString(7,escribano.getFecha_nac());
-            statement.setString(8,escribano.getEmail());
-            statement.setString(9,escribano.getMatricula());
-            statement.setInt(10,1);
+            statement.setString(1, escribano.getNombre());
+            statement.setString(2, escribano.getApellido());
+            statement.setString(3, escribano.getTelefono());
+            statement.setString(4, escribano.getDni());
+            statement.setString(5, escribano.getSexo());
+            statement.setString(6, escribano.getDireccion());
+            statement.setString(7, escribano.getFecha_nac());
+            statement.setString(8, escribano.getEmail());
+            statement.setString(9, escribano.getMatricula());
+            statement.setInt(10, 1);
             statement.executeUpdate();
             exito = 1;
 

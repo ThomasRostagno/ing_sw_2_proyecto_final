@@ -7,10 +7,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Tablas {
-    /**Querys de Creacion de Tablas de la DB**/
+    /**
+     * Querys de Creacion de Tablas de la DB
+     **/
 
     /*Creacion Inquilino*/
-    public void TablaInquilino(){
+    public void TablaInquilino() {
         Connection connection = Database.getInstance().getConnection();
         Statement statement;
         try {
@@ -34,7 +36,7 @@ public class Tablas {
     }
 
     /*Creacion Duenio*/ //Es Duenio
-    public void TablaDuenio(){
+    public void TablaDuenio() {
         Connection connection = Database.getInstance().getConnection();
 
         Statement statement;
@@ -60,7 +62,7 @@ public class Tablas {
     }
 
     /*Creacion Garante*/
-    public void TablaGarante(){
+    public void TablaGarante() {
         Connection connection = Database.getInstance().getConnection();
 
         Statement statement;
@@ -87,7 +89,7 @@ public class Tablas {
     }
 
     /*Creacion Escribano*/
-    public void TablaEscribano(){
+    public void TablaEscribano() {
         Connection connection = Database.getInstance().getConnection();
 
         Statement statement;
@@ -114,7 +116,7 @@ public class Tablas {
     }
 
     /*Creacion Inmueble*/
-    public void TablaInmueble(){
+    public void TablaInmueble() {
         Connection connection = Database.getInstance().getConnection();
 
         Statement statement;
@@ -145,7 +147,7 @@ public class Tablas {
     }
 
     /*Creacion Zona*/
-    public void TablaZona(){
+    public void TablaZona() {
         Connection connection = Database.getInstance().getConnection();
 
         Statement statement;
@@ -165,7 +167,7 @@ public class Tablas {
     }
 
     /*Creacion Alquiler*/
-    public void TablaAlquiler(){
+    public void TablaAlquiler() {
         Connection connection = Database.getInstance().getConnection();
 
         Statement statement;
@@ -190,9 +192,11 @@ public class Tablas {
         Database.getInstance().disconnect();
     }
 
-    /**Querys de Drop de las Tablas de la BD**/
+    /**
+     * Querys de Drop de las Tablas de la BD
+     **/
 
-    public void DropInquilino(){
+    public void DropInquilino() {
         Connection connection = Database.getInstance().getConnection();
 
         Statement statement;
@@ -206,7 +210,7 @@ public class Tablas {
         Database.getInstance().disconnect();
     }
 
-    public void DropDuenio(){
+    public void DropDuenio() {
         Connection connection = Database.getInstance().getConnection();
 
         Statement statement;
@@ -220,7 +224,7 @@ public class Tablas {
         Database.getInstance().disconnect();
     }
 
-    public void DropGarante(){
+    public void DropGarante() {
         Connection connection = Database.getInstance().getConnection();
 
         Statement statement;
@@ -234,7 +238,7 @@ public class Tablas {
         Database.getInstance().disconnect();
     }
 
-    public void DropEscribano(){
+    public void DropEscribano() {
         Connection connection = Database.getInstance().getConnection();
 
         Statement statement;
@@ -248,7 +252,7 @@ public class Tablas {
         Database.getInstance().disconnect();
     }
 
-    public void DropInmueble(){
+    public void DropInmueble() {
         Connection connection = Database.getInstance().getConnection();
 
         Statement statement;
@@ -262,7 +266,7 @@ public class Tablas {
         Database.getInstance().disconnect();
     }
 
-    public void DropZona(){
+    public void DropZona() {
         Connection connection = Database.getInstance().getConnection();
 
         Statement statement;
@@ -276,7 +280,7 @@ public class Tablas {
         Database.getInstance().disconnect();
     }
 
-    public void DropAlquiler(){
+    public void DropAlquiler() {
         Connection connection = Database.getInstance().getConnection();
 
         Statement statement;
@@ -289,8 +293,6 @@ public class Tablas {
 
         Database.getInstance().disconnect();
     }
-
-
 
 
 }

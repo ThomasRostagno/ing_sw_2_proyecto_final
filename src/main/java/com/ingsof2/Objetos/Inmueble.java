@@ -1,5 +1,7 @@
 package com.ingsof2.Objetos;
 
+import java.util.List;
+
 public class Inmueble {
     private String tipo; //depto, casa, quinta, cabaña, etc
     private String condicion; //venta,alquiler,ambas
@@ -18,7 +20,7 @@ public class Inmueble {
     public Inmueble() {
     }
 
-    public Inmueble(Inmueble inmueble){
+    public Inmueble(Inmueble inmueble) {
         this.tipo = inmueble.tipo;
         this.condicion = inmueble.condicion;
         this.direccion = inmueble.direccion;
@@ -152,6 +154,23 @@ public class Inmueble {
 
     public void setCodigo_Zona(String codigo_Zona) {
         this.codigo_Zona = codigo_Zona;
+    }
+
+    public Object[][] getDataVector(List<Inmueble> inmuebles) {
+        Object[][] objects = new Object[0][0];
+
+        for (int i = 0; i < inmuebles.size(); i++) {
+            objects[i] = inmuebles.get(i).toObject();
+        }
+        return objects;
+    }
+
+    private Object[] toObject() {
+        return new Object[]{getTipo(), getCondicion(), getDireccion(), getSuperficie(), getNum_ambientes(), getFecha_construccion(), getAntiguedad(), getValor(), getClasificacion(), getDni_Inquilino(), getDni_Duenio(), getCodigo_Alquiler(), getCodigo_Zona()};
+    }
+
+    public Object[] getHeaders() {
+        return new Object[]{"Tipo", "Condicion", "Direccion", "Superficie", "Ambientes", "Fecha de Construccion", "Antiguedad", "Valor", "Clasificacion", "Inquilino", "Dueño", "Alquiler", "Zona"};
     }
 
     @Override

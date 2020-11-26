@@ -2,7 +2,6 @@ package com.ingsof2.utils;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 
 public class Constants {
 

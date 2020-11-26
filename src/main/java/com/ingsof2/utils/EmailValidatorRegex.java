@@ -13,6 +13,6 @@ public class EmailValidatorRegex {
     public static boolean isValid(final String email) {
         Matcher matcher = pattern.matcher(email);
 
-       return matcher.matches();
+        return matcher.matches();
     }
 }
