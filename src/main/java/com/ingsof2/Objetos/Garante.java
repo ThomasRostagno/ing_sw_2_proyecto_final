@@ -1,5 +1,7 @@
 package com.ingsof2.Objetos;
 
+import java.util.List;
+
 public class Garante extends Persona{
 
     private String DNI_Inquilino;
@@ -23,5 +25,22 @@ public class Garante extends Persona{
 
     public void setDNI_Inquilino(String DNI_Inquilino) {
         this.DNI_Inquilino = DNI_Inquilino;
+    }
+
+    public Object[][] getDataVector(List<Garante> garantes) {
+        Object[][] objects = new Object[0][0];
+
+        for (int i = 0; i < garantes.size(); i++) {
+            objects[i] = garantes.get(i).toObject();
+        }
+        return objects;
+    }
+
+    private Object[] toObject() {
+        return new Object[]{getNombre(),getApellido(),getDni(),getTelefono(),getSexo(),getDireccion(),getFecha_nac(),getEmail(),getDNI_Inquilino()};
+    }
+
+    public Object[] getHeaders() {
+        return new Object[]{"Nombre", "Apellido", "DNI", "Telefono","Sexo","Direccion","Fecha de Nacimiento","Email", "Inquilino"};
     }
 }
