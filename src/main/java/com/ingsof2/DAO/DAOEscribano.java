@@ -25,11 +25,12 @@ public class DAOEscribano implements BusinessObject<Escribano> {
                 escribano.setNombre(rs.getString("Nombre"));
                 escribano.setApellido(rs.getString("Apellido"));
                 escribano.setTelefono(rs.getString("Telefono"));
-                escribano.setDni(rs.getInt("DNI"));
+                escribano.setDni(rs.getString("DNI"));
                 escribano.setTelefono(rs.getString("Sexo"));
                 escribano.setTelefono(rs.getString("Direccion"));
                 escribano.setTelefono(rs.getString("Fecha_Nacimiento"));
                 escribano.setTelefono(rs.getString("Email"));
+                escribano.setMatricula(rs.getString("Matricula"));
                 escribanos.add(escribano);
             }
         } catch (SQLException throwables) {
@@ -38,6 +39,11 @@ public class DAOEscribano implements BusinessObject<Escribano> {
 
         Database.getInstance().disconnect();
         return escribanos;
+    }
+
+    @Override
+    public Escribano ReadOne(Escribano escribano) {
+        return null;
     }
 
     @Override
@@ -52,12 +58,12 @@ public class DAOEscribano implements BusinessObject<Escribano> {
             statement.setString(1,escribano.getNombre());
             statement.setString(2,escribano.getApellido());
             statement.setString(3,escribano.getTelefono());
-            statement.setInt(4,escribano.getDni());
+            statement.setString(4,escribano.getDni());
             statement.setString(5,escribano.getSexo());
             statement.setString(6,escribano.getDireccion());
             statement.setString(7,escribano.getFecha_nac());
             statement.setString(8,escribano.getEmail());
-            statement.setInt(9,escribano.getMatricula());
+            statement.setString(9,escribano.getMatricula());
             statement.setInt(10,1);
             statement.executeUpdate();
             exito = 1;

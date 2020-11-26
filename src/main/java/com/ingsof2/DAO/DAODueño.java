@@ -25,7 +25,7 @@ public class DAODueño implements BusinessObject<Dueño> {
                 dueño.setNombre(rs.getString("Nombre"));
                 dueño.setApellido(rs.getString("Apellido"));
                 dueño.setTelefono(rs.getString("Telefono"));
-                dueño.setDni(rs.getInt("DNI"));
+                dueño.setDni(rs.getString("DNI"));
                 dueño.setTelefono(rs.getString("Sexo"));
                 dueño.setTelefono(rs.getString("Direccion"));
                 dueño.setTelefono(rs.getString("Fecha_Nacimiento"));
@@ -41,6 +41,11 @@ public class DAODueño implements BusinessObject<Dueño> {
     }
 
     @Override
+    public Dueño ReadOne(Dueño dueño) {
+        return null;
+    }
+
+    @Override
     public int create(Dueño dueño) {
         String sqlInsert =  " INSERT INTO Dueno (Nombre, Apellido, Telefono, DNI, Sexo, Direccion, Fecha_Nacimiento, Email, Status)" +
                 " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -52,7 +57,7 @@ public class DAODueño implements BusinessObject<Dueño> {
             statement.setString(1,dueño.getNombre());
             statement.setString(2,dueño.getApellido());
             statement.setString(3,dueño.getTelefono());
-            statement.setInt(4,dueño.getDni());
+            statement.setString(4,dueño.getDni());
             statement.setString(5,dueño.getSexo());
             statement.setString(6,dueño.getDireccion());
             statement.setString(7,dueño.getFecha_nac());
@@ -70,7 +75,28 @@ public class DAODueño implements BusinessObject<Dueño> {
 
     @Override
     public int update(Dueño dueño) {
-        return 0;
+        String sqlUpdate =  " UPDATE Dueno SET Nombre = ?, Apellido = ?, Telefono = ?, Sexo = ?, Direccion = ?, Fecha_Nacimiento = ?, Email = ?" +
+                " VALUES (?, ?, ?, ?, ?, ?, ?) WHERE (DNI = '" + dueño.getDni() + "') AND ('" + "Sexo =" + dueño.getSexo() + "')";
+        int exito = 0;
+        Connection connection = Database.getInstance().getConnection();
+        PreparedStatement statement;
+        try {
+            statement = connection.prepareStatement(sqlUpdate);
+            statement.setString(1,dueño.getNombre());
+            statement.setString(2,dueño.getApellido());
+            statement.setString(3,dueño.getTelefono());
+            statement.setString(4,dueño.getSexo());
+            statement.setString(5,dueño.getDireccion());
+            statement.setString(6,dueño.getFecha_nac());
+            statement.setString(7,dueño.getEmail());
+            statement.executeUpdate();
+            exito = 1;
+
+        } catch (SQLException throwables) {
+            ApiException.showException(new ApiException(ErrorCode.FAIL_SAVING_IN_DB));
+        }
+        Database.getInstance().disconnect();
+        return exito;
     }
 
     @Override

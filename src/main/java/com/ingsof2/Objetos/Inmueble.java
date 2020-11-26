@@ -10,11 +10,15 @@ public class Inmueble {
     private int antiguedad;
     private float valor;
     private String clasificacion; //residencial, familiar, no habitable, etc
+    private String dni_Inquilino;
+    private String dni_Dueño;
+    private String codigo_Alquiler;
+    private String codigo_Zona;
 
     public Inmueble() {
     }
 
-    public Inmueble(Inmueble aux) {
+    public Inmueble(Inmueble aux){
         this.tipo = aux.tipo;
         this.condicion = aux.condicion;
         this.direccion = aux.direccion;
@@ -24,9 +28,13 @@ public class Inmueble {
         this.antiguedad = aux.antiguedad;
         this.valor = aux.valor;
         this.clasificacion = aux.clasificacion;
+        this.dni_Inquilino = aux.dni_Inquilino;
+        this.dni_Dueño = aux.dni_Dueño;
+        this.codigo_Alquiler = aux.codigo_Alquiler;
+        this.codigo_Zona = aux.codigo_Zona;
     }
 
-    public Inmueble(String tipo, String condicion, String direccion, int superficie, int num_ambientes, String fecha_construccion, int antiguedad, float valor, String clasificacion) {
+    public Inmueble(String tipo, String condicion, String direccion, int superficie, int num_ambientes, String fecha_construccion, int antiguedad, float valor, String clasificacion, String dni_Inquilino, String dni_Dueño, String codigo_Alquiler, String codigo_Zona) {
         this.tipo = tipo;
         this.condicion = condicion;
         this.direccion = direccion;
@@ -36,6 +44,10 @@ public class Inmueble {
         this.antiguedad = antiguedad;
         this.valor = valor;
         this.clasificacion = clasificacion;
+        this.dni_Inquilino = dni_Inquilino;
+        this.dni_Dueño = dni_Dueño;
+        this.codigo_Alquiler = codigo_Alquiler;
+        this.codigo_Zona = codigo_Zona;
     }
 
     public String getTipo() {
@@ -108,5 +120,37 @@ public class Inmueble {
 
     public void setClasificacion(String clasificacion) {
         this.clasificacion = clasificacion;
+    }
+
+    public String getDni_Inquilino() {
+        return dni_Inquilino;
+    }
+
+    public void setDni_Inquilino(String dni_Inquilino) {
+        this.dni_Inquilino = dni_Inquilino;
+    }
+
+    public String getDni_Dueño() {
+        return dni_Dueño;
+    }
+
+    public void setDni_Dueño(String dni_Dueño) {
+        this.dni_Dueño = dni_Dueño;
+    }
+
+    public String getCodigo_Alquiler() {
+        return codigo_Alquiler;
+    }
+
+    public void setCodigo_Alquiler(String codigo_Alquiler) {
+        this.codigo_Alquiler = codigo_Alquiler;
+    }
+
+    public String getCodigo_Zona() {
+        return codigo_Zona;
+    }
+
+    public void setCodigo_Zona(String codigo_Zona) {
+        this.codigo_Zona = codigo_Zona;
     }
 }

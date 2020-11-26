@@ -26,11 +26,12 @@ public class DAOGarante implements BusinessObject<Garante> {
                 garante.setNombre(rs.getString("Nombre"));
                 garante.setApellido(rs.getString("Apellido"));
                 garante.setTelefono(rs.getString("Telefono"));
-                garante.setDni(rs.getInt("DNI"));
+                garante.setDni(rs.getString("DNI"));
                 garante.setTelefono(rs.getString("Sexo"));
                 garante.setTelefono(rs.getString("Direccion"));
                 garante.setTelefono(rs.getString("Fecha_Nacimiento"));
                 garante.setTelefono(rs.getString("Email"));
+                garante.setDNI_Inquilino(rs.getString("DNI_Inquilino"));
                 garantes.add(garante);
             }
         } catch (SQLException throwables) {
@@ -42,9 +43,14 @@ public class DAOGarante implements BusinessObject<Garante> {
     }
 
     @Override
+    public Garante ReadOne(Garante garante) {
+        return null;
+    }
+
+    @Override
     public int create(Garante garante) {
-        String sqlInsert =  " INSERT INTO Garante (Nombre, Apellido, Telefono, DNI, Sexo, Direccion, Fecha_Nacimiento, Email, Status)" +
-                " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sqlInsert =  " INSERT INTO Garante (Nombre, Apellido, Telefono, DNI, Sexo, Direccion, Fecha_Nacimiento, Email, DNI_Inquilino, Status)" +
+                " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         int exito = 0;
         Connection connection = Database.getInstance().getConnection();
         PreparedStatement statement;
@@ -53,12 +59,13 @@ public class DAOGarante implements BusinessObject<Garante> {
             statement.setString(1,garante.getNombre());
             statement.setString(2,garante.getApellido());
             statement.setString(3,garante.getTelefono());
-            statement.setInt(4,garante.getDni());
+            statement.setString(4,garante.getDni());
             statement.setString(5,garante.getSexo());
             statement.setString(6,garante.getDireccion());
             statement.setString(7,garante.getFecha_nac());
             statement.setString(8,garante.getEmail());
-            statement.setInt(9,1);
+            statement.setString(9,garante.getDNI_Inquilino());
+            statement.setInt(10,1);
             statement.executeUpdate();
             exito = 1;
 
@@ -71,7 +78,29 @@ public class DAOGarante implements BusinessObject<Garante> {
 
     @Override
     public int update(Garante garante) {
-        return 0;
+        String sqlUpdate =  " UPDATE Inquilino SET Nombre = ?, Apellido = ?, Telefono = ?, Sexo = ?, Direccion = ?, Fecha_Nacimiento = ?, Email = ?, DNI_Inquilino = ? " +
+                " VALUES (?, ?, ?, ?, ?, ?, ?, ?) WHERE (DNI = '" + garante.getDni() + "') AND ('" + "Sexo =" + garante.getSexo() + "')";
+        int exito = 0;
+        Connection connection = Database.getInstance().getConnection();
+        PreparedStatement statement;
+        try {
+            statement = connection.prepareStatement(sqlUpdate);
+            statement.setString(1,garante.getNombre());
+            statement.setString(2,garante.getApellido());
+            statement.setString(3,garante.getTelefono());
+            statement.setString(4,garante.getSexo());
+            statement.setString(5,garante.getDireccion());
+            statement.setString(6,garante.getFecha_nac());
+            statement.setString(7,garante.getEmail());
+            statement.setString(8,garante.getDNI_Inquilino());
+            statement.executeUpdate();
+            exito = 1;
+
+        } catch (SQLException throwables) {
+            ApiException.showException(new ApiException(ErrorCode.FAIL_SAVING_IN_DB));
+        }
+        Database.getInstance().disconnect();
+        return exito;
     }
 
     @Override

@@ -34,6 +34,10 @@ public class DAOInmueble implements BusinessObject<Inmueble> {
                 inmueble.setFecha_construccion(rs.getString("Fecha_Construccion"));
                 inmueble.setValor(rs.getFloat("Valor"));
                 inmueble.setClasificacion(rs.getString("Clasificacion"));
+                inmueble.setDni_Inquilino(rs.getString("DNI_Inquilino"));
+                inmueble.setDni_Dueño(rs.getString("DNI_Dueno"));
+                inmueble.setCodigo_Alquiler(rs.getString("Codigo_Alquiler"));
+                inmueble.setCodigo_Zona(rs.getString("Codigo_Zona"));
 
                 /**Calculo Antiguedad**/
                 LocalDate today = LocalDate.now();
@@ -58,9 +62,14 @@ public class DAOInmueble implements BusinessObject<Inmueble> {
     }
 
     @Override
+    public Inmueble ReadOne(Inmueble inmueble) {
+        return null;
+    }
+
+    @Override
     public int create(Inmueble inmueble) {
-        String sqlInsert =  " INSERT INTO Inmueble (Tipo, Condicion, Direccion, Superficie, Num_Ambientes, Fecha_Construccion, Valor, Clasificacion, Status)" +
-                " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sqlInsert =  " INSERT INTO Inmueble (Tipo, Condicion, Direccion, Superficie, Num_Ambientes, Fecha_Construccion, Valor, Clasificacion, DNI_Inquilino, DNI_Dueno, Codigo_Alquiler, Codigo_Zona, Status)" +
+                " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         int exito = 0;
         Connection connection = Database.getInstance().getConnection();
         PreparedStatement statement;
@@ -74,7 +83,11 @@ public class DAOInmueble implements BusinessObject<Inmueble> {
             statement.setString(6,inmueble.getFecha_construccion());
             statement.setFloat(7,inmueble.getValor());
             statement.setString(8,inmueble.getClasificacion());
-            statement.setInt(9,1);
+            statement.setString(9,inmueble.getDni_Inquilino());
+            statement.setString(10,inmueble.getDni_Dueño());
+            statement.setString(11,inmueble.getCodigo_Alquiler());
+            statement.setString(12,inmueble.getCodigo_Zona());
+            statement.setInt(13,1);
             statement.executeUpdate();
             exito = 1;
 
@@ -87,7 +100,32 @@ public class DAOInmueble implements BusinessObject<Inmueble> {
 
     @Override
     public int update(Inmueble inmueble) {
-        return 0;
+        String sqlUpdate =  " UPDATE Inmueble SET Tipo = ?, Condicion = ?, Superficie = ?, Num_Ambientes = ?, Fecha_Construccion = ?, Valor = ?, Clasificacion = ?, DNI_Inquilino = ?, DNI_Dueno = ?, Codigo_Alquiler = ?, Codigo_Zona = ?" +
+                " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) WHERE (Direccion = '" + inmueble.getDireccion() + "')";
+        int exito = 0;
+        Connection connection = Database.getInstance().getConnection();
+        PreparedStatement statement;
+        try {
+            statement = connection.prepareStatement(sqlUpdate);
+            statement.setString(1,inmueble.getTipo());
+            statement.setString(2,inmueble.getCondicion());
+            statement.setInt(4,inmueble.getSuperficie());
+            statement.setInt(5,inmueble.getNum_ambientes());
+            statement.setString(6,inmueble.getFecha_construccion());
+            statement.setFloat(7,inmueble.getValor());
+            statement.setString(8,inmueble.getClasificacion());
+            statement.setString(9,inmueble.getDni_Inquilino());
+            statement.setString(10,inmueble.getDni_Dueño());
+            statement.setString(11,inmueble.getCodigo_Alquiler());
+            statement.setString(12,inmueble.getCodigo_Zona());
+            statement.executeUpdate();
+            exito = 1;
+
+        } catch (SQLException throwables) {
+            ApiException.showException(new ApiException(ErrorCode.FAIL_SAVING_IN_DB));
+        }
+        Database.getInstance().disconnect();
+        return exito;
     }
 
     @Override

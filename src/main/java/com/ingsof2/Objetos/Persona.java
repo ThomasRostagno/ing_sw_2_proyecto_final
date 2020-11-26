@@ -4,7 +4,7 @@ public class Persona {
     private String nombre;
     private String apellido;
     private String telefono;
-    private int dni;
+    private String dni;
     private String sexo;
     private String direccion;
     private String fecha_nac;
@@ -23,7 +23,7 @@ public class Persona {
         this.email = aux.email;
     }
 
-    public Persona(String nombre, String apellido, String telefono, int dni, String sexo, String direccion, String fecha_nac, String email){
+    public Persona(String nombre, String apellido, String telefono, String dni, String sexo, String direccion, String fecha_nac, String email){
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
@@ -58,11 +58,11 @@ public class Persona {
         this.telefono = telefono;
     }
 
-    public int getDni() {
+    public String getDni() {
         return dni;
     }
 
-    public void setDni(int dni) {
+    public void setDni(String dni) {
         this.dni = dni;
     }
 
