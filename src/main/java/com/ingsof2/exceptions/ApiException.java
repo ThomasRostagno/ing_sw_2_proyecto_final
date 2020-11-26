@@ -22,7 +22,6 @@ public class ApiException extends Exception {
     public static void showException(ApiException e) {
         JOptionPane.showMessageDialog(new JFrame(), e.getDescription(), "Error",
                 JOptionPane.ERROR_MESSAGE);
-
     }
 
     public String getCode() {
