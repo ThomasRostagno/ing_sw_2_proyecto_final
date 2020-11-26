@@ -156,8 +156,8 @@ public class Inmueble {
         this.codigo_Zona = codigo_Zona;
     }
 
-    public Object[][] getDataVector(List<Inmueble> inmuebles) {
-        Object[][] objects = new Object[0][0];
+    public static Object[][] getDataVector(List<Inmueble> inmuebles) {
+        Object[][] objects = new Object[inmuebles.size()][0];
 
         for (int i = 0; i < inmuebles.size(); i++) {
             objects[i] = inmuebles.get(i).toObject();
@@ -169,7 +169,7 @@ public class Inmueble {
         return new Object[]{getTipo(), getCondicion(), getDireccion(), getSuperficie(), getNum_ambientes(), getFecha_construccion(), getAntiguedad(), getValor(), getClasificacion(), getDni_Inquilino(), getDni_Duenio(), getCodigo_Alquiler(), getCodigo_Zona()};
     }
 
-    public Object[] getHeaders() {
+    public static Object[] getHeaders() {
         return new Object[]{"Tipo", "Condicion", "Direccion", "Superficie", "Ambientes", "Fecha de Construccion", "Antiguedad", "Valor", "Clasificacion", "Inquilino", "Dueño", "Alquiler", "Zona"};
     }
 

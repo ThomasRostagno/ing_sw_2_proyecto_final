@@ -26,8 +26,8 @@ public class Escribano extends Persona {
         this.matricula = matricula;
     }
 
-    public Object[][] getDataVector(List<Escribano> escribanos) {
-        Object[][] objects = new Object[0][0];
+    public static Object[][] getDataVector(List<Escribano> escribanos) {
+        Object[][] objects = new Object[escribanos.size()][0];
 
         for (int i = 0; i < escribanos.size(); i++) {
             objects[i] = escribanos.get(i).toObject();
@@ -39,7 +39,7 @@ public class Escribano extends Persona {
         return new Object[]{getNombre(), getApellido(), getDni(), getTelefono(), getSexo(), getDireccion(), getFecha_nac(), getEmail(), getMatricula()};
     }
 
-    public Object[] getHeaders() {
+    public static Object[] getHeaders() {
         return new Object[]{"Nombre", "Apellido", "DNI", "Telefono", "Sexo", "Direccion", "Fecha de Nacimiento", "Email", "Matricula"};
     }
 }

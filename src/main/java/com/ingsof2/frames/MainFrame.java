@@ -15,6 +15,10 @@ import com.ingsof2.panels.cargarPropiedad.CargarPropiedad;
 import com.ingsof2.panels.delete.BackButtonDeletePanel;
 import com.ingsof2.panels.delete.DeletePanel;
 import com.ingsof2.panels.listarContratosEnVigencia.ListarContratosEnVigencia;
+import com.ingsof2.panels.listarDuenios.ListarDuenios;
+import com.ingsof2.panels.listarEscribanos.ListarEscribanos;
+import com.ingsof2.panels.listarInquilinos.ListarInquilinos;
+import com.ingsof2.panels.listarPropiedades.ListarPropiedades;
 import com.ingsof2.panels.mainComponents.MainPanel;
 import com.ingsof2.panels.registrarAlquiler.RegistrarContrato;
 import com.ingsof2.panels.show.BackButtonShowPanel;
@@ -36,6 +40,10 @@ public class MainFrame extends JFrame {
     private BackButtonDeletePanel backButtonDeletePanel;
 
     private ListarContratosEnVigencia listarContratosEnVigencia;
+    private ListarInquilinos listarInquilinos;
+    private ListarDuenios listarDuenios;
+    private ListarEscribanos listarEscribanos;
+    private ListarPropiedades listarPropiedades;
     private RegistrarContrato registrarContrato;
     private CargarInquilino cargarInquilino;
     private CargarEscribano cargarEscribano;
@@ -74,6 +82,10 @@ public class MainFrame extends JFrame {
         backButtonDeletePanel = new BackButtonDeletePanel();
 
         listarContratosEnVigencia = new ListarContratosEnVigencia();
+        listarInquilinos = new ListarInquilinos();
+        listarEscribanos = new ListarEscribanos();
+        listarPropiedades = new ListarPropiedades();
+        listarDuenios = new ListarDuenios();
         registrarContrato = new RegistrarContrato();
         cargarInquilino = new CargarInquilino();
         cargarEscribano = new CargarEscribano();
@@ -220,6 +232,42 @@ public class MainFrame extends JFrame {
         listarContratosEnVigencia = new ListarContratosEnVigencia();
         getContentPane().removeAll();
         getContentPane().add(listarContratosEnVigencia, BorderLayout.CENTER);
+        getContentPane().add(backButtonShowPanel, BorderLayout.PAGE_END);
+        revalidate();
+        repaint();
+    }
+
+    public void goListarInquilinos() {
+        listarInquilinos = new ListarInquilinos();
+        getContentPane().removeAll();
+        getContentPane().add(listarInquilinos, BorderLayout.CENTER);
+        getContentPane().add(backButtonShowPanel, BorderLayout.PAGE_END);
+        revalidate();
+        repaint();
+    }
+
+    public void goListarDuenios() {
+        listarDuenios = new ListarDuenios();
+        getContentPane().removeAll();
+        getContentPane().add(listarDuenios, BorderLayout.CENTER);
+        getContentPane().add(backButtonShowPanel, BorderLayout.PAGE_END);
+        revalidate();
+        repaint();
+    }
+
+    public void goListarEscribanos() {
+        listarEscribanos = new ListarEscribanos();
+        getContentPane().removeAll();
+        getContentPane().add(listarEscribanos, BorderLayout.CENTER);
+        getContentPane().add(backButtonShowPanel, BorderLayout.PAGE_END);
+        revalidate();
+        repaint();
+    }
+
+    public void goListarPropiedades() {
+        listarPropiedades = new ListarPropiedades();
+        getContentPane().removeAll();
+        getContentPane().add(listarPropiedades, BorderLayout.CENTER);
         getContentPane().add(backButtonShowPanel, BorderLayout.PAGE_END);
         revalidate();
         repaint();

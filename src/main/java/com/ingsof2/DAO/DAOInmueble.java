@@ -20,7 +20,7 @@ public class DAOInmueble implements BusinessObject<Inmueble> {
         Statement statement;
         try {
             statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM Inmueble WHERE (Status==1)");
+            ResultSet rs = statement.executeQuery("SELECT * FROM Inmueble WHERE (Status=1)");
             Inmueble inmueble;
             while (rs.next()) {
                 inmueble = new Inmueble();

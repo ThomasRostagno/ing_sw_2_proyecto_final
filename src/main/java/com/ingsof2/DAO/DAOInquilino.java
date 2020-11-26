@@ -19,7 +19,7 @@ public class DAOInquilino implements BusinessObject<Inquilino> {
         Statement statement;
         try {
             statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM Inquilino WHERE (Status==1)");
+            ResultSet rs = statement.executeQuery("SELECT * FROM Inquilino WHERE (Status=1)");
             Inquilino inquilino;
             while (rs.next()) {
                 inquilino = new Inquilino();
@@ -27,10 +27,10 @@ public class DAOInquilino implements BusinessObject<Inquilino> {
                 inquilino.setApellido(rs.getString("Apellido"));
                 inquilino.setTelefono(rs.getString("Telefono"));
                 inquilino.setDni(rs.getString("DNI"));
-                inquilino.setTelefono(rs.getString("Sexo"));
-                inquilino.setTelefono(rs.getString("Direccion"));
-                inquilino.setTelefono(rs.getString("Fecha_Nacimiento"));
-                inquilino.setTelefono(rs.getString("Email"));
+                inquilino.setSexo(rs.getString("Sexo"));
+                inquilino.setDireccion(rs.getString("Direccion"));
+                inquilino.setFecha_nac(rs.getString("Fecha_Nacimiento"));
+                inquilino.setEmail(rs.getString("Email"));
                 inquilinos.add(inquilino);
             }
         } catch (SQLException throwables) {
