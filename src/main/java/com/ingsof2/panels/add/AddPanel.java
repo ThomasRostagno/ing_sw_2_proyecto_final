@@ -19,13 +19,13 @@ public class AddPanel extends JPanel {
     private final JLabel cargarInquilinoLabel = new JLabel("Cargar inquilino");
     private final JLabel cargarEscribanoLabel = new JLabel("Cargar escribano");
     private final JLabel cargarPropiedadLabel = new JLabel("Cargar propiedad");
-    private final JLabel cargarDueñoLabel = new JLabel("Cargar dueño");
+    private final JLabel cargarDuenioLabel = new JLabel("Cargar dueño");
 
     private final JButton registrarAlquilerButton = new JButton("Button");
     private final JButton cargarInquilinoButton = new JButton("Button");
     private final JButton cargarEscribanoButton = new JButton("Button");
     private final JButton cargarPropiedadButton = new JButton("Button");
-    private final JButton cargarDueñoButton = new JButton("Button");
+    private final JButton cargarDuenioButton = new JButton("Button");
 
     private final int rows = 5;
 
@@ -51,7 +51,7 @@ public class AddPanel extends JPanel {
         }
 
         registrarAlquilerButton.addActionListener(e -> {
-            Main.mainFrame.goRegistrarAlquiler();
+            Main.mainFrame.goRegistrarContrato();
         });
         cargarInquilinoButton.addActionListener(e -> {
             Main.mainFrame.goCargarInquilino();
@@ -62,8 +62,8 @@ public class AddPanel extends JPanel {
         cargarPropiedadButton.addActionListener(e -> {
             Main.mainFrame.goCargarPropiedad();
         });
-        cargarDueñoButton.addActionListener(e -> {
-            Main.mainFrame.goCargarDueño();
+        cargarDuenioButton.addActionListener(e -> {
+            Main.mainFrame.goCargarDuenio();
         });
 
         setLayout(new SpringLayout());
@@ -80,8 +80,8 @@ public class AddPanel extends JPanel {
         add(cargarPropiedadLabel);
         add(cargarPropiedadButton);
 
-        add(cargarDueñoLabel);
-        add(cargarDueñoButton);
+        add(cargarDuenioLabel);
+        add(cargarDuenioButton);
 
         SpringUtilities.makeCompactGrid(this, rows, 2, initialX, initialY, xPad, yPad);
     }
@@ -93,7 +93,7 @@ public class AddPanel extends JPanel {
 
         Graphics2D g2d = (Graphics2D) g;
 
-        g2d.setColor(new Color(212, 212, 212, 200));
+        g2d.setColor(Constants.RECT_COLOR);
         g2d.fillRect(initialX - margin, initialY - margin, ((int) x) + margin * 2, ((int) y) + margin * 2);
     }
 }

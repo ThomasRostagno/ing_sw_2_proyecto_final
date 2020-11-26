@@ -13,30 +13,30 @@ public class Inmueble {
     private float valor;
     private String clasificacion; //residencial, familiar, no habitable, etc
     private String dni_Inquilino;
-    private String dni_Dueño;
+    private String dni_Duenio;
     private String codigo_Alquiler;
     private String codigo_Zona;
 
     public Inmueble() {
     }
 
-    public Inmueble(Inmueble aux){
-        this.tipo = aux.tipo;
-        this.condicion = aux.condicion;
-        this.direccion = aux.direccion;
-        this.superficie = aux.superficie;
-        this.num_ambientes = aux.num_ambientes;
-        this.fecha_construccion = aux.fecha_construccion;
-        this.antiguedad = aux.antiguedad;
-        this.valor = aux.valor;
-        this.clasificacion = aux.clasificacion;
-        this.dni_Inquilino = aux.dni_Inquilino;
-        this.dni_Dueño = aux.dni_Dueño;
-        this.codigo_Alquiler = aux.codigo_Alquiler;
-        this.codigo_Zona = aux.codigo_Zona;
+    public Inmueble(Inmueble inmueble) {
+        this.tipo = inmueble.tipo;
+        this.condicion = inmueble.condicion;
+        this.direccion = inmueble.direccion;
+        this.superficie = inmueble.superficie;
+        this.num_ambientes = inmueble.num_ambientes;
+        this.fecha_construccion = inmueble.fecha_construccion;
+        this.antiguedad = inmueble.antiguedad;
+        this.valor = inmueble.valor;
+        this.clasificacion = inmueble.clasificacion;
+        this.dni_Inquilino = inmueble.dni_Inquilino;
+        this.dni_Duenio = inmueble.dni_Duenio;
+        this.codigo_Alquiler = inmueble.codigo_Alquiler;
+        this.codigo_Zona = inmueble.codigo_Zona;
     }
 
-    public Inmueble(String tipo, String condicion, String direccion, int superficie, int num_ambientes, String fecha_construccion, int antiguedad, float valor, String clasificacion, String dni_Inquilino, String dni_Dueño, String codigo_Alquiler, String codigo_Zona) {
+    public Inmueble(String tipo, String condicion, String direccion, int superficie, int num_ambientes, String fecha_construccion, int antiguedad, float valor, String clasificacion, String dni_Inquilino, String dni_Duenio, String codigo_Alquiler, String codigo_Zona) {
         this.tipo = tipo;
         this.condicion = condicion;
         this.direccion = direccion;
@@ -47,7 +47,7 @@ public class Inmueble {
         this.valor = valor;
         this.clasificacion = clasificacion;
         this.dni_Inquilino = dni_Inquilino;
-        this.dni_Dueño = dni_Dueño;
+        this.dni_Duenio = dni_Duenio;
         this.codigo_Alquiler = codigo_Alquiler;
         this.codigo_Zona = codigo_Zona;
     }
@@ -132,12 +132,12 @@ public class Inmueble {
         this.dni_Inquilino = dni_Inquilino;
     }
 
-    public String getDni_Dueño() {
-        return dni_Dueño;
+    public String getDni_Duenio() {
+        return dni_Duenio;
     }
 
-    public void setDni_Dueño(String dni_Dueño) {
-        this.dni_Dueño = dni_Dueño;
+    public void setDni_Duenio(String dni_Duenio) {
+        this.dni_Duenio = dni_Duenio;
     }
 
     public String getCodigo_Alquiler() {
@@ -156,7 +156,6 @@ public class Inmueble {
         this.codigo_Zona = codigo_Zona;
     }
 
-
     public Object[][] getDataVector(List<Inmueble> inmuebles) {
         Object[][] objects = new Object[0][0];
 
@@ -167,10 +166,29 @@ public class Inmueble {
     }
 
     private Object[] toObject() {
-        return new Object[]{getTipo(),getCondicion(),getDireccion(),getSuperficie(),getNum_ambientes(),getFecha_construccion(),getAntiguedad(),getValor(),getClasificacion(),getDni_Inquilino(),getDni_Dueño(),getCodigo_Alquiler(),getCodigo_Zona()};
+        return new Object[]{getTipo(), getCondicion(), getDireccion(), getSuperficie(), getNum_ambientes(), getFecha_construccion(), getAntiguedad(), getValor(), getClasificacion(), getDni_Inquilino(), getDni_Duenio(), getCodigo_Alquiler(), getCodigo_Zona()};
     }
 
     public Object[] getHeaders() {
-        return new Object[]{"Tipo", "Condicion", "Direccion", "Superficie","Ambientes","Fecha de Construccion","Antiguedad","Valor","Clasificacion","Inquilino","Dueño","Alquiler","Zona"};
+        return new Object[]{"Tipo", "Condicion", "Direccion", "Superficie", "Ambientes", "Fecha de Construccion", "Antiguedad", "Valor", "Clasificacion", "Inquilino", "Dueño", "Alquiler", "Zona"};
+    }
+
+    @Override
+    public String toString() {
+        return "Inmueble{" +
+                "tipo='" + tipo + '\'' +
+                ", condicion='" + condicion + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", superficie=" + superficie +
+                ", num_ambientes=" + num_ambientes +
+                ", fecha_construccion='" + fecha_construccion + '\'' +
+                ", antiguedad=" + antiguedad +
+                ", valor=" + valor +
+                ", clasificacion='" + clasificacion + '\'' +
+                ", dni_Inquilino='" + dni_Inquilino + '\'' +
+                ", dni_Duenio='" + dni_Duenio + '\'' +
+                ", codigo_Alquiler='" + codigo_Alquiler + '\'' +
+                ", codigo_Zona='" + codigo_Zona + '\'' +
+                '}';
     }
 }

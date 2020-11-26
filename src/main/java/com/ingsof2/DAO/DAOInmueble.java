@@ -1,14 +1,12 @@
 package com.ingsof2.DAO;
 
 import com.ingsof2.Objetos.Inmueble;
-import com.ingsof2.Objetos.Inquilino;
 import com.ingsof2.database.Database;
 import com.ingsof2.exceptions.ApiException;
 import com.ingsof2.utils.ErrorCode;
+import com.ingsof2.utils.Utils;
 
 import java.sql.*;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +22,7 @@ public class DAOInmueble implements BusinessObject<Inmueble> {
             statement = connection.createStatement();
             ResultSet rs = statement.executeQuery("SELECT * FROM Inmueble WHERE (Status==1)");
             Inmueble inmueble;
-            while(rs.next()){
+            while (rs.next()) {
                 inmueble = new Inmueble();
                 inmueble.setTipo(rs.getString("Tipo"));
                 inmueble.setCondicion(rs.getString("Condicion"));
@@ -35,21 +33,20 @@ public class DAOInmueble implements BusinessObject<Inmueble> {
                 inmueble.setValor(rs.getFloat("Valor"));
                 inmueble.setClasificacion(rs.getString("Clasificacion"));
                 inmueble.setDni_Inquilino(rs.getString("DNI_Inquilino"));
-                inmueble.setDni_Dueño(rs.getString("DNI_Dueno"));
+                inmueble.setDni_Duenio(rs.getString("DNI_Dueno"));
                 inmueble.setCodigo_Alquiler(rs.getString("Codigo_Alquiler"));
                 inmueble.setCodigo_Zona(rs.getString("Codigo_Zona"));
 
                 /**Calculo Antiguedad**/
-                LocalDate today = LocalDate.now();
-                int dd= Integer.parseInt(inmueble.getFecha_construccion().substring(0,2));
-                int mm= Integer.parseInt(inmueble.getFecha_construccion().substring(3,5));
-                int yy= Integer.parseInt(inmueble.getFecha_construccion().substring(6,10));
 
-                LocalDate agebuilding = LocalDate.of(yy,mm,dd);
+                String fechaConstruccionString = inmueble.getFecha_construccion();
+                String[] fechaConstruccion = fechaConstruccionString.split("/");
 
-                long longage = ChronoUnit.YEARS.between(agebuilding,today);
-                int age = (int)longage;
-                inmueble.setAntiguedad(age);
+                int dd = Integer.parseInt(fechaConstruccion[0]);
+                int mm = Integer.parseInt(fechaConstruccion[1]);
+                int yy = Integer.parseInt(fechaConstruccion[2]);
+
+                inmueble.setAntiguedad(Utils.calculateAntiguedad(dd, mm, yy));
 
                 inmuebles.add(inmueble);
             }
@@ -68,26 +65,26 @@ public class DAOInmueble implements BusinessObject<Inmueble> {
 
     @Override
     public int create(Inmueble inmueble) {
-        String sqlInsert =  " INSERT INTO Inmueble (Tipo, Condicion, Direccion, Superficie, Num_Ambientes, Fecha_Construccion, Valor, Clasificacion, DNI_Inquilino, DNI_Dueno, Codigo_Alquiler, Codigo_Zona, Status)" +
+        String sqlInsert = " INSERT INTO Inmueble (Tipo, Condicion, Direccion, Superficie, Num_Ambientes, Fecha_Construccion, Valor, Clasificacion, DNI_Inquilino, DNI_Dueno, Codigo_Alquiler, Codigo_Zona, Status)" +
                 " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         int exito = 0;
         Connection connection = Database.getInstance().getConnection();
         PreparedStatement statement;
         try {
             statement = connection.prepareStatement(sqlInsert);
-            statement.setString(1,inmueble.getTipo());
-            statement.setString(2,inmueble.getCondicion());
-            statement.setString(3,inmueble.getDireccion());
-            statement.setInt(4,inmueble.getSuperficie());
-            statement.setInt(5,inmueble.getNum_ambientes());
-            statement.setString(6,inmueble.getFecha_construccion());
-            statement.setFloat(7,inmueble.getValor());
-            statement.setString(8,inmueble.getClasificacion());
-            statement.setString(9,inmueble.getDni_Inquilino());
-            statement.setString(10,inmueble.getDni_Dueño());
-            statement.setString(11,inmueble.getCodigo_Alquiler());
-            statement.setString(12,inmueble.getCodigo_Zona());
-            statement.setInt(13,1);
+            statement.setString(1, inmueble.getTipo());
+            statement.setString(2, inmueble.getCondicion());
+            statement.setString(3, inmueble.getDireccion());
+            statement.setInt(4, inmueble.getSuperficie());
+            statement.setInt(5, inmueble.getNum_ambientes());
+            statement.setString(6, inmueble.getFecha_construccion());
+            statement.setFloat(7, inmueble.getValor());
+            statement.setString(8, inmueble.getClasificacion());
+            statement.setString(9, inmueble.getDni_Inquilino());
+            statement.setString(10, inmueble.getDni_Duenio());
+            statement.setString(11, inmueble.getCodigo_Alquiler());
+            statement.setString(12, inmueble.getCodigo_Zona());
+            statement.setInt(13, 1);
             statement.executeUpdate();
             exito = 1;
 
@@ -100,24 +97,24 @@ public class DAOInmueble implements BusinessObject<Inmueble> {
 
     @Override
     public int update(Inmueble inmueble) {
-        String sqlUpdate =  " UPDATE Inmueble SET Tipo = ?, Condicion = ?, Superficie = ?, Num_Ambientes = ?, Fecha_Construccion = ?, Valor = ?, Clasificacion = ?, DNI_Inquilino = ?, DNI_Dueno = ?, Codigo_Alquiler = ?, Codigo_Zona = ?" +
+        String sqlUpdate = " UPDATE Inmueble SET Tipo = ?, Condicion = ?, Superficie = ?, Num_Ambientes = ?, Fecha_Construccion = ?, Valor = ?, Clasificacion = ?, DNI_Inquilino = ?, DNI_Dueno = ?, Codigo_Alquiler = ?, Codigo_Zona = ?" +
                 " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) WHERE (Direccion = '" + inmueble.getDireccion() + "')";
         int exito = 0;
         Connection connection = Database.getInstance().getConnection();
         PreparedStatement statement;
         try {
             statement = connection.prepareStatement(sqlUpdate);
-            statement.setString(1,inmueble.getTipo());
-            statement.setString(2,inmueble.getCondicion());
-            statement.setInt(4,inmueble.getSuperficie());
-            statement.setInt(5,inmueble.getNum_ambientes());
-            statement.setString(6,inmueble.getFecha_construccion());
-            statement.setFloat(7,inmueble.getValor());
-            statement.setString(8,inmueble.getClasificacion());
-            statement.setString(9,inmueble.getDni_Inquilino());
-            statement.setString(10,inmueble.getDni_Dueño());
-            statement.setString(11,inmueble.getCodigo_Alquiler());
-            statement.setString(12,inmueble.getCodigo_Zona());
+            statement.setString(1, inmueble.getTipo());
+            statement.setString(2, inmueble.getCondicion());
+            statement.setInt(4, inmueble.getSuperficie());
+            statement.setInt(5, inmueble.getNum_ambientes());
+            statement.setString(6, inmueble.getFecha_construccion());
+            statement.setFloat(7, inmueble.getValor());
+            statement.setString(8, inmueble.getClasificacion());
+            statement.setString(9, inmueble.getDni_Inquilino());
+            statement.setString(10, inmueble.getDni_Duenio());
+            statement.setString(11, inmueble.getCodigo_Alquiler());
+            statement.setString(12, inmueble.getCodigo_Zona());
             statement.executeUpdate();
             exito = 1;
 

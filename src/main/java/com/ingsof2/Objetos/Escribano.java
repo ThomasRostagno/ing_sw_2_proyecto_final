@@ -2,10 +2,10 @@ package com.ingsof2.Objetos;
 
 import java.util.List;
 
-public class Escribano extends Persona{
+public class Escribano extends Persona {
     private String matricula;
 
-    public Escribano(){
+    public Escribano() {
     }
 
     public Escribano(Persona aux, String matricula) {
@@ -36,10 +36,10 @@ public class Escribano extends Persona{
     }
 
     private Object[] toObject() {
-        return new Object[]{getNombre(),getApellido(),getDni(),getTelefono(),getSexo(),getDireccion(),getFecha_nac(),getEmail(),getMatricula()};
+        return new Object[]{getNombre(), getApellido(), getDni(), getTelefono(), getSexo(), getDireccion(), getFecha_nac(), getEmail(), getMatricula()};
     }
 
     public Object[] getHeaders() {
-        return new Object[]{"Nombre", "Apellido", "DNI", "Telefono","Sexo","Direccion","Fecha de Nacimiento","Email","Matricula"};
+        return new Object[]{"Nombre", "Apellido", "DNI", "Telefono", "Sexo", "Direccion", "Fecha de Nacimiento", "Email", "Matricula"};
     }
 }

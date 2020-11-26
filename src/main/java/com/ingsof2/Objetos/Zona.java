@@ -7,7 +7,7 @@ public class Zona {
     private String nombre;
     private String descripcion;
 
-    public Zona(){
+    public Zona() {
     }
 
     public Zona(String codigo, String nombre, String descripcion) {
@@ -16,10 +16,10 @@ public class Zona {
         this.descripcion = descripcion;
     }
 
-    public Zona (Zona aux){
-        this.codigo = aux.codigo;
-        this.nombre = aux.nombre;
-        this.descripcion = aux.descripcion;
+    public Zona(Zona zona) {
+        this.codigo = zona.codigo;
+        this.nombre = zona.nombre;
+        this.descripcion = zona.descripcion;
     }
 
     public String getCodigo() {
@@ -56,10 +56,15 @@ public class Zona {
     }
 
     private Object[] toObject() {
-        return new Object[]{getCodigo(),getNombre(),getDescripcion()};
+        return new Object[]{getCodigo(), getNombre(), getDescripcion()};
     }
 
     public Object[] getHeaders() {
         return new Object[]{"Codigo", "Nombre", "Descripcion"};
+    }
+
+    @Override
+    public String toString() {
+        return nombre;
     }
 }

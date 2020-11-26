@@ -1,13 +1,6 @@
 package com.ingsof2;
 
-import com.ingsof2.database.Database;
 import com.ingsof2.frames.MainFrame;
-
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 
 public class Main {
 
@@ -15,8 +8,16 @@ public class Main {
 
     public static void main(String[] args) {
 
-        mainFrame = new MainFrame();
+        //Tablas tablas = new Tablas();
+        //tablas.TablaAlquiler();
+        //tablas.TablaDuenio();
+        //tablas.TablaEscribano();
+        //tablas.TablaGarante();
+        //tablas.TablaInmueble();
+        //tablas.TablaInquilino();
+        //tablas.TablaZona();
 
+        mainFrame = new MainFrame();
 
         /*
         String aux = "30/12/1996";

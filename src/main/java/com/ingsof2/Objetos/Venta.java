@@ -1,6 +1,6 @@
 package com.ingsof2.Objetos;
 
-public class Venta extends Contrato{
+public class Venta extends Contrato {
     private int Comision;
 
     public Venta(Contrato aux, int comision) {

@@ -1,7 +1,6 @@
 package com.ingsof2.DAO;
 
 import com.ingsof2.Objetos.Garante;
-import com.ingsof2.Objetos.Inquilino;
 import com.ingsof2.database.Database;
 import com.ingsof2.exceptions.ApiException;
 import com.ingsof2.utils.ErrorCode;
@@ -21,7 +20,7 @@ public class DAOGarante implements BusinessObject<Garante> {
             statement = connection.createStatement();
             ResultSet rs = statement.executeQuery("SELECT * FROM Inquilino WHERE (Status==1)");
             Garante garante;
-            while(rs.next()){
+            while (rs.next()) {
                 garante = new Garante();
                 garante.setNombre(rs.getString("Nombre"));
                 garante.setApellido(rs.getString("Apellido"));
@@ -49,23 +48,23 @@ public class DAOGarante implements BusinessObject<Garante> {
 
     @Override
     public int create(Garante garante) {
-        String sqlInsert =  " INSERT INTO Garante (Nombre, Apellido, Telefono, DNI, Sexo, Direccion, Fecha_Nacimiento, Email, DNI_Inquilino, Status)" +
+        String sqlInsert = " INSERT INTO Garante (Nombre, Apellido, Telefono, DNI, Sexo, Direccion, Fecha_Nacimiento, Email, DNI_Inquilino, Status)" +
                 " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         int exito = 0;
         Connection connection = Database.getInstance().getConnection();
         PreparedStatement statement;
         try {
             statement = connection.prepareStatement(sqlInsert);
-            statement.setString(1,garante.getNombre());
-            statement.setString(2,garante.getApellido());
-            statement.setString(3,garante.getTelefono());
-            statement.setString(4,garante.getDni());
-            statement.setString(5,garante.getSexo());
-            statement.setString(6,garante.getDireccion());
-            statement.setString(7,garante.getFecha_nac());
-            statement.setString(8,garante.getEmail());
-            statement.setString(9,garante.getDNI_Inquilino());
-            statement.setInt(10,1);
+            statement.setString(1, garante.getNombre());
+            statement.setString(2, garante.getApellido());
+            statement.setString(3, garante.getTelefono());
+            statement.setString(4, garante.getDni());
+            statement.setString(5, garante.getSexo());
+            statement.setString(6, garante.getDireccion());
+            statement.setString(7, garante.getFecha_nac());
+            statement.setString(8, garante.getEmail());
+            statement.setString(9, garante.getDNI_Inquilino());
+            statement.setInt(10, 1);
             statement.executeUpdate();
             exito = 1;
 
@@ -78,21 +77,21 @@ public class DAOGarante implements BusinessObject<Garante> {
 
     @Override
     public int update(Garante garante) {
-        String sqlUpdate =  " UPDATE Inquilino SET Nombre = ?, Apellido = ?, Telefono = ?, Sexo = ?, Direccion = ?, Fecha_Nacimiento = ?, Email = ?, DNI_Inquilino = ? " +
+        String sqlUpdate = " UPDATE Inquilino SET Nombre = ?, Apellido = ?, Telefono = ?, Sexo = ?, Direccion = ?, Fecha_Nacimiento = ?, Email = ?, DNI_Inquilino = ? " +
                 " VALUES (?, ?, ?, ?, ?, ?, ?, ?) WHERE (DNI = '" + garante.getDni() + "') AND ('" + "Sexo =" + garante.getSexo() + "')";
         int exito = 0;
         Connection connection = Database.getInstance().getConnection();
         PreparedStatement statement;
         try {
             statement = connection.prepareStatement(sqlUpdate);
-            statement.setString(1,garante.getNombre());
-            statement.setString(2,garante.getApellido());
-            statement.setString(3,garante.getTelefono());
-            statement.setString(4,garante.getSexo());
-            statement.setString(5,garante.getDireccion());
-            statement.setString(6,garante.getFecha_nac());
-            statement.setString(7,garante.getEmail());
-            statement.setString(8,garante.getDNI_Inquilino());
+            statement.setString(1, garante.getNombre());
+            statement.setString(2, garante.getApellido());
+            statement.setString(3, garante.getTelefono());
+            statement.setString(4, garante.getSexo());
+            statement.setString(5, garante.getDireccion());
+            statement.setString(6, garante.getFecha_nac());
+            statement.setString(7, garante.getEmail());
+            statement.setString(8, garante.getDNI_Inquilino());
             statement.executeUpdate();
             exito = 1;
 

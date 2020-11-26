@@ -1,14 +1,11 @@
 package com.ingsof2.DAO;
 
 import com.ingsof2.Objetos.Alquiler;
-import com.ingsof2.Objetos.Inmueble;
 import com.ingsof2.database.Database;
 import com.ingsof2.exceptions.ApiException;
 import com.ingsof2.utils.ErrorCode;
 
 import java.sql.*;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +20,7 @@ public class DAOAlquiler implements BusinessObject<Alquiler> {
             statement = connection.createStatement();
             ResultSet rs = statement.executeQuery("SELECT * FROM Alquiler WHERE (Status==1)");
             Alquiler alquiler;
-            while(rs.next()){
+            while (rs.next()) {
                 alquiler = new Alquiler();
                 alquiler.setCodigo(rs.getString("Codigo"));
                 alquiler.setTipo(1);//1 es alquiler, 2 es venta
@@ -53,19 +50,19 @@ public class DAOAlquiler implements BusinessObject<Alquiler> {
 
     @Override
     public int create(Alquiler alquiler) {
-        String sqlInsert =  " INSERT INTO Alquiler (Codigo, Tipo, Fecha_Contrato, Fecha_Fin, Precio, Status)" +
+        String sqlInsert = " INSERT INTO Alquiler (Codigo, Tipo, Fecha_Contrato, Fecha_Fin, Precio, Status)" +
                 " VALUES (?, ?, ?, ?, ?, ?)";
         int exito = 0;
         Connection connection = Database.getInstance().getConnection();
         PreparedStatement statement;
         try {
             statement = connection.prepareStatement(sqlInsert);
-            statement.setString(1,alquiler.getCodigo());
-            statement.setInt(2,alquiler.getTipo());
-            statement.setString(3,alquiler.getFecha());
-            statement.setString(4,alquiler.getFecha_fin());
-            statement.setFloat(5,alquiler.getPrecio());
-            statement.setInt(6,1);
+            statement.setString(1, alquiler.getCodigo());
+            statement.setInt(2, alquiler.getTipo());
+            statement.setString(3, alquiler.getFecha());
+            statement.setString(4, alquiler.getFecha_fin());
+            statement.setFloat(5, alquiler.getPrecio());
+            statement.setInt(6, 1);
             statement.executeUpdate();
             exito = 1;
 

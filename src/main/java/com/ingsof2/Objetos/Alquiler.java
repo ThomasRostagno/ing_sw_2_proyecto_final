@@ -2,14 +2,14 @@ package com.ingsof2.Objetos;
 
 import java.util.List;
 
-public class Alquiler extends Contrato{
+public class Alquiler extends Contrato {
     private String fecha_fin;
     private String dni_Inquilino;
     private String domicilio_Inmueble;
     private String dni_Garante;
     private String dni_Escribano;
 
-    public Alquiler(){
+    public Alquiler() {
     }
 
     public Alquiler(Alquiler aux) {
@@ -28,6 +28,7 @@ public class Alquiler extends Contrato{
         this.fecha_fin = domicilio_Inmueble;
         this.fecha_fin = dni_Garante;
         this.fecha_fin = fecha_fin;
+        this.dni_Escribano = dni_Escribano;
     }
 
     public String getFecha_fin() {
@@ -70,7 +71,7 @@ public class Alquiler extends Contrato{
         this.dni_Escribano = dni_Escribano;
     }
 
-    public Object[][] getDataVector(List<Alquiler> alquileres) {
+    public Object[][] getDataVectorAlquiler(List<Alquiler> alquileres) {
         Object[][] objects = new Object[0][0];
 
         for (int i = 0; i < alquileres.size(); i++) {
@@ -80,10 +81,10 @@ public class Alquiler extends Contrato{
     }
 
     private Object[] toObject() {
-        return new Object[]{getCodigo(),getFecha(), getPrecio(), getTipo(),getFecha_fin(),getDni_Inquilino(),getDomicilio_Inmueble(),getDni_Garante(),getDni_Escribano()};
+        return new Object[]{getCodigo(), getFecha(), getPrecio(), getTipo(), getFecha_fin(), getDni_Inquilino(), getDomicilio_Inmueble(), getDni_Garante(), getDni_Escribano()};
     }
 
     public Object[] getHeaders() {
-        return new Object[]{"Codigo", "Fecha", "Precio", "Tipo","Fecha Fin","Inquilino","Direccion Inmueble","Garante", "Escribano"};
+        return new Object[]{"Codigo", "Fecha", "Precio", "Tipo", "Fecha Fin", "Inquilino", "Direccion Inmueble", "Garante", "Escribano"};
     }
 }

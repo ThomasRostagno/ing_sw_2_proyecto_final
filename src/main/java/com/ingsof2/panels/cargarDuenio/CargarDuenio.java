@@ -1,6 +1,6 @@
-package com.ingsof2.panels.cargarInquilino;
+package com.ingsof2.panels.cargarDuenio;
 
-import com.ingsof2.Objetos.Inquilino;
+import com.ingsof2.Objetos.Duenio;
 import com.ingsof2.exceptions.ApiException;
 import com.ingsof2.utils.Constants;
 import com.ingsof2.utils.ErrorCode;
@@ -9,19 +9,21 @@ import com.ingsof2.utils.SpringUtilities;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class CargarInquilino extends JPanel {
+public class CargarDuenio extends JPanel implements ActionListener {
 
     private JLabel nombreLabel = new JLabel("Nombre:");
     private JLabel apellidoLabel = new JLabel("Apellido:");
     private JLabel dniLabel = new JLabel("D.N.I:");
     private JLabel sexoLabel = new JLabel("Sexo:");
-    private JLabel direccionLabel = new JLabel("Dirección:");
+    private JLabel direccionDeTrabajoLabel = new JLabel("Dirección de trabajo:");
     private JLabel fechaDeNacimientoLabel = new JLabel("Fecha de nacimiento:");
     private JLabel telefonoLabel = new JLabel("Teléfono:");
     private JLabel emailLabel = new JLabel("Email:");
@@ -30,7 +32,7 @@ public class CargarInquilino extends JPanel {
     private JTextField apellidoTextField = new JTextField();
     private JTextField dniTextField = new JTextField();
     private JComboBox<String> sexoComboBox = new JComboBox<>();
-    private JTextField direccionTextField = new JTextField();
+    private JTextField direccionDeTrabajoTextField = new JTextField();
     private JTextField fechaDeNacimientoTextField = new JTextField();
     private JTextField telefonoTextField = new JTextField();
     private JTextField emailTextField = new JTextField();
@@ -42,7 +44,7 @@ public class CargarInquilino extends JPanel {
     private final int xPad = Constants.X_PAD;
     private final int yPad = Constants.Y_PAD;
 
-    private final double x = direccionLabel.getPreferredSize().getWidth() + xPad + Constants.TEXTFIELD_WIDTH + xPad + fechaDeNacimientoLabel.getPreferredSize().getWidth() + xPad + Constants.TEXTFIELD_WIDTH;
+    private final double x = direccionDeTrabajoLabel.getPreferredSize().getWidth() + xPad + Constants.TEXTFIELD_WIDTH + xPad + fechaDeNacimientoLabel.getPreferredSize().getWidth() + xPad + Constants.TEXTFIELD_WIDTH;
     private final double y = Constants.TEXTFIELD_HEIGHT * rows + (rows - 1) * yPad;
 
     private final int initialX = (int) (Constants.WIDTH / 2 - x / 2);
@@ -50,7 +52,8 @@ public class CargarInquilino extends JPanel {
 
     private BufferedImage image;
 
-    public CargarInquilino() {
+
+    public CargarDuenio() {
 
         sexoComboBox.addItem("");
         sexoComboBox.addItem("Masculino");
@@ -75,8 +78,8 @@ public class CargarInquilino extends JPanel {
         add(dniTextField);
         add(sexoLabel);
         add(sexoComboBox);
-        add(direccionLabel);
-        add(direccionTextField);
+        add(direccionDeTrabajoLabel);
+        add(direccionDeTrabajoTextField);
         add(fechaDeNacimientoLabel);
         add(fechaDeNacimientoTextField);
         add(telefonoLabel);
@@ -100,9 +103,9 @@ public class CargarInquilino extends JPanel {
         sexoComboBox.setPreferredSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
         sexoComboBox.setMinimumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
         sexoComboBox.setMaximumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
-        direccionTextField.setPreferredSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
-        direccionTextField.setMinimumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
-        direccionTextField.setMaximumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
+        direccionDeTrabajoTextField.setPreferredSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
+        direccionDeTrabajoTextField.setMinimumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
+        direccionDeTrabajoTextField.setMaximumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
         fechaDeNacimientoTextField.setPreferredSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
         fechaDeNacimientoTextField.setMinimumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
         fechaDeNacimientoTextField.setMaximumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
@@ -207,7 +210,7 @@ public class CargarInquilino extends JPanel {
 
         sexoComboBox.addActionListener(e -> Constants.comboBoxValidator(sexoComboBox));
 
-        direccionTextField.addKeyListener(new KeyAdapter() {
+        direccionDeTrabajoTextField.addKeyListener(new KeyAdapter() {
 
             @Override
             public void keyTyped(KeyEvent e) {
@@ -219,21 +222,21 @@ public class CargarInquilino extends JPanel {
                     e.consume();
                 }
 
-                Constants.direccionValidator(direccionTextField);
+                Constants.direccionValidator(direccionDeTrabajoTextField);
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
                 super.keyPressed(e);
 
-                Constants.direccionValidator(direccionTextField);
+                Constants.direccionValidator(direccionDeTrabajoTextField);
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
                 super.keyReleased(e);
 
-                Constants.direccionValidator(direccionTextField);
+                Constants.direccionValidator(direccionDeTrabajoTextField);
             }
         });
 
@@ -333,20 +336,20 @@ public class CargarInquilino extends JPanel {
                 Constants.nombreYApellidoValidator(apellidoTextField) &&
                 Constants.dniValidator(dniTextField) &&
                 Constants.comboBoxValidator(sexoComboBox) &&
-                Constants.direccionValidator(direccionTextField) &&
+                Constants.direccionValidator(direccionDeTrabajoTextField) &&
                 Constants.fechaValidator(fechaDeNacimientoTextField) &&
                 Constants.telefonoValidator(telefonoTextField) &&
                 Constants.emailValidator(emailTextField);
     }
 
-    public Inquilino saveFields() {
+    public Duenio saveFields() {
         if (validateFields()) {
-            return new Inquilino(nombreTextField.getText(),
+            return new Duenio(nombreTextField.getText(),
                     apellidoTextField.getText(),
                     telefonoTextField.getText(),
                     dniTextField.getText(),
                     sexoComboBox.getItemAt(sexoComboBox.getSelectedIndex()),
-                    direccionTextField.getText(),
+                    direccionDeTrabajoTextField.getText(),
                     fechaDeNacimientoTextField.getText(),
                     emailTextField.getText());
         } else {
@@ -364,5 +367,10 @@ public class CargarInquilino extends JPanel {
 
         g2d.setColor(Constants.RECT_COLOR);
         g2d.fillRect(initialX - margin, initialY - margin, ((int) x) + margin * 2, ((int) y) + margin * 2);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
     }
 }

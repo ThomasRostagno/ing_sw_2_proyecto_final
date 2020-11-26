@@ -18,13 +18,13 @@ public class DeletePanel extends JPanel {
     private final JLabel eliminarInquilinoLabel = new JLabel("Eliminar inquilino");
     private final JLabel eliminarEscribanoLabel = new JLabel("Eliminar escribano");
     private final JLabel eliminarPropiedadLabel = new JLabel("Eliminar propiedad");
-    private final JLabel eliminarDuenoLabel = new JLabel("Eliminar dueño");
+    private final JLabel eliminarDuenioLabel = new JLabel("Eliminar dueño");
 
     private final JButton cancelarAlquilerButton = new JButton("Button");
     private final JButton eliminarInquilinoButton = new JButton("Button");
     private final JButton eliminarEscribanoButton = new JButton("Button");
     private final JButton eliminarPropiedadButton = new JButton("Button");
-    private final JButton eliminarDuenoButton = new JButton("Button");
+    private final JButton eliminarDuenioButton = new JButton("Button");
 
     private final int rows = 5;
 
@@ -57,7 +57,7 @@ public class DeletePanel extends JPanel {
         });
         eliminarPropiedadButton.addActionListener(e -> {
         });
-        eliminarDuenoButton.addActionListener(e -> {
+        eliminarDuenioButton.addActionListener(e -> {
         });
 
         setLayout(new SpringLayout());
@@ -74,8 +74,8 @@ public class DeletePanel extends JPanel {
         add(eliminarPropiedadLabel);
         add(eliminarPropiedadButton);
 
-        add(eliminarDuenoLabel);
-        add(eliminarDuenoButton);
+        add(eliminarDuenioLabel);
+        add(eliminarDuenioButton);
 
         SpringUtilities.makeCompactGrid(this, rows, 2, initialX, initialY, xPad, yPad);
 
@@ -88,7 +88,7 @@ public class DeletePanel extends JPanel {
 
         Graphics2D g2d = (Graphics2D) g;
 
-        g2d.setColor(new Color(212, 212, 212, 200));
+        g2d.setColor(Constants.RECT_COLOR);
         g2d.fillRect(initialX - margin, initialY - margin, ((int) x) + margin * 2, ((int) y) + margin * 2);
     }
 }

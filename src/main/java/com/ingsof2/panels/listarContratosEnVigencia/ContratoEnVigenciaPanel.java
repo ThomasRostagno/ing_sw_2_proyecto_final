@@ -37,8 +37,8 @@ public class ContratoEnVigenciaPanel extends JPanel {
         table.getColumn("Propiedad").setCellRenderer(new ButtonRenderer());
         table.getColumn("Propiedad").setCellEditor(new ButtonEditor(new JCheckBox()));
 
-        table.getColumn("Dueño").setCellRenderer(new ButtonRenderer());
-        table.getColumn("Dueño").setCellEditor(new ButtonEditor(new JCheckBox()));
+        table.getColumn("Duenio").setCellRenderer(new ButtonRenderer());
+        table.getColumn("Duenio").setCellEditor(new ButtonEditor(new JCheckBox()));
 
         JScrollPane scrollPane = new JScrollPane(table);
 

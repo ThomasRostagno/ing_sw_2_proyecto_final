@@ -21,7 +21,7 @@ public class ShowPanel extends JPanel {
     private final JLabel listarAlquileresAVencerLabel = new JLabel("Listar alquileres a vencer");
     private final JLabel listarPropiedadesLabel = new JLabel("Listar propiedades");
     private final JLabel listarEscribanosLabel = new JLabel("Listar escribanos");
-    private final JLabel listarDueñosLabel = new JLabel("Listar dueños");
+    private final JLabel listarDueniosLabel = new JLabel("Listar dueños");
 
     private final JButton listarInquilinosButton = new JButton("Button");
     private final JButton listarAlquileresEnVigenciaButton = new JButton("Button");
@@ -29,7 +29,7 @@ public class ShowPanel extends JPanel {
     private final JButton listarAlquileresAVencerButton = new JButton("Button");
     private final JButton listarPropiedadesButton = new JButton("Button");
     private final JButton listarEscribanosButton = new JButton("Button");
-    private final JButton listarDueñosButton = new JButton("Button");
+    private final JButton listarDueniosButton = new JButton("Button");
 
     private final int rows = 7;
 
@@ -67,7 +67,7 @@ public class ShowPanel extends JPanel {
         });
         listarEscribanosButton.addActionListener(e -> {
         });
-        listarDueñosButton.addActionListener(e -> {
+        listarDueniosButton.addActionListener(e -> {
         });
 
         setLayout(new SpringLayout());
@@ -90,8 +90,8 @@ public class ShowPanel extends JPanel {
         add(listarEscribanosLabel);
         add(listarEscribanosButton);
 
-        add(listarDueñosLabel);
-        add(listarDueñosButton);
+        add(listarDueniosLabel);
+        add(listarDueniosButton);
 
         SpringUtilities.makeCompactGrid(this, rows, 2, initialX, initialY, xPad, yPad);
 
@@ -104,7 +104,7 @@ public class ShowPanel extends JPanel {
 
         Graphics2D g2d = (Graphics2D) g;
 
-        g2d.setColor(new Color(212, 212, 212, 200));
+        g2d.setColor(Constants.RECT_COLOR);
         g2d.fillRect(initialX - margin, initialY - margin, ((int) x) + margin * 2, ((int) y) + margin * 2);
     }
 }

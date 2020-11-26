@@ -10,9 +10,10 @@ public class Persona {
     private String fecha_nac;
     private String email;
 
-    public Persona(){}
+    public Persona() {
+    }
 
-    public Persona (Persona aux){
+    public Persona(Persona aux) {
         this.nombre = aux.nombre;
         this.apellido = aux.apellido;
         this.telefono = aux.telefono;
@@ -23,7 +24,7 @@ public class Persona {
         this.email = aux.email;
     }
 
-    public Persona(String nombre, String apellido, String telefono, String dni, String sexo, String direccion, String fecha_nac, String email){
+    public Persona(String nombre, String apellido, String telefono, String dni, String sexo, String direccion, String fecha_nac, String email) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
@@ -96,5 +97,19 @@ public class Persona {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "Persona{" +
+                "nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", dni='" + dni + '\'' +
+                ", sexo='" + sexo + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", fecha_nac='" + fecha_nac + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

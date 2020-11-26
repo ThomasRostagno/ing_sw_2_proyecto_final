@@ -2,11 +2,11 @@ package com.ingsof2.Objetos;
 
 import java.util.List;
 
-public class Garante extends Persona{
+public class Garante extends Persona {
 
     private String DNI_Inquilino;
 
-    public Garante(){
+    public Garante() {
     }
 
     public Garante(Persona aux, String DNI_Inquilino) {
@@ -37,10 +37,10 @@ public class Garante extends Persona{
     }
 
     private Object[] toObject() {
-        return new Object[]{getNombre(),getApellido(),getDni(),getTelefono(),getSexo(),getDireccion(),getFecha_nac(),getEmail(),getDNI_Inquilino()};
+        return new Object[]{getNombre(), getApellido(), getDni(), getTelefono(), getSexo(), getDireccion(), getFecha_nac(), getEmail(), getDNI_Inquilino()};
     }
 
     public Object[] getHeaders() {
-        return new Object[]{"Nombre", "Apellido", "DNI", "Telefono","Sexo","Direccion","Fecha de Nacimiento","Email", "Inquilino"};
+        return new Object[]{"Nombre", "Apellido", "DNI", "Telefono", "Sexo", "Direccion", "Fecha de Nacimiento", "Email", "Inquilino"};
     }
 }
