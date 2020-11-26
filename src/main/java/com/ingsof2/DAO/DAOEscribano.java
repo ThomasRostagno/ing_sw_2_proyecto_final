@@ -17,7 +17,7 @@ public class DAOEscribano implements BusinessObject<Escribano> {
         Statement statement;
         try {
             statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM Inquilino WHERE (Status==1)");
+            ResultSet rs = statement.executeQuery("SELECT * FROM Escribano WHERE (Status=1)");
             Escribano escribano;
             while (rs.next()) {
                 escribano = new Escribano();
@@ -25,10 +25,10 @@ public class DAOEscribano implements BusinessObject<Escribano> {
                 escribano.setApellido(rs.getString("Apellido"));
                 escribano.setTelefono(rs.getString("Telefono"));
                 escribano.setDni(rs.getString("DNI"));
-                escribano.setTelefono(rs.getString("Sexo"));
-                escribano.setTelefono(rs.getString("Direccion"));
-                escribano.setTelefono(rs.getString("Fecha_Nacimiento"));
-                escribano.setTelefono(rs.getString("Email"));
+                escribano.setSexo(rs.getString("Sexo"));
+                escribano.setDireccion(rs.getString("Direccion"));
+                escribano.setFecha_nac(rs.getString("Fecha_Nacimiento"));
+                escribano.setEmail(rs.getString("Email"));
                 escribano.setMatricula(rs.getString("Matricula"));
                 escribanos.add(escribano);
             }

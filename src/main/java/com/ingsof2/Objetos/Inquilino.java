@@ -15,8 +15,8 @@ public class Inquilino extends Persona {
         super(nombre, apellido, telefono, dni, sexo, direccion, fecha_nac, email);
     }
 
-    public Object[][] getDataVector(List<Inquilino> inquilinos) {
-        Object[][] objects = new Object[0][0];
+    public static Object[][] getDataVector(List<Inquilino> inquilinos) {
+        Object[][] objects = new Object[inquilinos.size()][0];
 
         for (int i = 0; i < inquilinos.size(); i++) {
             objects[i] = inquilinos.get(i).toObject();
@@ -28,7 +28,7 @@ public class Inquilino extends Persona {
         return new Object[]{getNombre(), getApellido(), getDni(), getTelefono(), getSexo(), getDireccion(), getFecha_nac(), getEmail()};
     }
 
-    public Object[] getHeaders() {
+    public static Object[] getHeaders() {
         return new Object[]{"Nombre", "Apellido", "DNI", "Telefono", "Sexo", "Direccion", "Fecha de Nacimiento", "Email"};
     }
 }

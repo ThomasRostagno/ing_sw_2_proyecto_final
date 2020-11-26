@@ -17,7 +17,7 @@ public class DAODueio implements BusinessObject<Duenio> {
         Statement statement;
         try {
             statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM Dueno WHERE (Status==1)");
+            ResultSet rs = statement.executeQuery("SELECT * FROM Dueno WHERE (Status=1)");
             Duenio duenio;
             while (rs.next()) {
                 duenio = new Duenio();
@@ -25,10 +25,10 @@ public class DAODueio implements BusinessObject<Duenio> {
                 duenio.setApellido(rs.getString("Apellido"));
                 duenio.setTelefono(rs.getString("Telefono"));
                 duenio.setDni(rs.getString("DNI"));
-                duenio.setTelefono(rs.getString("Sexo"));
-                duenio.setTelefono(rs.getString("Direccion"));
-                duenio.setTelefono(rs.getString("Fecha_Nacimiento"));
-                duenio.setTelefono(rs.getString("Email"));
+                duenio.setSexo(rs.getString("Sexo"));
+                duenio.setDireccion(rs.getString("Direccion"));
+                duenio.setFecha_nac(rs.getString("Fecha_Nacimiento"));
+                duenio.setEmail(rs.getString("Email"));
                 duenios.add(duenio);
             }
         } catch (SQLException throwables) {

@@ -55,6 +55,7 @@ public class ShowPanel extends JPanel {
         }
 
         listarInquilinosButton.addActionListener(e -> {
+            Main.mainFrame.goListarInquilinos();
         });
         listarAlquileresEnVigenciaButton.addActionListener(e -> {
             Main.mainFrame.goListarAlquileresEnVigencia();
@@ -64,10 +65,13 @@ public class ShowPanel extends JPanel {
         listarAlquileresAVencerButton.addActionListener(e -> {
         });
         listarPropiedadesButton.addActionListener(e -> {
+            Main.mainFrame.goListarPropiedades();
         });
         listarEscribanosButton.addActionListener(e -> {
+            Main.mainFrame.goListarEscribanos();
         });
         listarDueniosButton.addActionListener(e -> {
+            Main.mainFrame.goListarDuenios();
         });
 
         setLayout(new SpringLayout());
