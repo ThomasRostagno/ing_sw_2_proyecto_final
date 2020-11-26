@@ -25,19 +25,17 @@ public class Database {
     }
 
     private static void createInstance() {
+        INSTANCE = new Database();
+    }
+
+    public static Database getInstance() {
         try {
             if (INSTANCE == null || INSTANCE.getConnection().isClosed()) {
-                INSTANCE = new Database();
+                createInstance();
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             ApiException.showException(new ApiException(ErrorCode.FAIL_CONNECTING_TO_DB));
-        }
-    }
-
-    public static Database getInstance() {
-        if (INSTANCE == null) {
-            createInstance();
         }
         return INSTANCE;
     }

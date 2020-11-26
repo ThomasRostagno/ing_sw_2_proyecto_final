@@ -65,8 +65,9 @@ public class DAODueio implements BusinessObject<Duenio> {
             statement.executeUpdate();
             exito = 1;
 
-        } catch (SQLException throwables) {
+        } catch (SQLException e) {
             ApiException.showException(new ApiException(ErrorCode.FAIL_SAVING_IN_DB));
+            System.out.println(e.getMessage());
         }
         Database.getInstance().disconnect();
         return exito;

@@ -130,11 +130,11 @@ public class Tablas {
                     "Num_Ambientes INT NOT NULL," +
                     "Fecha_Construccion VARCHAR(255) NOT NULL," +
                     "Valor FLOAT NOT NULL," +
-                    "Clasficacion VARCHAR(255) NOT NULL," +
+                    "Clasificacion VARCHAR(255) NOT NULL," +
                     "DNI_Inquilino VARCHAR(255)," +
-                    "DNI_Dueno VARCHAR(255) NOT NULL," +
+                    "DNI_Dueno VARCHAR(255) ," +
                     "Codigo_Alquiler VARCHAR(255)," +
-                    "Codigo_Zona VARCHAR(255) NOT NULL," +
+                    "Codigo_Zona VARCHAR(255)," +
                     "Status INT NOT NULL," +
                     "PRIMARY KEY(Direccion)" +
                     ")");
