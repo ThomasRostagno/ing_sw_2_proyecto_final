@@ -1,11 +1,14 @@
 package com.ingsof2.Objetos;
 
 public class Zona {
-    private int codigo;
+    private String codigo;
     private String nombre;
     private String descripcion;
 
-    public Zona(int codigo, String nombre, String descripcion) {
+    public Zona(){
+    }
+
+    public Zona(String codigo, String nombre, String descripcion) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -17,11 +20,11 @@ public class Zona {
         this.descripcion = aux.descripcion;
     }
 
-    public int getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 

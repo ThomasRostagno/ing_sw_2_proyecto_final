@@ -30,6 +30,11 @@ public class DAOAlquiler implements BusinessObject<Alquiler> {
                 alquiler.setFecha(rs.getString("Fecha_Contrato"));
                 alquiler.setFecha_fin(rs.getString("Fecha_Fin"));
                 alquiler.setPrecio(rs.getFloat("Precio"));
+                alquiler.setFecha_fin(rs.getString("DNI_Inquilino"));
+                alquiler.setFecha_fin(rs.getString("Domicilio_Inmueble"));
+                alquiler.setFecha_fin(rs.getString("DNI_Garante"));
+                alquiler.setFecha_fin(rs.getString("DNI_Escribano"));
+
 
                 alquileres.add(alquiler);
             }
@@ -39,6 +44,11 @@ public class DAOAlquiler implements BusinessObject<Alquiler> {
 
         Database.getInstance().disconnect();
         return alquileres;
+    }
+
+    @Override
+    public Alquiler ReadOne(Alquiler alquiler) {
+        return null;
     }
 
     @Override
