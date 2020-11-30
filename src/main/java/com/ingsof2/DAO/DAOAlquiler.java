@@ -27,10 +27,10 @@ public class DAOAlquiler implements BusinessObject<Alquiler> {
                 alquiler.setFecha(rs.getString("Fecha_Contrato"));
                 alquiler.setFechaFin(rs.getString("Fecha_Fin"));
                 alquiler.setPrecio(rs.getFloat("Precio"));
-                alquiler.setFechaFin(rs.getString("DNI_Inquilino"));
-                alquiler.setFechaFin(rs.getString("Domicilio_Inmueble"));
-                alquiler.setFechaFin(rs.getString("DNI_Garante"));
-                alquiler.setFechaFin(rs.getString("DNI_Escribano"));
+                alquiler.setDniInquilino(rs.getString("DNI_Inquilino"));
+                alquiler.setDomicilioInmueble(rs.getString("Domicilio_Inmueble"));
+                alquiler.setDniGarante(rs.getString("DNI_Garante"));
+                alquiler.setDniEscribano(rs.getString("DNI_Escribano"));
 
 
                 alquileres.add(alquiler);

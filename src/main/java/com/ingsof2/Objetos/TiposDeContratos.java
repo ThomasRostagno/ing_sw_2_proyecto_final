@@ -6,7 +6,8 @@ import java.util.Map;
 
 public enum TiposDeContratos {
     ALQUILER(1, "Alquiler"),
-    VENTA(2, "Venta");
+    VENTA(2, "Venta"),
+    AMBOS(3, "Ambos");
 
     private int tipo;
     private String descripcion;
