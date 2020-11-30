@@ -1,5 +1,6 @@
 package com.ingsof2.panels.listarPropiedades;
 
+import com.ingsof2.Objetos.Inmueble;
 import com.ingsof2.exceptions.ApiException;
 import com.ingsof2.utils.Constants;
 import com.ingsof2.utils.ErrorCode;
@@ -35,5 +36,9 @@ public class ListarPropiedades extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(image, 0, 0, Constants.WIDTH, Constants.CENTER_HEIGHT, this); // see javadoc for more info on the parameters
+    }
+
+    public Inmueble getPropiedad() {
+        return new Inmueble("String tipo", "String condicion", "String direccion", 75, 3, "String fecha_construccion", 60, (float) 45000.00, "String clasificacion", "String dni_Inquilino", "String dni_Duenio", "String codigo_Alquiler", "String codigo_Zona");
     }
 }

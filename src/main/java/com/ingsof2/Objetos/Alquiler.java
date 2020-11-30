@@ -6,72 +6,80 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class Alquiler extends Contrato {
-    private String fecha_fin;
-    private String dni_Inquilino;
-    private String domicilio_Inmueble;
-    private String dni_Garante;
-    private String dni_Escribano;
+    private String fechaFin;
+    private String dniInquilino;
+    private String domicilioInmueble;
+    private String dniGarante;
+    private String dniEscribano;
 
     public Alquiler() {
     }
 
-    public Alquiler(Alquiler aux) {
-        super(aux);
-        this.fecha_fin = aux.fecha_fin;
-        this.fecha_fin = aux.dni_Inquilino;
-        this.fecha_fin = aux.domicilio_Inmueble;
-        this.fecha_fin = aux.dni_Garante;
-        this.fecha_fin = aux.dni_Escribano;
+    public Alquiler(Alquiler alquiler) {
+        super(alquiler.getCodigo(), alquiler.getFecha(), alquiler.getPrecio(), alquiler.getTipo());
+        this.fechaFin = alquiler.fechaFin;
+        this.dniInquilino = alquiler.dniInquilino;
+        this.domicilioInmueble = alquiler.domicilioInmueble;
+        this.dniGarante = alquiler.dniGarante;
+        this.dniEscribano = alquiler.dniEscribano;
     }
 
-    public Alquiler(String codigo, String fecha, float precio, int tipo, String fecha_fin, String dni_Inquilino, String domicilio_Inmueble, String dni_Garante, String dni_Escribano) {
+    public Alquiler(Contrato contrato, String fechaFin, String dniInquilino, String domicilioInmueble, String dniGarante, String dniEscribano) {
+        super(contrato);
+        this.fechaFin = fechaFin;
+        this.dniInquilino = dniInquilino;
+        this.domicilioInmueble = domicilioInmueble;
+        this.dniGarante = dniGarante;
+        this.dniEscribano = dniEscribano;
+    }
+
+    public Alquiler(String codigo, String fecha, float precio, int tipo, String fechaFin, String dniInquilino, String domicilioInmueble, String dniGarante, String dniEscribano) {
         super(codigo, fecha, precio, tipo);
-        this.fecha_fin = fecha_fin;
-        this.fecha_fin = dni_Inquilino;
-        this.fecha_fin = domicilio_Inmueble;
-        this.fecha_fin = dni_Garante;
-        this.fecha_fin = fecha_fin;
-        this.dni_Escribano = dni_Escribano;
+        this.fechaFin = fechaFin;
+        this.dniInquilino = dniInquilino;
+        this.domicilioInmueble = domicilioInmueble;
+        this.dniGarante = dniGarante;
+        this.dniEscribano = dniEscribano;
     }
 
-    public String getFecha_fin() {
-        return fecha_fin;
+    public String getFechaFin() {
+        return fechaFin;
     }
 
-    public void setFecha_fin(String fecha_fin) {
-        this.fecha_fin = fecha_fin;
+    public void setFechaFin(String fechaFin) {
+        this.fechaFin = fechaFin;
     }
 
-    public String getDni_Inquilino() {
-        return dni_Inquilino;
+    public String getDniInquilino() {
+        return dniInquilino;
     }
 
-    public void setDni_Inquilino(String dni_Inquilino) {
-        this.dni_Inquilino = dni_Inquilino;
+    public void setDniInquilino(String dniInquilino) {
+        this.dniInquilino = dniInquilino;
     }
 
-    public String getDomicilio_Inmueble() {
-        return domicilio_Inmueble;
+    public String getDomicilioInmueble() {
+        return domicilioInmueble;
     }
 
-    public void setDomicilio_Inmueble(String domicilio_Inmueble) {
-        this.domicilio_Inmueble = domicilio_Inmueble;
+    public void setDomicilioInmueble(String domicilioInmueble) {
+        this.domicilioInmueble = domicilioInmueble;
     }
 
-    public String getDni_Garante() {
-        return dni_Garante;
+    public String getDniGarante() {
+        return dniGarante;
     }
 
-    public void setDni_Garante(String dni_Garante) {
-        this.dni_Garante = dni_Garante;
+    public void setDniGarante(String dniGarante) {
+        this.dniGarante = dniGarante;
     }
 
-    public String getDni_Escribano() {
-        return dni_Escribano;
+    public String getDniEscribano() {
+        return dniEscribano;
     }
 
-    public void setDni_Escribano(String dni_Escribano) {
-        this.dni_Escribano = dni_Escribano;
+    public void setDniEscribano(String dniEscribano) {
+        this.dniEscribano = dniEscribano;
     }
 
     public Object[][] getDataVectorAlquiler(List<Alquiler> alquileres) {
@@ -100,7 +108,7 @@ public class Alquiler extends Contrato {
     }
 
     private Object[] toObject() {
-        return new Object[]{getCodigo(), getFecha(), getPrecio(), getTipo(), getFecha_fin(), getDni_Inquilino(), getDomicilio_Inmueble(), getDni_Garante(), getDni_Escribano()};
+        return new Object[]{getCodigo(), getFecha(), getPrecio(), getTipo(), getFechaFin(), getDniInquilino(), getDomicilioInmueble(), getDniGarante(), getDniEscribano()};
     }
 
     public Object[] getHeaders() {

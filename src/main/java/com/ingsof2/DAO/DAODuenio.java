@@ -9,7 +9,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DAODueio implements BusinessObject<Duenio> {
+public class DAODuenio implements BusinessObject<Duenio> {
     @Override
     public List<Duenio> readAll() {
         List<Duenio> duenios = new ArrayList<>();
