@@ -30,8 +30,10 @@ public class Database {
 
     public static Database getInstance() {
         try {
-            if (INSTANCE == null || INSTANCE.getConnection().isClosed()) {
+            if (INSTANCE == null) {
                 createInstance();
+            } else if(INSTANCE.getConnection().isClosed()) {
+                //INSTANCE.getConnection().//TODO: ABRIR CONEXION
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());

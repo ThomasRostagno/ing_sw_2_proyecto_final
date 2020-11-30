@@ -1,9 +1,7 @@
 package com.ingsof2.panels.listarEscribanos;
 
 import com.ingsof2.DAO.BusinessObject;
-import com.ingsof2.DAO.DAODueio;
 import com.ingsof2.DAO.DAOEscribano;
-import com.ingsof2.Objetos.Duenio;
 import com.ingsof2.Objetos.Escribano;
 
 import javax.swing.*;

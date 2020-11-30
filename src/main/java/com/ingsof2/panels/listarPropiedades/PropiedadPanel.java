@@ -1,9 +1,7 @@
 package com.ingsof2.panels.listarPropiedades;
 
 import com.ingsof2.DAO.BusinessObject;
-import com.ingsof2.DAO.DAODueio;
 import com.ingsof2.DAO.DAOInmueble;
-import com.ingsof2.Objetos.Duenio;
 import com.ingsof2.Objetos.Inmueble;
 
 import javax.swing.*;

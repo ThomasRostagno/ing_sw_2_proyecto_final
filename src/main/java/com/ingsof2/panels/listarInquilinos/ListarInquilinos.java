@@ -1,5 +1,6 @@
 package com.ingsof2.panels.listarInquilinos;
 
+import com.ingsof2.Objetos.Inquilino;
 import com.ingsof2.exceptions.ApiException;
 import com.ingsof2.utils.Constants;
 import com.ingsof2.utils.ErrorCode;
@@ -35,5 +36,9 @@ public class ListarInquilinos extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(image, 0, 0, Constants.WIDTH, Constants.CENTER_HEIGHT, this); // see javadoc for more info on the parameters
+    }
+
+    public Inquilino getInquilino() {
+        return new Inquilino("Augusto Thomas", "Rostagno", "2664028603", "41919789", "Masculino", "Barrio 544", "26/05/1999", "trostagno@hotmail.com");
     }
 }

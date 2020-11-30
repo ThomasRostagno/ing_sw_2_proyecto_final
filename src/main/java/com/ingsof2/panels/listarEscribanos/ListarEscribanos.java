@@ -1,5 +1,6 @@
 package com.ingsof2.panels.listarEscribanos;
 
+import com.ingsof2.Objetos.Escribano;
 import com.ingsof2.exceptions.ApiException;
 import com.ingsof2.panels.listarDuenios.DuenioPanel;
 import com.ingsof2.utils.Constants;
@@ -36,5 +37,9 @@ public class ListarEscribanos extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(image, 0, 0, Constants.WIDTH, Constants.CENTER_HEIGHT, this); // see javadoc for more info on the parameters
+    }
+
+    public Escribano getEscribano() {
+        return new Escribano("Daniel", "Kwist", "2664406601", "39662252", "Masculino", "Rivadavia 1305", "30/12/1996", "kwistdaniel@gmail.com", "6969");
     }
 }

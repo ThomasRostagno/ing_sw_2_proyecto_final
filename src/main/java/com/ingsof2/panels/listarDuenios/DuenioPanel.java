@@ -1,10 +1,8 @@
 package com.ingsof2.panels.listarDuenios;
 
 import com.ingsof2.DAO.BusinessObject;
-import com.ingsof2.DAO.DAODueio;
-import com.ingsof2.DAO.DAOInquilino;
+import com.ingsof2.DAO.DAODuenio;
 import com.ingsof2.Objetos.Duenio;
-import com.ingsof2.Objetos.Inquilino;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -29,7 +27,7 @@ public class DuenioPanel extends JPanel {
             }
         };
 
-        BusinessObject<Duenio> businessObject = new DAODueio();
+        BusinessObject<Duenio> businessObject = new DAODuenio();
 
         List<Duenio> duenios = businessObject.readAll();
 
