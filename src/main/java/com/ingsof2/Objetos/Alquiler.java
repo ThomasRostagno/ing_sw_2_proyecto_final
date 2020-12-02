@@ -96,9 +96,9 @@ public class Alquiler extends Contrato {
 
     private boolean metodo(){
 
-        String fecha_fin = this.getFecha_fin();
+        String fechaFin = this.getFechaFin();
 
-        String[] fechafin = fecha_fin.split("/");
+        String[] fechafin = fechaFin.split("/");
 
         int dd = Integer.parseInt(fechafin[0]);
         int mm = Integer.parseInt(fechafin[1]);
