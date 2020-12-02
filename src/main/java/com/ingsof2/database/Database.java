@@ -9,10 +9,10 @@ import java.sql.SQLException;
 
 public class Database {
     private static Database INSTANCE;
-    private Connection connection;
-    private String url = "jdbc:postgresql://34.95.188.39:5432/";
-    private String user = "postgres";
-    private String password = "951753";
+    private static Connection connection;
+    private static String url = "jdbc:postgresql://34.95.188.39:5432/";
+    private static String user = "postgres";
+    private static String password = "951753";
 
     public Database() {
         try {
@@ -32,8 +32,8 @@ public class Database {
         try {
             if (INSTANCE == null) {
                 createInstance();
-            } else if(INSTANCE.getConnection().isClosed()) {
-                //INSTANCE.getConnection().//TODO: ABRIR CONEXION
+            } else if (INSTANCE.getConnection().isClosed()) {
+                connection = DriverManager.getConnection(url, user, password);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
