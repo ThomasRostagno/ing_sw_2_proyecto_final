@@ -7,6 +7,7 @@ import com.ingsof2.utils.ErrorCode;
 import com.ingsof2.utils.Utils;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,14 +40,9 @@ public class DAOInmueble implements BusinessObject<Inmueble> {
 
                 /**Calculo Antiguedad**/
 
-                String fechaConstruccionString = inmueble.getFechaConstruccion();
-                String[] fechaConstruccion = fechaConstruccionString.split("/");
+                LocalDate fechaConstruccion = Utils.stringToLocalDate(inmueble.getFecha_construccion());
 
-                int dd = Integer.parseInt(fechaConstruccion[0]);
-                int mm = Integer.parseInt(fechaConstruccion[1]);
-                int yy = Integer.parseInt(fechaConstruccion[2]);
-
-                inmueble.setAntiguedad(Utils.calculateAntiguedad(dd, mm, yy));
+                inmueble.setAntiguedad(Utils.calculateAntiguedad(fechaConstruccion));
 
                 inmuebles.add(inmueble);
             }

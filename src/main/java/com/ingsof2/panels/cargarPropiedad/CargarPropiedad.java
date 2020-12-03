@@ -16,6 +16,7 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class CargarPropiedad extends JPanel {
 
@@ -263,14 +264,8 @@ public class CargarPropiedad extends JPanel {
                 }
 
                 if (Constants.fechaValidator(fechaDeConstruccionTextField)) {
-                    String fechaConstruccionString = fechaDeConstruccionTextField.getText();
-                    String[] fechaConstruccion = fechaConstruccionString.split("/");
-
-                    int dd = Integer.parseInt(fechaConstruccion[0]);
-                    int mm = Integer.parseInt(fechaConstruccion[1]);
-                    int yy = Integer.parseInt(fechaConstruccion[2]);
-
-                    antiguedadTextField.setText(String.format("%s", Utils.calculateAntiguedad(dd, mm, yy)));
+                    LocalDate fechaConstruccion = Utils.stringToLocalDate(fechaDeConstruccionTextField.getText());;
+                    antiguedadTextField.setText(String.format("%s", Utils.calculateAntiguedad(fechaConstruccion)));
                 }
             }
 
@@ -279,14 +274,8 @@ public class CargarPropiedad extends JPanel {
                 super.keyPressed(e);
 
                 if (Constants.fechaValidator(fechaDeConstruccionTextField)) {
-                    String fechaConstruccionString = fechaDeConstruccionTextField.getText();
-                    String[] fechaConstruccion = fechaConstruccionString.split("/");
-
-                    int dd = Integer.parseInt(fechaConstruccion[0]);
-                    int mm = Integer.parseInt(fechaConstruccion[1]);
-                    int yy = Integer.parseInt(fechaConstruccion[2]);
-
-                    antiguedadTextField.setText(String.format("%s", Utils.calculateAntiguedad(dd, mm, yy)));
+                    LocalDate fechaConstruccion = Utils.stringToLocalDate(fechaDeConstruccionTextField.getText());
+                    antiguedadTextField.setText(String.format("%s", Utils.calculateAntiguedad(fechaConstruccion)));
                 }
             }
 
@@ -295,14 +284,8 @@ public class CargarPropiedad extends JPanel {
                 super.keyReleased(e);
 
                 if (Constants.fechaValidator(fechaDeConstruccionTextField)) {
-                    String fechaConstruccionString = fechaDeConstruccionTextField.getText();
-                    String[] fechaConstruccion = fechaConstruccionString.split("/");
-
-                    int dd = Integer.parseInt(fechaConstruccion[0]);
-                    int mm = Integer.parseInt(fechaConstruccion[1]);
-                    int yy = Integer.parseInt(fechaConstruccion[2]);
-
-                    antiguedadTextField.setText(String.format("%s", Utils.calculateAntiguedad(dd, mm, yy)));
+                    LocalDate fechaConstruccion = Utils.stringToLocalDate(fechaDeConstruccionTextField.getText());
+                    antiguedadTextField.setText(String.format("%s", Utils.calculateAntiguedad(fechaConstruccion)));
                 }
             }
         });
@@ -358,14 +341,8 @@ public class CargarPropiedad extends JPanel {
 
     public Inmueble saveFields() {
         if (validateFields()) {
-            String fechaConstruccionString = fechaDeConstruccionTextField.getText();
-            String[] fechaConstruccion = fechaConstruccionString.split("/");
-
-            int dd = Integer.parseInt(fechaConstruccion[0]);
-            int mm = Integer.parseInt(fechaConstruccion[1]);
-            int yy = Integer.parseInt(fechaConstruccion[2]);
-
-            int antiguedad = Utils.calculateAntiguedad(dd, mm, yy);
+            LocalDate fechaConstruccion = Utils.stringToLocalDate(fechaDeConstruccionTextField.getText());
+            int antiguedad = Utils.calculateAntiguedad(fechaConstruccion);
 
             return new Inmueble(tipoComboBox.getItemAt(tipoComboBox.getSelectedIndex()),
                     condicionComboBox.getItemAt(condicionComboBox.getSelectedIndex()),

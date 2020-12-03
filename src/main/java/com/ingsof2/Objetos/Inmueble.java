@@ -1,5 +1,8 @@
 package com.ingsof2.Objetos;
 
+import com.ingsof2.utils.Utils;
+
+import java.time.LocalDate;
 import java.util.List;
 
 public class Inmueble {
@@ -171,6 +174,21 @@ public class Inmueble {
 
     public static Object[] getHeaders() {
         return new Object[]{"Tipo", "Condicion", "Direccion", "Superficie", "Ambientes", "Fecha de Construccion", "Antiguedad", "Valor", "Clasificacion", "Inquilino", "Dueño", "Alquiler", "Zona"};
+    }
+
+    /**Entra una lista de inmuebles y el codigo de la Zona, remueve todos los inmuebles que no se encuentren en la misma zona**/
+    public List<Inmueble> listarPorZona(List<Inmueble> inmuebles,String codigoZona){
+        List<Inmueble> aux = inmuebles;
+        /**Loop inverso para cerciorar leer todas las posiciones**/
+        for (int i = aux.size() - 1; i >= 0 ; i--) {
+            String stringInmuebleCodigoZona = aux.get(i).getCodigo_Zona();
+            /**Condicional para remover los que no pertenecen a la zona**/
+            //Esto se logra negando los que no son iguales para que entre al condicional
+            if(!(stringInmuebleCodigoZona.equals(codigoZona))){
+                aux.remove(i);
+            }
+        }
+        return aux;
     }
 
     @Override
