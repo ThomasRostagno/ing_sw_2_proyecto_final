@@ -25,12 +25,20 @@ public class RegistrarAlquiler extends JPanel {
     private JLabel inmuebleLabel = new JLabel("Inmueble:");
     private JLabel garanteLabel = new JLabel("Garante:");
     private JLabel escribanoLabel = new JLabel("Escribano:");
+    private JLabel inquilinoSeleccionadoLabel = new JLabel("Inquilino seleccionado:");
+    private JLabel inmuebleSeleccionadoLabel = new JLabel("Inmueble seleccionado:");
+    private JLabel garanteSeleccionadoLabel = new JLabel("Garante seleccionado:");
+    private JLabel escribanoSeleccionadoLabel = new JLabel("Escribano seleccionado:");
 
     private JTextField fechaDeFinTextField = new JTextField();
     private JButton inquilinoButton = new JButton("Button");
     private JButton inmuebleButton = new JButton("Button");
     private JButton garanteButton = new JButton("Button");
     private JButton escribanoButton = new JButton("Button");
+    private JButton inquilinoSeleccionadoButton = new JButton("inquilino");
+    private JButton inmuebleSeleccionadoButton = new JButton("inmueble");
+    private JButton garanteSeleccionadoButton = new JButton("garante");
+    private JButton escribanoSeleccionadoButton = new JButton("escribano");
 
     private final int rows = 5;
 
@@ -39,7 +47,7 @@ public class RegistrarAlquiler extends JPanel {
     private final int xPad = Constants.X_PAD;
     private final int yPad = Constants.Y_PAD;
 
-    private final double x = fechaDeFinLabel.getPreferredSize().getWidth() + xPad + Constants.TEXTFIELD_WIDTH;
+    private final double x = fechaDeFinLabel.getPreferredSize().getWidth() + xPad + Constants.TEXTFIELD_WIDTH + xPad + escribanoSeleccionadoLabel.getPreferredSize().getWidth() + xPad + Constants.TEXTFIELD_WIDTH;
     private final double y = Constants.TEXTFIELD_HEIGHT * rows + (rows - 1) * yPad;
 
     private final int initialX = (int) (Constants.WIDTH / 2 - x / 2);
@@ -56,16 +64,16 @@ public class RegistrarAlquiler extends JPanel {
         }
 
         inquilinoButton.addActionListener(e -> {
-            Main.mainFrame.goSeleccionarInquilino();
+            Main.mainFrame.goSeleccionarInquilino(inquilinoSeleccionadoButton);
         });
         inmuebleButton.addActionListener(e -> {
-            Main.mainFrame.goSeleccionarInmueble();
+            Main.mainFrame.goSeleccionarInmueble(inmuebleSeleccionadoButton);
         });
         garanteButton.addActionListener(e -> {
-            Main.mainFrame.goSeleccionarGarante();
+            Main.mainFrame.goSeleccionarGarante(garanteSeleccionadoButton);
         });
         escribanoButton.addActionListener(e -> {
-            Main.mainFrame.goSeleccionarEscribano();
+            Main.mainFrame.goSeleccionarEscribano(escribanoSeleccionadoButton);
         });
 
         setLayout(new SpringLayout());
@@ -73,18 +81,28 @@ public class RegistrarAlquiler extends JPanel {
         setSizes();
         checkers();
 
-        add(fechaDeFinLabel);
-        add(fechaDeFinTextField);
         add(inquilinoLabel);
         add(inquilinoButton);
+        add(inquilinoSeleccionadoLabel);
+        add(inquilinoSeleccionadoButton);
         add(inmuebleLabel);
         add(inmuebleButton);
+        add(inmuebleSeleccionadoLabel);
+        add(inmuebleSeleccionadoButton);
         add(garanteLabel);
         add(garanteButton);
+        add(garanteSeleccionadoLabel);
+        add(garanteSeleccionadoButton);
         add(escribanoLabel);
         add(escribanoButton);
+        add(escribanoSeleccionadoLabel);
+        add(escribanoSeleccionadoButton);
+        add(fechaDeFinLabel);
+        add(fechaDeFinTextField);
+        add(new JLabel(""));
+        add(new JLabel(""));
 
-        SpringUtilities.makeCompactGrid(this, rows, 2, initialX, initialY, xPad, yPad);
+        SpringUtilities.makeCompactGrid(this, rows, 4, initialX, initialY, xPad, yPad);
     }
 
     private void setSizes() {
@@ -123,6 +141,11 @@ public class RegistrarAlquiler extends JPanel {
                 Constants.fechaValidator(fechaDeFinTextField);
             }
         });
+
+        inquilinoSeleccionadoButton.setEnabled(false);
+        inmuebleSeleccionadoButton.setEnabled(false);
+        garanteSeleccionadoButton.setEnabled(false);
+        escribanoSeleccionadoButton.setEnabled(false);
     }
 
     private boolean validateFields() {
@@ -134,10 +157,6 @@ public class RegistrarAlquiler extends JPanel {
             Alquiler alquiler = new Alquiler();
 
             alquiler.setFechaFin(fechaDeFinTextField.getText());
-            alquiler.setDniInquilino("");
-            alquiler.setDomicilioInmueble("");
-            alquiler.setDniGarante("");
-            alquiler.setDniEscribano("");
 
             return alquiler;
         } else {

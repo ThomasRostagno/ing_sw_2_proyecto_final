@@ -22,9 +22,11 @@ import com.ingsof2.panels.registrarAlquiler.RegistrarContrato;
 import com.ingsof2.panels.show.BackButtonShowPanel;
 import com.ingsof2.panels.show.ShowPanel;
 import com.ingsof2.utils.Constants;
+import com.ingsof2.utils.Utils;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class MainFrame extends JFrame {
 
@@ -107,13 +109,14 @@ public class MainFrame extends JFrame {
             this.contrato = registrarContrato.saveFields();
 
             if (contrato != null) {
+                //TODO:HACER IF PARA CONTRATO ALQUILER O CONTRATO VENTA
                 getContentPane().removeAll();
                 registrarAlquiler = new RegistrarAlquiler();
                 buttonsAddPanel = new ButtonsAddPanel(() -> {
                     Alquiler aux = registrarAlquiler.saveFields();
 
                     if (aux != null) {
-                        Alquiler alquiler = new Alquiler(contrato, aux.getFechaFin(), aux.getDniInquilino(), aux.getDomicilioInmueble(), aux.getDniGarante(), aux.getDniEscribano());
+                        Alquiler alquiler = new Alquiler(contrato, aux.getFechaFin(), this.inquilino.getDni(), this.inmueble.getDireccion(), this.garante.getDni(), this.escribano.getDni());
 
                         BusinessObject<Alquiler> businessObject = new DAOAlquiler();
 
@@ -135,142 +138,114 @@ public class MainFrame extends JFrame {
         repaint();
     }
 
-    public void goSeleccionarInquilino() {
+    public void goSeleccionarInquilino(JButton inquilinoSeleccionadoButton) {
         listarInquilinos = new ListarInquilinos();
-        buttonsAddPanel = new ButtonsAddPanel(() -> {
+        getContentPane().removeAll();
+        getContentPane().add(listarInquilinos, BorderLayout.CENTER);
+        getContentPane().add(new ButtonsAddPanel(() -> {
             Inquilino inquilino = listarInquilinos.getInquilino();
 
             if (inquilino != null) {
+                inquilinoSeleccionadoButton.setEnabled(true);
+                for (ActionListener al : inquilinoSeleccionadoButton.getActionListeners()) {
+                    inquilinoSeleccionadoButton.removeActionListener(al);
+                }
+                inquilinoSeleccionadoButton.addActionListener(e -> {
+                    Utils.showInformation(this, this.inquilino);
+                });
+
                 this.inquilino = inquilino;
                 getContentPane().removeAll();
                 getContentPane().add(registrarAlquiler, BorderLayout.CENTER);
-                buttonsAddPanel = new ButtonsAddPanel(() -> {
-                    Alquiler aux = registrarAlquiler.saveFields();
-
-                    if (aux != null) {
-                        Alquiler alquiler = new Alquiler(this.contrato, aux.getFechaFin(), aux.getDniInquilino(), aux.getDomicilioInmueble(), aux.getDniGarante(), aux.getDniEscribano());
-
-                        BusinessObject<Alquiler> businessObject = new DAOAlquiler();
-
-                        businessObject.create(alquiler);
-                        showAltaExitosa();
-                        goAdd();
-                    }
-                });
-                getContentPane().add(registrarAlquiler, BorderLayout.CENTER);
                 getContentPane().add(buttonsAddPanel, BorderLayout.PAGE_END);
                 revalidate();
                 repaint();
             }
-        });
-        getContentPane().removeAll();
-        getContentPane().add(listarInquilinos, BorderLayout.CENTER);
-        getContentPane().add(buttonsAddPanel, BorderLayout.PAGE_END);
+        }), BorderLayout.PAGE_END);
         revalidate();
         repaint();
     }
 
-    public void goSeleccionarInmueble() {
+    public void goSeleccionarInmueble(JButton inmuebleSeleccionadoButton) {
         listarPropiedades = new ListarPropiedades();
-        buttonsAddPanel = new ButtonsAddPanel(() -> {
+        getContentPane().removeAll();
+        getContentPane().add(listarPropiedades, BorderLayout.CENTER);
+        getContentPane().add(new ButtonsAddPanel(() -> {
             Inmueble inmueble = listarPropiedades.getPropiedad();
 
             if (inmueble != null) {
+                inmuebleSeleccionadoButton.setEnabled(true);
+                for (ActionListener al : inmuebleSeleccionadoButton.getActionListeners()) {
+                    inmuebleSeleccionadoButton.removeActionListener(al);
+                }
+                inmuebleSeleccionadoButton.addActionListener(e -> {
+                    Utils.showInformation(this, this.inmueble);
+                });
+
                 this.inmueble = inmueble;
                 getContentPane().removeAll();
                 getContentPane().add(registrarAlquiler, BorderLayout.CENTER);
-                buttonsAddPanel = new ButtonsAddPanel(() -> {
-                    Alquiler aux = registrarAlquiler.saveFields();
-
-                    if (aux != null) {
-                        Alquiler alquiler = new Alquiler(this.contrato, aux.getFechaFin(), aux.getDniInquilino(), aux.getDomicilioInmueble(), aux.getDniGarante(), aux.getDniEscribano());
-
-                        BusinessObject<Alquiler> businessObject = new DAOAlquiler();
-
-                        businessObject.create(alquiler);
-                        showAltaExitosa();
-                        goAdd();
-                    }
-                });
-                getContentPane().add(registrarAlquiler, BorderLayout.CENTER);
                 getContentPane().add(buttonsAddPanel, BorderLayout.PAGE_END);
                 revalidate();
                 repaint();
             }
-        });
-        getContentPane().removeAll();
-        getContentPane().add(listarPropiedades, BorderLayout.CENTER);
-        getContentPane().add(buttonsAddPanel, BorderLayout.PAGE_END);
+        }), BorderLayout.PAGE_END);
         revalidate();
         repaint();
     }
 
-    public void goSeleccionarGarante() {
+    public void goSeleccionarGarante(JButton garanteSeleccionadoButton) {
         listarInquilinos = new ListarInquilinos();
-        buttonsAddPanel = new ButtonsAddPanel(() -> {
+        getContentPane().removeAll();
+        getContentPane().add(listarInquilinos, BorderLayout.CENTER);
+        getContentPane().add(new ButtonsAddPanel(() -> {
             Inquilino inquilino = listarInquilinos.getInquilino();
 
             if (inquilino != null) {
+                garanteSeleccionadoButton.setEnabled(true);
+                for (ActionListener al : garanteSeleccionadoButton.getActionListeners()) {
+                    garanteSeleccionadoButton.removeActionListener(al);
+                }
+                garanteSeleccionadoButton.addActionListener(e -> {
+                    Utils.showInformation(this, this.garante);
+                });
+
                 this.garante = inquilino;
                 getContentPane().removeAll();
-                getContentPane().add(registrarAlquiler, BorderLayout.CENTER);
-                buttonsAddPanel = new ButtonsAddPanel(() -> {
-                    Alquiler aux = registrarAlquiler.saveFields();
-
-                    if (aux != null) {
-                        Alquiler alquiler = new Alquiler(this.contrato, aux.getFechaFin(), aux.getDniInquilino(), aux.getDomicilioInmueble(), aux.getDniGarante(), aux.getDniEscribano());
-
-                        BusinessObject<Alquiler> businessObject = new DAOAlquiler();
-
-                        businessObject.create(alquiler);
-                        showAltaExitosa();
-                        goAdd();
-                    }
-                });
                 getContentPane().add(registrarAlquiler, BorderLayout.CENTER);
                 getContentPane().add(buttonsAddPanel, BorderLayout.PAGE_END);
                 revalidate();
                 repaint();
             }
-        });
-        getContentPane().removeAll();
-        getContentPane().add(listarInquilinos, BorderLayout.CENTER);
-        getContentPane().add(buttonsAddPanel, BorderLayout.PAGE_END);
+        }), BorderLayout.PAGE_END);
         revalidate();
         repaint();
     }
 
-    public void goSeleccionarEscribano() {
+    public void goSeleccionarEscribano(JButton escribanoSeleccionadoButton) {
         listarEscribanos = new ListarEscribanos();
-        buttonsAddPanel = new ButtonsAddPanel(() -> {
+        getContentPane().removeAll();
+        getContentPane().add(listarEscribanos, BorderLayout.CENTER);
+        getContentPane().add(new ButtonsAddPanel(() -> {
             Escribano escribano = listarEscribanos.getEscribano();
 
             if (escribano != null) {
+                escribanoSeleccionadoButton.setEnabled(true);
+                for (ActionListener al : escribanoSeleccionadoButton.getActionListeners()) {
+                    escribanoSeleccionadoButton.removeActionListener(al);
+                }
+                escribanoSeleccionadoButton.addActionListener(e -> {
+                    Utils.showInformation(this, this.escribano);
+                });
+
                 this.escribano = escribano;
                 getContentPane().removeAll();
-                getContentPane().add(registrarAlquiler, BorderLayout.CENTER);
-                buttonsAddPanel = new ButtonsAddPanel(() -> {
-                    Alquiler aux = registrarAlquiler.saveFields();
-
-                    if (aux != null) {
-                        Alquiler alquiler = new Alquiler(this.contrato, aux.getFechaFin(), aux.getDniInquilino(), aux.getDomicilioInmueble(), aux.getDniGarante(), aux.getDniEscribano());
-
-                        BusinessObject<Alquiler> businessObject = new DAOAlquiler();
-
-                        businessObject.create(alquiler);
-                        showAltaExitosa();
-                        goAdd();
-                    }
-                });
                 getContentPane().add(registrarAlquiler, BorderLayout.CENTER);
                 getContentPane().add(buttonsAddPanel, BorderLayout.PAGE_END);
                 revalidate();
                 repaint();
             }
-        });
-        getContentPane().removeAll();
-        getContentPane().add(listarEscribanos, BorderLayout.CENTER);
-        getContentPane().add(buttonsAddPanel, BorderLayout.PAGE_END);
+        }), BorderLayout.PAGE_END);
         revalidate();
         repaint();
     }

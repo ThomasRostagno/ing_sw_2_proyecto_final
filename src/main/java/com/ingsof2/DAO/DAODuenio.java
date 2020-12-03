@@ -27,7 +27,7 @@ public class DAODuenio implements BusinessObject<Duenio> {
                 duenio.setDni(rs.getString("DNI"));
                 duenio.setSexo(rs.getString("Sexo"));
                 duenio.setDireccion(rs.getString("Direccion"));
-                duenio.setFecha_nac(rs.getString("Fecha_Nacimiento"));
+                duenio.setFechaNac(rs.getString("Fecha_Nacimiento"));
                 duenio.setEmail(rs.getString("Email"));
                 duenios.add(duenio);
             }
@@ -59,7 +59,7 @@ public class DAODuenio implements BusinessObject<Duenio> {
             statement.setString(4, duenio.getDni());
             statement.setString(5, duenio.getSexo());
             statement.setString(6, duenio.getDireccion());
-            statement.setString(7, duenio.getFecha_nac());
+            statement.setString(7, duenio.getFechaNac());
             statement.setString(8, duenio.getEmail());
             statement.setInt(9, 1);
             statement.executeUpdate();
@@ -87,7 +87,7 @@ public class DAODuenio implements BusinessObject<Duenio> {
             statement.setString(3, duenio.getTelefono());
             statement.setString(4, duenio.getSexo());
             statement.setString(5, duenio.getDireccion());
-            statement.setString(6, duenio.getFecha_nac());
+            statement.setString(6, duenio.getFechaNac());
             statement.setString(7, duenio.getEmail());
             statement.executeUpdate();
             exito = 1;

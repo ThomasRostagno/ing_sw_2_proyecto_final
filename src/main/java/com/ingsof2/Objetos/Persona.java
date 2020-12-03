@@ -7,7 +7,7 @@ public class Persona {
     private String dni;
     private String sexo;
     private String direccion;
-    private String fecha_nac;
+    private String fechaNac;
     private String email;
 
     public Persona() {
@@ -20,18 +20,18 @@ public class Persona {
         this.dni = aux.dni;
         this.sexo = aux.sexo;
         this.direccion = aux.direccion;
-        this.fecha_nac = aux.fecha_nac;
+        this.fechaNac = aux.fechaNac;
         this.email = aux.email;
     }
 
-    public Persona(String nombre, String apellido, String telefono, String dni, String sexo, String direccion, String fecha_nac, String email) {
+    public Persona(String nombre, String apellido, String telefono, String dni, String sexo, String direccion, String fechaNac, String email) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
         this.dni = dni;
         this.sexo = sexo;
         this.direccion = direccion;
-        this.fecha_nac = fecha_nac;
+        this.fechaNac = fechaNac;
         this.email = email;
     }
 
@@ -83,12 +83,12 @@ public class Persona {
         this.direccion = direccion;
     }
 
-    public String getFecha_nac() {
-        return fecha_nac;
+    public String getFechaNac() {
+        return fechaNac;
     }
 
-    public void setFecha_nac(String fecha_nac) {
-        this.fecha_nac = fecha_nac;
+    public void setFechaNac(String fechaNac) {
+        this.fechaNac = fechaNac;
     }
 
     public String getEmail() {
@@ -108,7 +108,7 @@ public class Persona {
                 ", dni='" + dni + '\'' +
                 ", sexo='" + sexo + '\'' +
                 ", direccion='" + direccion + '\'' +
-                ", fecha_nac='" + fecha_nac + '\'' +
+                ", fecha_nac='" + fechaNac + '\'' +
                 ", email='" + email + '\'' +
                 '}';
     }
