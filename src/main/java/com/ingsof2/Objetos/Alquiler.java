@@ -115,18 +115,38 @@ public class Alquiler extends Contrato {
         return new Object[]{"Codigo", "Fecha", "Precio", "Tipo", "Fecha Fin", "Inquilino", "Direccion Inmueble", "Garante", "Escribano"};
     }
 
+    /**Entra una lista de alquileres y dos fechas, una de inicio y otra de fin, remueve todos los alquileres que se encuentren fuera de las fechas**/
     public List<Alquiler> alquileresBetween(List<Alquiler> alquileres, String fecha1, String fecha2){
         List<Alquiler> aux = alquileres;
-        //Elimino lo fuera de esas dos fechas
+        /**Creacion fechas**/
         LocalDate dateStart = Utils.stringToLocalDate(fecha1);
         LocalDate dateEnd = Utils.stringToLocalDate(fecha2);
+        /**Loop inverso para cerciorar leer todas las posiciones**/
         for (int i = aux.size() - 1; i >= 0 ; i--) {
-            String stringDateAlquier = aux.get(i).getFechaFin();
-            LocalDate dateAlquier = Utils.stringToLocalDate(stringDateAlquier);
-            /**Logica If**/
+            String stringDateAlquiler = aux.get(i).getFechaFin();
+            LocalDate dateAlquiler = Utils.stringToLocalDate(stringDateAlquiler);
+            /**Logica Condicional para remover elementos fuera del dominio**/
             /*Si la fecha del alquiler esta antes de la primera fecha (inicio presuntamente), evalua verdadero y elimina*/
             /*Si la fecha del alquiler esta despues de la segunda fecha (fin presuntamente), evalua verdadero y la elimina*/
-            if(dateAlquier.isBefore(dateStart) || dateAlquier.isAfter(dateEnd)){
+            if(dateAlquiler.isBefore(dateStart) || dateAlquiler.isAfter(dateEnd)){
+                aux.remove(i);
+            }
+        }
+        return aux;
+    }
+
+    /**Entra una lista de alquileres y un anio, remuevo los alquileres que no se iniciaron ese anio**/
+    public List<Alquiler> alquileresPorAnio(List<Alquiler> alquileres, String anio){
+        List<Alquiler> aux = alquileres;
+        //Convierto anio de String a entero
+        int anioint = Integer.parseInt(anio);
+        for (int i = aux.size() - 1; i >= 0 ; i--) {
+            //Recupero la fecha de inicio en un String, luego lo hago Date y luego recupero anio. Esto se puede mejorar, ya que gasto mucha memoria asi creo.
+            String stringDateAlquier = aux.get(i).getFecha();
+            LocalDate dateAlquiler = Utils.stringToLocalDate(stringDateAlquier);
+            int dateYearAlquiler = dateAlquiler.getYear();
+            /**Condicional, remueve si los anios son distintos**/
+            if(!(dateYearAlquiler == anioint)){
                 aux.remove(i);
             }
         }
