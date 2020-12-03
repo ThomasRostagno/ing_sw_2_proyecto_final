@@ -114,4 +114,22 @@ public class Alquiler extends Contrato {
     public Object[] getHeaders() {
         return new Object[]{"Codigo", "Fecha", "Precio", "Tipo", "Fecha Fin", "Inquilino", "Direccion Inmueble", "Garante", "Escribano"};
     }
+
+    public List<Alquiler> alquileresBetween(List<Alquiler> alquileres, String fecha1, String fecha2){
+        List<Alquiler> aux = alquileres;
+        //Elimino lo fuera de esas dos fechas
+        LocalDate dateStart = Utils.stringToLocalDate(fecha1);
+        LocalDate dateEnd = Utils.stringToLocalDate(fecha2);
+        for (int i = aux.size() - 1; i >= 0 ; i--) {
+            String stringDateAlquier = aux.get(i).getFechaFin();
+            LocalDate dateAlquier = Utils.stringToLocalDate(stringDateAlquier);
+            /**Logica If**/
+            /*Si la fecha del alquiler esta antes de la primera fecha (inicio presuntamente), evalua verdadero y elimina*/
+            /*Si la fecha del alquiler esta despues de la segunda fecha (fin presuntamente), evalua verdadero y la elimina*/
+            if(dateAlquier.isBefore(dateStart) || dateAlquier.isAfter(dateEnd)){
+                aux.remove(i);
+            }
+        }
+        return aux;
+    }
 }

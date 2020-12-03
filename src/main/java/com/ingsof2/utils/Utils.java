@@ -10,10 +10,18 @@ public enum Utils {
         return str == null || str.isEmpty();
     }
 
-    public static int calculateAntiguedad(int dd, int mm, int yy) {
-        LocalDate today = LocalDate.now();
+    public static LocalDate stringToLocalDate(String fecha){
+        String[] fechaADia = fecha.split("/");
 
-        LocalDate ageBuilding = LocalDate.of(yy, mm, dd);
+        int dd = Integer.parseInt(fechaADia[0]);
+        int mm = Integer.parseInt(fechaADia[1]);
+        int yy = Integer.parseInt(fechaADia[2]);
+        LocalDate date = LocalDate.of(yy, mm, dd);
+        return date;
+    }
+
+    public static int calculateAntiguedad(LocalDate ageBuilding) {
+        LocalDate today = LocalDate.now();
 
         return (int) ChronoUnit.YEARS.between(ageBuilding, today);
     }

@@ -1,12 +1,9 @@
 package com.ingsof2;
 
-import com.ingsof2.SQLTables.Tablas;
 import com.ingsof2.frames.MainFrame;
+import com.ingsof2.utils.Utils;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 
 public class Main {
 
@@ -14,7 +11,12 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Tablas tablas = new Tablas();
+        String a = "11/11/1991";
+        LocalDate date = Utils.stringToLocalDate(a);
+        System.out.println(date);
+
+
+        //Tablas tablas = new Tablas();
         //tablas.DropDuenio();
         //tablas.DropInmueble();
         //tablas.TablaAlquiler();
