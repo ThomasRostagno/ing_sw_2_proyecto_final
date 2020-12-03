@@ -10,15 +10,15 @@ public class Inmueble {
     private String condicion; //venta,alquiler,ambas
     private String direccion;
     private int superficie;
-    private int num_ambientes;
-    private String fecha_construccion;
+    private int numAmbientes;
+    private String fechaConstruccion;
     private int antiguedad;
     private float valor;
     private String clasificacion; //residencial, familiar, no habitable, etc
-    private String dni_Inquilino;
-    private String dni_Duenio;
-    private String codigo_Alquiler;
-    private String codigo_Zona;
+    private String dniInquilino;
+    private String dniDuenio;
+    private String codigoAlquiler;
+    private String codigoZona;
 
     public Inmueble() {
     }
@@ -28,31 +28,31 @@ public class Inmueble {
         this.condicion = inmueble.condicion;
         this.direccion = inmueble.direccion;
         this.superficie = inmueble.superficie;
-        this.num_ambientes = inmueble.num_ambientes;
-        this.fecha_construccion = inmueble.fecha_construccion;
+        this.numAmbientes = inmueble.numAmbientes;
+        this.fechaConstruccion = inmueble.fechaConstruccion;
         this.antiguedad = inmueble.antiguedad;
         this.valor = inmueble.valor;
         this.clasificacion = inmueble.clasificacion;
-        this.dni_Inquilino = inmueble.dni_Inquilino;
-        this.dni_Duenio = inmueble.dni_Duenio;
-        this.codigo_Alquiler = inmueble.codigo_Alquiler;
-        this.codigo_Zona = inmueble.codigo_Zona;
+        this.dniInquilino = inmueble.dniInquilino;
+        this.dniDuenio = inmueble.dniDuenio;
+        this.codigoAlquiler = inmueble.codigoAlquiler;
+        this.codigoZona = inmueble.codigoZona;
     }
 
-    public Inmueble(String tipo, String condicion, String direccion, int superficie, int num_ambientes, String fecha_construccion, int antiguedad, float valor, String clasificacion, String dni_Inquilino, String dni_Duenio, String codigo_Alquiler, String codigo_Zona) {
+    public Inmueble(String tipo, String condicion, String direccion, int superficie, int numAmbientes, String fechaConstruccion, int antiguedad, float valor, String clasificacion, String dniInquilino, String dniDuenio, String codigoAlquiler, String codigoZona) {
         this.tipo = tipo;
         this.condicion = condicion;
         this.direccion = direccion;
         this.superficie = superficie;
-        this.num_ambientes = num_ambientes;
-        this.fecha_construccion = fecha_construccion;
+        this.numAmbientes = numAmbientes;
+        this.fechaConstruccion = fechaConstruccion;
         this.antiguedad = antiguedad;
         this.valor = valor;
         this.clasificacion = clasificacion;
-        this.dni_Inquilino = dni_Inquilino;
-        this.dni_Duenio = dni_Duenio;
-        this.codigo_Alquiler = codigo_Alquiler;
-        this.codigo_Zona = codigo_Zona;
+        this.dniInquilino = dniInquilino;
+        this.dniDuenio = dniDuenio;
+        this.codigoAlquiler = codigoAlquiler;
+        this.codigoZona = codigoZona;
     }
 
     public String getTipo() {
@@ -87,20 +87,20 @@ public class Inmueble {
         this.superficie = superficie;
     }
 
-    public int getNum_ambientes() {
-        return num_ambientes;
+    public int getNumAmbientes() {
+        return numAmbientes;
     }
 
-    public void setNum_ambientes(int num_ambientes) {
-        this.num_ambientes = num_ambientes;
+    public void setNumAmbientes(int numAmbientes) {
+        this.numAmbientes = numAmbientes;
     }
 
-    public String getFecha_construccion() {
-        return fecha_construccion;
+    public String getFechaConstruccion() {
+        return fechaConstruccion;
     }
 
-    public void setFecha_construccion(String fecha_construccion) {
-        this.fecha_construccion = fecha_construccion;
+    public void setFechaConstruccion(String fechaConstruccion) {
+        this.fechaConstruccion = fechaConstruccion;
     }
 
     public int getAntiguedad() {
@@ -127,36 +127,36 @@ public class Inmueble {
         this.clasificacion = clasificacion;
     }
 
-    public String getDni_Inquilino() {
-        return dni_Inquilino;
+    public String getDniInquilino() {
+        return dniInquilino;
     }
 
-    public void setDni_Inquilino(String dni_Inquilino) {
-        this.dni_Inquilino = dni_Inquilino;
+    public void setDniInquilino(String dniInquilino) {
+        this.dniInquilino = dniInquilino;
     }
 
-    public String getDni_Duenio() {
-        return dni_Duenio;
+    public String getDniDuenio() {
+        return dniDuenio;
     }
 
-    public void setDni_Duenio(String dni_Duenio) {
-        this.dni_Duenio = dni_Duenio;
+    public void setDniDuenio(String dniDuenio) {
+        this.dniDuenio = dniDuenio;
     }
 
-    public String getCodigo_Alquiler() {
-        return codigo_Alquiler;
+    public String getCodigoAlquiler() {
+        return codigoAlquiler;
     }
 
-    public void setCodigo_Alquiler(String codigo_Alquiler) {
-        this.codigo_Alquiler = codigo_Alquiler;
+    public void setCodigoAlquiler(String codigoAlquiler) {
+        this.codigoAlquiler = codigoAlquiler;
     }
 
-    public String getCodigo_Zona() {
-        return codigo_Zona;
+    public String getCodigoZona() {
+        return codigoZona;
     }
 
-    public void setCodigo_Zona(String codigo_Zona) {
-        this.codigo_Zona = codigo_Zona;
+    public void setCodigoZona(String codigoZona) {
+        this.codigoZona = codigoZona;
     }
 
     public static Object[][] getDataVector(List<Inmueble> inmuebles) {
@@ -169,7 +169,7 @@ public class Inmueble {
     }
 
     private Object[] toObject() {
-        return new Object[]{getTipo(), getCondicion(), getDireccion(), getSuperficie(), getNum_ambientes(), getFecha_construccion(), getAntiguedad(), getValor(), getClasificacion(), getDni_Inquilino(), getDni_Duenio(), getCodigo_Alquiler(), getCodigo_Zona()};
+        return new Object[]{getTipo(), getCondicion(), getDireccion(), getSuperficie(), getNumAmbientes(), getFechaConstruccion(), getAntiguedad(), getValor(), getClasificacion(), getDniInquilino(), getDniDuenio(), getCodigoAlquiler(), getCodigoZona()};
     }
 
     public static Object[] getHeaders() {
@@ -193,20 +193,19 @@ public class Inmueble {
 
     @Override
     public String toString() {
-        return "Inmueble{" +
-                "tipo='" + tipo + '\'' +
-                ", condicion='" + condicion + '\'' +
-                ", direccion='" + direccion + '\'' +
-                ", superficie=" + superficie +
-                ", num_ambientes=" + num_ambientes +
-                ", fecha_construccion='" + fecha_construccion + '\'' +
-                ", antiguedad=" + antiguedad +
-                ", valor=" + valor +
-                ", clasificacion='" + clasificacion + '\'' +
-                ", dni_Inquilino='" + dni_Inquilino + '\'' +
-                ", dni_Duenio='" + dni_Duenio + '\'' +
-                ", codigo_Alquiler='" + codigo_Alquiler + '\'' +
-                ", codigo_Zona='" + codigo_Zona + '\'' +
-                '}';
+        String template = "\tInmueble:\n" +
+                "Tipo: %s\n" +
+                "Condición: %s\n" +
+                "Dirección: %s\n" +
+                "Superficie: %s\n" +
+                "Número de ambientes: %s\n" +
+                "Fecha de construcción: %s\n" +
+                "Antigüedad: %s\n" +
+                "Valor: %s\n" +
+                "Clasificación: %s\n" +
+                "DNI dueño: %s\n" +
+                "Código de Zona: %s\n";
+
+        return String.format(template, tipo, condicion, direccion, superficie, numAmbientes, fechaConstruccion, antiguedad, valor, clasificacion, dniDuenio, codigoZona);
     }
 }

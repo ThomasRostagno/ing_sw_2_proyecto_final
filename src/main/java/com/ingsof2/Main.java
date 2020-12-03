@@ -27,7 +27,7 @@ public class Main {
         //tablas.TablaInquilino();
 
 
-        //mainFrame = new MainFrame();
+        mainFrame = new MainFrame();
 
         /*
         String aux = "30/12/1996";

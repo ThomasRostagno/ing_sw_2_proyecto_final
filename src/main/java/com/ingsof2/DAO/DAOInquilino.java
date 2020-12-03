@@ -29,7 +29,7 @@ public class DAOInquilino implements BusinessObject<Inquilino> {
                 inquilino.setDni(rs.getString("DNI"));
                 inquilino.setSexo(rs.getString("Sexo"));
                 inquilino.setDireccion(rs.getString("Direccion"));
-                inquilino.setFecha_nac(rs.getString("Fecha_Nacimiento"));
+                inquilino.setFechaNac(rs.getString("Fecha_Nacimiento"));
                 inquilino.setEmail(rs.getString("Email"));
                 inquilinos.add(inquilino);
             }
@@ -62,7 +62,7 @@ public class DAOInquilino implements BusinessObject<Inquilino> {
             statement.setString(4, inquilino.getDni());
             statement.setString(5, inquilino.getSexo());
             statement.setString(6, inquilino.getDireccion());
-            statement.setString(7, inquilino.getFecha_nac());
+            statement.setString(7, inquilino.getFechaNac());
             statement.setString(8, inquilino.getEmail());
             statement.setInt(9, 1);
             statement.executeUpdate();
@@ -89,7 +89,7 @@ public class DAOInquilino implements BusinessObject<Inquilino> {
             statement.setString(3, inquilino.getTelefono());
             statement.setString(4, inquilino.getSexo());
             statement.setString(5, inquilino.getDireccion());
-            statement.setString(6, inquilino.getFecha_nac());
+            statement.setString(6, inquilino.getFechaNac());
             statement.setString(7, inquilino.getEmail());
             statement.executeUpdate();
             exito = 1;

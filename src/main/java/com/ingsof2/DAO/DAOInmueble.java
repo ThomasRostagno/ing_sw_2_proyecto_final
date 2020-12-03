@@ -29,14 +29,14 @@ public class DAOInmueble implements BusinessObject<Inmueble> {
                 inmueble.setCondicion(rs.getString("Condicion"));
                 inmueble.setDireccion(rs.getString("Direccion"));
                 inmueble.setSuperficie(rs.getInt("Superficie"));
-                inmueble.setNum_ambientes(rs.getInt("Num_Ambientes"));
-                inmueble.setFecha_construccion(rs.getString("Fecha_Construccion"));
+                inmueble.setNumAmbientes(rs.getInt("Num_Ambientes"));
+                inmueble.setFechaConstruccion(rs.getString("Fecha_Construccion"));
                 inmueble.setValor(rs.getFloat("Valor"));
                 inmueble.setClasificacion(rs.getString("Clasificacion"));
-                inmueble.setDni_Inquilino(rs.getString("DNI_Inquilino"));
-                inmueble.setDni_Duenio(rs.getString("DNI_Dueno"));
-                inmueble.setCodigo_Alquiler(rs.getString("Codigo_Alquiler"));
-                inmueble.setCodigo_Zona(rs.getString("Codigo_Zona"));
+                inmueble.setDniInquilino(rs.getString("DNI_Inquilino"));
+                inmueble.setDniDuenio(rs.getString("DNI_Dueno"));
+                inmueble.setCodigoAlquiler(rs.getString("Codigo_Alquiler"));
+                inmueble.setCodigoZona(rs.getString("Codigo_Zona"));
 
                 /**Calculo Antiguedad**/
 
@@ -72,14 +72,14 @@ public class DAOInmueble implements BusinessObject<Inmueble> {
             statement.setString(2, inmueble.getCondicion());
             statement.setString(3, inmueble.getDireccion());
             statement.setInt(4, inmueble.getSuperficie());
-            statement.setInt(5, inmueble.getNum_ambientes());
-            statement.setString(6, inmueble.getFecha_construccion());
+            statement.setInt(5, inmueble.getNumAmbientes());
+            statement.setString(6, inmueble.getFechaConstruccion());
             statement.setFloat(7, inmueble.getValor());
             statement.setString(8, inmueble.getClasificacion());
-            statement.setString(9, inmueble.getDni_Inquilino());
-            statement.setString(10, inmueble.getDni_Duenio());
-            statement.setString(11, inmueble.getCodigo_Alquiler());
-            statement.setString(12, inmueble.getCodigo_Zona());
+            statement.setString(9, inmueble.getDniInquilino());
+            statement.setString(10, inmueble.getDniDuenio());
+            statement.setString(11, inmueble.getCodigoAlquiler());
+            statement.setString(12, inmueble.getCodigoZona());
             statement.setInt(13, 1);
             statement.executeUpdate();
             exito = 1;
@@ -104,14 +104,14 @@ public class DAOInmueble implements BusinessObject<Inmueble> {
             statement.setString(1, inmueble.getTipo());
             statement.setString(2, inmueble.getCondicion());
             statement.setInt(4, inmueble.getSuperficie());
-            statement.setInt(5, inmueble.getNum_ambientes());
-            statement.setString(6, inmueble.getFecha_construccion());
+            statement.setInt(5, inmueble.getNumAmbientes());
+            statement.setString(6, inmueble.getFechaConstruccion());
             statement.setFloat(7, inmueble.getValor());
             statement.setString(8, inmueble.getClasificacion());
-            statement.setString(9, inmueble.getDni_Inquilino());
-            statement.setString(10, inmueble.getDni_Duenio());
-            statement.setString(11, inmueble.getCodigo_Alquiler());
-            statement.setString(12, inmueble.getCodigo_Zona());
+            statement.setString(9, inmueble.getDniInquilino());
+            statement.setString(10, inmueble.getDniDuenio());
+            statement.setString(11, inmueble.getCodigoAlquiler());
+            statement.setString(12, inmueble.getCodigoZona());
             statement.executeUpdate();
             exito = 1;
 

@@ -11,8 +11,8 @@ public class Inquilino extends Persona {
         super(aux);
     }
 
-    public Inquilino(String nombre, String apellido, String telefono, String dni, String sexo, String direccion, String fecha_nac, String email) {
-        super(nombre, apellido, telefono, dni, sexo, direccion, fecha_nac, email);
+    public Inquilino(String nombre, String apellido, String telefono, String dni, String sexo, String direccion, String fechaNac, String email) {
+        super(nombre, apellido, telefono, dni, sexo, direccion, fechaNac, email);
     }
 
     public static Object[][] getDataVector(List<Inquilino> inquilinos) {
@@ -25,10 +25,25 @@ public class Inquilino extends Persona {
     }
 
     private Object[] toObject() {
-        return new Object[]{getNombre(), getApellido(), getDni(), getTelefono(), getSexo(), getDireccion(), getFecha_nac(), getEmail()};
+        return new Object[]{getNombre(), getApellido(), getDni(), getTelefono(), getSexo(), getDireccion(), getFechaNac(), getEmail()};
     }
 
     public static Object[] getHeaders() {
         return new Object[]{"Nombre", "Apellido", "DNI", "Telefono", "Sexo", "Direccion", "Fecha de Nacimiento", "Email"};
+    }
+
+    @Override
+    public String toString() {
+        String template = "\tInquilino:\n" +
+                "Nombre: %s\n" +
+                "Apellido: %s\n" +
+                "Teléfono: %s\n" +
+                "DNI: %s\n" +
+                "Sexo: %s\n" +
+                "Direccción: %s\n" +
+                "Fecha de nacimiento: %s\n" +
+                "Email: %s\n";
+
+        return String.format(template, this.getNombre(), this.getApellido(), this.getTelefono(), this.getDni(), this.getSexo(), this.getDireccion(), this.getFechaNac(), this.getEmail());
     }
 }

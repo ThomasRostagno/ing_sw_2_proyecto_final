@@ -30,7 +30,7 @@ public class DAOGarante implements BusinessObject<Garante> {
                 garante.setTelefono(rs.getString("Direccion"));
                 garante.setTelefono(rs.getString("Fecha_Nacimiento"));
                 garante.setTelefono(rs.getString("Email"));
-                garante.setDNI_Inquilino(rs.getString("DNI_Inquilino"));
+                garante.setDniInquilino(rs.getString("DNI_Inquilino"));
                 garantes.add(garante);
             }
         } catch (SQLException throwables) {
@@ -61,9 +61,9 @@ public class DAOGarante implements BusinessObject<Garante> {
             statement.setString(4, garante.getDni());
             statement.setString(5, garante.getSexo());
             statement.setString(6, garante.getDireccion());
-            statement.setString(7, garante.getFecha_nac());
+            statement.setString(7, garante.getFechaNac());
             statement.setString(8, garante.getEmail());
-            statement.setString(9, garante.getDNI_Inquilino());
+            statement.setString(9, garante.getDniInquilino());
             statement.setInt(10, 1);
             statement.executeUpdate();
             exito = 1;
@@ -89,9 +89,9 @@ public class DAOGarante implements BusinessObject<Garante> {
             statement.setString(3, garante.getTelefono());
             statement.setString(4, garante.getSexo());
             statement.setString(5, garante.getDireccion());
-            statement.setString(6, garante.getFecha_nac());
+            statement.setString(6, garante.getFechaNac());
             statement.setString(7, garante.getEmail());
-            statement.setString(8, garante.getDNI_Inquilino());
+            statement.setString(8, garante.getDniInquilino());
             statement.executeUpdate();
             exito = 1;
 

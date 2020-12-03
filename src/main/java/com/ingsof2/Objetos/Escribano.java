@@ -36,10 +36,26 @@ public class Escribano extends Persona {
     }
 
     private Object[] toObject() {
-        return new Object[]{getNombre(), getApellido(), getDni(), getTelefono(), getSexo(), getDireccion(), getFecha_nac(), getEmail(), getMatricula()};
+        return new Object[]{getNombre(), getApellido(), getDni(), getTelefono(), getSexo(), getDireccion(), getFechaNac(), getEmail(), getMatricula()};
     }
 
     public static Object[] getHeaders() {
         return new Object[]{"Nombre", "Apellido", "DNI", "Telefono", "Sexo", "Direccion", "Fecha de Nacimiento", "Email", "Matricula"};
+    }
+
+    @Override
+    public String toString() {
+        String template = "\tEscribano:\n" +
+                "Nombre: %s\n" +
+                "Apellido: %s\n" +
+                "Teléfono: %s\n" +
+                "DNI: %s\n" +
+                "Matrícula: %s\n" +
+                "Sexo: %s\n" +
+                "Direccción: %s\n" +
+                "Fecha de nacimiento: %s\n" +
+                "Email: %s\n";
+
+        return String.format(template, this.getNombre(), this.getApellido(), this.getTelefono(), this.getDni(), matricula, this.getSexo(), this.getDireccion(), this.getFechaNac(), this.getEmail());
     }
 }

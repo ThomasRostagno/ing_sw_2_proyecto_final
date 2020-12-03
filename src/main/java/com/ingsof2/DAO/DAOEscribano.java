@@ -27,7 +27,7 @@ public class DAOEscribano implements BusinessObject<Escribano> {
                 escribano.setDni(rs.getString("DNI"));
                 escribano.setSexo(rs.getString("Sexo"));
                 escribano.setDireccion(rs.getString("Direccion"));
-                escribano.setFecha_nac(rs.getString("Fecha_Nacimiento"));
+                escribano.setFechaNac(rs.getString("Fecha_Nacimiento"));
                 escribano.setEmail(rs.getString("Email"));
                 escribano.setMatricula(rs.getString("Matricula"));
                 escribanos.add(escribano);
@@ -60,7 +60,7 @@ public class DAOEscribano implements BusinessObject<Escribano> {
             statement.setString(4, escribano.getDni());
             statement.setString(5, escribano.getSexo());
             statement.setString(6, escribano.getDireccion());
-            statement.setString(7, escribano.getFecha_nac());
+            statement.setString(7, escribano.getFechaNac());
             statement.setString(8, escribano.getEmail());
             statement.setString(9, escribano.getMatricula());
             statement.setInt(10, 1);
