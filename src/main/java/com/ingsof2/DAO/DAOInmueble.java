@@ -40,7 +40,7 @@ public class DAOInmueble implements BusinessObject<Inmueble> {
 
                 /**Calculo Antiguedad**/
 
-                LocalDate fechaConstruccion = Utils.stringToLocalDate(inmueble.getFecha_construccion());
+                LocalDate fechaConstruccion = Utils.stringToLocalDate(inmueble.getFechaConstruccion());
 
                 inmueble.setAntiguedad(Utils.calculateAntiguedad(fechaConstruccion));
 

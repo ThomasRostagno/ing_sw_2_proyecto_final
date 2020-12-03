@@ -181,7 +181,7 @@ public class Inmueble {
         List<Inmueble> aux = inmuebles;
         /**Loop inverso para cerciorar leer todas las posiciones**/
         for (int i = aux.size() - 1; i >= 0 ; i--) {
-            String stringInmuebleCodigoZona = aux.get(i).getCodigo_Zona();
+            String stringInmuebleCodigoZona = aux.get(i).getCodigoZona();
             /**Condicional para remover los que no pertenecen a la zona**/
             //Esto se logra negando los que no son iguales para que entre al condicional
             if(!(stringInmuebleCodigoZona.equals(codigoZona))){
