@@ -44,7 +44,7 @@ public class DAOAlquiler implements BusinessObject<Alquiler> {
     }
 
     @Override
-    public Alquiler ReadOne(Alquiler alquiler) {
+    public Alquiler ReadOne(String... ids) {
         return null;
     }
 

@@ -42,7 +42,7 @@ public class DAOInquilino implements BusinessObject<Inquilino> {
     }
 
     @Override
-    public Inquilino ReadOne(Inquilino inquilino) {
+    public Inquilino ReadOne(String... ids) {
         return null;
     }
 
