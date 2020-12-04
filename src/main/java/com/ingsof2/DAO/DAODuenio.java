@@ -40,7 +40,7 @@ public class DAODuenio implements BusinessObject<Duenio> {
     }
 
     @Override
-    public Duenio ReadOne(Duenio duenio) {
+    public Duenio ReadOne(String... ids) {
         return null;
     }
 
