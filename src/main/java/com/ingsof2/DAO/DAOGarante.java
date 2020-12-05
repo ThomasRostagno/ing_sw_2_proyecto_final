@@ -43,7 +43,27 @@ public class DAOGarante implements BusinessObject<Garante> {
 
     @Override
     public Garante ReadOne(String... ids) {
-        return null;
+        Garante garante = new Garante();
+        Connection connection = Database.getInstance().getConnection();
+        Statement statement;
+        try{
+            statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT * FROM Garante WHERE (Status=1) AND (DNI='"+ids[0]+"') AND (Sexo='"+ids[1]+"')");
+            while(rs.next()){
+                garante.setNombre(rs.getString("Nombre"));
+                garante.setApellido(rs.getString("Apellido"));
+                garante.setTelefono(rs.getString("Telefono"));
+                garante.setDni(rs.getString("DNI"));
+                garante.setSexo(rs.getString("Sexo"));
+                garante.setDireccion(rs.getString("Direccion"));
+                garante.setFechaNac(rs.getString("Fecha_Nacimiento"));
+                garante.setEmail(rs.getString("Email"));
+                garante.setMatricula(rs.getString("Matricula"));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return garante;
     }
 
     @Override

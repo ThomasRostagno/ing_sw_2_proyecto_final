@@ -120,9 +120,10 @@ public class MainFrame extends JFrame {
 
                         BusinessObject<Alquiler> businessObject = new DAOAlquiler();
 
-                        businessObject.create(alquiler);
-                        showAltaExitosa();
-                        goAdd();
+                        if (businessObject.create(alquiler) == 1) {
+                            showAltaExitosa();
+                            goAdd();
+                        }
                     }
                 });
                 getContentPane().add(registrarAlquiler, BorderLayout.CENTER);
