@@ -56,7 +56,36 @@ public class DAOInmueble implements BusinessObject<Inmueble> {
 
     @Override
     public Inmueble ReadOne(String... ids) {
-        return null;
+        Inmueble inmueble = new Inmueble();
+        Connection connection = Database.getInstance().getConnection();
+        Statement statement;
+        try{
+            statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT * FROM Inmueble WHERE (Status=1) AND (Direccion='"+ids[0]+"')");
+            while(rs.next()){
+                inmueble.setTipo(rs.getString("Tipo"));
+                inmueble.setCondicion(rs.getString("Condicion"));
+                inmueble.setDireccion(rs.getString("Direccion"));
+                inmueble.setSuperficie(rs.getInt("Superficie"));
+                inmueble.setNumAmbientes(rs.getInt("Num_Ambientes"));
+                inmueble.setFechaConstruccion(rs.getString("Fecha_Construccion"));
+                inmueble.setValor(rs.getFloat("Valor"));
+                inmueble.setClasificacion(rs.getString("Clasificacion"));
+                inmueble.setDniInquilino(rs.getString("DNI_Inquilino"));
+                inmueble.setDniDuenio(rs.getString("DNI_Dueno"));
+                inmueble.setCodigoAlquiler(rs.getString("Codigo_Alquiler"));
+                inmueble.setCodigoZona(rs.getString("Codigo_Zona"));
+
+                /**Calculo Antiguedad**/
+
+                LocalDate fechaConstruccion = Utils.stringToLocalDate(inmueble.getFechaConstruccion());
+
+                inmueble.setAntiguedad(Utils.calculateAntiguedad(fechaConstruccion));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return inmueble;
     }
 
     @Override

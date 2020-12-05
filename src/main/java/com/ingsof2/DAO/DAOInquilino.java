@@ -43,7 +43,27 @@ public class DAOInquilino implements BusinessObject<Inquilino> {
 
     @Override
     public Inquilino ReadOne(String... ids) {
-        return null;
+        Inquilino inquilino = new Inquilino();
+        Connection connection = Database.getInstance().getConnection();
+        Statement statement;
+        try{
+            statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT * FROM Inquilino WHERE (Status=1) AND (DNI='"+ids[0]+"') AND (Sexo='"+ids[1]+"')");
+            while(rs.next()){
+                inquilino.setNombre(rs.getString("Nombre"));
+                inquilino.setApellido(rs.getString("Apellido"));
+                inquilino.setTelefono(rs.getString("Telefono"));
+                inquilino.setDni(rs.getString("DNI"));
+                inquilino.setSexo(rs.getString("Sexo"));
+                inquilino.setDireccion(rs.getString("Direccion"));
+                inquilino.setFechaNac(rs.getString("Fecha_Nacimiento"));
+                inquilino.setEmail(rs.getString("Email"));
+                inquilino.setMatricula(rs.getString("Matricula"));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return inquilino;
     }
 
 
@@ -103,7 +123,19 @@ public class DAOInquilino implements BusinessObject<Inquilino> {
 
     @Override
     public int delete(Inquilino inquilino) {
-        /*En realidad es un update, en eel que paso status a 0*/
-        return 0;
+        String sqlDelete = " UPDATE Inquilino SET Status = 0 " +
+                "WHERE (DNI = '" + inquilino.getDni() + "') AND ('" + "Sexo =" + inquilino.getSexo() + "')";
+        int exito = 0;
+        Connection connection = Database.getInstance().getConnection();
+        PreparedStatement statement;
+        try {
+            statement = connection.prepareStatement(sqlDelete);
+            statement.executeUpdate();
+            exito = 1;
+        } catch (SQLException throwables) {
+            ApiException.showException(new ApiException(ErrorCode.FAIL_SAVING_IN_DB));
+        }
+        Database.getInstance().disconnect();
+        return exito;
     }
 }

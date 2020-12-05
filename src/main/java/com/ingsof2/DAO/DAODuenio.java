@@ -41,7 +41,27 @@ public class DAODuenio implements BusinessObject<Duenio> {
 
     @Override
     public Duenio ReadOne(String... ids) {
-        return null;
+        Duenio duenio = new Duenio();
+        Connection connection = Database.getInstance().getConnection();
+        Statement statement;
+        try{
+            statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT * FROM Dueno WHERE (Status=1) AND (DNI='"+ids[0]+"') AND (Sexo='"+ids[1]+"')");
+            while(rs.next()){
+                duenio.setNombre(rs.getString("Nombre"));
+                duenio.setApellido(rs.getString("Apellido"));
+                duenio.setTelefono(rs.getString("Telefono"));
+                duenio.setDni(rs.getString("DNI"));
+                duenio.setSexo(rs.getString("Sexo"));
+                duenio.setDireccion(rs.getString("Direccion"));
+                duenio.setFechaNac(rs.getString("Fecha_Nacimiento"));
+                duenio.setEmail(rs.getString("Email"));
+                duenio.setMatricula(rs.getString("Matricula"));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return duenio;
     }
 
     @Override
@@ -101,6 +121,20 @@ public class DAODuenio implements BusinessObject<Duenio> {
 
     @Override
     public int delete(Duenio duenio) {
-        return 0;
+        String sqlDelete = " UPDATE Dueno SET Status = 0 " +
+        "WHERE (DNI = '" + duenio.getDni() + "') AND ('" + "Sexo =" + duenio.getSexo() + "')";
+        int exito = 0;
+        Connection connection = Database.getInstance().getConnection();
+        PreparedStatement statement;
+        try {
+            statement = connection.prepareStatement(sqlDelete);
+            statement.executeUpdate();
+            exito = 1;
+
+        } catch (SQLException throwables) {
+            ApiException.showException(new ApiException(ErrorCode.FAIL_SAVING_IN_DB));
+        }
+        Database.getInstance().disconnect();
+        return exito;
     }
 }

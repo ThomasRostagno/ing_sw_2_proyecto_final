@@ -11,11 +11,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-        String a = "11/11/1991";
-        LocalDate date = Utils.stringToLocalDate(a);
-        System.out.println(date);
-
-
         //Tablas tablas = new Tablas();
         //tablas.DropDuenio();
         //tablas.DropInmueble();
