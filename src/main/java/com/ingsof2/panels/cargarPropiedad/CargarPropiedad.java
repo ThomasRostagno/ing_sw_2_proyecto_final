@@ -264,7 +264,8 @@ public class CargarPropiedad extends JPanel {
                 }
 
                 if (Constants.fechaValidator(fechaDeConstruccionTextField)) {
-                    LocalDate fechaConstruccion = Utils.stringToLocalDate(fechaDeConstruccionTextField.getText());;
+                    LocalDate fechaConstruccion = Utils.stringToLocalDate(fechaDeConstruccionTextField.getText());
+                    ;
                     antiguedadTextField.setText(String.format("%s", Utils.calculateAntiguedad(fechaConstruccion)));
                 }
             }

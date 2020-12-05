@@ -1,8 +1,5 @@
 package com.ingsof2.Objetos;
 
-import com.ingsof2.utils.Utils;
-
-import java.time.LocalDate;
 import java.util.List;
 
 public class Inmueble {
@@ -53,6 +50,19 @@ public class Inmueble {
         this.dniDuenio = dniDuenio;
         this.codigoAlquiler = codigoAlquiler;
         this.codigoZona = codigoZona;
+    }
+
+    public static Object[][] getDataVector(List<Inmueble> inmuebles) {
+        Object[][] objects = new Object[inmuebles.size()][0];
+
+        for (int i = 0; i < inmuebles.size(); i++) {
+            objects[i] = inmuebles.get(i).toObject();
+        }
+        return objects;
+    }
+
+    public static Object[] getHeaders() {
+        return new Object[]{"Tipo", "Condicion", "Direccion", "Superficie", "Ambientes", "Fecha de Construccion", "Antiguedad", "Valor", "Clasificacion", "Inquilino", "Dueño", "Alquiler", "Zona"};
     }
 
     public String getTipo() {
@@ -159,32 +169,21 @@ public class Inmueble {
         this.codigoZona = codigoZona;
     }
 
-    public static Object[][] getDataVector(List<Inmueble> inmuebles) {
-        Object[][] objects = new Object[inmuebles.size()][0];
-
-        for (int i = 0; i < inmuebles.size(); i++) {
-            objects[i] = inmuebles.get(i).toObject();
-        }
-        return objects;
-    }
-
     private Object[] toObject() {
         return new Object[]{getTipo(), getCondicion(), getDireccion(), getSuperficie(), getNumAmbientes(), getFechaConstruccion(), getAntiguedad(), getValor(), getClasificacion(), getDniInquilino(), getDniDuenio(), getCodigoAlquiler(), getCodigoZona()};
     }
 
-    public static Object[] getHeaders() {
-        return new Object[]{"Tipo", "Condicion", "Direccion", "Superficie", "Ambientes", "Fecha de Construccion", "Antiguedad", "Valor", "Clasificacion", "Inquilino", "Dueño", "Alquiler", "Zona"};
-    }
-
-    /**Entra una lista de inmuebles y el codigo de la Zona, remueve todos los inmuebles que no se encuentren en la misma zona**/
-    public List<Inmueble> listarPorZona(List<Inmueble> inmuebles,String codigoZona){
+    /**
+     * Entra una lista de inmuebles y el codigo de la Zona, remueve todos los inmuebles que no se encuentren en la misma zona
+     **/
+    public List<Inmueble> listarPorZona(List<Inmueble> inmuebles, String codigoZona) {
         List<Inmueble> aux = inmuebles;
         /**Loop inverso para cerciorar leer todas las posiciones**/
-        for (int i = aux.size() - 1; i >= 0 ; i--) {
+        for (int i = aux.size() - 1; i >= 0; i--) {
             String stringInmuebleCodigoZona = aux.get(i).getCodigoZona();
             /**Condicional para remover los que no pertenecen a la zona**/
             //Esto se logra negando los que no son iguales para que entre al condicional
-            if(!(stringInmuebleCodigoZona.equals(codigoZona))){
+            if (!(stringInmuebleCodigoZona.equals(codigoZona))) {
                 aux.remove(i);
             }
         }

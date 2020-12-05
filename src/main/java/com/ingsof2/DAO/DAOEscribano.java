@@ -45,7 +45,7 @@ public class DAOEscribano implements BusinessObject<Escribano> {
         Escribano escribano = new Escribano();
         Connection connection = Database.getInstance().getConnection();
         Statement statement;
-        try{
+        try {
             statement = connection.createStatement();
             ResultSet rs = statement.executeQuery("SELECT * FROM Escribano WHERE (Status=1) AND (DNI='"+ids[0]+"') AND (Sexo='"+ids[1]+"')");
             while(rs.next()){
