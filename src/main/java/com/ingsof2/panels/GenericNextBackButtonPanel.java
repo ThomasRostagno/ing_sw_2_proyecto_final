@@ -1,20 +1,20 @@
-package com.ingsof2.panels.add;
+package com.ingsof2.panels;
 
-import com.ingsof2.Main;
+import com.ingsof2.panels.add.NextBackButtonsInterface;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class ButtonsAddPanel extends JPanel {
+public class GenericNextBackButtonPanel extends JPanel {
 
     private final JButton backButton = new JButton("Back");
     private final JButton nextButton = new JButton("Next");
 
-    public ButtonsAddPanel(NextBackButtonsInterface nextBackButtonsInterface) {
+    public GenericNextBackButtonPanel(NextBackButtonsInterface nextBackButtonsInterface) {
         Color backgroundColor = new Color(20, 20, 20);
 
         backButton.addActionListener(e -> {
-            Main.mainFrame.goAdd();
+            nextBackButtonsInterface.back();
         });
 
         nextButton.addActionListener(e -> {

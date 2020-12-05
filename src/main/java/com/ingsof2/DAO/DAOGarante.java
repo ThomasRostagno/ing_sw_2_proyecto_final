@@ -42,7 +42,7 @@ public class DAOGarante implements BusinessObject<Garante> {
     }
 
     @Override
-    public Garante ReadOne(Garante garante) {
+    public Garante ReadOne(String... ids) {
         return null;
     }
 

@@ -2,8 +2,6 @@ package com.ingsof2.panels.registrarAlquiler;
 
 import com.ingsof2.Main;
 import com.ingsof2.Objetos.Alquiler;
-import com.ingsof2.Objetos.Contrato;
-import com.ingsof2.Objetos.TiposDeContratos;
 import com.ingsof2.exceptions.ApiException;
 import com.ingsof2.utils.Constants;
 import com.ingsof2.utils.ErrorCode;

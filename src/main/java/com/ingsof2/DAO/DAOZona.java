@@ -11,7 +11,7 @@ public class DAOZona implements BusinessObject<Zona> {
     }
 
     @Override
-    public Zona ReadOne(Zona zona) {
+    public Zona ReadOne(String... ids) {
         return null;
     }
 

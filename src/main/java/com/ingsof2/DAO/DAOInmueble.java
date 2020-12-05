@@ -55,7 +55,7 @@ public class DAOInmueble implements BusinessObject<Inmueble> {
     }
 
     @Override
-    public Inmueble ReadOne(Inmueble inmueble) {
+    public Inmueble ReadOne(String... ids) {
         return null;
     }
 

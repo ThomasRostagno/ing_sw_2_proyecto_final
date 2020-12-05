@@ -3,6 +3,8 @@ package com.ingsof2.panels.listarDuenios;
 import com.ingsof2.DAO.BusinessObject;
 import com.ingsof2.DAO.DAODuenio;
 import com.ingsof2.Objetos.Duenio;
+import com.ingsof2.exceptions.ApiException;
+import com.ingsof2.utils.ErrorCode;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -14,6 +16,8 @@ import java.util.List;
 
 public class DuenioPanel extends JPanel {
 
+    private final JTable table;
+
     public DuenioPanel() {
 
         BorderLayout borderLayout = new BorderLayout();
@@ -23,7 +27,7 @@ public class DuenioPanel extends JPanel {
         DefaultTableModel dm = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return column >= 3;
+                return false;
             }
         };
 
@@ -36,10 +40,11 @@ public class DuenioPanel extends JPanel {
 
         dm.setDataVector(objects, headers);
 
-        JTable table = new JTable(dm);
+        table = new JTable(dm);
 
         table.setFocusable(false);
-        table.setRowSelectionAllowed(false);
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        table.getTableHeader().setReorderingAllowed(false);
 
         /*table.getColumn("Inquilino").setCellRenderer(new ButtonRenderer());
         table.getColumn("Inquilino").setCellEditor(new ButtonEditor(new JCheckBox()));
@@ -63,6 +68,24 @@ public class DuenioPanel extends JPanel {
         table.getColumnModel().getColumn(5).setPreferredWidth(100);*/
 
         add(scrollPane, BorderLayout.CENTER);
+    }
+
+    public Duenio getDuenio() {
+        int row = table.getSelectedRow();
+        int dniColumn = 2;
+        int sexoColumn = 4;
+
+        if (row != -1) {
+            String dni = table.getValueAt(row, dniColumn).toString();
+            String sexo = table.getValueAt(row, sexoColumn).toString();
+
+            BusinessObject<Duenio> businessObject = new DAODuenio();
+
+            return businessObject.ReadOne(dni, sexo);
+        }
+        ApiException.showException(new ApiException(ErrorCode.FAIL_SELECTING_ESCRIBANO));
+
+        return null;
     }
 
     static class ButtonRenderer extends JButton implements TableCellRenderer {

@@ -41,8 +41,28 @@ public class DAOEscribano implements BusinessObject<Escribano> {
     }
 
     @Override
-    public Escribano ReadOne(Escribano escribano) {
-        return null;
+    public Escribano ReadOne(String... ids) {
+        Escribano escribano = new Escribano();
+        Connection connection = Database.getInstance().getConnection();
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT * FROM Escribano WHERE (Status=1 AND DNI='" + ids[0] + "' AND Sexo='" + ids[1] + "')");
+            while (rs.next()) {
+                escribano.setNombre(rs.getString("Nombre"));
+                escribano.setApellido(rs.getString("Apellido"));
+                escribano.setTelefono(rs.getString("Telefono"));
+                escribano.setDni(rs.getString("DNI"));
+                escribano.setSexo(rs.getString("Sexo"));
+                escribano.setDireccion(rs.getString("Direccion"));
+                escribano.setFechaNac(rs.getString("Fecha_Nacimiento"));
+                escribano.setEmail(rs.getString("Email"));
+                escribano.setMatricula(rs.getString("Matricula"));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return escribano;
     }
 
     @Override

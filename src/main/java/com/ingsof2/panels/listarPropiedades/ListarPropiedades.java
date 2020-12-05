@@ -14,6 +14,7 @@ import java.io.IOException;
 
 public class ListarPropiedades extends JPanel {
 
+    private final PropiedadPanel propiedadPanel;
     private BufferedImage image;
 
     public ListarPropiedades() {
@@ -26,7 +27,7 @@ public class ListarPropiedades extends JPanel {
 
         setLayout(new GridBagLayout());
 
-        JPanel propiedadPanel = new PropiedadPanel();
+        propiedadPanel = new PropiedadPanel();
         propiedadPanel.setPreferredSize(new Dimension(600, 450));
 
         add(propiedadPanel);
@@ -39,6 +40,6 @@ public class ListarPropiedades extends JPanel {
     }
 
     public Inmueble getPropiedad() {
-        return new Inmueble("String tipo", "String condicion", "String direccion", 75, 3, "String fecha_construccion", 60, (float) 45000.00, "String clasificacion", "String dni_Inquilino", "String dni_Duenio", "String codigo_Alquiler", "String codigo_Zona");
+        return propiedadPanel.getPropiedad();
     }
 }

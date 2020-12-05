@@ -1,7 +1,6 @@
 package com.ingsof2.utils;
 
 import com.ingsof2.Objetos.Inmueble;
-import com.ingsof2.Objetos.Inquilino;
 import com.ingsof2.Objetos.Persona;
 
 import javax.swing.*;
@@ -15,7 +14,7 @@ public enum Utils {
         return str == null || str.isEmpty();
     }
 
-    public static LocalDate stringToLocalDate(String fecha){
+    public static LocalDate stringToLocalDate(String fecha) {
         String[] fechaADia = fecha.split("/");
 
         int dd = Integer.parseInt(fechaADia[0]);
