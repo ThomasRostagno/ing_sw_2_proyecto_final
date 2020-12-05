@@ -27,18 +27,20 @@ public class Venta extends Contrato {
     }
 
 
-    /**Entra una lista de ventas y un anio, remuevo las ventas que no se iniciaron ese anio**/
-    public List<Venta> ventasPorAnio(List<Venta> ventas, String anio){
+    /**
+     * Entra una lista de ventas y un anio, remuevo las ventas que no se iniciaron ese anio
+     **/
+    public List<Venta> ventasPorAnio(List<Venta> ventas, String anio) {
         List<Venta> aux = ventas;
         //Convierto anio de String a entero
         int anioint = Integer.parseInt(anio);
-        for (int i = aux.size() - 1; i >= 0 ; i--) {
+        for (int i = aux.size() - 1; i >= 0; i--) {
             //Recupero la fecha de inicio en un String, luego lo hago Date y luego recupero anio. Esto se puede mejorar, ya que gasto mucha memoria asi creo.
             String stringDateVenta = aux.get(i).getFecha();
             LocalDate dateVenta = Utils.stringToLocalDate(stringDateVenta);
             int dateYearVenta = dateVenta.getYear();
             /**Condicional, remueve si los anios son distintos**/
-            if(!(dateYearVenta == anioint)){
+            if (!(dateYearVenta == anioint)) {
                 aux.remove(i);
             }
         }

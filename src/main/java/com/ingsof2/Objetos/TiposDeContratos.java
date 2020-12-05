@@ -9,20 +9,29 @@ public enum TiposDeContratos {
     VENTA(2, "Venta"),
     AMBOS(3, "Ambos");
 
-    private int tipo;
-    private String descripcion;
-
     private static final Map<Integer, TiposDeContratos> contratosMap = new HashMap<>();
 
     static {
-        for (TiposDeContratos tiposDeContratos: EnumSet.allOf(TiposDeContratos.class)) {
+        for (TiposDeContratos tiposDeContratos : EnumSet.allOf(TiposDeContratos.class)) {
             contratosMap.put(tiposDeContratos.tipo, tiposDeContratos);
         }
     }
 
+    private int tipo;
+    private String descripcion;
+
     TiposDeContratos(int tipo, String descripcion) {
         this.tipo = tipo;
         this.descripcion = descripcion;
+    }
+
+    public static int getTipo(String descripcion) {
+        for (Integer integer : contratosMap.keySet()) {
+            if (contratosMap.get(integer).descripcion.equals(descripcion)) {
+                return integer;
+            }
+        }
+        return -1;
     }
 
     public int getTipo() {
@@ -39,14 +48,5 @@ public enum TiposDeContratos {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    public static int getTipo(String descripcion) {
-        for (Integer integer: contratosMap.keySet()) {
-            if (contratosMap.get(integer).descripcion.equals(descripcion)) {
-                return integer;
-            }
-        }
-        return -1;
     }
 }
