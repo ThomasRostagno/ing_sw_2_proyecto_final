@@ -1,6 +1,11 @@
 package com.ingsof2.Objetos;
 
 public class Comprador extends Persona {
+
+    public Comprador(){
+
+    }
+
     public Comprador(Persona aux) {
         super(aux);
     }

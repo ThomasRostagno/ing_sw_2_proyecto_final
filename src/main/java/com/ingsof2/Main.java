@@ -1,5 +1,6 @@
 package com.ingsof2;
 
+import com.ingsof2.SQLTables.Tablas;
 import com.ingsof2.frames.MainFrame;
 import com.ingsof2.utils.Utils;
 
@@ -11,9 +12,13 @@ public class Main {
 
     public static void main(String[] args) {
 
-        //Tablas tablas = new Tablas();
+        Tablas tablas = new Tablas();
         //tablas.DropDuenio();
         //tablas.DropInmueble();
+        //tablas.DropAlquiler();
+        tablas.TablaVenta();
+        tablas.TablaVendedor();
+        tablas.TablaComprador();
         //tablas.TablaAlquiler();
         //tablas.TablaDuenio();
         //tablas.TablaEscribano();

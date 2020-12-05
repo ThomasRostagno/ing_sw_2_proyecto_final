@@ -35,6 +35,54 @@ public class Tablas {
         Database.getInstance().disconnect();
     }
 
+    /*Creacion Comprador*/
+    public void TablaComprador() {
+        Connection connection = Database.getInstance().getConnection();
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate("CREATE TABLE Comprador(" +
+                    "Nombre VARCHAR(255) NOT NULL," +
+                    "Apellido VARCHAR(255) NOT NULL," +
+                    "Telefono VARCHAR(255) NOT NULL," +
+                    "DNI VARCHAR(255) NOT NULL," +
+                    "Sexo VARCHAR(255) NOT NULL," +
+                    "Direccion VARCHAR(255) NOT NULL," +
+                    "Fecha_Nacimiento VARCHAR(255) NOT NULL," +
+                    "Email VARCHAR(255) NOT NULL," +
+                    "Status INT NOT NULL," +
+                    "PRIMARY KEY(DNI,Sexo)" +
+                    ")");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        Database.getInstance().disconnect();
+    }
+
+    /*Creacion Inquilino*/
+    public void TablaVendedor() {
+        Connection connection = Database.getInstance().getConnection();
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate("CREATE TABLE Vendedor(" +
+                    "Nombre VARCHAR(255) NOT NULL," +
+                    "Apellido VARCHAR(255) NOT NULL," +
+                    "Telefono VARCHAR(255) NOT NULL," +
+                    "DNI VARCHAR(255) NOT NULL," +
+                    "Sexo VARCHAR(255) NOT NULL," +
+                    "Direccion VARCHAR(255) NOT NULL," +
+                    "Fecha_Nacimiento VARCHAR(255) NOT NULL," +
+                    "Email VARCHAR(255) NOT NULL," +
+                    "Status INT NOT NULL," +
+                    "PRIMARY KEY(DNI,Sexo)" +
+                    ")");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        Database.getInstance().disconnect();
+    }
+
     /*Creacion Duenio*/ //Es Duenio
     public void TablaDuenio() {
         Connection connection = Database.getInstance().getConnection();
@@ -183,8 +231,10 @@ public class Tablas {
                     "Domicilio_Inmueble VARCHAR(255)," +
                     "DNI_Garante INT NOT NULL," +
                     "DNI_Escribano INT NOT NULL," +
+                    "Status INT NOT NULL," +
                     "PRIMARY KEY(Codigo)" +
                     ")");
+            System.out.println("Create Alquiler");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -192,6 +242,31 @@ public class Tablas {
         Database.getInstance().disconnect();
     }
 
+    /*Creacion Venta*/
+    public void TablaVenta() {
+        Connection connection = Database.getInstance().getConnection();
+
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate("CREATE TABLE Venta(" +
+                    "Codigo VARCHAR(255) NOT NULL," +
+                    "Tipo INT NOT NULL," +
+                    "Fecha_Contrato VARCHAR(255) NOT NULL," +
+                    "Comision INT NOT NULL," +
+                    "DNI_Comprador INT NOT NULL," +
+                    "Domicilio_Inmueble VARCHAR(255)," +
+                    "DNI_Vendedor INT NOT NULL," +
+                    "Status INT NOT NULL," +
+                    "PRIMARY KEY(Codigo)" +
+                    ")");
+            System.out.println("Create Venta");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        Database.getInstance().disconnect();
+    }
     /**
      * Querys de Drop de las Tablas de la BD
      **/
@@ -203,6 +278,34 @@ public class Tablas {
         try {
             statement = connection.createStatement();
             statement.executeUpdate("DROP TABLE Inquilino");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        Database.getInstance().disconnect();
+    }
+
+    public void DropComprador() {
+        Connection connection = Database.getInstance().getConnection();
+
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate("DROP TABLE Comprador");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        Database.getInstance().disconnect();
+    }
+
+    public void DropVendedor() {
+        Connection connection = Database.getInstance().getConnection();
+
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate("DROP TABLE Vendedor");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -287,6 +390,22 @@ public class Tablas {
         try {
             statement = connection.createStatement();
             statement.executeUpdate("DROP TABLE Alquiler");
+            System.out.println("Drop Alquiler");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        Database.getInstance().disconnect();
+    }
+
+    public void DropVenta() {
+        Connection connection = Database.getInstance().getConnection();
+
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate("DROP TABLE Venta");
+            System.out.println("Drop Venta");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

@@ -18,7 +18,7 @@ public class DAOAlquiler implements BusinessObject<Alquiler> {
         Statement statement;
         try {
             statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM Alquiler WHERE (Status==1)");
+            ResultSet rs = statement.executeQuery("SELECT * FROM Alquiler WHERE (Status=1)");
             Alquiler alquiler;
             while (rs.next()) {
                 alquiler = new Alquiler();
