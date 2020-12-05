@@ -37,7 +37,7 @@ public class MainFrame extends JFrame {
 
     private AddPanel addPanel;
     private ButtonsAddPanel buttonsAddPanel;
-    private GenericNextBackButtonPanel nextBackButtonPanel;
+    private GenericNextBackButtonPanel nextBackButtonRegistrarAlquilerPanel;
     private ShowPanel showPanel;
     private BackButtonShowPanel backButtonShowPanel;
     private DeletePanel deletePanel;
@@ -116,45 +116,49 @@ public class MainFrame extends JFrame {
 
                 if (contrato != null) {
                     //TODO:HACER IF PARA CONTRATO ALQUILER O CONTRATO VENTA
-                    getContentPane().removeAll();
-                    registrarAlquiler = new RegistrarAlquiler();
-
-                    nextBackButtonPanel = new GenericNextBackButtonPanel(new NextBackButtonsInterface() {
-                        @Override
-                        public void next() {
-                            Alquiler aux = registrarAlquiler.saveFields();
-
-                            if (aux != null) {
-                                Alquiler alquiler = new Alquiler(contrato, aux.getFechaFin(), inquilino.getDni(), inmueble.getDireccion(), garante.getDni(), escribano.getDni());
-
-                                BusinessObject<Alquiler> businessObject = new DAOAlquiler();
-
-                                businessObject.create(alquiler);
-                                showAltaExitosa();
-                                goAdd();
-                            }
-                        }
-
-                        @Override
-                        public void back() {
-                            getContentPane().removeAll();
-                            getContentPane().add(registrarContrato, BorderLayout.CENTER);
-                            getContentPane().add(buttonsAddPanel, BorderLayout.PAGE_END);
-                            revalidate();
-                            repaint();
-                        }
-                    });
-
-                    getContentPane().add(registrarAlquiler, BorderLayout.CENTER);
-                    getContentPane().add(nextBackButtonPanel, BorderLayout.PAGE_END);
-                    revalidate();
-                    repaint();
+                    goRegistrarAlquiler();
                 }
             }
         });
         getContentPane().removeAll();
         getContentPane().add(registrarContrato, BorderLayout.CENTER);
         getContentPane().add(buttonsAddPanel, BorderLayout.PAGE_END);
+        revalidate();
+        repaint();
+    }
+
+    public void goRegistrarAlquiler() {
+        getContentPane().removeAll();
+        registrarAlquiler = new RegistrarAlquiler();
+        nextBackButtonRegistrarAlquilerPanel = new GenericNextBackButtonPanel(new NextBackButtonsInterface() {
+            @Override
+            public void next() {
+                Alquiler aux = registrarAlquiler.saveFields();
+
+                if (aux != null && inquilino != null && inmueble != null && garante != null && escribano != null) {
+                    Alquiler alquiler = new Alquiler(contrato, aux.getFechaFin(), inquilino.getDni(), inmueble.getDireccion(), garante.getDni(), escribano.getDni());
+
+                    BusinessObject<Alquiler> businessObject = new DAOAlquiler();
+
+                    if (businessObject.create(alquiler) == 1) {
+                        showAltaExitosa();
+                        goAdd();
+                    }
+                }
+            }
+
+            @Override
+            public void back() {
+                getContentPane().removeAll();
+                getContentPane().add(registrarContrato, BorderLayout.CENTER);
+                getContentPane().add(buttonsAddPanel, BorderLayout.PAGE_END);
+                revalidate();
+                repaint();
+            }
+        });
+
+        getContentPane().add(registrarAlquiler, BorderLayout.CENTER);
+        getContentPane().add(nextBackButtonRegistrarAlquilerPanel, BorderLayout.PAGE_END);
         revalidate();
         repaint();
     }
@@ -179,7 +183,7 @@ public class MainFrame extends JFrame {
 
                     getContentPane().removeAll();
                     getContentPane().add(registrarAlquiler, BorderLayout.CENTER);
-                    getContentPane().add(buttonsAddPanel, BorderLayout.PAGE_END);
+                    getContentPane().add(nextBackButtonRegistrarAlquilerPanel, BorderLayout.PAGE_END);
                     revalidate();
                     repaint();
                 }
@@ -189,7 +193,7 @@ public class MainFrame extends JFrame {
             public void back() {
                 getContentPane().removeAll();
                 getContentPane().add(registrarAlquiler, BorderLayout.CENTER);
-                getContentPane().add(buttonsAddPanel, BorderLayout.PAGE_END);
+                getContentPane().add(nextBackButtonRegistrarAlquilerPanel, BorderLayout.PAGE_END);
                 revalidate();
                 repaint();
             }
@@ -218,7 +222,7 @@ public class MainFrame extends JFrame {
 
                     getContentPane().removeAll();
                     getContentPane().add(registrarAlquiler, BorderLayout.CENTER);
-                    getContentPane().add(buttonsAddPanel, BorderLayout.PAGE_END);
+                    getContentPane().add(nextBackButtonRegistrarAlquilerPanel, BorderLayout.PAGE_END);
                     revalidate();
                     repaint();
                 }
@@ -228,7 +232,7 @@ public class MainFrame extends JFrame {
             public void back() {
                 getContentPane().removeAll();
                 getContentPane().add(registrarAlquiler, BorderLayout.CENTER);
-                getContentPane().add(buttonsAddPanel, BorderLayout.PAGE_END);
+                getContentPane().add(nextBackButtonRegistrarAlquilerPanel, BorderLayout.PAGE_END);
                 revalidate();
                 repaint();
             }
@@ -257,7 +261,7 @@ public class MainFrame extends JFrame {
 
                     getContentPane().removeAll();
                     getContentPane().add(registrarAlquiler, BorderLayout.CENTER);
-                    getContentPane().add(buttonsAddPanel, BorderLayout.PAGE_END);
+                    getContentPane().add(nextBackButtonRegistrarAlquilerPanel, BorderLayout.PAGE_END);
                     revalidate();
                     repaint();
                 }
@@ -267,7 +271,7 @@ public class MainFrame extends JFrame {
             public void back() {
                 getContentPane().removeAll();
                 getContentPane().add(registrarAlquiler, BorderLayout.CENTER);
-                getContentPane().add(buttonsAddPanel, BorderLayout.PAGE_END);
+                getContentPane().add(nextBackButtonRegistrarAlquilerPanel, BorderLayout.PAGE_END);
                 revalidate();
                 repaint();
             }
@@ -296,7 +300,7 @@ public class MainFrame extends JFrame {
 
                     getContentPane().removeAll();
                     getContentPane().add(registrarAlquiler, BorderLayout.CENTER);
-                    getContentPane().add(buttonsAddPanel, BorderLayout.PAGE_END);
+                    getContentPane().add(nextBackButtonRegistrarAlquilerPanel, BorderLayout.PAGE_END);
                     revalidate();
                     repaint();
                 }
@@ -306,7 +310,7 @@ public class MainFrame extends JFrame {
             public void back() {
                 getContentPane().removeAll();
                 getContentPane().add(registrarAlquiler, BorderLayout.CENTER);
-                getContentPane().add(buttonsAddPanel, BorderLayout.PAGE_END);
+                getContentPane().add(nextBackButtonRegistrarAlquilerPanel, BorderLayout.PAGE_END);
                 revalidate();
                 repaint();
             }

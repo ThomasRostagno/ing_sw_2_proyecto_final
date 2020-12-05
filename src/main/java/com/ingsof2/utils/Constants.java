@@ -184,4 +184,14 @@ public class Constants {
             return true;
         }
     }
+
+    public static boolean buttonValidator(JButton button) {
+        if (!button.isEnabled()) {
+            button.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+            return false;
+        } else {
+            button.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
+            return true;
+        }
+    }
 }

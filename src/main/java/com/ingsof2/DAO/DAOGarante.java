@@ -58,7 +58,6 @@ public class DAOGarante implements BusinessObject<Garante> {
                 garante.setDireccion(rs.getString("Direccion"));
                 garante.setFechaNac(rs.getString("Fecha_Nacimiento"));
                 garante.setEmail(rs.getString("Email"));
-                garante.setMatricula(rs.getString("Matricula"));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();

@@ -58,7 +58,6 @@ public class DAOInquilino implements BusinessObject<Inquilino> {
                 inquilino.setDireccion(rs.getString("Direccion"));
                 inquilino.setFechaNac(rs.getString("Fecha_Nacimiento"));
                 inquilino.setEmail(rs.getString("Email"));
-                inquilino.setMatricula(rs.getString("Matricula"));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();

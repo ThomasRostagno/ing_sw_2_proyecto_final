@@ -147,7 +147,7 @@ public class RegistrarAlquiler extends JPanel {
     }
 
     private boolean validateFields() {
-        return Constants.fechaValidator(fechaDeFinTextField);
+        return Constants.fechaValidator(fechaDeFinTextField) && Constants.buttonValidator(inquilinoSeleccionadoButton) && Constants.buttonValidator(inmuebleSeleccionadoButton) && Constants.buttonValidator(garanteSeleccionadoButton) && Constants.buttonValidator(escribanoSeleccionadoButton);
     }
 
     public Alquiler saveFields() {

@@ -79,7 +79,7 @@ public class DAOAlquiler implements BusinessObject<Alquiler> {
 
     @Override
     public int update(Alquiler alquiler) {
-        String sqlUpdate = " UPDATE Alquiler SET Nombre = ?, Apellido = ?, Telefono = ?, Sexo = ?, Direccion = ?, Fecha_Nacimiento = ?, Email = ?" +
+        /*String sqlUpdate = " UPDATE Alquiler SET Nombre = ?, Apellido = ?, Telefono = ?, Sexo = ?, Direccion = ?, Fecha_Nacimiento = ?, Email = ?" +
                 " VALUES (?, ?, ?, ?, ?, ?, ?) WHERE (DNI = '" + alquiler.getDni() + "') AND ('" + "Sexo =" + alquiler.getSexo() + "')";
         int exito = 0;
         Connection connection = Database.getInstance().getConnection();
@@ -100,7 +100,8 @@ public class DAOAlquiler implements BusinessObject<Alquiler> {
             ApiException.showException(new ApiException(ErrorCode.FAIL_SAVING_IN_DB));
         }
         Database.getInstance().disconnect();
-        return exito;
+        return exito;*/
+        return 0;
     }
 
     @Override

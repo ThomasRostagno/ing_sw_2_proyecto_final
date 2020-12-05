@@ -15,13 +15,13 @@ import java.io.IOException;
 
 public class AddPanel extends JPanel {
 
-    private final JLabel registrarAlquilerLabel = new JLabel("Registrar alquiler");
+    private final JLabel registrarContratoLabel = new JLabel("Registrar contrato");
     private final JLabel cargarInquilinoLabel = new JLabel("Cargar inquilino");
     private final JLabel cargarEscribanoLabel = new JLabel("Cargar escribano");
     private final JLabel cargarPropiedadLabel = new JLabel("Cargar propiedad");
     private final JLabel cargarDuenioLabel = new JLabel("Cargar dueño");
 
-    private final JButton registrarAlquilerButton = new JButton("Button");
+    private final JButton registrarContratoButton = new JButton("Button");
     private final JButton cargarInquilinoButton = new JButton("Button");
     private final JButton cargarEscribanoButton = new JButton("Button");
     private final JButton cargarPropiedadButton = new JButton("Button");
@@ -32,8 +32,8 @@ public class AddPanel extends JPanel {
     private final int xPad = Constants.X_PAD;
     private final int yPad = Constants.Y_PAD;
 
-    private final double x = cargarPropiedadLabel.getPreferredSize().getWidth() + xPad + cargarPropiedadButton.getPreferredSize().getWidth();
-    private final double y = cargarPropiedadButton.getPreferredSize().getHeight() * rows + (rows - 1) * yPad;
+    private final double x = registrarContratoLabel.getPreferredSize().getWidth() + xPad + registrarContratoButton.getPreferredSize().getWidth();
+    private final double y = registrarContratoButton.getPreferredSize().getHeight() * rows + (rows - 1) * yPad;
 
     private final int initialX = (int) (Constants.WIDTH / 2 - x / 2);
     private final int initialY = (int) (Constants.CENTER_HEIGHT / 2 - y / 2);
@@ -50,7 +50,7 @@ public class AddPanel extends JPanel {
             ApiException.showException(new ApiException(ErrorCode.FAIL_GETTING_IMAGE));
         }
 
-        registrarAlquilerButton.addActionListener(e -> {
+        registrarContratoButton.addActionListener(e -> {
             Main.mainFrame.goRegistrarContrato();
         });
         cargarInquilinoButton.addActionListener(e -> {
@@ -68,8 +68,8 @@ public class AddPanel extends JPanel {
 
         setLayout(new SpringLayout());
 
-        add(registrarAlquilerLabel);
-        add(registrarAlquilerButton);
+        add(registrarContratoLabel);
+        add(registrarContratoButton);
 
         add(cargarInquilinoLabel);
         add(cargarInquilinoButton);
