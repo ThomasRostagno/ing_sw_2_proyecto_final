@@ -3,7 +3,8 @@ package com.ingsof2.panels.listarInquilinos;
 import com.ingsof2.DAO.BusinessObject;
 import com.ingsof2.DAO.DAOInquilino;
 import com.ingsof2.Objetos.Inquilino;
-import com.ingsof2.utils.Constants;
+import com.ingsof2.exceptions.ApiException;
+import com.ingsof2.utils.ErrorCode;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -15,6 +16,8 @@ import java.util.List;
 
 public class InquilinoPanel extends JPanel {
 
+    private final JTable table;
+
     public InquilinoPanel() {
 
         BorderLayout borderLayout = new BorderLayout();
@@ -24,7 +27,7 @@ public class InquilinoPanel extends JPanel {
         DefaultTableModel dm = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return column >= 3;
+                return false;
             }
         };
 
@@ -37,10 +40,11 @@ public class InquilinoPanel extends JPanel {
 
         dm.setDataVector(objects, headers);
 
-        JTable table = new JTable(dm);
+        table = new JTable(dm);
 
         table.setFocusable(false);
-        table.setRowSelectionAllowed(false);
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        table.getTableHeader().setReorderingAllowed(false);
 
         /*table.getColumn("Inquilino").setCellRenderer(new ButtonRenderer());
         table.getColumn("Inquilino").setCellEditor(new ButtonEditor(new JCheckBox()));
@@ -64,6 +68,24 @@ public class InquilinoPanel extends JPanel {
         table.getColumnModel().getColumn(5).setPreferredWidth(100);*/
 
         add(scrollPane, BorderLayout.CENTER);
+    }
+
+    public Inquilino getInquilino() {
+        int row = table.getSelectedRow();
+        int dniColumn = 2;
+        int sexoColumn = 4;
+
+        if (row != -1) {
+            String dni = table.getValueAt(row, dniColumn).toString();
+            String sexo = table.getValueAt(row, sexoColumn).toString();
+
+            BusinessObject<Inquilino> businessObject = new DAOInquilino();
+
+            return businessObject.ReadOne(dni, sexo);
+        }
+        ApiException.showException(new ApiException(ErrorCode.FAIL_SELECTING_ESCRIBANO));
+
+        return null;
     }
 
     static class ButtonRenderer extends JButton implements TableCellRenderer {

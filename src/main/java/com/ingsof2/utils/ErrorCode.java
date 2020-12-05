@@ -6,7 +6,8 @@ public enum ErrorCode {
     FAIL_DISCONNECTING_TO_DB(3, "Fail disconnecting to the database."),
     FAIL_EXECUTING_QUERY(4, "Fail executing query."),
     FAIL_SAVING_IN_DB(5, "Fail saving to the database"),
-    INVALID_FIELDS(6, "Datos invalidos");
+    INVALID_FIELDS(6, "Datos invalidos"),
+    FAIL_SELECTING_ESCRIBANO(6, "Por favor seleccione un escribano");
 
     private String code;
     private String description;

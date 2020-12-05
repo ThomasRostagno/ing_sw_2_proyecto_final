@@ -2,7 +2,6 @@ package com.ingsof2.panels.listarEscribanos;
 
 import com.ingsof2.Objetos.Escribano;
 import com.ingsof2.exceptions.ApiException;
-import com.ingsof2.panels.listarDuenios.DuenioPanel;
 import com.ingsof2.utils.Constants;
 import com.ingsof2.utils.ErrorCode;
 
@@ -15,6 +14,7 @@ import java.io.IOException;
 
 public class ListarEscribanos extends JPanel {
 
+    private final EscribanoPanel escribanosPanel;
     private BufferedImage image;
 
     public ListarEscribanos() {
@@ -27,7 +27,7 @@ public class ListarEscribanos extends JPanel {
 
         setLayout(new GridBagLayout());
 
-        JPanel escribanosPanel = new EscribanoPanel();
+        escribanosPanel = new EscribanoPanel();
         escribanosPanel.setPreferredSize(new Dimension(600, 450));
 
         add(escribanosPanel);
@@ -40,6 +40,6 @@ public class ListarEscribanos extends JPanel {
     }
 
     public Escribano getEscribano() {
-        return new Escribano("Daniel", "Kwist", "2664406601", "39662252", "Masculino", "Rivadavia 1305", "30/12/1996", "kwistdaniel@gmail.com", "6969");
+        return escribanosPanel.getEscribano();
     }
 }

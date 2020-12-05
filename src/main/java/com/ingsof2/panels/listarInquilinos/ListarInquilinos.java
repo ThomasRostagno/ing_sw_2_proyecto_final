@@ -14,6 +14,7 @@ import java.io.IOException;
 
 public class ListarInquilinos extends JPanel {
 
+    private final InquilinoPanel inquilinoPanel;
     private BufferedImage image;
 
     public ListarInquilinos() {
@@ -26,7 +27,7 @@ public class ListarInquilinos extends JPanel {
 
         setLayout(new GridBagLayout());
 
-        JPanel inquilinoPanel = new InquilinoPanel();
+        inquilinoPanel = new InquilinoPanel();
         inquilinoPanel.setPreferredSize(new Dimension(600, 450));
 
         add(inquilinoPanel);
@@ -39,6 +40,6 @@ public class ListarInquilinos extends JPanel {
     }
 
     public Inquilino getInquilino() {
-        return new Inquilino("Augusto Thomas", "Rostagno", "2664028603", "41919789", "Masculino", "Barrio 544", "26/05/1999", "trostagno@hotmail.com");
+        return inquilinoPanel.getInquilino();
     }
 }
