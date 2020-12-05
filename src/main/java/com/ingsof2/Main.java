@@ -16,9 +16,9 @@ public class Main {
         //tablas.DropDuenio();
         //tablas.DropInmueble();
         //tablas.DropAlquiler();
-        tablas.TablaVenta();
-        tablas.TablaVendedor();
-        tablas.TablaComprador();
+        //tablas.TablaVenta();
+        //tablas.TablaVendedor();
+        //tablas.TablaComprador();
         //tablas.TablaAlquiler();
         //tablas.TablaDuenio();
         //tablas.TablaEscribano();
