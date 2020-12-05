@@ -7,6 +7,13 @@ import java.util.List;
 
 public class Venta extends Contrato {
     private int Comision;
+    private String dniComprador;
+    private String domicilioInmueble;
+    private String dniVendedor;
+
+    public Venta(){
+
+    }
 
     public Venta(Contrato aux, int comision) {
         super(aux);
@@ -26,6 +33,29 @@ public class Venta extends Contrato {
         Comision = comision;
     }
 
+    public String getDniComprador() {
+        return dniComprador;
+    }
+
+    public void setDniComprador(String dniComprador) {
+        this.dniComprador = dniComprador;
+    }
+
+    public String getDomicilioInmueble() {
+        return domicilioInmueble;
+    }
+
+    public void setDomicilioInmueble(String domicilioInmueble) {
+        this.domicilioInmueble = domicilioInmueble;
+    }
+
+    public String getDniVendedor() {
+        return dniVendedor;
+    }
+
+    public void setDniVendedor(String dniVendedor) {
+        this.dniVendedor = dniVendedor;
+    }
 
     /**
      * Entra una lista de ventas y un anio, remuevo las ventas que no se iniciaron ese anio
