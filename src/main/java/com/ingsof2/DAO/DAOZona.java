@@ -79,6 +79,7 @@ public class DAOZona implements BusinessObject<Zona> {
 
     @Override
     public int update(Zona zona) {
+        //TODO: borrar este comentario
         String sqlUpdate = " UPDATE Zona SET Nombre = ?, Descripcion = ?" +
                 " VALUES (?, ?) WHERE (Codigo = '" + zona.getCodigo() + "')";
         int exito = 0;
