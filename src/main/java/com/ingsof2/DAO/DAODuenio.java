@@ -56,7 +56,6 @@ public class DAODuenio implements BusinessObject<Duenio> {
                 duenio.setDireccion(rs.getString("Direccion"));
                 duenio.setFechaNac(rs.getString("Fecha_Nacimiento"));
                 duenio.setEmail(rs.getString("Email"));
-                duenio.setMatricula(rs.getString("Matricula"));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
