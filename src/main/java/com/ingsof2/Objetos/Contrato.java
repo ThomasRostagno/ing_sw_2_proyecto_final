@@ -57,7 +57,7 @@ public class Contrato {
         this.tipo = tipo;
     }
 
-    public Object[][] getDataVector(List<Contrato> contratos) {
+    /*public static Object[][] getDataVector(List<Contrato> contratos) {
         Object[][] objects = new Object[0][0];
 
         for (int i = 0; i < contratos.size(); i++) {
@@ -70,7 +70,7 @@ public class Contrato {
         return new Object[]{codigo, fecha, precio, tipo};
     }
 
-    public Object[] getHeaders() {
+    public static Object[] getHeaders() {
         return new Object[]{"Codigo", "Fecha", "Monto", "Tipo"};
-    }
+    }*/
 }

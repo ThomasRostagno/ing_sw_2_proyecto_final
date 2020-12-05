@@ -82,7 +82,7 @@ public class Alquiler extends Contrato {
         this.dniEscribano = dniEscribano;
     }
 
-    public Object[][] getDataVectorAlquiler(List<Alquiler> alquileres) {
+    public static Object[][] getDataVector(List<Alquiler> alquileres) {
         Object[][] objects = new Object[0][0];
 
         for (int i = 0; i < alquileres.size(); i++) {
@@ -111,7 +111,7 @@ public class Alquiler extends Contrato {
         return new Object[]{getCodigo(), getFecha(), getPrecio(), getTipo(), getFechaFin(), getDniInquilino(), getDomicilioInmueble(), getDniGarante(), getDniEscribano()};
     }
 
-    public Object[] getHeaders() {
+    public static Object[] getHeaders() {
         return new Object[]{"Codigo", "Fecha", "Precio", "Tipo", "Fecha Fin", "Inquilino", "Direccion Inmueble", "Garante", "Escribano"};
     }
 

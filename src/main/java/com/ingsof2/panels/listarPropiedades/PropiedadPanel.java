@@ -2,27 +2,45 @@ package com.ingsof2.panels.listarPropiedades;
 
 import com.ingsof2.DAO.BusinessObject;
 import com.ingsof2.DAO.DAOInmueble;
+import com.ingsof2.Objetos.Escribano;
 import com.ingsof2.Objetos.Inmueble;
 import com.ingsof2.exceptions.ApiException;
+import com.ingsof2.utils.Constants;
 import com.ingsof2.utils.ErrorCode;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.List;
 
 public class PropiedadPanel extends JPanel {
 
     private final JTable table;
 
+    private JLabel campoABuscarLabel = new JLabel("Campo a buscar:");
+    private JLabel valorLabel = new JLabel("Valor:");
+
+    private JComboBox<String> campoABuscarComboBox = new JComboBox<>();
+    private JTextField valorTextField = new JTextField();
+
     public PropiedadPanel() {
 
-        BorderLayout borderLayout = new BorderLayout();
+        for (Object header : Inmueble.getHeaders()) {
+            campoABuscarComboBox.addItem(header.toString());
+        }
 
-        setLayout(borderLayout);
+        setLayout(new GridBagLayout());
+        GridBagConstraints gridBagConstraints = new GridBagConstraints();
+        setBackground(Constants.RECT_COLOR);
 
         DefaultTableModel dm = new DefaultTableModel() {
             @Override
@@ -67,7 +85,94 @@ public class PropiedadPanel extends JPanel {
         table.getColumnModel().getColumn(4).setPreferredWidth(100);
         table.getColumnModel().getColumn(5).setPreferredWidth(100);*/
 
-        add(scrollPane, BorderLayout.CENTER);
+        setFilter();
+
+        scrollPane.setPreferredSize(new Dimension(600, 450));
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridheight = 4;
+        add(scrollPane, gridBagConstraints);
+
+        campoABuscarLabel.setPreferredSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 1;
+        gridBagConstraints.gridheight = 1;
+        add(campoABuscarLabel, gridBagConstraints);
+
+        campoABuscarComboBox.setPreferredSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 1;
+        gridBagConstraints.gridheight = 1;
+        add(campoABuscarComboBox, gridBagConstraints);
+
+        valorLabel.setPreferredSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 1;
+        gridBagConstraints.gridheight = 1;
+        add(valorLabel, gridBagConstraints);
+
+        valorTextField.setPreferredSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 1;
+        gridBagConstraints.gridheight = 1;
+        add(valorTextField, gridBagConstraints);
+    }
+
+    private void setFilter() {
+        valorTextField.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                doFilter();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                doFilter();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                doFilter();
+            }
+
+            private void doFilter() {
+                String filter = valorTextField.getText();
+                TableRowSorter<TableModel> modelo = new TableRowSorter<>(table.getModel());
+                if (!filter.equals("")) {
+                    modelo.setRowFilter(RowFilter.regexFilter("(?i)" + filter, campoABuscarComboBox.getSelectedIndex()));
+                } else {
+                    modelo.setRowFilter(null);
+                }
+                table.setRowSorter(modelo);
+            }
+        });
+
+        valorTextField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                super.keyTyped(e);
+
+                char c = e.getKeyChar();
+                if (!Character.isAlphabetic(c) && c != KeyEvent.VK_SPACE) {
+                    e.consume();
+                }
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                super.keyReleased(e);
+            }
+        });
     }
 
     public Inmueble getPropiedad() {

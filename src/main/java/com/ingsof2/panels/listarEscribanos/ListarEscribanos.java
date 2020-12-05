@@ -28,7 +28,6 @@ public class ListarEscribanos extends JPanel {
         setLayout(new GridBagLayout());
 
         escribanosPanel = new EscribanoPanel();
-        escribanosPanel.setPreferredSize(new Dimension(600, 450));
 
         add(escribanosPanel);
     }

@@ -28,7 +28,6 @@ public class ListarInquilinos extends JPanel {
         setLayout(new GridBagLayout());
 
         inquilinoPanel = new InquilinoPanel();
-        inquilinoPanel.setPreferredSize(new Dimension(600, 450));
 
         add(inquilinoPanel);
     }

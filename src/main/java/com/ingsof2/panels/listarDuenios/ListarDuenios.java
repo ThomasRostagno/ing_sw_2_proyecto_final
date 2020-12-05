@@ -28,7 +28,6 @@ public class ListarDuenios extends JPanel {
         setLayout(new GridBagLayout());
 
         duenioPanel = new DuenioPanel();
-        duenioPanel.setPreferredSize(new Dimension(600, 450));
 
         add(duenioPanel);
     }

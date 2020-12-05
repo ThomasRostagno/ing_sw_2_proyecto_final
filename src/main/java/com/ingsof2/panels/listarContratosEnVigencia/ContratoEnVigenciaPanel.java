@@ -1,5 +1,10 @@
 package com.ingsof2.panels.listarContratosEnVigencia;
 
+import com.ingsof2.DAO.BusinessObject;
+import com.ingsof2.DAO.DAOAlquiler;
+import com.ingsof2.DAO.DAODuenio;
+import com.ingsof2.Objetos.Alquiler;
+import com.ingsof2.Objetos.Duenio;
 import com.ingsof2.utils.Constants;
 
 import javax.swing.*;
@@ -8,6 +13,7 @@ import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class ContratoEnVigenciaPanel extends JPanel {
 
@@ -24,7 +30,14 @@ public class ContratoEnVigenciaPanel extends JPanel {
             }
         };
 
-        dm.setDataVector(Constants.DATA_VECTOR, Constants.HEADERS);
+        BusinessObject<Alquiler> businessObject = new DAOAlquiler();
+
+        List<Alquiler> alquileres = businessObject.readAll();
+
+        Object[][] objects = Alquiler.getDataVector(alquileres);
+        Object[] headers = Alquiler.getHeaders();
+
+        dm.setDataVector(objects, headers);
 
         JTable table = new JTable(dm);
 
@@ -34,11 +47,14 @@ public class ContratoEnVigenciaPanel extends JPanel {
         table.getColumn("Inquilino").setCellRenderer(new ButtonRenderer());
         table.getColumn("Inquilino").setCellEditor(new ButtonEditor(new JCheckBox()));
 
-        table.getColumn("Propiedad").setCellRenderer(new ButtonRenderer());
-        table.getColumn("Propiedad").setCellEditor(new ButtonEditor(new JCheckBox()));
+        table.getColumn("Direccion Inmueble").setCellRenderer(new ButtonRenderer());
+        table.getColumn("Direccion Inmueble").setCellEditor(new ButtonEditor(new JCheckBox()));
 
-        table.getColumn("Duenio").setCellRenderer(new ButtonRenderer());
-        table.getColumn("Duenio").setCellEditor(new ButtonEditor(new JCheckBox()));
+        table.getColumn("Garante").setCellRenderer(new ButtonRenderer());
+        table.getColumn("Garante").setCellEditor(new ButtonEditor(new JCheckBox()));
+
+        table.getColumn("Escribano").setCellRenderer(new ButtonRenderer());
+        table.getColumn("Escribano").setCellEditor(new ButtonEditor(new JCheckBox()));
 
         JScrollPane scrollPane = new JScrollPane(table);
 
