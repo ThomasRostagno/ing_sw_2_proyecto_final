@@ -79,11 +79,45 @@ public class DAOAlquiler implements BusinessObject<Alquiler> {
 
     @Override
     public int update(Alquiler alquiler) {
-        return 0;
+        String sqlUpdate = " UPDATE Alquiler SET Nombre = ?, Apellido = ?, Telefono = ?, Sexo = ?, Direccion = ?, Fecha_Nacimiento = ?, Email = ?" +
+                " VALUES (?, ?, ?, ?, ?, ?, ?) WHERE (DNI = '" + alquiler.getDni() + "') AND ('" + "Sexo =" + alquiler.getSexo() + "')";
+        int exito = 0;
+        Connection connection = Database.getInstance().getConnection();
+        PreparedStatement statement;
+        try {
+            statement = connection.prepareStatement(sqlUpdate);
+            statement.setString(1, inquilino.getNombre());
+            statement.setString(2, inquilino.getApellido());
+            statement.setString(3, inquilino.getTelefono());
+            statement.setString(4, inquilino.getSexo());
+            statement.setString(5, inquilino.getDireccion());
+            statement.setString(6, inquilino.getFechaNac());
+            statement.setString(7, inquilino.getEmail());
+            statement.executeUpdate();
+            exito = 1;
+
+        } catch (SQLException throwables) {
+            ApiException.showException(new ApiException(ErrorCode.FAIL_SAVING_IN_DB));
+        }
+        Database.getInstance().disconnect();
+        return exito;
     }
 
     @Override
     public int delete(Alquiler alquiler) {
-        return 0;
+        String sqlDelete = " UPDATE Alquiler SET Status = 0 " +
+        "WHERE (Codigo = '" + alquiler.getCodigo() + "')";
+        int exito = 0;
+        Connection connection = Database.getInstance().getConnection();
+        PreparedStatement statement;
+        try {
+            statement = connection.prepareStatement(sqlDelete);
+            statement.executeUpdate();
+            exito = 1;
+        } catch (SQLException throwables) {
+            ApiException.showException(new ApiException(ErrorCode.FAIL_SAVING_IN_DB));
+        }
+        Database.getInstance().disconnect();
+        return exito;
     }
 }

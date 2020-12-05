@@ -124,6 +124,20 @@ public class DAOGarante implements BusinessObject<Garante> {
 
     @Override
     public int delete(Garante garante) {
-        return 0;
+        String sqlDelete = " UPDATE Garante SET Status = 0 " +
+        "WHERE (DNI = '" + garante.getDni() + "') AND ('" + "Sexo =" + garante.getSexo() + "')";
+        int exito = 0;
+        Connection connection = Database.getInstance().getConnection();
+        PreparedStatement statement;
+        try {
+            statement = connection.prepareStatement(sqlDelete);
+            statement.executeUpdate();
+            exito = 1;
+
+        } catch (SQLException throwables) {
+            ApiException.showException(new ApiException(ErrorCode.FAIL_SAVING_IN_DB));
+        }
+        Database.getInstance().disconnect();
+        return exito;
     }
 }

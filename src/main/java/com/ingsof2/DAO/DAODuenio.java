@@ -121,6 +121,20 @@ public class DAODuenio implements BusinessObject<Duenio> {
 
     @Override
     public int delete(Duenio duenio) {
-        return 0;
+        String sqlDelete = " UPDATE Dueno SET Status = 0 " +
+        "WHERE (DNI = '" + duenio.getDni() + "') AND ('" + "Sexo =" + duenio.getSexo() + "')";
+        int exito = 0;
+        Connection connection = Database.getInstance().getConnection();
+        PreparedStatement statement;
+        try {
+            statement = connection.prepareStatement(sqlDelete);
+            statement.executeUpdate();
+            exito = 1;
+
+        } catch (SQLException throwables) {
+            ApiException.showException(new ApiException(ErrorCode.FAIL_SAVING_IN_DB));
+        }
+        Database.getInstance().disconnect();
+        return exito;
     }
 }

@@ -123,16 +123,15 @@ public class DAOInquilino implements BusinessObject<Inquilino> {
 
     @Override
     public int delete(Inquilino inquilino) {
-        String sqlUpdate = " UPDATE Inquilino SET Status = 0 +
+        String sqlDelete = " UPDATE Inquilino SET Status = 0 " +
                 "WHERE (DNI = '" + inquilino.getDni() + "') AND ('" + "Sexo =" + inquilino.getSexo() + "')";
         int exito = 0;
         Connection connection = Database.getInstance().getConnection();
         PreparedStatement statement;
         try {
-            statement = connection.prepareStatement(sqlUpdate);
+            statement = connection.prepareStatement(sqlDelete);
             statement.executeUpdate();
             exito = 1;
-
         } catch (SQLException throwables) {
             ApiException.showException(new ApiException(ErrorCode.FAIL_SAVING_IN_DB));
         }

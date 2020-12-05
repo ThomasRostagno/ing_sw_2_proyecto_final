@@ -101,6 +101,20 @@ public class DAOEscribano implements BusinessObject<Escribano> {
 
     @Override
     public int delete(Escribano escribano) {
-        return 0;
+        String sqlDelete = " UPDATE Escribano SET Status = 0 " +
+        "WHERE (DNI = '" + escribano.getDni() + "') AND ('" + "Sexo =" + escribano.getSexo() + "')";
+        int exito = 0;
+        Connection connection = Database.getInstance().getConnection();
+        PreparedStatement statement;
+        try {
+            statement = connection.prepareStatement(sqlDelete);
+            statement.executeUpdate();
+            exito = 1;
+
+        } catch (SQLException throwables) {
+            ApiException.showException(new ApiException(ErrorCode.FAIL_SAVING_IN_DB));
+        }
+        Database.getInstance().disconnect();
+        return exito;
     }
 }
