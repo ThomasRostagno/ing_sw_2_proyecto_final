@@ -55,14 +55,14 @@ public class DAOInmueble implements BusinessObject<Inmueble> {
     }
 
     @Override
-    public Inmueble ReadOne(String... ids) {
+    public Inmueble readOne(String... ids) {
         Inmueble inmueble = new Inmueble();
         Connection connection = Database.getInstance().getConnection();
         Statement statement;
-        try{
+        try {
             statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM Inmueble WHERE (Status=1) AND (Direccion='"+ids[0]+"')");
-            while(rs.next()){
+            ResultSet rs = statement.executeQuery("SELECT * FROM Inmueble WHERE (Status=1) AND (Direccion='" + ids[0] + "')");
+            while (rs.next()) {
                 inmueble.setTipo(rs.getString("Tipo"));
                 inmueble.setCondicion(rs.getString("Condicion"));
                 inmueble.setDireccion(rs.getString("Direccion"));

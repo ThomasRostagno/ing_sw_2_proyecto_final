@@ -1,6 +1,5 @@
 package com.ingsof2.DAO;
 
-import com.ingsof2.Objetos.Inquilino;
 import com.ingsof2.Objetos.Vendedor;
 import com.ingsof2.database.Database;
 import com.ingsof2.exceptions.ApiException;
@@ -10,7 +9,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DAOVendedor implements BusinessObject<Vendedor>{
+public class DAOVendedor implements BusinessObject<Vendedor> {
     @Override
     public List<Vendedor> readAll() {
         List<Vendedor> vendedores = new ArrayList<>();
@@ -41,14 +40,14 @@ public class DAOVendedor implements BusinessObject<Vendedor>{
     }
 
     @Override
-    public Vendedor ReadOne(String... ids) {
+    public Vendedor readOne(String... ids) {
         Vendedor vendedor = new Vendedor();
         Connection connection = Database.getInstance().getConnection();
         Statement statement;
-        try{
+        try {
             statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM Vendedor WHERE (Status=1) AND (DNI='"+ids[0]+"') AND (Sexo='"+ids[1]+"')");
-            while(rs.next()){
+            ResultSet rs = statement.executeQuery("SELECT * FROM Vendedor WHERE (Status=1) AND (DNI='" + ids[0] + "') AND (Sexo='" + ids[1] + "')");
+            while (rs.next()) {
                 vendedor.setNombre(rs.getString("Nombre"));
                 vendedor.setApellido(rs.getString("Apellido"));
                 vendedor.setTelefono(rs.getString("Telefono"));

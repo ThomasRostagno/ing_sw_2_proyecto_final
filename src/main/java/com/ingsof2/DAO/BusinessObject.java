@@ -5,7 +5,7 @@ import java.util.List;
 public interface BusinessObject<T> {
     List<T> readAll();
 
-    T ReadOne(String... ids);
+    T readOne(String... ids);
 
     int create(T t);
 

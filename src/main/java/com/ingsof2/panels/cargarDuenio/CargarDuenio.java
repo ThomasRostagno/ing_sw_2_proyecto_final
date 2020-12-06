@@ -126,7 +126,7 @@ public class CargarDuenio extends JPanel implements ActionListener {
 
                 char c = e.getKeyChar();
                 if (!(Character.isLetter(c) || (c == KeyEvent.VK_SPACE) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
-                    JOptionPane.showMessageDialog(null, "Por favor ingrese un caracter válido");
+                    ApiException.showException(new ApiException(ErrorCode.INVALID_CHARACTER));
                     e.consume();
                 }
 
@@ -156,7 +156,7 @@ public class CargarDuenio extends JPanel implements ActionListener {
 
                 char c = e.getKeyChar();
                 if (!(Character.isLetter(c) || (c == KeyEvent.VK_SPACE) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
-                    JOptionPane.showMessageDialog(null, "Por favor ingrese un caracter válido");
+                    ApiException.showException(new ApiException(ErrorCode.INVALID_CHARACTER));
                     e.consume();
                 }
 
@@ -186,7 +186,7 @@ public class CargarDuenio extends JPanel implements ActionListener {
 
                 char c = e.getKeyChar();
                 if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
-                    JOptionPane.showMessageDialog(null, "Por favor ingrese un caracter válido");
+                    ApiException.showException(new ApiException(ErrorCode.INVALID_CHARACTER));
                     e.consume();
                 }
 
@@ -218,7 +218,7 @@ public class CargarDuenio extends JPanel implements ActionListener {
 
                 char c = e.getKeyChar();
                 if (!(Character.isLetter(c) || Character.isDigit(c) || (c == ',') || (c == '.') || (c == KeyEvent.VK_SPACE) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
-                    JOptionPane.showMessageDialog(null, "Por favor ingrese un caracter válido");
+                    ApiException.showException(new ApiException(ErrorCode.INVALID_CHARACTER));
                     e.consume();
                 }
 
@@ -248,7 +248,7 @@ public class CargarDuenio extends JPanel implements ActionListener {
 
                 char c = e.getKeyChar();
                 if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE) || (c == KeyEvent.VK_SLASH))) {
-                    JOptionPane.showMessageDialog(null, "Por favor ingrese un caracter válido");
+                    ApiException.showException(new ApiException(ErrorCode.INVALID_CHARACTER));
                     e.consume();
                 }
 
@@ -278,7 +278,7 @@ public class CargarDuenio extends JPanel implements ActionListener {
 
                 char c = e.getKeyChar();
                 if (!(Character.isDigit(c) || (c == '+') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
-                    JOptionPane.showMessageDialog(null, "Por favor ingrese un caracter válido");
+                    ApiException.showException(new ApiException(ErrorCode.INVALID_CHARACTER));
                     e.consume();
                 }
 
@@ -308,7 +308,7 @@ public class CargarDuenio extends JPanel implements ActionListener {
 
                 char c = e.getKeyChar();
                 if (!(Character.isDigit(c) || Character.isLetter(c) || (c == '.') || (c == '-') || (c == '_') || (c == '@') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
-                    JOptionPane.showMessageDialog(null, "Por favor ingrese un caracter válido");
+                    ApiException.showException(new ApiException(ErrorCode.INVALID_CHARACTER));
                     e.consume();
                 }
 

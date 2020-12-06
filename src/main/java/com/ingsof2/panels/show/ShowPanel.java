@@ -15,28 +15,32 @@ import java.io.IOException;
 
 public class ShowPanel extends JPanel {
 
-    private final JLabel listarInquilinosLabel = new JLabel("Listar inquilinos");
     private final JLabel listarAlquileresEnVigenciaLabel = new JLabel("Listar alquileres en vigencia");
-    private final JLabel listarAlquileresVencidosLabel = new JLabel("Listar alquileres vencidos");
     private final JLabel listarAlquileresAVencerLabel = new JLabel("Listar alquileres a vencer");
+    private final JLabel listarAlquileresVencidosLabel = new JLabel("Listar alquileres vencidos");
+    private final JLabel listarVentasLabel = new JLabel("Listar ventas");
+    private final JLabel listarInquilinosLabel = new JLabel("Listar inquilinos");
+    private final JLabel listarGarantesLabel = new JLabel("Listar garantes");
     private final JLabel listarPropiedadesLabel = new JLabel("Listar propiedades");
     private final JLabel listarEscribanosLabel = new JLabel("Listar escribanos");
     private final JLabel listarDueniosLabel = new JLabel("Listar dueños");
 
-    private final JButton listarInquilinosButton = new JButton("Button");
     private final JButton listarAlquileresEnVigenciaButton = new JButton("Button");
-    private final JButton listarAlquileresVencidosButton = new JButton("Button");
     private final JButton listarAlquileresAVencerButton = new JButton("Button");
+    private final JButton listarAlquileresVencidosButton = new JButton("Button");
+    private final JButton listarVentasButton = new JButton("Button");
+    private final JButton listarInquilinosButton = new JButton("Button");
+    private final JButton listarGarantesButton = new JButton("Button");
     private final JButton listarPropiedadesButton = new JButton("Button");
     private final JButton listarEscribanosButton = new JButton("Button");
     private final JButton listarDueniosButton = new JButton("Button");
 
-    private final int rows = 7;
+    private final int rows = 5;
 
     private final int xPad = Constants.X_PAD;
     private final int yPad = Constants.Y_PAD;
 
-    private final double x = listarAlquileresEnVigenciaLabel.getPreferredSize().getWidth() + xPad + listarAlquileresEnVigenciaButton.getPreferredSize().getWidth();
+    private final double x = listarAlquileresEnVigenciaLabel.getPreferredSize().getWidth() + xPad + listarAlquileresEnVigenciaButton.getPreferredSize().getWidth() + xPad + listarPropiedadesLabel.getPreferredSize().getWidth() + xPad + listarPropiedadesButton.getPreferredSize().getWidth();
     private final double y = listarAlquileresEnVigenciaButton.getPreferredSize().getHeight() * rows + (rows - 1) * yPad;
 
     private final int initialX = (int) (Constants.WIDTH / 2 - x / 2);
@@ -54,15 +58,22 @@ public class ShowPanel extends JPanel {
             ApiException.showException(new ApiException(ErrorCode.FAIL_GETTING_IMAGE));
         }
 
-        listarInquilinosButton.addActionListener(e -> {
-            Main.mainFrame.goListarInquilinos();
-        });
         listarAlquileresEnVigenciaButton.addActionListener(e -> {
             Main.mainFrame.goListarAlquileresEnVigencia();
         });
-        listarAlquileresVencidosButton.addActionListener(e -> {
-        });
         listarAlquileresAVencerButton.addActionListener(e -> {
+            Main.mainFrame.goListarAlquileresAVencer();
+        });
+        listarAlquileresVencidosButton.addActionListener(e -> {
+            Main.mainFrame.goListarAlquileresVencidos();
+        });
+        listarVentasButton.addActionListener(e -> {
+        });
+        listarInquilinosButton.addActionListener(e -> {
+            Main.mainFrame.goListarInquilinos();
+        });
+        listarGarantesButton.addActionListener(e -> {
+            Main.mainFrame.goListarGarantes();
         });
         listarPropiedadesButton.addActionListener(e -> {
             Main.mainFrame.goListarPropiedades();
@@ -76,28 +87,37 @@ public class ShowPanel extends JPanel {
 
         setLayout(new SpringLayout());
 
-        add(listarInquilinosLabel);
-        add(listarInquilinosButton);
-
         add(listarAlquileresEnVigenciaLabel);
         add(listarAlquileresEnVigenciaButton);
 
-        add(listarAlquileresVencidosLabel);
-        add(listarAlquileresVencidosButton);
+        add(listarInquilinosLabel);
+        add(listarInquilinosButton);
 
         add(listarAlquileresAVencerLabel);
         add(listarAlquileresAVencerButton);
 
+        add(listarGarantesLabel);
+        add(listarGarantesButton);
+
+        add(listarAlquileresVencidosLabel);
+        add(listarAlquileresVencidosButton);
+
         add(listarPropiedadesLabel);
         add(listarPropiedadesButton);
+
+        add(listarVentasLabel);
+        add(listarVentasButton);
 
         add(listarEscribanosLabel);
         add(listarEscribanosButton);
 
+        add(new JLabel(""));
+        add(new JLabel(""));
+
         add(listarDueniosLabel);
         add(listarDueniosButton);
 
-        SpringUtilities.makeCompactGrid(this, rows, 2, initialX, initialY, xPad, yPad);
+        SpringUtilities.makeCompactGrid(this, rows, 4, initialX, initialY, xPad, yPad);
 
     }
 

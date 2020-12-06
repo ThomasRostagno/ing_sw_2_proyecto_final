@@ -1,11 +1,9 @@
-package com.ingsof2.panels.listarPropiedades;
+package com.ingsof2.panels.listarAlquileresVencidos;
 
 import com.ingsof2.DAO.*;
 import com.ingsof2.Main;
-import com.ingsof2.Objetos.Inmueble;
-import com.ingsof2.exceptions.ApiException;
+import com.ingsof2.Objetos.Alquiler;
 import com.ingsof2.utils.Constants;
-import com.ingsof2.utils.ErrorCode;
 import com.ingsof2.utils.Utils;
 
 import javax.swing.*;
@@ -14,9 +12,8 @@ import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
-public class PropiedadPanel extends JPanel {
+public class AlquilerVencidoPanel extends JPanel {
 
     private final JTable table;
 
@@ -26,9 +23,9 @@ public class PropiedadPanel extends JPanel {
     private JComboBox<String> campoABuscarComboBox = new JComboBox<>();
     private JTextField valorTextField = new JTextField();
 
-    public PropiedadPanel() {
+    public AlquilerVencidoPanel() {
 
-        for (Object header : Inmueble.getHeaders()) {
+        for (Object header : Alquiler.getHeaders()) {
             campoABuscarComboBox.addItem(header.toString());
         }
 
@@ -39,36 +36,33 @@ public class PropiedadPanel extends JPanel {
         DefaultTableModel dm = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return column >= 9;
+                return column >= 5;
             }
         };
 
-        BusinessObject<Inmueble> businessObject = new DAOInmueble();
+        BusinessObject<Alquiler> businessObject = new DAOAlquiler();
 
-        List<Inmueble> inmuebles = businessObject.readAll();
-
-        Object[][] objects = Inmueble.getDataVector(inmuebles);
-        Object[] headers = Inmueble.getHeaders();
+        Object[][] objects = Alquiler.getDataVector(Utils.filterAlquileresVencidos(businessObject.readAll()));
+        Object[] headers = Alquiler.getHeaders();
 
         dm.setDataVector(objects, headers);
 
         table = new JTable(dm);
 
         table.setFocusable(false);
-        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        table.getTableHeader().setReorderingAllowed(false);
+        table.setRowSelectionAllowed(false);
 
         table.getColumn("Inquilino").setCellRenderer(new ButtonRenderer());
         table.getColumn("Inquilino").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOInquilino()));
 
-        table.getColumn("Dueño").setCellRenderer(new ButtonRenderer());
-        table.getColumn("Dueño").setCellEditor(new ButtonEditor(new JCheckBox(), new DAODuenio()));
+        table.getColumn("Direccion Inmueble").setCellRenderer(new ButtonRenderer());
+        table.getColumn("Direccion Inmueble").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOInmueble()));
 
-        table.getColumn("Alquiler").setCellRenderer(new ButtonRenderer());
-        table.getColumn("Alquiler").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOAlquiler()));
+        table.getColumn("Garante").setCellRenderer(new ButtonRenderer());
+        table.getColumn("Garante").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOGarante()));
 
-        table.getColumn("Zona").setCellRenderer(new ButtonRenderer());
-        table.getColumn("Zona").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOZona()));
+        table.getColumn("Escribano").setCellRenderer(new ButtonRenderer());
+        table.getColumn("Escribano").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOEscribano()));
 
         JScrollPane scrollPane = new JScrollPane(table);
 
@@ -78,10 +72,9 @@ public class PropiedadPanel extends JPanel {
 
         table.setPreferredScrollableViewportSize(table.getPreferredSize());
 
-        table.getColumnModel().getColumn(9).setPreferredWidth(100);
-        table.getColumnModel().getColumn(10).setPreferredWidth(100);
-        table.getColumnModel().getColumn(11).setPreferredWidth(100);
-        table.getColumnModel().getColumn(12).setPreferredWidth(100);
+        table.getColumnModel().getColumn(3).setPreferredWidth(100);
+        table.getColumnModel().getColumn(4).setPreferredWidth(100);
+        table.getColumnModel().getColumn(5).setPreferredWidth(100);
 
         Utils.setFilter(table, valorTextField, campoABuscarComboBox);
 
@@ -119,22 +112,6 @@ public class PropiedadPanel extends JPanel {
         gridBagConstraints.gridwidth = 1;
         gridBagConstraints.gridheight = 1;
         add(valorTextField, gridBagConstraints);
-    }
-
-    public Inmueble getPropiedad() {
-        int row = table.getSelectedRow();
-        int direccionColumn = 2;
-
-        if (row != -1) {
-            String direccion = table.getValueAt(row, direccionColumn).toString();
-
-            BusinessObject<Inmueble> businessObject = new DAOInmueble();
-
-            return businessObject.readOne(direccion);
-        }
-        ApiException.showException(new ApiException(ErrorCode.FAIL_SELECTING_ESCRIBANO));
-
-        return null;
     }
 
     static class ButtonRenderer extends JButton implements TableCellRenderer {

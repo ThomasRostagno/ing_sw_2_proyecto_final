@@ -2,9 +2,6 @@ package com.ingsof2;
 
 import com.ingsof2.SQLTables.Tablas;
 import com.ingsof2.frames.MainFrame;
-import com.ingsof2.utils.Utils;
-
-import java.time.LocalDate;
 
 public class Main {
 
@@ -16,6 +13,7 @@ public class Main {
         //tablas.DropDuenio();
         //tablas.DropInmueble();
         //tablas.DropAlquiler();
+        //tablas.DropGarante();
         //tablas.TablaVenta();
         //tablas.TablaVendedor();
         //tablas.TablaComprador();

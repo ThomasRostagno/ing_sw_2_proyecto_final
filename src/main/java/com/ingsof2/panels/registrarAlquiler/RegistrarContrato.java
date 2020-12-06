@@ -48,7 +48,6 @@ public class RegistrarContrato extends JPanel {
         tipoComboBox.addItem("");
         tipoComboBox.addItem(TiposDeContratos.ALQUILER.getDescripcion());
         tipoComboBox.addItem(TiposDeContratos.VENTA.getDescripcion());
-        tipoComboBox.addItem(TiposDeContratos.AMBOS.getDescripcion());
 
         try {
             image = ImageIO.read(new File(Constants.BACKGROUND));
@@ -97,7 +96,7 @@ public class RegistrarContrato extends JPanel {
 
                 char c = e.getKeyChar();
                 if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
-                    JOptionPane.showMessageDialog(null, "Por favor ingrese un caracter válido");
+                    ApiException.showException(new ApiException(ErrorCode.INVALID_CHARACTER));
                     e.consume();
                 }
 
@@ -127,7 +126,7 @@ public class RegistrarContrato extends JPanel {
 
                 char c = e.getKeyChar();
                 if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE) || (c == KeyEvent.VK_SLASH))) {
-                    JOptionPane.showMessageDialog(null, "Por favor ingrese un caracter válido");
+                    ApiException.showException(new ApiException(ErrorCode.INVALID_CHARACTER));
                     e.consume();
                 }
 
@@ -159,7 +158,7 @@ public class RegistrarContrato extends JPanel {
 
                 char c = e.getKeyChar();
                 if (!(Character.isDigit(c) || (c == '.') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
-                    JOptionPane.showMessageDialog(null, "Por favor ingrese un caracter válido");
+                    ApiException.showException(new ApiException(ErrorCode.INVALID_CHARACTER));
                     e.consume();
                 }
 

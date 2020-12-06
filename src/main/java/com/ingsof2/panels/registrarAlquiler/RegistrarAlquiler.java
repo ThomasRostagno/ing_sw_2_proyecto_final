@@ -118,7 +118,7 @@ public class RegistrarAlquiler extends JPanel {
 
                 char c = e.getKeyChar();
                 if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE) || (c == KeyEvent.VK_SLASH))) {
-                    JOptionPane.showMessageDialog(null, "Por favor ingrese un caracter válido");
+                    ApiException.showException(new ApiException(ErrorCode.INVALID_CHARACTER));
                     e.consume();
                 }
 
@@ -147,7 +147,7 @@ public class RegistrarAlquiler extends JPanel {
     }
 
     private boolean validateFields() {
-        return Constants.fechaValidator(fechaDeFinTextField);
+        return Constants.fechaValidator(fechaDeFinTextField) && Constants.buttonValidator(inquilinoSeleccionadoButton) && Constants.buttonValidator(inmuebleSeleccionadoButton) && Constants.buttonValidator(garanteSeleccionadoButton) && Constants.buttonValidator(escribanoSeleccionadoButton);
     }
 
     public Alquiler saveFields() {

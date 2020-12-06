@@ -2,7 +2,7 @@ package com.ingsof2.Objetos;
 
 public class Vendedor extends Persona { // Este es el que vende el inmueble
 
-    public Vendedor(){
+    public Vendedor() {
 
     }
 

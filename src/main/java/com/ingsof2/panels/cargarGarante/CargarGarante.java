@@ -1,6 +1,7 @@
-package com.ingsof2.panels.cargarEscribano;
+package com.ingsof2.panels.cargarGarante;
 
-import com.ingsof2.Objetos.Escribano;
+import com.ingsof2.Objetos.Garante;
+import com.ingsof2.Objetos.Inquilino;
 import com.ingsof2.exceptions.ApiException;
 import com.ingsof2.utils.Constants;
 import com.ingsof2.utils.ErrorCode;
@@ -15,36 +16,34 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class CargarEscribano extends JPanel {
+public class CargarGarante extends JPanel {
 
     private JLabel nombreLabel = new JLabel("Nombre:");
     private JLabel apellidoLabel = new JLabel("Apellido:");
     private JLabel dniLabel = new JLabel("D.N.I:");
     private JLabel sexoLabel = new JLabel("Sexo:");
-    private JLabel direccionDelEstudioLabel = new JLabel("Dirección del estudio:");
+    private JLabel direccionLabel = new JLabel("Dirección:");
     private JLabel fechaDeNacimientoLabel = new JLabel("Fecha de nacimiento:");
     private JLabel telefonoLabel = new JLabel("Teléfono:");
     private JLabel emailLabel = new JLabel("Email:");
-    private JLabel matriculaLabel = new JLabel("Matrícula:");
 
     private JTextField nombreTextField = new JTextField();
     private JTextField apellidoTextField = new JTextField();
     private JTextField dniTextField = new JTextField();
     private JComboBox<String> sexoComboBox = new JComboBox<>();
-    private JTextField direccionDelEstudioTextField = new JTextField();
+    private JTextField direccionTextField = new JTextField();
     private JTextField fechaDeNacimientoTextField = new JTextField();
     private JTextField telefonoTextField = new JTextField();
     private JTextField emailTextField = new JTextField();
-    private JTextField matriculaTextField = new JTextField();
 
-    private final int rows = 5;
+    private final int rows = 4;
 
     private final int margin = Constants.MARGIN;
 
     private final int xPad = Constants.X_PAD;
     private final int yPad = Constants.Y_PAD;
 
-    private final double x = direccionDelEstudioLabel.getPreferredSize().getWidth() + xPad + Constants.TEXTFIELD_WIDTH + xPad + fechaDeNacimientoLabel.getPreferredSize().getWidth() + xPad + Constants.TEXTFIELD_WIDTH;
+    private final double x = direccionLabel.getPreferredSize().getWidth() + xPad + Constants.TEXTFIELD_WIDTH + xPad + fechaDeNacimientoLabel.getPreferredSize().getWidth() + xPad + Constants.TEXTFIELD_WIDTH;
     private final double y = Constants.TEXTFIELD_HEIGHT * rows + (rows - 1) * yPad;
 
     private final int initialX = (int) (Constants.WIDTH / 2 - x / 2);
@@ -52,8 +51,7 @@ public class CargarEscribano extends JPanel {
 
     private BufferedImage image;
 
-
-    public CargarEscribano() {
+    public CargarGarante() {
 
         sexoComboBox.addItem("");
         sexoComboBox.addItem("Masculino");
@@ -78,18 +76,14 @@ public class CargarEscribano extends JPanel {
         add(dniTextField);
         add(sexoLabel);
         add(sexoComboBox);
-        add(direccionDelEstudioLabel);
-        add(direccionDelEstudioTextField);
+        add(direccionLabel);
+        add(direccionTextField);
         add(fechaDeNacimientoLabel);
         add(fechaDeNacimientoTextField);
         add(telefonoLabel);
         add(telefonoTextField);
         add(emailLabel);
         add(emailTextField);
-        add(matriculaLabel);
-        add(matriculaTextField);
-        add(new JLabel(""));
-        add(new JLabel(""));
 
         SpringUtilities.makeCompactGrid(this, rows, 4, initialX, initialY, xPad, yPad);
     }
@@ -107,9 +101,9 @@ public class CargarEscribano extends JPanel {
         sexoComboBox.setPreferredSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
         sexoComboBox.setMinimumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
         sexoComboBox.setMaximumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
-        direccionDelEstudioTextField.setPreferredSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
-        direccionDelEstudioTextField.setMinimumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
-        direccionDelEstudioTextField.setMaximumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
+        direccionTextField.setPreferredSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
+        direccionTextField.setMinimumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
+        direccionTextField.setMaximumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
         fechaDeNacimientoTextField.setPreferredSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
         fechaDeNacimientoTextField.setMinimumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
         fechaDeNacimientoTextField.setMaximumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
@@ -119,9 +113,6 @@ public class CargarEscribano extends JPanel {
         emailTextField.setPreferredSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
         emailTextField.setMinimumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
         emailTextField.setMaximumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
-        matriculaTextField.setPreferredSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
-        matriculaTextField.setMinimumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
-        matriculaTextField.setMaximumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
     }
 
     private void checkers() {
@@ -217,7 +208,7 @@ public class CargarEscribano extends JPanel {
 
         sexoComboBox.addActionListener(e -> Constants.comboBoxValidator(sexoComboBox));
 
-        direccionDelEstudioTextField.addKeyListener(new KeyAdapter() {
+        direccionTextField.addKeyListener(new KeyAdapter() {
 
             @Override
             public void keyTyped(KeyEvent e) {
@@ -229,21 +220,21 @@ public class CargarEscribano extends JPanel {
                     e.consume();
                 }
 
-                Constants.direccionValidator(direccionDelEstudioTextField);
+                Constants.direccionValidator(direccionTextField);
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
                 super.keyPressed(e);
 
-                Constants.direccionValidator(direccionDelEstudioTextField);
+                Constants.direccionValidator(direccionTextField);
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
                 super.keyReleased(e);
 
-                Constants.direccionValidator(direccionDelEstudioTextField);
+                Constants.direccionValidator(direccionTextField);
             }
         });
 
@@ -336,36 +327,6 @@ public class CargarEscribano extends JPanel {
                 Constants.emailValidator(emailTextField);
             }
         });
-
-        matriculaTextField.addKeyListener(new KeyAdapter() {
-
-            @Override
-            public void keyTyped(KeyEvent e) {
-                super.keyTyped(e);
-
-                char c = e.getKeyChar();
-                if (!(Character.isDigit(c) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
-                    ApiException.showException(new ApiException(ErrorCode.INVALID_CHARACTER));
-                    e.consume();
-                }
-
-                Constants.matriculaValidator(matriculaTextField);
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                super.keyPressed(e);
-
-                Constants.matriculaValidator(matriculaTextField);
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-                super.keyReleased(e);
-
-                Constants.matriculaValidator(matriculaTextField);
-            }
-        });
     }
 
     private boolean validateFields() {
@@ -373,24 +334,23 @@ public class CargarEscribano extends JPanel {
                 Constants.nombreYApellidoValidator(apellidoTextField) &&
                 Constants.dniValidator(dniTextField) &&
                 Constants.comboBoxValidator(sexoComboBox) &&
-                Constants.direccionValidator(direccionDelEstudioTextField) &&
+                Constants.direccionValidator(direccionTextField) &&
                 Constants.fechaValidator(fechaDeNacimientoTextField) &&
                 Constants.telefonoValidator(telefonoTextField) &&
-                Constants.emailValidator(emailTextField) &&
-                Constants.matriculaValidator(matriculaTextField);
+                Constants.emailValidator(emailTextField);
     }
 
-    public Escribano saveFields() {
+    public Garante saveFields() {
         if (validateFields()) {
-            return new Escribano(nombreTextField.getText(),
+            return new Garante(nombreTextField.getText(),
                     apellidoTextField.getText(),
                     telefonoTextField.getText(),
                     dniTextField.getText(),
                     sexoComboBox.getItemAt(sexoComboBox.getSelectedIndex()),
-                    direccionDelEstudioTextField.getText(),
+                    direccionTextField.getText(),
                     fechaDeNacimientoTextField.getText(),
                     emailTextField.getText(),
-                    matriculaTextField.getText());
+                    null);
         } else {
             ApiException.showException(new ApiException(ErrorCode.INVALID_FIELDS));
             return null;

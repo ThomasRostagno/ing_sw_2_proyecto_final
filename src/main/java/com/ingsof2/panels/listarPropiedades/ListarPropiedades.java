@@ -28,7 +28,6 @@ public class ListarPropiedades extends JPanel {
         setLayout(new GridBagLayout());
 
         propiedadPanel = new PropiedadPanel();
-        propiedadPanel.setPreferredSize(new Dimension(600, 450));
 
         add(propiedadPanel);
     }

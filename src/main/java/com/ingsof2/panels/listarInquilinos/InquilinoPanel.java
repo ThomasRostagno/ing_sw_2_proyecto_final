@@ -4,7 +4,9 @@ import com.ingsof2.DAO.BusinessObject;
 import com.ingsof2.DAO.DAOInquilino;
 import com.ingsof2.Objetos.Inquilino;
 import com.ingsof2.exceptions.ApiException;
+import com.ingsof2.utils.Constants;
 import com.ingsof2.utils.ErrorCode;
+import com.ingsof2.utils.Utils;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -18,11 +20,21 @@ public class InquilinoPanel extends JPanel {
 
     private final JTable table;
 
+    private JLabel campoABuscarLabel = new JLabel("Campo a buscar:");
+    private JLabel valorLabel = new JLabel("Valor:");
+
+    private JComboBox<String> campoABuscarComboBox = new JComboBox<>();
+    private JTextField valorTextField = new JTextField();
+
     public InquilinoPanel() {
 
-        BorderLayout borderLayout = new BorderLayout();
+        for (Object header : Inquilino.getHeaders()) {
+            campoABuscarComboBox.addItem(header.toString());
+        }
 
-        setLayout(borderLayout);
+        setLayout(new GridBagLayout());
+        GridBagConstraints gridBagConstraints = new GridBagConstraints();
+        setBackground(Constants.RECT_COLOR);
 
         DefaultTableModel dm = new DefaultTableModel() {
             @Override
@@ -46,15 +58,6 @@ public class InquilinoPanel extends JPanel {
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table.getTableHeader().setReorderingAllowed(false);
 
-        /*table.getColumn("Inquilino").setCellRenderer(new ButtonRenderer());
-        table.getColumn("Inquilino").setCellEditor(new ButtonEditor(new JCheckBox()));
-
-        table.getColumn("Propiedad").setCellRenderer(new ButtonRenderer());
-        table.getColumn("Propiedad").setCellEditor(new ButtonEditor(new JCheckBox()));
-
-        table.getColumn("Duenio").setCellRenderer(new ButtonRenderer());
-        table.getColumn("Duenio").setCellEditor(new ButtonEditor(new JCheckBox()));*/
-
         JScrollPane scrollPane = new JScrollPane(table);
 
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -63,11 +66,42 @@ public class InquilinoPanel extends JPanel {
 
         table.setPreferredScrollableViewportSize(table.getPreferredSize());
 
-        /*table.getColumnModel().getColumn(3).setPreferredWidth(100);
-        table.getColumnModel().getColumn(4).setPreferredWidth(100);
-        table.getColumnModel().getColumn(5).setPreferredWidth(100);*/
+        Utils.setFilter(table, valorTextField, campoABuscarComboBox);
 
-        add(scrollPane, BorderLayout.CENTER);
+        scrollPane.setPreferredSize(new Dimension(600, 450));
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridheight = 4;
+        add(scrollPane, gridBagConstraints);
+
+        campoABuscarLabel.setPreferredSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 1;
+        gridBagConstraints.gridheight = 1;
+        add(campoABuscarLabel, gridBagConstraints);
+
+        campoABuscarComboBox.setPreferredSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 1;
+        gridBagConstraints.gridheight = 1;
+        add(campoABuscarComboBox, gridBagConstraints);
+
+        valorLabel.setPreferredSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 1;
+        gridBagConstraints.gridheight = 1;
+        add(valorLabel, gridBagConstraints);
+
+        valorTextField.setPreferredSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 1;
+        gridBagConstraints.gridheight = 1;
+        add(valorTextField, gridBagConstraints);
     }
 
     public Inquilino getInquilino() {
@@ -81,79 +115,10 @@ public class InquilinoPanel extends JPanel {
 
             BusinessObject<Inquilino> businessObject = new DAOInquilino();
 
-            return businessObject.ReadOne(dni, sexo);
+            return businessObject.readOne(dni, sexo);
         }
         ApiException.showException(new ApiException(ErrorCode.FAIL_SELECTING_ESCRIBANO));
 
         return null;
-    }
-
-    static class ButtonRenderer extends JButton implements TableCellRenderer {
-
-        public ButtonRenderer() {
-            setOpaque(true);
-        }
-
-        @Override
-        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-            if (isSelected) {
-                setForeground(table.getSelectionForeground());
-                setBackground(table.getSelectionBackground());
-            } else {
-                setForeground(table.getForeground());
-                setBackground(UIManager.getColor("Button.background"));
-            }
-            setText((value == null) ? "" : value.toString());
-            return this;
-        }
-    }
-
-    static class ButtonEditor extends DefaultCellEditor {
-
-        protected JButton button;
-        private String label;
-        private boolean isPushed;
-
-        public ButtonEditor(JCheckBox checkBox) {
-            super(checkBox);
-            button = new JButton();
-            button.setOpaque(true);
-            button.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    fireEditingStopped();
-                }
-            });
-        }
-
-        @Override
-        public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-            if (isSelected) {
-                button.setForeground(table.getSelectionForeground());
-                button.setBackground(table.getSelectionBackground());
-            } else {
-                button.setForeground(table.getForeground());
-                button.setBackground(table.getBackground());
-            }
-            label = (value == null) ? "" : value.toString();
-            button.setText(label);
-            isPushed = true;
-            return button;
-        }
-
-        @Override
-        public Object getCellEditorValue() {
-            if (isPushed) {
-                JOptionPane.showMessageDialog(button, label + ": Ouch!");
-            }
-            isPushed = false;
-            return label;
-        }
-
-        @Override
-        public boolean stopCellEditing() {
-            isPushed = false;
-            return super.stopCellEditing();
-        }
     }
 }

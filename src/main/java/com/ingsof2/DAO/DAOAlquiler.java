@@ -44,7 +44,7 @@ public class DAOAlquiler implements BusinessObject<Alquiler> {
     }
 
     @Override
-    public Alquiler ReadOne(String... ids) {
+    public Alquiler readOne(String... ids) {
         return null;
     }
 
@@ -107,7 +107,7 @@ public class DAOAlquiler implements BusinessObject<Alquiler> {
     @Override
     public int delete(Alquiler alquiler) {
         String sqlDelete = " UPDATE Alquiler SET Status = 0 " +
-        "WHERE (Codigo = '" + alquiler.getCodigo() + "')";
+                "WHERE (Codigo = '" + alquiler.getCodigo() + "')";
         int exito = 0;
         Connection connection = Database.getInstance().getConnection();
         PreparedStatement statement;

@@ -10,7 +10,7 @@ public class ButtonsAddPanel extends JPanel {
     private final JButton backButton = new JButton("Back");
     private final JButton nextButton = new JButton("Next");
 
-    public ButtonsAddPanel(NextBackButtonsInterface nextBackButtonsInterface) {
+    public ButtonsAddPanel(ButtonsInterface buttonsInterface) {
         Color backgroundColor = new Color(20, 20, 20);
 
         backButton.addActionListener(e -> {
@@ -18,7 +18,7 @@ public class ButtonsAddPanel extends JPanel {
         });
 
         nextButton.addActionListener(e -> {
-            nextBackButtonsInterface.next();
+            buttonsInterface.next();
         });
 
         setLayout(new GridLayout(1, 2));

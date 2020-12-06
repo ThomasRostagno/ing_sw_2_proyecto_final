@@ -7,7 +7,8 @@ public enum ErrorCode {
     FAIL_EXECUTING_QUERY(4, "Fail executing query."),
     FAIL_SAVING_IN_DB(5, "Fail saving to the database"),
     INVALID_FIELDS(6, "Datos invalidos"),
-    FAIL_SELECTING_ESCRIBANO(6, "Por favor seleccione un escribano");
+    FAIL_SELECTING_ESCRIBANO(7, "Por favor seleccione un escribano"),
+    INVALID_CHARACTER(8, "Por favor ingrese un caracter válido");
 
     private String code;
     private String description;

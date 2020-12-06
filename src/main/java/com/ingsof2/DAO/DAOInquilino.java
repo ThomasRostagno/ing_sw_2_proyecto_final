@@ -42,14 +42,14 @@ public class DAOInquilino implements BusinessObject<Inquilino> {
     }
 
     @Override
-    public Inquilino ReadOne(String... ids) {
+    public Inquilino readOne(String... ids) {
         Inquilino inquilino = new Inquilino();
         Connection connection = Database.getInstance().getConnection();
         Statement statement;
-        try{
+        try {
             statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM Inquilino WHERE (Status=1) AND (DNI='"+ids[0]+"') AND (Sexo='"+ids[1]+"')");
-            while(rs.next()){
+            ResultSet rs = statement.executeQuery("SELECT * FROM Inquilino WHERE (Status=1) AND (DNI='" + ids[0] + "') AND (Sexo='" + ids[1] + "')");
+            while (rs.next()) {
                 inquilino.setNombre(rs.getString("Nombre"));
                 inquilino.setApellido(rs.getString("Apellido"));
                 inquilino.setTelefono(rs.getString("Telefono"));

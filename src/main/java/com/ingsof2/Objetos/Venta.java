@@ -11,7 +11,7 @@ public class Venta extends Contrato {
     private String domicilioInmueble;
     private String dniVendedor;
 
-    public Venta(){
+    public Venta() {
 
     }
 

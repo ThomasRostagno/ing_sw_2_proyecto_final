@@ -1,4 +1,4 @@
-package com.ingsof2.panels.listarContratosEnVigencia;
+package com.ingsof2.panels.listarAlquileresAVencer;
 
 import com.ingsof2.exceptions.ApiException;
 import com.ingsof2.utils.Constants;
@@ -11,11 +11,11 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class ListarContratosEnVigencia extends JPanel {
+public class ListarAlquileresAVencer extends JPanel {
 
     private BufferedImage image;
 
-    public ListarContratosEnVigencia() {
+    public ListarAlquileresAVencer() {
 
         try {
             image = ImageIO.read(new File(Constants.BACKGROUND));
@@ -25,8 +25,7 @@ public class ListarContratosEnVigencia extends JPanel {
 
         setLayout(new GridBagLayout());
 
-        JPanel contratoEnVigenciaPanel = new ContratoEnVigenciaPanel();
-        contratoEnVigenciaPanel.setPreferredSize(new Dimension(600, 450));
+        JPanel contratoEnVigenciaPanel = new AlquilerAVencerPanel();
 
         add(contratoEnVigenciaPanel);
     }

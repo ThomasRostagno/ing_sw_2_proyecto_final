@@ -63,7 +63,7 @@ public class Constants {
     public static int MARGIN = 20;
     public static String BACKGROUND = "./pictures/background.jpg";
     public static String BANNER_MAIN_PANEL = "./pictures/banner-main-panel.jpg";
-    public static int TEXTFIELD_WIDTH = 100;
+    public static int TEXTFIELD_WIDTH = 150;
     public static int TEXTFIELD_HEIGHT = 30;
     public static int CENTER_HEIGHT = HEIGHT - 36;
 
@@ -181,6 +181,16 @@ public class Constants {
             return false;
         } else {
             numberTextField.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
+            return true;
+        }
+    }
+
+    public static boolean buttonValidator(JButton button) {
+        if (!button.isEnabled()) {
+            button.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+            return false;
+        } else {
+            button.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
             return true;
         }
     }

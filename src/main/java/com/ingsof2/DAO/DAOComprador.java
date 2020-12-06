@@ -1,7 +1,6 @@
 package com.ingsof2.DAO;
 
 import com.ingsof2.Objetos.Comprador;
-import com.ingsof2.Objetos.Inquilino;
 import com.ingsof2.database.Database;
 import com.ingsof2.exceptions.ApiException;
 import com.ingsof2.utils.ErrorCode;
@@ -10,7 +9,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DAOComprador implements BusinessObject<Comprador>{
+public class DAOComprador implements BusinessObject<Comprador> {
     @Override
     public List<Comprador> readAll() {
         List<Comprador> compradores = new ArrayList<>();
@@ -41,14 +40,14 @@ public class DAOComprador implements BusinessObject<Comprador>{
     }
 
     @Override
-    public Comprador ReadOne(String... ids) {
+    public Comprador readOne(String... ids) {
         Comprador comprador = new Comprador();
         Connection connection = Database.getInstance().getConnection();
         Statement statement;
-        try{
+        try {
             statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM Comprador WHERE (Status=1) AND (DNI='"+ids[0]+"') AND (Sexo='"+ids[1]+"')");
-            while(rs.next()){
+            ResultSet rs = statement.executeQuery("SELECT * FROM Comprador WHERE (Status=1) AND (DNI='" + ids[0] + "') AND (Sexo='" + ids[1] + "')");
+            while (rs.next()) {
                 comprador.setNombre(rs.getString("Nombre"));
                 comprador.setApellido(rs.getString("Apellido"));
                 comprador.setTelefono(rs.getString("Telefono"));
