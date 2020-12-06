@@ -1,7 +1,5 @@
 package com.ingsof2.Objetos;
 
-import java.util.List;
-
 public class Contrato {
     private String codigo;
     private String fecha;

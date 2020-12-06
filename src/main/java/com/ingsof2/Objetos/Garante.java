@@ -27,8 +27,8 @@ public class Garante extends Persona {
         this.dniInquilino = dniInquilino;
     }
 
-    public Object[][] getDataVector(List<Garante> garantes) {
-        Object[][] objects = new Object[0][0];
+    public static Object[][] getDataVector(List<Garante> garantes) {
+        Object[][] objects = new Object[garantes.size()][0];
 
         for (int i = 0; i < garantes.size(); i++) {
             objects[i] = garantes.get(i).toObject();
@@ -40,7 +40,7 @@ public class Garante extends Persona {
         return new Object[]{getNombre(), getApellido(), getDni(), getTelefono(), getSexo(), getDireccion(), getFechaNac(), getEmail(), getDniInquilino()};
     }
 
-    public Object[] getHeaders() {
+    public static Object[] getHeaders() {
         return new Object[]{"Nombre", "Apellido", "DNI", "Telefono", "Sexo", "Direccion", "Fecha de Nacimiento", "Email", "Inquilino"};
     }
 

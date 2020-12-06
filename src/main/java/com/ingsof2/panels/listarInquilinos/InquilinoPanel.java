@@ -2,24 +2,18 @@ package com.ingsof2.panels.listarInquilinos;
 
 import com.ingsof2.DAO.BusinessObject;
 import com.ingsof2.DAO.DAOInquilino;
-import com.ingsof2.Objetos.Escribano;
 import com.ingsof2.Objetos.Inquilino;
 import com.ingsof2.exceptions.ApiException;
 import com.ingsof2.utils.Constants;
 import com.ingsof2.utils.ErrorCode;
+import com.ingsof2.utils.Utils;
 
 import javax.swing.*;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.util.List;
 
 public class InquilinoPanel extends JPanel {
@@ -72,7 +66,7 @@ public class InquilinoPanel extends JPanel {
 
         table.setPreferredScrollableViewportSize(table.getPreferredSize());
 
-        setFilter();
+        Utils.setFilter(table, valorTextField, campoABuscarComboBox);
 
         scrollPane.setPreferredSize(new Dimension(600, 450));
         gridBagConstraints.gridx = 1;
@@ -110,58 +104,6 @@ public class InquilinoPanel extends JPanel {
         add(valorTextField, gridBagConstraints);
     }
 
-    private void setFilter() {
-        valorTextField.getDocument().addDocumentListener(new DocumentListener() {
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                doFilter();
-            }
-
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                doFilter();
-            }
-
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                doFilter();
-            }
-
-            private void doFilter() {
-                String filter = valorTextField.getText();
-                TableRowSorter<TableModel> modelo = new TableRowSorter<>(table.getModel());
-                if (!filter.equals("")) {
-                    modelo.setRowFilter(RowFilter.regexFilter("(?i)" + filter, campoABuscarComboBox.getSelectedIndex()));
-                } else {
-                    modelo.setRowFilter(null);
-                }
-                table.setRowSorter(modelo);
-            }
-        });
-
-        valorTextField.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                super.keyTyped(e);
-
-                char c = e.getKeyChar();
-                if (!Character.isAlphabetic(c) && c != KeyEvent.VK_SPACE) {
-                    e.consume();
-                }
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                super.keyPressed(e);
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-                super.keyReleased(e);
-            }
-        });
-    }
-
     public Inquilino getInquilino() {
         int row = table.getSelectedRow();
         int dniColumn = 2;
@@ -173,79 +115,10 @@ public class InquilinoPanel extends JPanel {
 
             BusinessObject<Inquilino> businessObject = new DAOInquilino();
 
-            return businessObject.ReadOne(dni, sexo);
+            return businessObject.readOne(dni, sexo);
         }
         ApiException.showException(new ApiException(ErrorCode.FAIL_SELECTING_ESCRIBANO));
 
         return null;
-    }
-
-    static class ButtonRenderer extends JButton implements TableCellRenderer {
-
-        public ButtonRenderer() {
-            setOpaque(true);
-        }
-
-        @Override
-        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-            if (isSelected) {
-                setForeground(table.getSelectionForeground());
-                setBackground(table.getSelectionBackground());
-            } else {
-                setForeground(table.getForeground());
-                setBackground(UIManager.getColor("Button.background"));
-            }
-            setText((value == null) ? "" : value.toString());
-            return this;
-        }
-    }
-
-    static class ButtonEditor extends DefaultCellEditor {
-
-        protected JButton button;
-        private String label;
-        private boolean isPushed;
-
-        public ButtonEditor(JCheckBox checkBox) {
-            super(checkBox);
-            button = new JButton();
-            button.setOpaque(true);
-            button.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    fireEditingStopped();
-                }
-            });
-        }
-
-        @Override
-        public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-            if (isSelected) {
-                button.setForeground(table.getSelectionForeground());
-                button.setBackground(table.getSelectionBackground());
-            } else {
-                button.setForeground(table.getForeground());
-                button.setBackground(table.getBackground());
-            }
-            label = (value == null) ? "" : value.toString();
-            button.setText(label);
-            isPushed = true;
-            return button;
-        }
-
-        @Override
-        public Object getCellEditorValue() {
-            if (isPushed) {
-                JOptionPane.showMessageDialog(button, label + ": Ouch!");
-            }
-            isPushed = false;
-            return label;
-        }
-
-        @Override
-        public boolean stopCellEditing() {
-            isPushed = false;
-            return super.stopCellEditing();
-        }
     }
 }

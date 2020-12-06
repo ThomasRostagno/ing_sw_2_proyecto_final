@@ -42,6 +42,60 @@ public class Alquiler extends Contrato {
         this.dniEscribano = dniEscribano;
     }
 
+    public static Object[][] getDataVector(List<Alquiler> alquileres) {
+        Object[][] objects = new Object[alquileres.size()][0];
+
+        for (int i = 0; i < alquileres.size(); i++) {
+            objects[i] = alquileres.get(i).toObject();
+
+        }
+        return objects;
+    }
+
+    public static Object[] getHeaders() {
+        return new Object[]{"Codigo", "Fecha", "Precio", "Tipo", "Fecha Fin", "Inquilino", "Direccion Inmueble", "Garante", "Escribano"};
+    }
+
+    /**
+     * Entra una lista de alquileres y dos fechas, una de inicio y otra de fin, remueve todos los alquileres que se encuentren fuera de las fechas
+     **/
+    public static List<Alquiler> alquileresBetween(List<Alquiler> alquileres, String fecha1, String fecha2) {
+        /**Creacion fechas**/
+        LocalDate dateStart = Utils.stringToLocalDate(fecha1);
+        LocalDate dateEnd = Utils.stringToLocalDate(fecha2);
+        /**Loop inverso para cerciorar leer todas las posiciones**/
+        for (int i = alquileres.size() - 1; i >= 0; i--) {
+            String stringDateAlquiler = alquileres.get(i).getFechaFin();
+            LocalDate dateAlquiler = Utils.stringToLocalDate(stringDateAlquiler);
+            /**Logica Condicional para remover elementos fuera del dominio**/
+            /*Si la fecha del alquiler esta antes de la primera fecha (inicio presuntamente), evalua verdadero y elimina*/
+            /*Si la fecha del alquiler esta despues de la segunda fecha (fin presuntamente), evalua verdadero y la elimina*/
+            if (dateAlquiler.isBefore(dateStart) || dateAlquiler.isAfter(dateEnd)) {
+                alquileres.remove(i);
+            }
+        }
+        return alquileres;
+    }
+
+    /**
+     * Entra una lista de alquileres y un anio, remuevo los alquileres que no se iniciaron ese anio
+     **/
+    public static List<Alquiler> alquileresPorAnio(List<Alquiler> alquileres, String anio) {
+        //Convierto anio de String a entero
+        int anioint = Integer.parseInt(anio);
+        for (int i = alquileres.size() - 1; i >= 0; i--) {
+            //Recupero la fecha de inicio en un String, luego lo hago Date y luego recupero anio. Esto se puede mejorar, ya que gasto mucha memoria asi creo.
+            String stringDateAlquier = alquileres.get(i).getFecha();
+            LocalDate dateAlquiler = Utils.stringToLocalDate(stringDateAlquier);
+            int dateYearAlquiler = dateAlquiler.getYear();
+            /**Condicional, remueve si los anios son distintos**/
+            if (!(dateYearAlquiler == anioint)) {
+                alquileres.remove(i);
+            }
+        }
+        return alquileres;
+    }
+
     public String getFechaFin() {
         return fechaFin;
     }
@@ -82,78 +136,7 @@ public class Alquiler extends Contrato {
         this.dniEscribano = dniEscribano;
     }
 
-    public static Object[][] getDataVector(List<Alquiler> alquileres) {
-        Object[][] objects = new Object[0][0];
-
-        for (int i = 0; i < alquileres.size(); i++) {
-            if (alquileres.get(i).metodo()) {
-                objects[i] = alquileres.get(i).toObject();
-            }
-
-        }
-        return objects;
-    }
-
-    private boolean metodo() {
-
-        String fechaFin = this.getFechaFin();
-
-        String[] fechafin = fechaFin.split("/");
-
-        int dd = Integer.parseInt(fechafin[0]);
-        int mm = Integer.parseInt(fechafin[1]);
-        int yy = Integer.parseInt(fechafin[2]);
-
-        return (Utils.isValidVigencia(dd, mm, yy));
-    }
-
     private Object[] toObject() {
         return new Object[]{getCodigo(), getFecha(), getPrecio(), getTipo(), getFechaFin(), getDniInquilino(), getDomicilioInmueble(), getDniGarante(), getDniEscribano()};
-    }
-
-    public static Object[] getHeaders() {
-        return new Object[]{"Codigo", "Fecha", "Precio", "Tipo", "Fecha Fin", "Inquilino", "Direccion Inmueble", "Garante", "Escribano"};
-    }
-
-    /**
-     * Entra una lista de alquileres y dos fechas, una de inicio y otra de fin, remueve todos los alquileres que se encuentren fuera de las fechas
-     **/
-    public List<Alquiler> alquileresBetween(List<Alquiler> alquileres, String fecha1, String fecha2) {
-        List<Alquiler> aux = alquileres;
-        /**Creacion fechas**/
-        LocalDate dateStart = Utils.stringToLocalDate(fecha1);
-        LocalDate dateEnd = Utils.stringToLocalDate(fecha2);
-        /**Loop inverso para cerciorar leer todas las posiciones**/
-        for (int i = aux.size() - 1; i >= 0; i--) {
-            String stringDateAlquiler = aux.get(i).getFechaFin();
-            LocalDate dateAlquiler = Utils.stringToLocalDate(stringDateAlquiler);
-            /**Logica Condicional para remover elementos fuera del dominio**/
-            /*Si la fecha del alquiler esta antes de la primera fecha (inicio presuntamente), evalua verdadero y elimina*/
-            /*Si la fecha del alquiler esta despues de la segunda fecha (fin presuntamente), evalua verdadero y la elimina*/
-            if (dateAlquiler.isBefore(dateStart) || dateAlquiler.isAfter(dateEnd)) {
-                aux.remove(i);
-            }
-        }
-        return aux;
-    }
-
-    /**
-     * Entra una lista de alquileres y un anio, remuevo los alquileres que no se iniciaron ese anio
-     **/
-    public List<Alquiler> alquileresPorAnio(List<Alquiler> alquileres, String anio) {
-        List<Alquiler> aux = alquileres;
-        //Convierto anio de String a entero
-        int anioint = Integer.parseInt(anio);
-        for (int i = aux.size() - 1; i >= 0; i--) {
-            //Recupero la fecha de inicio en un String, luego lo hago Date y luego recupero anio. Esto se puede mejorar, ya que gasto mucha memoria asi creo.
-            String stringDateAlquier = aux.get(i).getFecha();
-            LocalDate dateAlquiler = Utils.stringToLocalDate(stringDateAlquier);
-            int dateYearAlquiler = dateAlquiler.getYear();
-            /**Condicional, remueve si los anios son distintos**/
-            if (!(dateYearAlquiler == anioint)) {
-                aux.remove(i);
-            }
-        }
-        return aux;
     }
 }

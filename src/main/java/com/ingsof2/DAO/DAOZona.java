@@ -1,6 +1,5 @@
 package com.ingsof2.DAO;
 
-import com.ingsof2.Objetos.Inquilino;
 import com.ingsof2.Objetos.Zona;
 import com.ingsof2.database.Database;
 import com.ingsof2.exceptions.ApiException;
@@ -36,14 +35,14 @@ public class DAOZona implements BusinessObject<Zona> {
     }
 
     @Override
-    public Zona ReadOne(String... ids) {
+    public Zona readOne(String... ids) {
         Zona zona = new Zona();
         Connection connection = Database.getInstance().getConnection();
         Statement statement;
-        try{
+        try {
             statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM Zona WHERE (Status=1) AND (Codigo='"+ids[0]+"')");
-            while(rs.next()){
+            ResultSet rs = statement.executeQuery("SELECT * FROM Zona WHERE (Status=1) AND (Codigo='" + ids[0] + "')");
+            while (rs.next()) {
                 zona.setCodigo(rs.getString("Codigo"));
                 zona.setNombre(rs.getString("Nombre"));
                 zona.setDescripcion(rs.getString("Descripcion"));

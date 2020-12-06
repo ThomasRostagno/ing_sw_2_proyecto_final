@@ -17,17 +17,19 @@ public class AddPanel extends JPanel {
 
     private final JLabel registrarContratoLabel = new JLabel("Registrar contrato");
     private final JLabel cargarInquilinoLabel = new JLabel("Cargar inquilino");
+    private final JLabel cargarGaranteLabel = new JLabel("Cargar garante");
     private final JLabel cargarEscribanoLabel = new JLabel("Cargar escribano");
     private final JLabel cargarPropiedadLabel = new JLabel("Cargar propiedad");
     private final JLabel cargarDuenioLabel = new JLabel("Cargar dueño");
 
     private final JButton registrarContratoButton = new JButton("Button");
     private final JButton cargarInquilinoButton = new JButton("Button");
+    private final JButton cargarGaranteButton = new JButton("Button");
     private final JButton cargarEscribanoButton = new JButton("Button");
     private final JButton cargarPropiedadButton = new JButton("Button");
     private final JButton cargarDuenioButton = new JButton("Button");
 
-    private final int rows = 5;
+    private final int rows = 6;
 
     private final int xPad = Constants.X_PAD;
     private final int yPad = Constants.Y_PAD;
@@ -56,6 +58,9 @@ public class AddPanel extends JPanel {
         cargarInquilinoButton.addActionListener(e -> {
             Main.mainFrame.goCargarInquilino();
         });
+        cargarGaranteButton.addActionListener(e -> {
+            Main.mainFrame.goCargarGarante();
+        });
         cargarEscribanoButton.addActionListener(e -> {
             Main.mainFrame.goCargarEscribano();
         });
@@ -73,6 +78,9 @@ public class AddPanel extends JPanel {
 
         add(cargarInquilinoLabel);
         add(cargarInquilinoButton);
+
+        add(cargarGaranteLabel);
+        add(cargarGaranteButton);
 
         add(cargarEscribanoLabel);
         add(cargarEscribanoButton);

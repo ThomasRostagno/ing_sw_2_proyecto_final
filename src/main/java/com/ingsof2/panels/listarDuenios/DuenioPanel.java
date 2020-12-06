@@ -6,16 +6,11 @@ import com.ingsof2.Objetos.Duenio;
 import com.ingsof2.exceptions.ApiException;
 import com.ingsof2.utils.Constants;
 import com.ingsof2.utils.ErrorCode;
+import com.ingsof2.utils.Utils;
 
 import javax.swing.*;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.util.List;
 
 public class DuenioPanel extends JPanel {
@@ -68,7 +63,7 @@ public class DuenioPanel extends JPanel {
 
         table.setPreferredScrollableViewportSize(table.getPreferredSize());
 
-        setFilter();
+        Utils.setFilter(table, valorTextField, campoABuscarComboBox);
 
         scrollPane.setPreferredSize(new Dimension(600, 450));
         gridBagConstraints.gridx = 1;
@@ -106,58 +101,6 @@ public class DuenioPanel extends JPanel {
         add(valorTextField, gridBagConstraints);
     }
 
-    private void setFilter() {
-        valorTextField.getDocument().addDocumentListener(new DocumentListener() {
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                doFilter();
-            }
-
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                doFilter();
-            }
-
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                doFilter();
-            }
-
-            private void doFilter() {
-                String filter = valorTextField.getText();
-                TableRowSorter<TableModel> modelo = new TableRowSorter<>(table.getModel());
-                if (!filter.equals("")) {
-                    modelo.setRowFilter(RowFilter.regexFilter("(?i)" + filter, campoABuscarComboBox.getSelectedIndex()));
-                } else {
-                    modelo.setRowFilter(null);
-                }
-                table.setRowSorter(modelo);
-            }
-        });
-
-        valorTextField.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                super.keyTyped(e);
-
-                char c = e.getKeyChar();
-                if (!Character.isAlphabetic(c) && c != KeyEvent.VK_SPACE) {
-                    e.consume();
-                }
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                super.keyPressed(e);
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-                super.keyReleased(e);
-            }
-        });
-    }
-
     public Duenio getDuenio() {
         int row = table.getSelectedRow();
         int dniColumn = 2;
@@ -169,7 +112,7 @@ public class DuenioPanel extends JPanel {
 
             BusinessObject<Duenio> businessObject = new DAODuenio();
 
-            return businessObject.ReadOne(dni, sexo);
+            return businessObject.readOne(dni, sexo);
         }
         ApiException.showException(new ApiException(ErrorCode.FAIL_SELECTING_ESCRIBANO));
 

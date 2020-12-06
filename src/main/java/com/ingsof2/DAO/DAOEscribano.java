@@ -41,14 +41,14 @@ public class DAOEscribano implements BusinessObject<Escribano> {
     }
 
     @Override
-    public Escribano ReadOne(String... ids) {
+    public Escribano readOne(String... ids) {
         Escribano escribano = new Escribano();
         Connection connection = Database.getInstance().getConnection();
         Statement statement;
         try {
             statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM Escribano WHERE (Status=1) AND (DNI='"+ids[0]+"') AND (Sexo='"+ids[1]+"')");
-            while(rs.next()){
+            ResultSet rs = statement.executeQuery("SELECT * FROM Escribano WHERE (Status=1) AND (DNI='" + ids[0] + "') AND (Sexo='" + ids[1] + "')");
+            while (rs.next()) {
                 escribano.setNombre(rs.getString("Nombre"));
                 escribano.setApellido(rs.getString("Apellido"));
                 escribano.setTelefono(rs.getString("Telefono"));
@@ -102,7 +102,7 @@ public class DAOEscribano implements BusinessObject<Escribano> {
     @Override
     public int delete(Escribano escribano) {
         String sqlDelete = " UPDATE Escribano SET Status = 0 " +
-        "WHERE (DNI = '" + escribano.getDni() + "') AND ('" + "Sexo =" + escribano.getSexo() + "')";
+                "WHERE (DNI = '" + escribano.getDni() + "') AND ('" + "Sexo =" + escribano.getSexo() + "')";
         int exito = 0;
         Connection connection = Database.getInstance().getConnection();
         PreparedStatement statement;

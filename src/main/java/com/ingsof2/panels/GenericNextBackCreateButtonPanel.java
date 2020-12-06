@@ -5,16 +5,21 @@ import com.ingsof2.panels.add.ButtonsInterface;
 import javax.swing.*;
 import java.awt.*;
 
-public class GenericNextBackButtonPanel extends JPanel {
+public class GenericNextBackCreateButtonPanel extends JPanel {
 
     private final JButton backButton = new JButton("Back");
+    private final JButton createButton = new JButton("Create");
     private final JButton nextButton = new JButton("Next");
 
-    public GenericNextBackButtonPanel(ButtonsInterface buttonsInterface) {
+    public GenericNextBackCreateButtonPanel(ButtonsInterface buttonsInterface) {
         Color backgroundColor = new Color(20, 20, 20);
 
         backButton.addActionListener(e -> {
             buttonsInterface.back();
+        });
+
+        createButton.addActionListener(e -> {
+            buttonsInterface.create();
         });
 
         nextButton.addActionListener(e -> {
@@ -31,6 +36,7 @@ public class GenericNextBackButtonPanel extends JPanel {
         JPanel rightPanel = new JPanel();
         rightPanel.setBackground(backgroundColor);
         rightPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        rightPanel.add(createButton);
         rightPanel.add(nextButton);
 
         add(leftPanel);

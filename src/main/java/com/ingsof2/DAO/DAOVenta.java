@@ -1,6 +1,5 @@
 package com.ingsof2.DAO;
 
-import com.ingsof2.Objetos.Alquiler;
 import com.ingsof2.Objetos.Venta;
 import com.ingsof2.database.Database;
 import com.ingsof2.exceptions.ApiException;
@@ -10,7 +9,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DAOVenta implements BusinessObject<Venta>{
+public class DAOVenta implements BusinessObject<Venta> {
     @Override
     public List<Venta> readAll() {
         List<Venta> ventas = new ArrayList<>();
@@ -41,7 +40,7 @@ public class DAOVenta implements BusinessObject<Venta>{
     }
 
     @Override
-    public Venta ReadOne(String... ids) {
+    public Venta readOne(String... ids) {
         return null;
     }
 

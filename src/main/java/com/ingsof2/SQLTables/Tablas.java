@@ -125,7 +125,7 @@ public class Tablas {
                     "Direccion VARCHAR(255) NOT NULL," +
                     "Fecha_Nacimiento VARCHAR(255) NOT NULL," +
                     "Email VARCHAR(255) NOT NULL," +
-                    "DNI_Inquilino INT NOT NULL," +
+                    "DNI_Inquilino VARCHAR(255)," +
                     "Status INT NOT NULL," +
                     "PRIMARY KEY(DNI,Sexo)" +
                     ")");
@@ -227,10 +227,10 @@ public class Tablas {
                     "Fecha_Contrato VARCHAR(255) NOT NULL," +
                     "Fecha_Fin VARCHAR(255) NOT NULL," +
                     "Precio FLOAT NOT NULL," +
-                    "DNI_Inquilino INT NOT NULL," +
+                    "DNI_Inquilino VARCHAR(255) NOT NULL," +
                     "Domicilio_Inmueble VARCHAR(255)," +
-                    "DNI_Garante INT NOT NULL," +
-                    "DNI_Escribano INT NOT NULL," +
+                    "DNI_Garante VARCHAR(255) NOT NULL," +
+                    "DNI_Escribano VARCHAR(255) NOT NULL," +
                     "Status INT NOT NULL," +
                     "PRIMARY KEY(Codigo)" +
                     ")");
@@ -267,6 +267,7 @@ public class Tablas {
 
         Database.getInstance().disconnect();
     }
+
     /**
      * Querys de Drop de las Tablas de la BD
      **/

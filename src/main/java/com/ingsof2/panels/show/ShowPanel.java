@@ -20,6 +20,7 @@ public class ShowPanel extends JPanel {
     private final JLabel listarAlquileresVencidosLabel = new JLabel("Listar alquileres vencidos");
     private final JLabel listarVentasLabel = new JLabel("Listar ventas");
     private final JLabel listarInquilinosLabel = new JLabel("Listar inquilinos");
+    private final JLabel listarGarantesLabel = new JLabel("Listar garantes");
     private final JLabel listarPropiedadesLabel = new JLabel("Listar propiedades");
     private final JLabel listarEscribanosLabel = new JLabel("Listar escribanos");
     private final JLabel listarDueniosLabel = new JLabel("Listar dueños");
@@ -29,11 +30,12 @@ public class ShowPanel extends JPanel {
     private final JButton listarAlquileresVencidosButton = new JButton("Button");
     private final JButton listarVentasButton = new JButton("Button");
     private final JButton listarInquilinosButton = new JButton("Button");
+    private final JButton listarGarantesButton = new JButton("Button");
     private final JButton listarPropiedadesButton = new JButton("Button");
     private final JButton listarEscribanosButton = new JButton("Button");
     private final JButton listarDueniosButton = new JButton("Button");
 
-    private final int rows = 4;
+    private final int rows = 5;
 
     private final int xPad = Constants.X_PAD;
     private final int yPad = Constants.Y_PAD;
@@ -60,13 +62,18 @@ public class ShowPanel extends JPanel {
             Main.mainFrame.goListarAlquileresEnVigencia();
         });
         listarAlquileresAVencerButton.addActionListener(e -> {
+            Main.mainFrame.goListarAlquileresAVencer();
         });
         listarAlquileresVencidosButton.addActionListener(e -> {
+            Main.mainFrame.goListarAlquileresVencidos();
         });
         listarVentasButton.addActionListener(e -> {
         });
         listarInquilinosButton.addActionListener(e -> {
             Main.mainFrame.goListarInquilinos();
+        });
+        listarGarantesButton.addActionListener(e -> {
+            Main.mainFrame.goListarGarantes();
         });
         listarPropiedadesButton.addActionListener(e -> {
             Main.mainFrame.goListarPropiedades();
@@ -89,17 +96,23 @@ public class ShowPanel extends JPanel {
         add(listarAlquileresAVencerLabel);
         add(listarAlquileresAVencerButton);
 
-        add(listarPropiedadesLabel);
-        add(listarPropiedadesButton);
+        add(listarGarantesLabel);
+        add(listarGarantesButton);
 
         add(listarAlquileresVencidosLabel);
         add(listarAlquileresVencidosButton);
 
-        add(listarEscribanosLabel);
-        add(listarEscribanosButton);
+        add(listarPropiedadesLabel);
+        add(listarPropiedadesButton);
 
         add(listarVentasLabel);
         add(listarVentasButton);
+
+        add(listarEscribanosLabel);
+        add(listarEscribanosButton);
+
+        add(new JLabel(""));
+        add(new JLabel(""));
 
         add(listarDueniosLabel);
         add(listarDueniosButton);
