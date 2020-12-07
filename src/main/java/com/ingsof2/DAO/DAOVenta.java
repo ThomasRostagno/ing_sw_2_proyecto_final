@@ -1,5 +1,6 @@
 package com.ingsof2.DAO;
 
+import com.ingsof2.Objetos.Alquiler;
 import com.ingsof2.Objetos.Venta;
 import com.ingsof2.database.Database;
 import com.ingsof2.exceptions.ApiException;
@@ -41,7 +42,26 @@ public class DAOVenta implements BusinessObject<Venta> {
 
     @Override
     public Venta readOne(String... ids) {
-        return null;
+        Venta venta = new Venta();
+        Connection connection = Database.getInstance().getConnection();
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT * FROM Venta WHERE (Status=1) AND (Codigo='" + ids[0] + "')");
+            while (rs.next()) {
+                venta.setCodigo(rs.getString("Codigo"));
+                venta.setTipo(rs.getInt("Tipo"));
+                venta.setFecha(rs.getString("Fecha_Contrato"));
+                venta.setPrecio(rs.getFloat("Precio"));
+                venta.setComision(rs.getInt("Comision"));
+                venta.setDniComprador(rs.getString("DNI_Comprador"));
+                venta.setDomicilioInmueble(rs.getString("Domicilio_Inmueble"));
+                venta.setDniVendedor(rs.getString("DNI_Vendedor"));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return venta;
     }
 
     @Override

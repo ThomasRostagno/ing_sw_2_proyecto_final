@@ -14,6 +14,7 @@ public class Main {
         //tablas.DropInmueble();
         //tablas.DropAlquiler();
         //tablas.DropGarante();
+        //tablas.DropVenta();
         //tablas.TablaVenta();
         //tablas.TablaVendedor();
         //tablas.TablaComprador();
