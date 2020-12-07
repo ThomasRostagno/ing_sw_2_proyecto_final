@@ -190,6 +190,35 @@ public class Inmueble {
         return aux;
     }
 
+
+    /**Entra lista de inmuebles y remueve los que son solo de venta**/
+    public List<Inmueble> reducirAAlquiler(List<Inmueble> inmuebles) {
+        List<Inmueble> aux = inmuebles;
+        /**Loop inverso para cerciorar leer todas las posiciones**/
+        for (int i = aux.size() - 1; i >= 0; i--) {
+            String stringInmuebleCondicion = aux.get(i).getCondicion();
+            /**Condicional para remover los que no son alquiler o ambos**/
+            if (stringInmuebleCondicion.equals("Venta")) {
+                aux.remove(i);
+            }
+        }
+        return aux;
+    }
+
+    /**Entra lista de inmuebles y remueve los que son solo de alquiler**/
+    public List<Inmueble> reducirAVenta(List<Inmueble> inmuebles) {
+        List<Inmueble> aux = inmuebles;
+        /**Loop inverso para cerciorar leer todas las posiciones**/
+        for (int i = aux.size() - 1; i >= 0; i--) {
+            String stringInmuebleCondicion = aux.get(i).getCondicion();
+            /**Condicional para remover los que no son alquiler o ambos**/
+            if (stringInmuebleCondicion.equals("Alquiler")) {
+                aux.remove(i);
+            }
+        }
+        return aux;
+    }
+
     @Override
     public String toString() {
         String template = "\tInmueble:\n" +

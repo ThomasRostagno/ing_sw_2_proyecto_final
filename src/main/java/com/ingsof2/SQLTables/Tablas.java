@@ -254,6 +254,7 @@ public class Tablas {
                     "Tipo INT NOT NULL," +
                     "Fecha_Contrato VARCHAR(255) NOT NULL," +
                     "Comision INT NOT NULL," +
+                    "Precio FLOAT NOT NULL," +
                     "DNI_Comprador INT NOT NULL," +
                     "Domicilio_Inmueble VARCHAR(255)," +
                     "DNI_Vendedor INT NOT NULL," +

@@ -1,6 +1,7 @@
 package com.ingsof2.DAO;
 
 import com.ingsof2.Objetos.Alquiler;
+import com.ingsof2.Objetos.Inquilino;
 import com.ingsof2.database.Database;
 import com.ingsof2.exceptions.ApiException;
 import com.ingsof2.utils.ErrorCode;
@@ -45,7 +46,27 @@ public class DAOAlquiler implements BusinessObject<Alquiler> {
 
     @Override
     public Alquiler readOne(String... ids) {
-        return null;
+        Alquiler alquiler = new Alquiler();
+        Connection connection = Database.getInstance().getConnection();
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT * FROM Alquiler WHERE (Status=1) AND (Codigo='" + ids[0] + "')");
+            while (rs.next()) {
+                alquiler.setCodigo(rs.getString("Codigo"));
+                alquiler.setTipo(rs.getInt("Tipo"));
+                alquiler.setFecha(rs.getString("Fecha_Contrato"));
+                alquiler.setFechaFin(rs.getString("Fecha_Fin"));
+                alquiler.setPrecio(rs.getFloat("Precio"));
+                alquiler.setDniInquilino(rs.getString("DNI_Inquilino"));
+                alquiler.setDomicilioInmueble(rs.getString("Domicilio_Inmueble"));
+                alquiler.setDniGarante(rs.getString("DNI_Garante"));
+                alquiler.setDniEscribano(rs.getString("DNI_Escribano"));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return alquiler;
     }
 
     @Override
