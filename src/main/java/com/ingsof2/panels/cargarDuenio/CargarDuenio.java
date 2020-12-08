@@ -56,7 +56,7 @@ public class CargarDuenio extends JPanel implements ActionListener {
 
     public CargarDuenio() {
 
-        sexoComboBox.addItem("");
+        sexoComboBox.addItem(Constants.EMPTY_COMBOBOX);
         sexoComboBox.addItem(TiposDeSexo.MASCULINO.getSexo());
         sexoComboBox.addItem(TiposDeSexo.FEMENINO.getSexo());
 

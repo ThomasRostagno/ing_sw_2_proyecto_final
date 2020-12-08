@@ -53,7 +53,7 @@ public class CargarGarante extends JPanel {
 
     public CargarGarante() {
 
-        sexoComboBox.addItem("");
+        sexoComboBox.addItem(Constants.EMPTY_COMBOBOX);
         sexoComboBox.addItem(TiposDeSexo.MASCULINO.getSexo());
         sexoComboBox.addItem(TiposDeSexo.FEMENINO.getSexo());
 
