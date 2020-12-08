@@ -1,5 +1,6 @@
 package com.ingsof2.panels.cargarVendedor;
 
+import com.ingsof2.Objetos.TiposDeSexo;
 import com.ingsof2.Objetos.Vendedor;
 import com.ingsof2.exceptions.ApiException;
 import com.ingsof2.utils.Constants;
@@ -53,8 +54,8 @@ public class CargarVendedor extends JPanel {
     public CargarVendedor() {
 
         sexoComboBox.addItem("");
-        sexoComboBox.addItem("Masculino");
-        sexoComboBox.addItem("Femenino");
+        sexoComboBox.addItem(TiposDeSexo.MASCULINO.getSexo());
+        sexoComboBox.addItem(TiposDeSexo.FEMENINO.getSexo());
 
         try {
             image = ImageIO.read(new File(Constants.BACKGROUND));

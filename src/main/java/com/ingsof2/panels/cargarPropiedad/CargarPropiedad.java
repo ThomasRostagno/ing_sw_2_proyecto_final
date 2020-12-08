@@ -1,7 +1,8 @@
 package com.ingsof2.panels.cargarPropiedad;
 
-import com.ingsof2.Objetos.Inmueble;
-import com.ingsof2.Objetos.Zona;
+import com.ingsof2.DAO.BusinessObject;
+import com.ingsof2.DAO.DAOZona;
+import com.ingsof2.Objetos.*;
 import com.ingsof2.exceptions.ApiException;
 import com.ingsof2.utils.Constants;
 import com.ingsof2.utils.ErrorCode;
@@ -17,6 +18,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.List;
 
 public class CargarPropiedad extends JPanel {
 
@@ -61,32 +63,34 @@ public class CargarPropiedad extends JPanel {
     public CargarPropiedad() {
 
         tipoComboBox.addItem("");
-        tipoComboBox.addItem("Departamento");
-        tipoComboBox.addItem("Casa");
-        tipoComboBox.addItem("Terreno");
-        tipoComboBox.addItem("Galpon");
-        tipoComboBox.addItem("Local comercial");
-        tipoComboBox.addItem("Hotel");
-        tipoComboBox.addItem("Cabaña");
-        tipoComboBox.addItem("Chalet");
+        tipoComboBox.addItem(TiposDePropiedad.DEPARTAMENTO.getTipo());
+        tipoComboBox.addItem(TiposDePropiedad.CASA.getTipo());
+        tipoComboBox.addItem(TiposDePropiedad.TERRENO.getTipo());
+        tipoComboBox.addItem(TiposDePropiedad.GALPON.getTipo());
+        tipoComboBox.addItem(TiposDePropiedad.LOCAL_COMERCIAL.getTipo());
+        tipoComboBox.addItem(TiposDePropiedad.HOTEL.getTipo());
+        tipoComboBox.addItem(TiposDePropiedad.CABANIA.getTipo());
+        tipoComboBox.addItem(TiposDePropiedad.CHALET.getTipo());
 
         condicionComboBox.addItem("");
-        condicionComboBox.addItem("Alquiler");
-        condicionComboBox.addItem("Venta");
-        condicionComboBox.addItem("Ambos");
+        condicionComboBox.addItem(TiposDeContratos.ALQUILER.getDescripcion());
+        condicionComboBox.addItem(TiposDeContratos.VENTA.getDescripcion());
+        condicionComboBox.addItem(TiposDeContratos.AMBOS.getDescripcion());
 
         clasificacionComboBox.addItem("");
-        clasificacionComboBox.addItem("Residencial");
-        clasificacionComboBox.addItem("Familiar");
-        clasificacionComboBox.addItem("Comercial");
-        clasificacionComboBox.addItem("Eventos");
-        clasificacionComboBox.addItem("No habitable");
+        clasificacionComboBox.addItem(CondicionesDePropiedad.RESIDENCIAL.getCondicion());
+        clasificacionComboBox.addItem(CondicionesDePropiedad.FAMILIAR.getCondicion());
+        clasificacionComboBox.addItem(CondicionesDePropiedad.COMERCIAL.getCondicion());
+        clasificacionComboBox.addItem(CondicionesDePropiedad.EVENTOS.getCondicion());
+        clasificacionComboBox.addItem(CondicionesDePropiedad.NO_HABITABLE.getCondicion());
 
-        zonaComboBox.addItem(new Zona("1", "Centrica", "Zona centrica"));
-        zonaComboBox.addItem(new Zona("2", "Residencial", "Zona residencial"));
-        zonaComboBox.addItem(new Zona("3", "Escolar", "Zona escolar"));
-        zonaComboBox.addItem(new Zona("4", "Industrial", "Zona industrial"));
-        zonaComboBox.addItem(new Zona("5", "Rural", "Zona rural"));
+        BusinessObject<Zona> businessObject = new DAOZona();
+
+        List<Zona> zonas = businessObject.readAll();
+
+        for (Zona zona : zonas) {
+            zonaComboBox.addItem(zona);
+        }
 
         try {
             image = ImageIO.read(new File(Constants.BACKGROUND));
