@@ -191,7 +191,9 @@ public class Inmueble {
     }
 
 
-    /**Entra lista de inmuebles y remueve los que son solo de venta**/
+    /**
+     * Entra lista de inmuebles y remueve los que son solo de venta
+     **/
     public List<Inmueble> reducirAAlquiler(List<Inmueble> inmuebles) {
         List<Inmueble> aux = inmuebles;
         /**Loop inverso para cerciorar leer todas las posiciones**/
@@ -205,7 +207,9 @@ public class Inmueble {
         return aux;
     }
 
-    /**Entra lista de inmuebles y remueve los que son solo de alquiler**/
+    /**
+     * Entra lista de inmuebles y remueve los que son solo de alquiler
+     **/
     public List<Inmueble> reducirAVenta(List<Inmueble> inmuebles) {
         List<Inmueble> aux = inmuebles;
         /**Loop inverso para cerciorar leer todas las posiciones**/

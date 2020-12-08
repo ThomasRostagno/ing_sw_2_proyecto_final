@@ -205,6 +205,7 @@ public class Tablas {
                     "Codigo VARCHAR(255) NOT NULL," +
                     "Nombre VARCHAR(255) NOT NULL," +
                     "Descripcion VARCHAR(255) NOT NULL," +
+                    "Status INT NOT NULL," +
                     "PRIMARY KEY(Codigo)" +
                     ")");
         } catch (SQLException throwables) {
@@ -255,9 +256,9 @@ public class Tablas {
                     "Fecha_Contrato VARCHAR(255) NOT NULL," +
                     "Comision INT NOT NULL," +
                     "Precio FLOAT NOT NULL," +
-                    "DNI_Comprador INT NOT NULL," +
+                    "DNI_Comprador VARCHAR(255) NOT NULL," +
                     "Domicilio_Inmueble VARCHAR(255)," +
-                    "DNI_Vendedor INT NOT NULL," +
+                    "DNI_Vendedor VARCHAR(255) NOT NULL," +
                     "Status INT NOT NULL," +
                     "PRIMARY KEY(Codigo)" +
                     ")");

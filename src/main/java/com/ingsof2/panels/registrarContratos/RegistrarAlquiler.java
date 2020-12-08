@@ -1,4 +1,4 @@
-package com.ingsof2.panels.registrarAlquiler;
+package com.ingsof2.panels.registrarContratos;
 
 import com.ingsof2.Main;
 import com.ingsof2.Objetos.Alquiler;
@@ -65,7 +65,7 @@ public class RegistrarAlquiler extends JPanel {
             Main.mainFrame.goSeleccionarInquilino(inquilinoSeleccionadoButton);
         });
         inmuebleButton.addActionListener(e -> {
-            Main.mainFrame.goSeleccionarInmueble(inmuebleSeleccionadoButton);
+            Main.mainFrame.goSeleccionarInmuebleAlquiler(inmuebleSeleccionadoButton);
         });
         garanteButton.addActionListener(e -> {
             Main.mainFrame.goSeleccionarGarante(garanteSeleccionadoButton);

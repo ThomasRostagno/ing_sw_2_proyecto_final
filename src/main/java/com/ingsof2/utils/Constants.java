@@ -69,129 +69,200 @@ public class Constants {
 
     public static Color RECT_COLOR = new Color(212, 212, 212, 215);
 
-    public static boolean nombreYApellidoValidator(JTextField nombreYApellidoTextField) {
-        String nombreYApellido = nombreYApellidoTextField.getText();
-        if (nombreYApellido.length() < 2) {
-            nombreYApellidoTextField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+    public static boolean textValidator(JTextField textTextField) {
+        try {
+            String nombreYApellido = textTextField.getText();
+            if (nombreYApellido.length() < 2) {
+                textTextField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                return false;
+            } else {
+                textTextField.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
+                return true;
+            }
+        } catch (Exception e) {
+            textTextField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
             return false;
-        } else {
-            nombreYApellidoTextField.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
-            return true;
         }
     }
 
     public static boolean dniValidator(JTextField dniTextField) {
-        String dni = dniTextField.getText();
-        if (dni.length() != 7 && dni.length() != 8) {
+        try {
+            String dni = dniTextField.getText();
+            if (dni.length() != 7 && dni.length() != 8) {
+                dniTextField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                return false;
+            } else {
+                dniTextField.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
+                return true;
+            }
+        } catch (Exception e) {
             dniTextField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
             return false;
-        } else {
-            dniTextField.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
-            return true;
         }
     }
 
     public static boolean comboBoxValidator(JComboBox jComboBox) {
-        Object value = jComboBox.getSelectedItem() != null ? jComboBox.getItemAt(jComboBox.getSelectedIndex()) : null;
-        if (value instanceof String) {
-            if (Utils.isNullOrEmpty(value.toString())) {
+        try {
+            Object value = jComboBox.getSelectedItem() != null ? jComboBox.getItemAt(jComboBox.getSelectedIndex()) : null;
+            if (value instanceof String) {
+                if (Utils.isNullOrEmpty(value.toString())) {
+                    jComboBox.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                    return false;
+                }
+            }
+            if (value == null) {
                 jComboBox.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
                 return false;
+            } else {
+                jComboBox.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
+                return true;
             }
-        }
-        if (value == null) {
+        } catch (Exception e) {
             jComboBox.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
             return false;
-        } else {
-            jComboBox.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
-            return true;
         }
     }
 
     public static boolean direccionValidator(JTextField direccionTextField) {
-        String direccion = direccionTextField.getText();
-        if (direccion.length() < 2) {
+        try {
+            String direccion = direccionTextField.getText();
+            if (direccion.length() < 2) {
+                direccionTextField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                return false;
+            } else {
+                direccionTextField.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
+                return true;
+            }
+        } catch (Exception e) {
             direccionTextField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
             return false;
-        } else {
-            direccionTextField.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
-            return true;
         }
     }
 
     public static boolean fechaValidator(JTextField fechaTextField) {
-        String fecha = fechaTextField.getText();
-        if (!DateValidatorRegex.isValid(fecha)) {
+        try {
+            String fecha = fechaTextField.getText();
+            if (!DateValidatorRegex.isValid(fecha)) {
+                fechaTextField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                return false;
+            } else {
+                fechaTextField.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
+                return true;
+            }
+        } catch (Exception e) {
             fechaTextField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
             return false;
-        } else {
-            fechaTextField.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
-            return true;
         }
     }
 
     public static boolean telefonoValidator(JTextField telefonoTextField) {
-        String telefono = telefonoTextField.getText();
-        if (telefono.length() < 10) {
+        try {
+            String telefono = telefonoTextField.getText();
+            if (telefono.length() < 10) {
+                telefonoTextField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                return false;
+            } else {
+                telefonoTextField.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
+                return true;
+            }
+        } catch (Exception e) {
             telefonoTextField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
             return false;
-        } else {
-            telefonoTextField.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
-            return true;
         }
     }
 
     public static boolean emailValidator(JTextField emailTextField) {
-        String email = emailTextField.getText();
-        if (!EmailValidatorRegex.isValid(email)) {
+        try {
+            String email = emailTextField.getText();
+            if (!EmailValidatorRegex.isValid(email)) {
+                emailTextField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                return false;
+            } else {
+                emailTextField.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
+                return true;
+            }
+        } catch (Exception e) {
             emailTextField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
             return false;
-        } else {
-            emailTextField.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
-            return true;
         }
     }
 
     public static boolean matriculaValidator(JTextField matriculaTextField) {
-        String matricula = matriculaTextField.getText();
-        if (matricula.length() != 4) {
+        try {
+            String matricula = matriculaTextField.getText();
+            if (matricula.length() != 4) {
+                matriculaTextField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                return false;
+            } else {
+                matriculaTextField.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
+                return true;
+            }
+        } catch (Exception e) {
             matriculaTextField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
             return false;
-        } else {
-            matriculaTextField.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
-            return true;
         }
     }
 
     public static boolean numberValidator(JTextField numberTextField) {
-        int number = Utils.isNullOrEmpty(numberTextField.getText()) ? 0 : Integer.parseInt(numberTextField.getText());
-        if (number < 1) {
+        try {
+            int number = Utils.isNullOrEmpty(numberTextField.getText()) ? 0 : Integer.parseInt(numberTextField.getText());
+            if (number < 1) {
+                numberTextField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                return false;
+            } else {
+                numberTextField.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
+                return true;
+            }
+        } catch (Exception e) {
             numberTextField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
             return false;
-        } else {
-            numberTextField.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
-            return true;
+        }
+    }
+
+    public static boolean percentageValidator(JTextField numberTextField) {
+        try {
+            int number = Utils.isNullOrEmpty(numberTextField.getText()) ? 0 : Integer.parseInt(numberTextField.getText());
+            if (number < 0 || number > 100) {
+                numberTextField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                return false;
+            } else {
+                numberTextField.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
+                return true;
+            }
+        } catch (Exception e) {
+            numberTextField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+            return false;
         }
     }
 
     public static boolean floatValidator(JTextField numberTextField) {
-        String floatNumber = numberTextField.getText();
-        if (FloatValidatorRegex.isValid(floatNumber)) {
+        try {
+            String floatNumber = numberTextField.getText();
+            if (FloatValidatorRegex.isValid(floatNumber)) {
+                numberTextField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                return false;
+            } else {
+                numberTextField.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
+                return true;
+            }
+        } catch (Exception e) {
             numberTextField.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
             return false;
-        } else {
-            numberTextField.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
-            return true;
         }
     }
 
     public static boolean buttonValidator(JButton button) {
-        if (!button.isEnabled()) {
+        try {
+            if (!button.isEnabled()) {
+                button.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                return false;
+            } else {
+                button.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
+                return true;
+            }
+        } catch (Exception e) {
             button.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
             return false;
-        } else {
-            button.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
-            return true;
         }
     }
 }

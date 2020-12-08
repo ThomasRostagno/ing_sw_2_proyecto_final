@@ -130,21 +130,21 @@ public class CargarDuenio extends JPanel implements ActionListener {
                     e.consume();
                 }
 
-                Constants.nombreYApellidoValidator(nombreTextField);
+                Constants.textValidator(nombreTextField);
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
                 super.keyPressed(e);
 
-                Constants.nombreYApellidoValidator(nombreTextField);
+                Constants.textValidator(nombreTextField);
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
                 super.keyReleased(e);
 
-                Constants.nombreYApellidoValidator(nombreTextField);
+                Constants.textValidator(nombreTextField);
             }
         });
 
@@ -160,21 +160,21 @@ public class CargarDuenio extends JPanel implements ActionListener {
                     e.consume();
                 }
 
-                Constants.nombreYApellidoValidator(apellidoTextField);
+                Constants.textValidator(apellidoTextField);
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
                 super.keyPressed(e);
 
-                Constants.nombreYApellidoValidator(apellidoTextField);
+                Constants.textValidator(apellidoTextField);
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
                 super.keyReleased(e);
 
-                Constants.nombreYApellidoValidator(apellidoTextField);
+                Constants.textValidator(apellidoTextField);
             }
         });
 
@@ -332,8 +332,8 @@ public class CargarDuenio extends JPanel implements ActionListener {
     }
 
     private boolean validateFields() {
-        return Constants.nombreYApellidoValidator(nombreTextField) &&
-                Constants.nombreYApellidoValidator(apellidoTextField) &&
+        return Constants.textValidator(nombreTextField) &&
+                Constants.textValidator(apellidoTextField) &&
                 Constants.dniValidator(dniTextField) &&
                 Constants.comboBoxValidator(sexoComboBox) &&
                 Constants.direccionValidator(direccionDeTrabajoTextField) &&

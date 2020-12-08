@@ -15,14 +15,33 @@ public class Venta extends Contrato {
 
     }
 
-    public Venta(Contrato aux, int comision) {
+    public Venta(Contrato aux, int comision, String dniComprador, String domicilioInmueble, String dniVendedor) {
         super(aux);
         Comision = comision;
+        this.dniComprador = dniComprador;
+        this.domicilioInmueble = domicilioInmueble;
+        this.dniVendedor = dniVendedor;
     }
 
-    public Venta(String codigo, String fecha, float precio, int tipo, int comision) {
+    public Venta(String codigo, String fecha, float precio, int tipo, int comision, String dniComprador, String domicilioInmueble, String dniVendedor) {
         super(codigo, fecha, precio, tipo);
         Comision = comision;
+        this.dniComprador = dniComprador;
+        this.domicilioInmueble = domicilioInmueble;
+        this.dniVendedor = dniVendedor;
+    }
+
+    public static Object[][] getDataVector(List<Venta> ventas) {
+        Object[][] objects = new Object[ventas.size()][0];
+
+        for (int i = 0; i < ventas.size(); i++) {
+            objects[i] = ventas.get(i).toObject();
+        }
+        return objects;
+    }
+
+    public static Object[] getHeaders() {
+        return new Object[]{"Código", "Fecha", "Precio", "Tipo", "Comisión", "Comprador", "Dirección Inmueble", "Vendedor"};
     }
 
     public int getComision() {
@@ -75,5 +94,9 @@ public class Venta extends Contrato {
             }
         }
         return aux;
+    }
+
+    private Object[] toObject() {
+        return new Object[]{getCodigo(), getFecha(), getPrecio(), getTipo(), getComision(), getDniComprador(), getDomicilioInmueble(), getDniVendedor()};
     }
 }

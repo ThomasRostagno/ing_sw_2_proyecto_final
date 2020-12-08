@@ -24,6 +24,9 @@ public class ShowPanel extends JPanel {
     private final JLabel listarPropiedadesLabel = new JLabel("Listar propiedades");
     private final JLabel listarEscribanosLabel = new JLabel("Listar escribanos");
     private final JLabel listarDueniosLabel = new JLabel("Listar dueños");
+    private final JLabel listarCompradoresLabel = new JLabel("Listar compradores");
+    private final JLabel listarVendedoresLabel = new JLabel("Listar vendedores");
+    private final JLabel listarZonasLabel = new JLabel("Listar zonas");
 
     private final JButton listarAlquileresEnVigenciaButton = new JButton("Button");
     private final JButton listarAlquileresAVencerButton = new JButton("Button");
@@ -34,8 +37,11 @@ public class ShowPanel extends JPanel {
     private final JButton listarPropiedadesButton = new JButton("Button");
     private final JButton listarEscribanosButton = new JButton("Button");
     private final JButton listarDueniosButton = new JButton("Button");
+    private final JButton listarCompradoresButton = new JButton("Button");
+    private final JButton listarVendedoresButton = new JButton("Button");
+    private final JButton listarZonasButton = new JButton("Button");
 
-    private final int rows = 5;
+    private final int rows = 8;
 
     private final int xPad = Constants.X_PAD;
     private final int yPad = Constants.Y_PAD;
@@ -68,6 +74,7 @@ public class ShowPanel extends JPanel {
             Main.mainFrame.goListarAlquileresVencidos();
         });
         listarVentasButton.addActionListener(e -> {
+            Main.mainFrame.goListarVentas();
         });
         listarInquilinosButton.addActionListener(e -> {
             Main.mainFrame.goListarInquilinos();
@@ -83,6 +90,15 @@ public class ShowPanel extends JPanel {
         });
         listarDueniosButton.addActionListener(e -> {
             Main.mainFrame.goListarDuenios();
+        });
+        listarCompradoresButton.addActionListener(e -> {
+            Main.mainFrame.goListarCompradores();
+        });
+        listarVendedoresButton.addActionListener(e -> {
+            Main.mainFrame.goListarVendedores();
+        });
+        listarZonasButton.addActionListener(e -> {
+            Main.mainFrame.goListarZonas();
         });
 
         setLayout(new SpringLayout());
@@ -116,6 +132,24 @@ public class ShowPanel extends JPanel {
 
         add(listarDueniosLabel);
         add(listarDueniosButton);
+
+        add(new JLabel(""));
+        add(new JLabel(""));
+
+        add(listarCompradoresLabel);
+        add(listarCompradoresButton);
+
+        add(new JLabel(""));
+        add(new JLabel(""));
+
+        add(listarVendedoresLabel);
+        add(listarVendedoresButton);
+
+        add(new JLabel(""));
+        add(new JLabel(""));
+
+        add(listarZonasLabel);
+        add(listarZonasButton);
 
         SpringUtilities.makeCompactGrid(this, rows, 4, initialX, initialY, xPad, yPad);
 
