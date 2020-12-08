@@ -62,7 +62,7 @@ public class CargarPropiedad extends JPanel {
 
     public CargarPropiedad() {
 
-        tipoComboBox.addItem("");
+        tipoComboBox.addItem(Constants.EMPTY_COMBOBOX);
         tipoComboBox.addItem(TiposDePropiedad.DEPARTAMENTO.getTipo());
         tipoComboBox.addItem(TiposDePropiedad.CASA.getTipo());
         tipoComboBox.addItem(TiposDePropiedad.TERRENO.getTipo());
@@ -72,12 +72,12 @@ public class CargarPropiedad extends JPanel {
         tipoComboBox.addItem(TiposDePropiedad.CABANIA.getTipo());
         tipoComboBox.addItem(TiposDePropiedad.CHALET.getTipo());
 
-        condicionComboBox.addItem("");
+        condicionComboBox.addItem(Constants.EMPTY_COMBOBOX);
         condicionComboBox.addItem(TiposDeContratos.ALQUILER.getDescripcion());
         condicionComboBox.addItem(TiposDeContratos.VENTA.getDescripcion());
         condicionComboBox.addItem(TiposDeContratos.AMBOS.getDescripcion());
 
-        clasificacionComboBox.addItem("");
+        clasificacionComboBox.addItem(Constants.EMPTY_COMBOBOX);
         clasificacionComboBox.addItem(CondicionesDePropiedad.RESIDENCIAL.getCondicion());
         clasificacionComboBox.addItem(CondicionesDePropiedad.FAMILIAR.getCondicion());
         clasificacionComboBox.addItem(CondicionesDePropiedad.COMERCIAL.getCondicion());

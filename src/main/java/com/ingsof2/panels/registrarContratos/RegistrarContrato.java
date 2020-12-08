@@ -45,7 +45,7 @@ public class RegistrarContrato extends JPanel {
 
     public RegistrarContrato() {
 
-        tipoComboBox.addItem("");
+        tipoComboBox.addItem(Constants.EMPTY_COMBOBOX);
         tipoComboBox.addItem(TiposDeContratos.ALQUILER.getDescripcion());
         tipoComboBox.addItem(TiposDeContratos.VENTA.getDescripcion());
 

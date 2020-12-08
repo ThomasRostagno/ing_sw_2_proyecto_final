@@ -53,7 +53,7 @@ public class CargarVendedor extends JPanel {
 
     public CargarVendedor() {
 
-        sexoComboBox.addItem("");
+        sexoComboBox.addItem(Constants.EMPTY_COMBOBOX);
         sexoComboBox.addItem(TiposDeSexo.MASCULINO.getSexo());
         sexoComboBox.addItem(TiposDeSexo.FEMENINO.getSexo());
 
