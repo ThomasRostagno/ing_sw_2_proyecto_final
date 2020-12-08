@@ -1,8 +1,8 @@
-package com.ingsof2.panels.listarEscribanos;
+package com.ingsof2.panels.listarVendedores;
 
 import com.ingsof2.DAO.BusinessObject;
-import com.ingsof2.DAO.DAOEscribano;
-import com.ingsof2.Objetos.Escribano;
+import com.ingsof2.DAO.DAOVendedor;
+import com.ingsof2.Objetos.Vendedor;
 import com.ingsof2.exceptions.ApiException;
 import com.ingsof2.utils.Constants;
 import com.ingsof2.utils.ErrorCode;
@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.List;
 
-public class EscribanoPanel extends JPanel {
+public class VendedorPanel extends JPanel {
 
     private final JTable table;
 
@@ -23,9 +23,9 @@ public class EscribanoPanel extends JPanel {
     private JComboBox<String> campoABuscarComboBox = new JComboBox<>();
     private JTextField valorTextField = new JTextField();
 
-    public EscribanoPanel() {
+    public VendedorPanel() {
 
-        for (Object header : Escribano.getHeaders()) {
+        for (Object header : Vendedor.getHeaders()) {
             campoABuscarComboBox.addItem(header.toString());
         }
 
@@ -40,12 +40,12 @@ public class EscribanoPanel extends JPanel {
             }
         };
 
-        BusinessObject<Escribano> businessObject = new DAOEscribano();
+        BusinessObject<Vendedor> businessObject = new DAOVendedor();
 
-        List<Escribano> escribanos = businessObject.readAll();
+        List<Vendedor> vendedores = businessObject.readAll();
 
-        Object[][] objects = Escribano.getDataVector(escribanos);
-        Object[] headers = Escribano.getHeaders();
+        Object[][] objects = Vendedor.getDataVector(vendedores);
+        Object[] headers = Vendedor.getHeaders();
 
         dm.setDataVector(objects, headers);
 
@@ -101,7 +101,7 @@ public class EscribanoPanel extends JPanel {
         add(valorTextField, gridBagConstraints);
     }
 
-    public Escribano getEscribano() {
+    public Vendedor getVendedor() {
         int row = table.getSelectedRow();
         int dniColumn = 2;
         int sexoColumn = 4;
@@ -110,7 +110,7 @@ public class EscribanoPanel extends JPanel {
             String dni = table.getValueAt(row, dniColumn).toString();
             String sexo = table.getValueAt(row, sexoColumn).toString();
 
-            BusinessObject<Escribano> businessObject = new DAOEscribano();
+            BusinessObject<Vendedor> businessObject = new DAOVendedor();
 
             return businessObject.readOne(dni, sexo);
         }

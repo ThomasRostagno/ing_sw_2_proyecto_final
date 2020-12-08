@@ -1,8 +1,8 @@
-package com.ingsof2.panels.listarAlquileresVencidos;
+package com.ingsof2.panels.listarVentas;
 
 import com.ingsof2.DAO.*;
 import com.ingsof2.Main;
-import com.ingsof2.Objetos.Alquiler;
+import com.ingsof2.Objetos.Venta;
 import com.ingsof2.utils.Constants;
 import com.ingsof2.utils.Utils;
 
@@ -12,8 +12,9 @@ import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
-public class AlquilerVencidoPanel extends JPanel {
+public class VentaPanel extends JPanel {
 
     private final JTable table;
 
@@ -23,9 +24,9 @@ public class AlquilerVencidoPanel extends JPanel {
     private JComboBox<String> campoABuscarComboBox = new JComboBox<>();
     private JTextField valorTextField = new JTextField();
 
-    public AlquilerVencidoPanel() {
+    public VentaPanel() {
 
-        for (Object header : Alquiler.getHeaders()) {
+        for (Object header : Venta.getHeaders()) {
             campoABuscarComboBox.addItem(header.toString());
         }
 
@@ -40,10 +41,12 @@ public class AlquilerVencidoPanel extends JPanel {
             }
         };
 
-        BusinessObject<Alquiler> businessObject = new DAOAlquiler();
+        BusinessObject<Venta> businessObject = new DAOVenta();
 
-        Object[][] objects = Alquiler.getDataVector(Utils.filterAlquileresVencidos(businessObject.readAll()));
-        Object[] headers = Alquiler.getHeaders();
+        List<Venta> ventas = businessObject.readAll();
+
+        Object[][] objects = Venta.getDataVector(ventas);
+        Object[] headers = Venta.getHeaders();
 
         dm.setDataVector(objects, headers);
 
@@ -52,17 +55,14 @@ public class AlquilerVencidoPanel extends JPanel {
         table.setFocusable(false);
         table.setRowSelectionAllowed(false);
 
-        table.getColumn("Inquilino").setCellRenderer(new ButtonRenderer());
-        table.getColumn("Inquilino").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOInquilino()));
+        table.getColumn("Comprador").setCellRenderer(new ButtonRenderer());
+        table.getColumn("Comprador").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOComprador()));
 
-        table.getColumn("Direccion Inmueble").setCellRenderer(new ButtonRenderer());
-        table.getColumn("Direccion Inmueble").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOInmueble()));
+        table.getColumn("Dirección Inmueble").setCellRenderer(new ButtonRenderer());
+        table.getColumn("Dirección Inmueble").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOInmueble()));
 
-        table.getColumn("Garante").setCellRenderer(new ButtonRenderer());
-        table.getColumn("Garante").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOGarante()));
-
-        table.getColumn("Escribano").setCellRenderer(new ButtonRenderer());
-        table.getColumn("Escribano").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOEscribano()));
+        table.getColumn("Vendedor").setCellRenderer(new ButtonRenderer());
+        table.getColumn("Vendedor").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOVendedor()));
 
         JScrollPane scrollPane = new JScrollPane(table);
 
@@ -75,7 +75,6 @@ public class AlquilerVencidoPanel extends JPanel {
         table.getColumnModel().getColumn(5).setPreferredWidth(100);
         table.getColumnModel().getColumn(6).setPreferredWidth(100);
         table.getColumnModel().getColumn(7).setPreferredWidth(100);
-        table.getColumnModel().getColumn(8).setPreferredWidth(100);
 
         Utils.setFilter(table, valorTextField, campoABuscarComboBox);
 

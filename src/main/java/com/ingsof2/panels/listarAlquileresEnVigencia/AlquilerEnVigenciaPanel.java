@@ -2,7 +2,7 @@ package com.ingsof2.panels.listarAlquileresEnVigencia;
 
 import com.ingsof2.DAO.*;
 import com.ingsof2.Main;
-import com.ingsof2.Objetos.*;
+import com.ingsof2.Objetos.Alquiler;
 import com.ingsof2.utils.Constants;
 import com.ingsof2.utils.Utils;
 
@@ -72,9 +72,10 @@ public class AlquilerEnVigenciaPanel extends JPanel {
 
         table.setPreferredScrollableViewportSize(table.getPreferredSize());
 
-        table.getColumnModel().getColumn(3).setPreferredWidth(100);
-        table.getColumnModel().getColumn(4).setPreferredWidth(100);
         table.getColumnModel().getColumn(5).setPreferredWidth(100);
+        table.getColumnModel().getColumn(6).setPreferredWidth(100);
+        table.getColumnModel().getColumn(7).setPreferredWidth(100);
+        table.getColumnModel().getColumn(8).setPreferredWidth(100);
 
         Utils.setFilter(table, valorTextField, campoABuscarComboBox);
 

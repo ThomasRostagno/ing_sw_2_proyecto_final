@@ -1,6 +1,5 @@
-package com.ingsof2.panels.listarGarantes;
+package com.ingsof2.panels.listarVentas;
 
-import com.ingsof2.Objetos.Garante;
 import com.ingsof2.exceptions.ApiException;
 import com.ingsof2.utils.Constants;
 import com.ingsof2.utils.ErrorCode;
@@ -12,12 +11,11 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class ListarGarantes extends JPanel {
+public class ListarVentas extends JPanel {
 
-    private final GarantePanel garantePanel;
     private BufferedImage image;
 
-    public ListarGarantes() {
+    public ListarVentas() {
 
         try {
             image = ImageIO.read(new File(Constants.BACKGROUND));
@@ -27,18 +25,14 @@ public class ListarGarantes extends JPanel {
 
         setLayout(new GridBagLayout());
 
-        garantePanel = new GarantePanel();
+        JPanel contratoEnVigenciaPanel = new VentaPanel();
 
-        add(garantePanel);
+        add(contratoEnVigenciaPanel);
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(image, 0, 0, Constants.WIDTH, Constants.CENTER_HEIGHT, this); // see javadoc for more info on the parameters
-    }
-
-    public Garante getGarante() {
-        return garantePanel.getGarante();
     }
 }

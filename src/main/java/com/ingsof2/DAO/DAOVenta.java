@@ -1,6 +1,5 @@
 package com.ingsof2.DAO;
 
-import com.ingsof2.Objetos.Alquiler;
 import com.ingsof2.Objetos.Venta;
 import com.ingsof2.database.Database;
 import com.ingsof2.exceptions.ApiException;
@@ -24,9 +23,11 @@ public class DAOVenta implements BusinessObject<Venta> {
             while (rs.next()) {
                 venta = new Venta();
                 venta.setCodigo(rs.getString("Codigo"));
-                venta.setTipo(2);//1 es alquiler, 2 es venta
+                venta.setTipo(rs.getInt("Tipo"));
+                //venta.setTipo(2);//1 es alquiler, 2 es venta
                 venta.setFecha(rs.getString("Fecha_Contrato"));
                 venta.setComision(rs.getInt("Comision"));
+                venta.setPrecio(rs.getFloat("Precio"));
                 venta.setDniComprador(rs.getString("DNI_Comprador"));
                 venta.setDomicilioInmueble(rs.getString("Domicilio_Inmueble"));
                 venta.setDniVendedor(rs.getString("DNI_Vendedor"));
@@ -66,8 +67,8 @@ public class DAOVenta implements BusinessObject<Venta> {
 
     @Override
     public int create(Venta venta) {
-        String sqlInsert = " INSERT INTO Venta (Codigo, Tipo, Fecha_Contrato, Comision, DNI_Comprador, Domicilio_Inmueble, DNI_Vendedor, Status)" +
-                " VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sqlInsert = " INSERT INTO Venta (Codigo, Tipo, Fecha_Contrato, Comision, Precio, DNI_Comprador, Domicilio_Inmueble, DNI_Vendedor, Status)" +
+                " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         int exito = 0;
         Connection connection = Database.getInstance().getConnection();
         PreparedStatement statement;
@@ -77,10 +78,11 @@ public class DAOVenta implements BusinessObject<Venta> {
             statement.setInt(2, venta.getTipo());
             statement.setString(3, venta.getFecha());
             statement.setInt(4, venta.getComision());
-            statement.setString(5, venta.getDniComprador());
-            statement.setString(6, venta.getDomicilioInmueble());
-            statement.setString(7, venta.getDniVendedor());
-            statement.setInt(8, 1);
+            statement.setFloat(5, venta.getPrecio());
+            statement.setString(6, venta.getDniComprador());
+            statement.setString(7, venta.getDomicilioInmueble());
+            statement.setString(8, venta.getDniVendedor());
+            statement.setInt(9, 1);
             statement.executeUpdate();
             exito = 1;
 
@@ -103,6 +105,7 @@ public class DAOVenta implements BusinessObject<Venta> {
             statement.setInt(1, venta.getTipo());
             statement.setString(2, venta.getFecha());
             statement.setInt(3, venta.getComision());
+            statement.setFloat(4, venta.getPrecio());
             statement.setString(5, venta.getDniComprador());
             statement.setString(6, venta.getDomicilioInmueble());
             statement.setString(7, venta.getDniVendedor());

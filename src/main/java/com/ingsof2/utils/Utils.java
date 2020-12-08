@@ -1,8 +1,6 @@
 package com.ingsof2.utils;
 
 import com.ingsof2.Objetos.Alquiler;
-import com.ingsof2.Objetos.Inmueble;
-import com.ingsof2.Objetos.Persona;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
