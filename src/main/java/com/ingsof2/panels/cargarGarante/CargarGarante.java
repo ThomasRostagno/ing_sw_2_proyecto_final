@@ -1,5 +1,6 @@
 package com.ingsof2.panels.cargarGarante;
 
+import com.ingsof2.Objetos.Comprador;
 import com.ingsof2.Objetos.Garante;
 import com.ingsof2.Objetos.TiposDeSexo;
 import com.ingsof2.exceptions.ApiException;
@@ -86,6 +87,57 @@ public class CargarGarante extends JPanel {
         add(emailTextField);
 
         SpringUtilities.makeCompactGrid(this, rows, 4, initialX, initialY, xPad, yPad);
+    }
+
+    public CargarGarante(Garante garante) {
+
+        sexoComboBox.addItem(Constants.EMPTY_COMBOBOX);
+        sexoComboBox.addItem(TiposDeSexo.MASCULINO.getSexo());
+        sexoComboBox.addItem(TiposDeSexo.FEMENINO.getSexo());
+
+        try {
+            image = ImageIO.read(new File(Constants.BACKGROUND));
+        } catch (IOException ex) {
+            ApiException.showException(new ApiException(ErrorCode.FAIL_GETTING_IMAGE));
+        }
+
+        setLayout(new SpringLayout());
+
+        setSizes();
+        checkers();
+        setData(garante);
+
+        add(nombreLabel);
+        add(nombreTextField);
+        add(apellidoLabel);
+        add(apellidoTextField);
+        add(dniLabel);
+        add(dniTextField);
+        add(sexoLabel);
+        add(sexoComboBox);
+        add(direccionLabel);
+        add(direccionTextField);
+        add(fechaDeNacimientoLabel);
+        add(fechaDeNacimientoTextField);
+        add(telefonoLabel);
+        add(telefonoTextField);
+        add(emailLabel);
+        add(emailTextField);
+
+        SpringUtilities.makeCompactGrid(this, rows, 4, initialX, initialY, xPad, yPad);
+    }
+
+    private void setData(Garante garante) {
+        nombreTextField.setText(garante.getNombre());
+        apellidoTextField.setText(garante.getApellido());
+        dniTextField.setText(garante.getDni());
+        dniTextField.setEnabled(false);
+        sexoComboBox.setSelectedItem(garante.getSexo());
+        sexoComboBox.setEnabled(false);
+        direccionTextField.setText(garante.getDireccion());
+        fechaDeNacimientoTextField.setText(garante.getFechaNac());
+        telefonoTextField.setText(garante.getTelefono());
+        emailTextField.setText(garante.getEmail());
     }
 
     private void setSizes() {

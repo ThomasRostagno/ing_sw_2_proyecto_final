@@ -103,20 +103,18 @@ public class ZonaPanel extends JPanel {
         add(valorTextField, gridBagConstraints);
     }
 
-    public Inquilino getInquilino() {
+    public Zona getZona() {
         int row = table.getSelectedRow();
-        int dniColumn = 2;
-        int sexoColumn = 4;
+        int codigoColumn = 0;
 
         if (row != -1) {
-            String dni = table.getValueAt(row, dniColumn).toString();
-            String sexo = table.getValueAt(row, sexoColumn).toString();
+            String codigo = table.getValueAt(row, codigoColumn).toString();
 
-            BusinessObject<Inquilino> businessObject = new DAOInquilino();
+            BusinessObject<Zona> businessObject = new DAOZona();
 
-            return businessObject.readOne(dni, sexo);
+            return businessObject.readOne(codigo);
         }
-        ApiException.showException(new ApiException(ErrorCode.FAIL_SELECTING_ESCRIBANO));
+        ApiException.showException(new ApiException(ErrorCode.FAIL_SELECTING_ZONA));
 
         return null;
     }
