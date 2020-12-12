@@ -12,8 +12,8 @@ public class Inmueble {
     private int antiguedad;
     private float valor;
     private String clasificacion; //residencial, familiar, no habitable, etc
-    private String dniInquilino;
     private String dniDuenio;
+    private String sexoDuenio;
     private String codigoAlquiler;
     private String codigoZona;
 
@@ -30,13 +30,13 @@ public class Inmueble {
         this.antiguedad = inmueble.antiguedad;
         this.valor = inmueble.valor;
         this.clasificacion = inmueble.clasificacion;
-        this.dniInquilino = inmueble.dniInquilino;
         this.dniDuenio = inmueble.dniDuenio;
+        this.sexoDuenio = inmueble.sexoDuenio;
         this.codigoAlquiler = inmueble.codigoAlquiler;
         this.codigoZona = inmueble.codigoZona;
     }
 
-    public Inmueble(String tipo, String condicion, String direccion, int superficie, int numAmbientes, String fechaConstruccion, int antiguedad, float valor, String clasificacion, String dniInquilino, String dniDuenio, String codigoAlquiler, String codigoZona) {
+    public Inmueble(String tipo, String condicion, String direccion, int superficie, int numAmbientes, String fechaConstruccion, int antiguedad, float valor, String clasificacion, String dniDuenio, String sexoDuenio, String codigoAlquiler, String codigoZona) {
         this.tipo = tipo;
         this.condicion = condicion;
         this.direccion = direccion;
@@ -46,8 +46,8 @@ public class Inmueble {
         this.antiguedad = antiguedad;
         this.valor = valor;
         this.clasificacion = clasificacion;
-        this.dniInquilino = dniInquilino;
         this.dniDuenio = dniDuenio;
+        this.sexoDuenio = sexoDuenio;
         this.codigoAlquiler = codigoAlquiler;
         this.codigoZona = codigoZona;
     }
@@ -137,20 +137,20 @@ public class Inmueble {
         this.clasificacion = clasificacion;
     }
 
-    public String getDniInquilino() {
-        return dniInquilino;
-    }
-
-    public void setDniInquilino(String dniInquilino) {
-        this.dniInquilino = dniInquilino;
-    }
-
     public String getDniDuenio() {
         return dniDuenio;
     }
 
     public void setDniDuenio(String dniDuenio) {
         this.dniDuenio = dniDuenio;
+    }
+
+    public String getSexoDuenio() {
+        return sexoDuenio;
+    }
+
+    public void setSexoDuenio(String sexoDuenio) {
+        this.sexoDuenio = sexoDuenio;
     }
 
     public String getCodigoAlquiler() {
@@ -170,7 +170,7 @@ public class Inmueble {
     }
 
     private Object[] toObject() {
-        return new Object[]{getTipo(), getCondicion(), getDireccion(), getSuperficie(), getNumAmbientes(), getFechaConstruccion(), getAntiguedad(), getValor(), getClasificacion(), getDniInquilino(), getDniDuenio(), getCodigoAlquiler(), getCodigoZona()};
+        return new Object[]{getTipo(), getCondicion(), getDireccion(), getSuperficie(), getNumAmbientes(), getFechaConstruccion(), getAntiguedad(), getValor(), getClasificacion(), getDniDuenio(), getSexoDuenio(), getCodigoAlquiler(), getCodigoZona()};
     }
 
     /**

@@ -94,8 +94,8 @@ public class DAODuenio implements BusinessObject<Duenio> {
 
     @Override
     public int update(Duenio duenio) {
-        String sqlUpdate = " UPDATE Dueno SET Nombre = ?, Apellido = ?, Telefono = ?, Sexo = ?, Direccion = ?, Fecha_Nacimiento = ?, Email = ?" +
-                " VALUES (?, ?, ?, ?, ?, ?, ?) WHERE (DNI = '" + duenio.getDni() + "') AND ('" + "Sexo =" + duenio.getSexo() + "')";
+        String sqlUpdate = " UPDATE Dueno SET Nombre = ?, Apellido = ?, Telefono = ?, Direccion = ?, Fecha_Nacimiento = ?, Email = ?" +
+                "WHERE (DNI = '" + duenio.getDni() + "') AND (Sexo ='" + duenio.getSexo() + "')";
         int exito = 0;
         Connection connection = Database.getInstance().getConnection();
         PreparedStatement statement;
@@ -104,10 +104,9 @@ public class DAODuenio implements BusinessObject<Duenio> {
             statement.setString(1, duenio.getNombre());
             statement.setString(2, duenio.getApellido());
             statement.setString(3, duenio.getTelefono());
-            statement.setString(4, duenio.getSexo());
-            statement.setString(5, duenio.getDireccion());
-            statement.setString(6, duenio.getFechaNac());
-            statement.setString(7, duenio.getEmail());
+            statement.setString(4, duenio.getDireccion());
+            statement.setString(5, duenio.getFechaNac());
+            statement.setString(6, duenio.getEmail());
             statement.executeUpdate();
             exito = 1;
 

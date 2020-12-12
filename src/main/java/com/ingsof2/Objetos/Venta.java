@@ -8,21 +8,49 @@ import java.util.List;
 public class Venta extends Contrato {
     private int Comision;
     private String dniComprador;
+    private String sexoComprador;
     private String domicilioInmueble;
     private String dniVendedor;
+    private String sexoVendedor;
 
     public Venta() {
 
     }
 
-    public Venta(Contrato aux, int comision) {
+    public Venta(Contrato aux, int comision, String dniComprador, String sexoComprador, String domicilioInmueble, String dniVendedor, String sexoVendedor) {
         super(aux);
-        Comision = comision;
+        this.Comision = comision;
+        this.dniComprador = dniComprador;
+        this.sexoComprador = sexoComprador;
+        this.domicilioInmueble = domicilioInmueble;
+        this.dniVendedor = dniVendedor;
+        this.sexoVendedor = sexoVendedor;
     }
 
-    public Venta(String codigo, String fecha, float precio, int tipo, int comision) {
+    public Venta(String codigo, String fecha, float precio, int tipo, int comision, String dniComprador, String sexoComprador, String domicilioInmueble, String dniVendedor, String sexoVendedor) {
         super(codigo, fecha, precio, tipo);
-        Comision = comision;
+        this.Comision = comision;
+        this.dniComprador = dniComprador;
+        this.sexoComprador = sexoComprador;
+        this.domicilioInmueble = domicilioInmueble;
+        this.dniVendedor = dniVendedor;
+        this.sexoVendedor = sexoVendedor;
+    }
+
+    public String getSexoComprador() {
+        return sexoComprador;
+    }
+
+    public void setSexoComprador(String sexoComprador) {
+        this.sexoComprador = sexoComprador;
+    }
+
+    public String getSexoVendedor() {
+        return sexoVendedor;
+    }
+
+    public void setSexoVendedor(String sexoVendedor) {
+        this.sexoVendedor = sexoVendedor;
     }
 
     public int getComision() {

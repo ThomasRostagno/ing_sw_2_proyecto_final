@@ -96,13 +96,34 @@ public class DAOEscribano implements BusinessObject<Escribano> {
 
     @Override
     public int update(Escribano escribano) {
-        return 0;
+        String sqlUpdate = " UPDATE Dueno SET Nombre = ?, Apellido = ?, Telefono = ?, Direccion = ?, Fecha_Nacimiento = ?, Email = ?, Matricula = ?" +
+                "WHERE (DNI = '" + escribano.getDni() + "') AND (Sexo ='" + escribano.getSexo() + "')";
+        int exito = 0;
+        Connection connection = Database.getInstance().getConnection();
+        PreparedStatement statement;
+        try {
+            statement = connection.prepareStatement(sqlUpdate);
+            statement.setString(1, escribano.getNombre());
+            statement.setString(2, escribano.getApellido());
+            statement.setString(3, escribano.getTelefono());
+            statement.setString(4, escribano.getDireccion());
+            statement.setString(5, escribano.getFechaNac());
+            statement.setString(6, escribano.getEmail());
+            statement.setString(7,escribano.getMatricula());
+            statement.executeUpdate();
+            exito = 1;
+
+        } catch (SQLException throwables) {
+            ApiException.showException(new ApiException(ErrorCode.FAIL_SAVING_IN_DB));
+        }
+        Database.getInstance().disconnect();
+        return exito;
     }
 
     @Override
     public int delete(Escribano escribano) {
         String sqlDelete = " UPDATE Escribano SET Status = 0 " +
-                "WHERE (DNI = '" + escribano.getDni() + "') AND ('" + "Sexo =" + escribano.getSexo() + "')";
+                "WHERE (DNI = '" + escribano.getDni() + "') AND (Sexo ='" + escribano.getSexo() + "')";
         int exito = 0;
         Connection connection = Database.getInstance().getConnection();
         PreparedStatement statement;

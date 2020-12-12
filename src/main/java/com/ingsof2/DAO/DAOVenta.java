@@ -27,9 +27,12 @@ public class DAOVenta implements BusinessObject<Venta> {
                 venta.setTipo(2);//1 es alquiler, 2 es venta
                 venta.setFecha(rs.getString("Fecha_Contrato"));
                 venta.setComision(rs.getInt("Comision"));
+                venta.setPrecio(rs.getFloat("Precio"));
                 venta.setDniComprador(rs.getString("DNI_Comprador"));
+                venta.setSexoComprador(rs.getString("Sexo_Comprador"));
                 venta.setDomicilioInmueble(rs.getString("Domicilio_Inmueble"));
                 venta.setDniVendedor(rs.getString("DNI_Vendedor"));
+                venta.setSexoVendedor(rs.getString("Sexo_Vendedor"));
                 ventas.add(venta);
             }
         } catch (SQLException throwables) {
@@ -55,8 +58,10 @@ public class DAOVenta implements BusinessObject<Venta> {
                 venta.setPrecio(rs.getFloat("Precio"));
                 venta.setComision(rs.getInt("Comision"));
                 venta.setDniComprador(rs.getString("DNI_Comprador"));
+                venta.setSexoComprador(rs.getString("Sexo_Comprador"));
                 venta.setDomicilioInmueble(rs.getString("Domicilio_Inmueble"));
                 venta.setDniVendedor(rs.getString("DNI_Vendedor"));
+                venta.setSexoVendedor(rs.getString("Sexo_Vendedor"));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -66,8 +71,8 @@ public class DAOVenta implements BusinessObject<Venta> {
 
     @Override
     public int create(Venta venta) {
-        String sqlInsert = " INSERT INTO Venta (Codigo, Tipo, Fecha_Contrato, Comision, DNI_Comprador, Domicilio_Inmueble, DNI_Vendedor, Status)" +
-                " VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sqlInsert = " INSERT INTO Venta (Codigo, Tipo, Fecha_Contrato, Comision, Precio, DNI_Comprador, Sexo_Comprador, Domicilio_Inmueble, DNI_Vendedor, Sexo_Vendedor, Status)" +
+                " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         int exito = 0;
         Connection connection = Database.getInstance().getConnection();
         PreparedStatement statement;
@@ -77,10 +82,13 @@ public class DAOVenta implements BusinessObject<Venta> {
             statement.setInt(2, venta.getTipo());
             statement.setString(3, venta.getFecha());
             statement.setInt(4, venta.getComision());
-            statement.setString(5, venta.getDniComprador());
-            statement.setString(6, venta.getDomicilioInmueble());
-            statement.setString(7, venta.getDniVendedor());
-            statement.setInt(8, 1);
+            statement.setFloat(5,venta.getPrecio());
+            statement.setString(6, venta.getDniComprador());
+            statement.setString(7, venta.getSexoComprador());
+            statement.setString(8, venta.getDomicilioInmueble());
+            statement.setString(9, venta.getDniVendedor());
+            statement.setString(10, venta.getSexoVendedor());
+            statement.setInt(11, 1);
             statement.executeUpdate();
             exito = 1;
 
@@ -93,8 +101,8 @@ public class DAOVenta implements BusinessObject<Venta> {
 
     @Override
     public int update(Venta venta) {
-        String sqlUpdate = " UPDATE Venta SET Tipo = ?, Fecha_Contrato = ?, Comision = ?, DNIComprador = ?, Domicilio_Inmueble = ?, DNI_Vendedor = ?" +
-                " VALUES (?, ?, ?, ?, ?, ?, ?, ?) WHERE (Codigo = '" + venta.getCodigo() + "')";
+        String sqlUpdate = " UPDATE Venta SET Tipo = ?, Fecha_Contrato = ?, Comision = ?, Precio = ?, DNIComprador = ?, Sexo_Comprador = ?, Domicilio_Inmueble = ?, DNI_Vendedor = ?, Sexo_Vendedor = ?" +
+                " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) WHERE (Codigo = '" + venta.getCodigo() + "')";
         int exito = 0;
         Connection connection = Database.getInstance().getConnection();
         PreparedStatement statement;
@@ -103,10 +111,13 @@ public class DAOVenta implements BusinessObject<Venta> {
             statement.setInt(1, venta.getTipo());
             statement.setString(2, venta.getFecha());
             statement.setInt(3, venta.getComision());
+            statement.setFloat(4,venta.getPrecio());
             statement.setString(5, venta.getDniComprador());
-            statement.setString(6, venta.getDomicilioInmueble());
-            statement.setString(7, venta.getDniVendedor());
-            statement.executeUpdate();
+            statement.setString(6, venta.getSexoComprador());
+            statement.setString(7, venta.getDomicilioInmueble());
+            statement.setString(8, venta.getDniVendedor());
+            statement.setString(9, venta.getSexoVendedor());
+            statement.executeUpdate();  
             exito = 1;
 
         } catch (SQLException throwables) {
