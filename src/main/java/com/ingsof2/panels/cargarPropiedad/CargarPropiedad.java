@@ -127,6 +127,92 @@ public class CargarPropiedad extends JPanel {
         SpringUtilities.makeCompactGrid(this, rows, 4, initialX, initialY, xPad, yPad);
     }
 
+    public CargarPropiedad(Inmueble inmueble) {
+
+        tipoComboBox.addItem(Constants.EMPTY_COMBOBOX);
+        tipoComboBox.addItem(TiposDePropiedad.DEPARTAMENTO.getTipo());
+        tipoComboBox.addItem(TiposDePropiedad.CASA.getTipo());
+        tipoComboBox.addItem(TiposDePropiedad.TERRENO.getTipo());
+        tipoComboBox.addItem(TiposDePropiedad.GALPON.getTipo());
+        tipoComboBox.addItem(TiposDePropiedad.LOCAL_COMERCIAL.getTipo());
+        tipoComboBox.addItem(TiposDePropiedad.HOTEL.getTipo());
+        tipoComboBox.addItem(TiposDePropiedad.CABANIA.getTipo());
+        tipoComboBox.addItem(TiposDePropiedad.CHALET.getTipo());
+
+        condicionComboBox.addItem(Constants.EMPTY_COMBOBOX);
+        condicionComboBox.addItem(TiposDeContratos.ALQUILER.getDescripcion());
+        condicionComboBox.addItem(TiposDeContratos.VENTA.getDescripcion());
+        condicionComboBox.addItem(TiposDeContratos.AMBOS.getDescripcion());
+
+        clasificacionComboBox.addItem(Constants.EMPTY_COMBOBOX);
+        clasificacionComboBox.addItem(CondicionesDePropiedad.RESIDENCIAL.getCondicion());
+        clasificacionComboBox.addItem(CondicionesDePropiedad.FAMILIAR.getCondicion());
+        clasificacionComboBox.addItem(CondicionesDePropiedad.COMERCIAL.getCondicion());
+        clasificacionComboBox.addItem(CondicionesDePropiedad.EVENTOS.getCondicion());
+        clasificacionComboBox.addItem(CondicionesDePropiedad.NO_HABITABLE.getCondicion());
+
+        BusinessObject<Zona> businessObject = new DAOZona();
+
+        List<Zona> zonas = businessObject.readAll();
+
+        for (Zona zona : zonas) {
+            zonaComboBox.addItem(zona);
+        }
+
+        try {
+            image = ImageIO.read(new File(Constants.BACKGROUND));
+        } catch (IOException ex) {
+            ApiException.showException(new ApiException(ErrorCode.FAIL_GETTING_IMAGE));
+        }
+
+        setLayout(new SpringLayout());
+
+        setSizes();
+        checkers();
+        setData(inmueble);
+
+        add(tipoLabel);
+        add(tipoComboBox);
+        add(condicionLabel);
+        add(condicionComboBox);
+        add(direccionLabel);
+        add(direccionTextField);
+        add(superficieLabel);
+        add(superficieTextField);
+        add(numeroDeAmbientesLabel);
+        add(numeroDeAmbientesTextField);
+        add(fechaDeConstruccionLabel);
+        add(fechaDeConstruccionTextField);
+        add(antiguedadLabel);
+        add(antiguedadTextField);
+        add(clasificacionLabel);
+        add(clasificacionComboBox);
+        add(valorLabel);
+        add(valorTextField);
+        add(zonaLabel);
+        add(zonaComboBox);
+
+        SpringUtilities.makeCompactGrid(this, rows, 4, initialX, initialY, xPad, yPad);
+    }
+
+    private void setData(Inmueble inmueble) {
+        tipoComboBox.setSelectedItem(inmueble.getTipo());
+        condicionComboBox.setSelectedItem(inmueble.getCondicion());
+        direccionTextField.setText(inmueble.getDireccion());
+        direccionTextField.setEnabled(false);
+        superficieTextField.setText(String.valueOf(inmueble.getSuperficie()));
+        numeroDeAmbientesTextField.setText(String.valueOf(inmueble.getNumAmbientes()));
+        fechaDeConstruccionTextField.setText(inmueble.getFechaConstruccion());
+        antiguedadTextField.setText(String.valueOf(inmueble.getAntiguedad()));
+        clasificacionComboBox.setSelectedItem(inmueble.getClasificacion());
+        valorTextField.setText(String.valueOf(inmueble.getValor()));
+
+        BusinessObject<Zona> businessObject = new DAOZona();
+        Zona zona = businessObject.readOne(inmueble.getCodigoZona());
+
+        zonaComboBox.setSelectedItem(zona.getNombre());
+    }
+
     private void setSizes() {
         tipoComboBox.setPreferredSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
         tipoComboBox.setMinimumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));

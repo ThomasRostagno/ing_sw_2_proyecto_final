@@ -1,5 +1,6 @@
 package com.ingsof2.panels.cargarInquilino;
 
+import com.ingsof2.Objetos.Comprador;
 import com.ingsof2.Objetos.Inquilino;
 import com.ingsof2.Objetos.TiposDeSexo;
 import com.ingsof2.exceptions.ApiException;
@@ -86,6 +87,57 @@ public class CargarInquilino extends JPanel {
         add(emailTextField);
 
         SpringUtilities.makeCompactGrid(this, rows, 4, initialX, initialY, xPad, yPad);
+    }
+
+    public CargarInquilino(Inquilino inquilino) {
+
+        sexoComboBox.addItem(Constants.EMPTY_COMBOBOX);
+        sexoComboBox.addItem(TiposDeSexo.MASCULINO.getSexo());
+        sexoComboBox.addItem(TiposDeSexo.FEMENINO.getSexo());
+
+        try {
+            image = ImageIO.read(new File(Constants.BACKGROUND));
+        } catch (IOException ex) {
+            ApiException.showException(new ApiException(ErrorCode.FAIL_GETTING_IMAGE));
+        }
+
+        setLayout(new SpringLayout());
+
+        setSizes();
+        checkers();
+        setData(inquilino);
+
+        add(nombreLabel);
+        add(nombreTextField);
+        add(apellidoLabel);
+        add(apellidoTextField);
+        add(dniLabel);
+        add(dniTextField);
+        add(sexoLabel);
+        add(sexoComboBox);
+        add(direccionLabel);
+        add(direccionTextField);
+        add(fechaDeNacimientoLabel);
+        add(fechaDeNacimientoTextField);
+        add(telefonoLabel);
+        add(telefonoTextField);
+        add(emailLabel);
+        add(emailTextField);
+
+        SpringUtilities.makeCompactGrid(this, rows, 4, initialX, initialY, xPad, yPad);
+    }
+
+    private void setData(Inquilino inquilino) {
+        nombreTextField.setText(inquilino.getNombre());
+        apellidoTextField.setText(inquilino.getApellido());
+        dniTextField.setText(inquilino.getDni());
+        dniTextField.setEnabled(false);
+        sexoComboBox.setSelectedItem(inquilino.getSexo());
+        sexoComboBox.setEnabled(false);
+        direccionTextField.setText(inquilino.getDireccion());
+        fechaDeNacimientoTextField.setText(inquilino.getFechaNac());
+        telefonoTextField.setText(inquilino.getTelefono());
+        emailTextField.setText(inquilino.getEmail());
     }
 
     private void setSizes() {

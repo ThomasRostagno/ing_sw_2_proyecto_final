@@ -19,6 +19,7 @@ public class Constants {
     public static int CENTER_HEIGHT = HEIGHT - 36;
 
     public static Color RECT_COLOR = new Color(212, 212, 212, 215);
+    public static Color BUTTONS_BACKGROUND = new Color(20, 20, 20);
 
     public static boolean textValidator(JTextField textTextField) {
         try {

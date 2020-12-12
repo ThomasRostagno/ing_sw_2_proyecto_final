@@ -63,6 +63,37 @@ public class CargarZona extends JPanel {
         SpringUtilities.makeCompactGrid(this, rows, 2, initialX, initialY, xPad, yPad);
     }
 
+    public CargarZona(Zona zona) {
+
+        try {
+            image = ImageIO.read(new File(Constants.BACKGROUND));
+        } catch (IOException ex) {
+            ApiException.showException(new ApiException(ErrorCode.FAIL_GETTING_IMAGE));
+        }
+
+        setLayout(new SpringLayout());
+
+        setSizes();
+        checkers();
+        setData(zona);
+
+        add(codigoLabel);
+        add(codigoTextField);
+        add(nombreLabel);
+        add(nombreTextField);
+        add(descripcionLabel);
+        add(descripcionTextField);
+
+        SpringUtilities.makeCompactGrid(this, rows, 2, initialX, initialY, xPad, yPad);
+    }
+
+    private void setData(Zona zona) {
+        codigoTextField.setText(zona.getCodigo());
+        codigoTextField.setEnabled(false);
+        nombreTextField.setText(zona.getNombre());
+        descripcionTextField.setText(zona.getDescripcion());
+    }
+
     private void setSizes() {
         codigoTextField.setPreferredSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
         codigoTextField.setMinimumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));

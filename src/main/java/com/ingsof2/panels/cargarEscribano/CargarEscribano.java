@@ -1,5 +1,6 @@
 package com.ingsof2.panels.cargarEscribano;
 
+import com.ingsof2.Objetos.Comprador;
 import com.ingsof2.Objetos.Escribano;
 import com.ingsof2.Objetos.TiposDeSexo;
 import com.ingsof2.exceptions.ApiException;
@@ -93,6 +94,61 @@ public class CargarEscribano extends JPanel {
         add(new JLabel(""));
 
         SpringUtilities.makeCompactGrid(this, rows, 4, initialX, initialY, xPad, yPad);
+    }
+
+    public CargarEscribano(Escribano escribano) {
+
+        sexoComboBox.addItem(Constants.EMPTY_COMBOBOX);
+        sexoComboBox.addItem(TiposDeSexo.MASCULINO.getSexo());
+        sexoComboBox.addItem(TiposDeSexo.FEMENINO.getSexo());
+
+        try {
+            image = ImageIO.read(new File(Constants.BACKGROUND));
+        } catch (IOException ex) {
+            ApiException.showException(new ApiException(ErrorCode.FAIL_GETTING_IMAGE));
+        }
+
+        setLayout(new SpringLayout());
+
+        setSizes();
+        checkers();
+        setData(escribano);
+
+        add(nombreLabel);
+        add(nombreTextField);
+        add(apellidoLabel);
+        add(apellidoTextField);
+        add(dniLabel);
+        add(dniTextField);
+        add(sexoLabel);
+        add(sexoComboBox);
+        add(direccionDelEstudioLabel);
+        add(direccionDelEstudioTextField);
+        add(fechaDeNacimientoLabel);
+        add(fechaDeNacimientoTextField);
+        add(telefonoLabel);
+        add(telefonoTextField);
+        add(emailLabel);
+        add(emailTextField);
+        add(matriculaLabel);
+        add(matriculaTextField);
+        add(new JLabel(""));
+        add(new JLabel(""));
+
+        SpringUtilities.makeCompactGrid(this, rows, 4, initialX, initialY, xPad, yPad);
+    }
+
+    private void setData(Escribano escribano) {
+        nombreTextField.setText(escribano.getNombre());
+        apellidoTextField.setText(escribano.getApellido());
+        dniTextField.setText(escribano.getDni());
+        dniTextField.setEnabled(false);
+        sexoComboBox.setSelectedItem(escribano.getSexo());
+        sexoComboBox.setEnabled(false);
+        direccionDelEstudioTextField.setText(escribano.getDireccion());
+        fechaDeNacimientoTextField.setText(escribano.getFechaNac());
+        telefonoTextField.setText(escribano.getTelefono());
+        emailTextField.setText(escribano.getEmail());
     }
 
     private void setSizes() {

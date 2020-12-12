@@ -88,6 +88,57 @@ public class CargarComprador extends JPanel {
         SpringUtilities.makeCompactGrid(this, rows, 4, initialX, initialY, xPad, yPad);
     }
 
+    public CargarComprador(Comprador comprador) {
+
+        sexoComboBox.addItem(Constants.EMPTY_COMBOBOX);
+        sexoComboBox.addItem(TiposDeSexo.MASCULINO.getSexo());
+        sexoComboBox.addItem(TiposDeSexo.FEMENINO.getSexo());
+
+        try {
+            image = ImageIO.read(new File(Constants.BACKGROUND));
+        } catch (IOException ex) {
+            ApiException.showException(new ApiException(ErrorCode.FAIL_GETTING_IMAGE));
+        }
+
+        setLayout(new SpringLayout());
+
+        setSizes();
+        checkers();
+        setData(comprador);
+
+        add(nombreLabel);
+        add(nombreTextField);
+        add(apellidoLabel);
+        add(apellidoTextField);
+        add(dniLabel);
+        add(dniTextField);
+        add(sexoLabel);
+        add(sexoComboBox);
+        add(direccionLabel);
+        add(direccionTextField);
+        add(fechaDeNacimientoLabel);
+        add(fechaDeNacimientoTextField);
+        add(telefonoLabel);
+        add(telefonoTextField);
+        add(emailLabel);
+        add(emailTextField);
+
+        SpringUtilities.makeCompactGrid(this, rows, 4, initialX, initialY, xPad, yPad);
+    }
+
+    private void setData(Comprador comprador) {
+        nombreTextField.setText(comprador.getNombre());
+        apellidoTextField.setText(comprador.getApellido());
+        dniTextField.setText(comprador.getDni());
+        dniTextField.setEnabled(false);
+        sexoComboBox.setSelectedItem(comprador.getSexo());
+        sexoComboBox.setEnabled(false);
+        direccionTextField.setText(comprador.getDireccion());
+        fechaDeNacimientoTextField.setText(comprador.getFechaNac());
+        telefonoTextField.setText(comprador.getTelefono());
+        emailTextField.setText(comprador.getEmail());
+    }
+
     private void setSizes() {
         nombreTextField.setPreferredSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
         nombreTextField.setMinimumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));

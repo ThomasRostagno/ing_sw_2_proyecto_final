@@ -930,7 +930,39 @@ public class MainFrame extends JFrame {
 
     public void goListarInquilinos() {
         listarInquilinos = new ListarInquilinos();
-        backButtonShowPanel = new BackButtonShowPanel();
+        backButtonShowPanel = new BackButtonShowPanel(new ButtonsInterface() {
+            @Override
+            public void next() {
+                Inquilino inquilino = listarInquilinos.getInquilino();
+                if (inquilino != null) {
+                    cargarInquilino = new CargarInquilino(inquilino);
+                    getContentPane().removeAll();
+                    getContentPane().add(cargarInquilino, BorderLayout.CENTER);
+                    getContentPane().add(new GenericNextBackButtonPanel(new ButtonsInterface() {
+                        @Override
+                        public void back() {
+                            goListarInquilinos();
+                        }
+
+                        @Override
+                        public void next() {
+                            Inquilino inquilino = cargarInquilino.saveFields();
+
+                            if (inquilino != null) {
+                                BusinessObject<Inquilino> businessObject = new DAOInquilino();
+
+                                if (businessObject.update(inquilino) == 1) {
+                                    showModificarExitosa();
+                                    goListarInquilinos();
+                                }
+                            }
+                        }
+                    }), BorderLayout.PAGE_END);
+                    revalidate();
+                    repaint();
+                }
+            }
+        });
         getContentPane().removeAll();
         getContentPane().add(listarInquilinos, BorderLayout.CENTER);
         getContentPane().add(backButtonShowPanel, BorderLayout.PAGE_END);
@@ -940,7 +972,40 @@ public class MainFrame extends JFrame {
 
     public void goListarGarantes() {
         listarGarantes = new ListarGarantes();
-        backButtonShowPanel = new BackButtonShowPanel();
+        backButtonShowPanel = new BackButtonShowPanel(new ButtonsInterface() {
+            @Override
+            public void next() {
+                Garante garante = listarGarantes.getGarante();
+                if (garante != null) {
+
+                    cargarGarante = new CargarGarante(garante);
+                    getContentPane().removeAll();
+                    getContentPane().add(cargarGarante, BorderLayout.CENTER);
+                    getContentPane().add(new GenericNextBackButtonPanel(new ButtonsInterface() {
+                        @Override
+                        public void back() {
+                            goListarGarantes();
+                        }
+
+                        @Override
+                        public void next() {
+                            Garante garante = cargarGarante.saveFields();
+
+                            if (garante != null) {
+                                BusinessObject<Garante> businessObject = new DAOGarante();
+
+                                if (businessObject.update(garante) == 1) {
+                                    showModificarExitosa();
+                                    goListarGarantes();
+                                }
+                            }
+                        }
+                    }), BorderLayout.PAGE_END);
+                    revalidate();
+                    repaint();
+                }
+            }
+        });
         getContentPane().removeAll();
         getContentPane().add(listarGarantes, BorderLayout.CENTER);
         getContentPane().add(backButtonShowPanel, BorderLayout.PAGE_END);
@@ -990,7 +1055,40 @@ public class MainFrame extends JFrame {
 
     public void goListarPropiedades() {
         listarPropiedades = new ListarPropiedades();
-        backButtonShowPanel = new BackButtonShowPanel();
+        backButtonShowPanel = new BackButtonShowPanel(new ButtonsInterface() {
+            @Override
+            public void next() {
+                Inmueble inmueble = listarPropiedades.getPropiedad();
+                if (inmueble != null) {
+
+                    cargarPropiedad = new CargarPropiedad(inmueble);
+                    getContentPane().removeAll();
+                    getContentPane().add(new GenericNextBackButtonPanel(new ButtonsInterface() {
+                        @Override
+                        public void back() {
+                            goListarPropiedades();
+                        }
+
+                        @Override
+                        public void next() {
+                            Inmueble inmueble = cargarPropiedad.saveFields();
+
+                            if (inmueble != null) {
+                                BusinessObject<Inmueble> businessObject = new DAOInmueble();
+
+                                if (businessObject.update(inmueble) == 1) {
+                                    showModificarExitosa();
+                                    goListarPropiedades();
+                                }
+                            }
+                        }
+                    }), BorderLayout.CENTER);
+                    getContentPane().add(buttonsAddPanel, BorderLayout.PAGE_END);
+                    revalidate();
+                    repaint();
+                }
+            }
+        });
         getContentPane().removeAll();
         getContentPane().add(listarPropiedades, BorderLayout.CENTER);
         getContentPane().add(backButtonShowPanel, BorderLayout.PAGE_END);
@@ -1000,7 +1098,40 @@ public class MainFrame extends JFrame {
 
     public void goListarEscribanos() {
         listarEscribanos = new ListarEscribanos();
-        backButtonShowPanel = new BackButtonShowPanel();
+        backButtonShowPanel = new BackButtonShowPanel(new ButtonsInterface() {
+            @Override
+            public void next() {
+                Escribano escribano = listarEscribanos.getEscribano();
+                if (escribano != null) {
+
+                    cargarEscribano = new CargarEscribano(escribano);
+                    getContentPane().removeAll();
+                    getContentPane().add(cargarEscribano, BorderLayout.CENTER);
+                    getContentPane().add(new GenericNextBackButtonPanel(new ButtonsInterface() {
+                        @Override
+                        public void back() {
+                            goListarEscribanos();
+                        }
+
+                        @Override
+                        public void next() {
+                            Escribano escribano = cargarEscribano.saveFields();
+
+                            if (escribano != null) {
+                                BusinessObject<Escribano> businessObject = new DAOEscribano();
+
+                                if (businessObject.update(escribano) == 1) {
+                                    showModificarExitosa();
+                                    goListarEscribanos();
+                                }
+                            }
+                        }
+                    }), BorderLayout.PAGE_END);
+                    revalidate();
+                    repaint();
+                }
+            }
+        });
         getContentPane().removeAll();
         getContentPane().add(listarEscribanos, BorderLayout.CENTER);
         getContentPane().add(backButtonShowPanel, BorderLayout.PAGE_END);
@@ -1010,7 +1141,40 @@ public class MainFrame extends JFrame {
 
     public void goListarDuenios() {
         listarDuenios = new ListarDuenios();
-        backButtonShowPanel = new BackButtonShowPanel();
+        backButtonShowPanel = new BackButtonShowPanel(new ButtonsInterface() {
+            @Override
+            public void next() {
+                Duenio duenio = listarDuenios.getDuenio();
+                if (duenio != null) {
+
+                    cargarDuenio = new CargarDuenio();
+                    getContentPane().removeAll();
+                    getContentPane().add(cargarDuenio, BorderLayout.CENTER);
+                    getContentPane().add(new GenericNextBackButtonPanel(new ButtonsInterface() {
+                        @Override
+                        public void back() {
+                            goListarDuenios();
+                        }
+
+                        @Override
+                        public void next() {
+                            Duenio duenio = cargarDuenio.saveFields();
+
+                            if (duenio != null) {
+                                BusinessObject<Duenio> businessObject = new DAODuenio();
+
+                                if (businessObject.update(duenio) == 1) {
+                                    showModificarExitosa();
+                                    goListarDuenios();
+                                }
+                            }
+                        }
+                    }), BorderLayout.PAGE_END);
+                    revalidate();
+                    repaint();
+                }
+            }
+        });
         getContentPane().removeAll();
         getContentPane().add(listarDuenios, BorderLayout.CENTER);
         getContentPane().add(backButtonShowPanel, BorderLayout.PAGE_END);
@@ -1020,7 +1184,40 @@ public class MainFrame extends JFrame {
 
     public void goListarCompradores() {
         listarCompradores = new ListarCompradores();
-        backButtonShowPanel = new BackButtonShowPanel();
+        backButtonShowPanel = new BackButtonShowPanel(new ButtonsInterface() {
+            @Override
+            public void next() {
+                Comprador comprador = listarCompradores.getComprador();
+                if (comprador != null) {
+
+                    cargarComprador = new CargarComprador();
+                    getContentPane().removeAll();
+                    getContentPane().add(cargarComprador, BorderLayout.CENTER);
+                    getContentPane().add(new GenericNextBackButtonPanel(new ButtonsInterface() {
+                        @Override
+                        public void back() {
+                            goListarCompradores();
+                        }
+
+                        @Override
+                        public void next() {
+                            Comprador comprador = cargarComprador.saveFields();
+
+                            if (comprador != null) {
+                                BusinessObject<Comprador> businessObject = new DAOComprador();
+
+                                if (businessObject.update(comprador) == 1) {
+                                    showModificarExitosa();
+                                    goListarCompradores();
+                                }
+                            }
+                        }
+                    }), BorderLayout.PAGE_END);
+                    revalidate();
+                    repaint();
+                }
+            }
+        });
         getContentPane().removeAll();
         getContentPane().add(listarCompradores, BorderLayout.CENTER);
         getContentPane().add(backButtonShowPanel, BorderLayout.PAGE_END);
@@ -1030,7 +1227,40 @@ public class MainFrame extends JFrame {
 
     public void goListarVendedores() {
         listarVendedores = new ListarVendedores();
-        backButtonShowPanel = new BackButtonShowPanel();
+        backButtonShowPanel = new BackButtonShowPanel(new ButtonsInterface() {
+            @Override
+            public void next() {
+                Vendedor vendedor = listarVendedores.getVendedor();
+                if (vendedor != null) {
+
+                    cargarVendedor = new CargarVendedor();
+                    getContentPane().removeAll();
+                    getContentPane().add(cargarVendedor, BorderLayout.CENTER);
+                    getContentPane().add(new GenericNextBackButtonPanel(new ButtonsInterface() {
+                        @Override
+                        public void back() {
+                            goListarVendedores();
+                        }
+
+                        @Override
+                        public void next() {
+                            Vendedor vendedor = cargarVendedor.saveFields();
+
+                            if (vendedor != null) {
+                                BusinessObject<Vendedor> businessObject = new DAOVendedor();
+
+                                if (businessObject.update(vendedor) == 1) {
+                                    showModificarExitosa();
+                                    goListarVendedores();
+                                }
+                            }
+                        }
+                    }), BorderLayout.PAGE_END);
+                    revalidate();
+                    repaint();
+                }
+            }
+        });
         getContentPane().removeAll();
         getContentPane().add(listarVendedores, BorderLayout.CENTER);
         getContentPane().add(backButtonShowPanel, BorderLayout.PAGE_END);
@@ -1040,7 +1270,40 @@ public class MainFrame extends JFrame {
 
     public void goListarZonas() {
         listarZonas = new ListarZonas();
-        backButtonShowPanel = new BackButtonShowPanel();
+        backButtonShowPanel = new BackButtonShowPanel(new ButtonsInterface() {
+            @Override
+            public void next() {
+                Zona zona = listarZonas.getZona();
+                if (zona != null) {
+
+                    cargarZona = new CargarZona();
+                    getContentPane().removeAll();
+                    getContentPane().add(cargarZona, BorderLayout.CENTER);
+                    getContentPane().add(new GenericNextBackButtonPanel(new ButtonsInterface() {
+                        @Override
+                        public void back() {
+                            goListarZonas();
+                        }
+
+                        @Override
+                        public void next() {
+                            Zona zona = cargarZona.saveFields();
+
+                            if (zona != null) {
+                                BusinessObject<Zona> businessObject = new DAOZona();
+
+                                if (businessObject.update(zona) == 1) {
+                                    showModificarExitosa();
+                                    goListarZonas();
+                                }
+                            }
+                        }
+                    }), BorderLayout.PAGE_END);
+                    revalidate();
+                    repaint();
+                }
+            }
+        });
         getContentPane().removeAll();
         getContentPane().add(listarZonas, BorderLayout.CENTER);
         getContentPane().add(backButtonShowPanel, BorderLayout.PAGE_END);
@@ -1090,6 +1353,14 @@ public class MainFrame extends JFrame {
 
     private void showAltaExitosa() {
         JOptionPane.showMessageDialog(this, "Alta exitosa");
+    }
+
+    private void showModificarExitosa() {
+        JOptionPane.showMessageDialog(this, "Modificación exitosa");
+    }
+
+    private void showEliminarExitosa() {
+        JOptionPane.showMessageDialog(this, "Eliminación exitosa");
     }
 
     public void exit() {

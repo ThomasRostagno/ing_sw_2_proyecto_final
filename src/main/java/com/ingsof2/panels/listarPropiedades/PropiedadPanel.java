@@ -132,7 +132,7 @@ public class PropiedadPanel extends JPanel {
 
             return businessObject.readOne(direccion);
         }
-        ApiException.showException(new ApiException(ErrorCode.FAIL_SELECTING_ESCRIBANO));
+        ApiException.showException(new ApiException(ErrorCode.FAIL_SELECTING_PROPIEDAD));
 
         return null;
     }

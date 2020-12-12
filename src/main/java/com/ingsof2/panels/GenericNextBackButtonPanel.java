@@ -1,6 +1,7 @@
 package com.ingsof2.panels;
 
 import com.ingsof2.panels.add.ButtonsInterface;
+import com.ingsof2.utils.Constants;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +12,7 @@ public class GenericNextBackButtonPanel extends JPanel {
     private final JButton nextButton = new JButton("Next");
 
     public GenericNextBackButtonPanel(ButtonsInterface buttonsInterface) {
-        Color backgroundColor = new Color(20, 20, 20);
+        Color backgroundColor = Constants.BUTTONS_BACKGROUND;
 
         backButton.addActionListener(e -> {
             buttonsInterface.back();

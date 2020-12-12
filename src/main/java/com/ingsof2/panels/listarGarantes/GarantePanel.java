@@ -124,7 +124,7 @@ public class GarantePanel extends JPanel {
 
             return businessObject.readOne(dni, sexo);
         }
-        ApiException.showException(new ApiException(ErrorCode.FAIL_SELECTING_ESCRIBANO));
+        ApiException.showException(new ApiException(ErrorCode.FAIL_SELECTING_GARANTE));
 
         return null;
     }

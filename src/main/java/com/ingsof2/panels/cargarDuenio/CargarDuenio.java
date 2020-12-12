@@ -1,5 +1,6 @@
 package com.ingsof2.panels.cargarDuenio;
 
+import com.ingsof2.Objetos.Comprador;
 import com.ingsof2.Objetos.Duenio;
 import com.ingsof2.Objetos.TiposDeSexo;
 import com.ingsof2.exceptions.ApiException;
@@ -89,6 +90,57 @@ public class CargarDuenio extends JPanel implements ActionListener {
         add(emailTextField);
 
         SpringUtilities.makeCompactGrid(this, rows, 4, initialX, initialY, xPad, yPad);
+    }
+
+    public CargarDuenio(Duenio duenio) {
+
+        sexoComboBox.addItem(Constants.EMPTY_COMBOBOX);
+        sexoComboBox.addItem(TiposDeSexo.MASCULINO.getSexo());
+        sexoComboBox.addItem(TiposDeSexo.FEMENINO.getSexo());
+
+        try {
+            image = ImageIO.read(new File(Constants.BACKGROUND));
+        } catch (IOException ex) {
+            ApiException.showException(new ApiException(ErrorCode.FAIL_GETTING_IMAGE));
+        }
+
+        setLayout(new SpringLayout());
+
+        setSizes();
+        checkers();
+        setData(duenio);
+
+        add(nombreLabel);
+        add(nombreTextField);
+        add(apellidoLabel);
+        add(apellidoTextField);
+        add(dniLabel);
+        add(dniTextField);
+        add(sexoLabel);
+        add(sexoComboBox);
+        add(direccionDeTrabajoLabel);
+        add(direccionDeTrabajoTextField);
+        add(fechaDeNacimientoLabel);
+        add(fechaDeNacimientoTextField);
+        add(telefonoLabel);
+        add(telefonoTextField);
+        add(emailLabel);
+        add(emailTextField);
+
+        SpringUtilities.makeCompactGrid(this, rows, 4, initialX, initialY, xPad, yPad);
+    }
+
+    private void setData(Duenio duenio) {
+        nombreTextField.setText(duenio.getNombre());
+        apellidoTextField.setText(duenio.getApellido());
+        dniTextField.setText(duenio.getDni());
+        dniTextField.setEnabled(false);
+        sexoComboBox.setSelectedItem(duenio.getSexo());
+        sexoComboBox.setEnabled(false);
+        direccionDeTrabajoTextField.setText(duenio.getDireccion());
+        fechaDeNacimientoTextField.setText(duenio.getFechaNac());
+        telefonoTextField.setText(duenio.getTelefono());
+        emailTextField.setText(duenio.getEmail());
     }
 
     private void setSizes() {
