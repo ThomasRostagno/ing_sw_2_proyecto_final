@@ -2,14 +2,10 @@ package com.ingsof2.panels.listarGarantes;
 
 import com.ingsof2.DAO.BusinessObject;
 import com.ingsof2.DAO.DAOGarante;
-import com.ingsof2.DAO.DAOInmueble;
 import com.ingsof2.DAO.DAOInquilino;
 import com.ingsof2.Main;
 import com.ingsof2.Objetos.Garante;
-import com.ingsof2.Objetos.Inmueble;
-import com.ingsof2.Objetos.Inquilino;
 import com.ingsof2.exceptions.ApiException;
-import com.ingsof2.panels.listarPropiedades.PropiedadPanel;
 import com.ingsof2.utils.Constants;
 import com.ingsof2.utils.ErrorCode;
 import com.ingsof2.utils.Utils;

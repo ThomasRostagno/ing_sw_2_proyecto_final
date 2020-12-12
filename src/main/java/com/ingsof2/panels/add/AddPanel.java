@@ -21,6 +21,9 @@ public class AddPanel extends JPanel {
     private final JLabel cargarEscribanoLabel = new JLabel("Cargar escribano");
     private final JLabel cargarPropiedadLabel = new JLabel("Cargar propiedad");
     private final JLabel cargarDuenioLabel = new JLabel("Cargar dueño");
+    private final JLabel cargarCompradorLabel = new JLabel("Cargar comprador");
+    private final JLabel cargarVendedorLabel = new JLabel("Cargar vendedor");
+    private final JLabel cargarZonaLabel = new JLabel("Cargar zona");
 
     private final JButton registrarContratoButton = new JButton("Button");
     private final JButton cargarInquilinoButton = new JButton("Button");
@@ -28,8 +31,11 @@ public class AddPanel extends JPanel {
     private final JButton cargarEscribanoButton = new JButton("Button");
     private final JButton cargarPropiedadButton = new JButton("Button");
     private final JButton cargarDuenioButton = new JButton("Button");
+    private final JButton cargarCompradorButton = new JButton("Button");
+    private final JButton cargarVendedorButton = new JButton("Button");
+    private final JButton cargarZonaButton = new JButton("Button");
 
-    private final int rows = 6;
+    private final int rows = 9;
 
     private final int xPad = Constants.X_PAD;
     private final int yPad = Constants.Y_PAD;
@@ -70,6 +76,15 @@ public class AddPanel extends JPanel {
         cargarDuenioButton.addActionListener(e -> {
             Main.mainFrame.goCargarDuenio();
         });
+        cargarCompradorButton.addActionListener(e -> {
+            Main.mainFrame.goCargarComprador();
+        });
+        cargarVendedorButton.addActionListener(e -> {
+            Main.mainFrame.goCargarVendedor();
+        });
+        cargarZonaButton.addActionListener(e -> {
+            Main.mainFrame.goCargarZona();
+        });
 
         setLayout(new SpringLayout());
 
@@ -90,6 +105,15 @@ public class AddPanel extends JPanel {
 
         add(cargarDuenioLabel);
         add(cargarDuenioButton);
+
+        add(cargarCompradorLabel);
+        add(cargarCompradorButton);
+
+        add(cargarVendedorLabel);
+        add(cargarVendedorButton);
+
+        add(cargarZonaLabel);
+        add(cargarZonaButton);
 
         SpringUtilities.makeCompactGrid(this, rows, 2, initialX, initialY, xPad, yPad);
     }

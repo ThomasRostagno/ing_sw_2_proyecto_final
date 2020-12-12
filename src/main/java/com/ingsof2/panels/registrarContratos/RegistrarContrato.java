@@ -1,4 +1,4 @@
-package com.ingsof2.panels.registrarAlquiler;
+package com.ingsof2.panels.registrarContratos;
 
 import com.ingsof2.Objetos.Contrato;
 import com.ingsof2.Objetos.TiposDeContratos;
@@ -45,7 +45,7 @@ public class RegistrarContrato extends JPanel {
 
     public RegistrarContrato() {
 
-        tipoComboBox.addItem("");
+        tipoComboBox.addItem(Constants.EMPTY_COMBOBOX);
         tipoComboBox.addItem(TiposDeContratos.ALQUILER.getDescripcion());
         tipoComboBox.addItem(TiposDeContratos.VENTA.getDescripcion());
 

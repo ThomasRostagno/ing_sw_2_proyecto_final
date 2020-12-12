@@ -1,7 +1,6 @@
 package com.ingsof2.DAO;
 
 import com.ingsof2.Objetos.Alquiler;
-import com.ingsof2.Objetos.Inquilino;
 import com.ingsof2.database.Database;
 import com.ingsof2.exceptions.ApiException;
 import com.ingsof2.utils.ErrorCode;

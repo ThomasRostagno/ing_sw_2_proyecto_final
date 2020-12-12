@@ -1,7 +1,7 @@
 package com.ingsof2.panels.cargarGarante;
 
 import com.ingsof2.Objetos.Garante;
-import com.ingsof2.Objetos.Inquilino;
+import com.ingsof2.Objetos.TiposDeSexo;
 import com.ingsof2.exceptions.ApiException;
 import com.ingsof2.utils.Constants;
 import com.ingsof2.utils.ErrorCode;
@@ -53,9 +53,9 @@ public class CargarGarante extends JPanel {
 
     public CargarGarante() {
 
-        sexoComboBox.addItem("");
-        sexoComboBox.addItem("Masculino");
-        sexoComboBox.addItem("Femenino");
+        sexoComboBox.addItem(Constants.EMPTY_COMBOBOX);
+        sexoComboBox.addItem(TiposDeSexo.MASCULINO.getSexo());
+        sexoComboBox.addItem(TiposDeSexo.FEMENINO.getSexo());
 
         try {
             image = ImageIO.read(new File(Constants.BACKGROUND));
@@ -128,21 +128,21 @@ public class CargarGarante extends JPanel {
                     e.consume();
                 }
 
-                Constants.nombreYApellidoValidator(nombreTextField);
+                Constants.textValidator(nombreTextField);
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
                 super.keyPressed(e);
 
-                Constants.nombreYApellidoValidator(nombreTextField);
+                Constants.textValidator(nombreTextField);
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
                 super.keyReleased(e);
 
-                Constants.nombreYApellidoValidator(nombreTextField);
+                Constants.textValidator(nombreTextField);
             }
         });
 
@@ -158,21 +158,21 @@ public class CargarGarante extends JPanel {
                     e.consume();
                 }
 
-                Constants.nombreYApellidoValidator(apellidoTextField);
+                Constants.textValidator(apellidoTextField);
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
                 super.keyPressed(e);
 
-                Constants.nombreYApellidoValidator(apellidoTextField);
+                Constants.textValidator(apellidoTextField);
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
                 super.keyReleased(e);
 
-                Constants.nombreYApellidoValidator(apellidoTextField);
+                Constants.textValidator(apellidoTextField);
             }
         });
 
@@ -330,8 +330,8 @@ public class CargarGarante extends JPanel {
     }
 
     private boolean validateFields() {
-        return Constants.nombreYApellidoValidator(nombreTextField) &&
-                Constants.nombreYApellidoValidator(apellidoTextField) &&
+        return Constants.textValidator(nombreTextField) &&
+                Constants.textValidator(apellidoTextField) &&
                 Constants.dniValidator(dniTextField) &&
                 Constants.comboBoxValidator(sexoComboBox) &&
                 Constants.direccionValidator(direccionTextField) &&

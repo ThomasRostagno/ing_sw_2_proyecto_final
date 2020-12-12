@@ -1,6 +1,5 @@
 package com.ingsof2.DAO;
 
-import com.ingsof2.Objetos.Alquiler;
 import com.ingsof2.Objetos.Venta;
 import com.ingsof2.database.Database;
 import com.ingsof2.exceptions.ApiException;
@@ -24,7 +23,8 @@ public class DAOVenta implements BusinessObject<Venta> {
             while (rs.next()) {
                 venta = new Venta();
                 venta.setCodigo(rs.getString("Codigo"));
-                venta.setTipo(2);//1 es alquiler, 2 es venta
+                venta.setTipo(rs.getInt("Tipo"));
+                //venta.setTipo(2);//1 es alquiler, 2 es venta
                 venta.setFecha(rs.getString("Fecha_Contrato"));
                 venta.setComision(rs.getInt("Comision"));
                 venta.setPrecio(rs.getFloat("Precio"));
@@ -111,7 +111,7 @@ public class DAOVenta implements BusinessObject<Venta> {
             statement.setInt(1, venta.getTipo());
             statement.setString(2, venta.getFecha());
             statement.setInt(3, venta.getComision());
-            statement.setFloat(4,venta.getPrecio());
+            statement.setFloat(4, venta.getPrecio());
             statement.setString(5, venta.getDniComprador());
             statement.setString(6, venta.getSexoComprador());
             statement.setString(7, venta.getDomicilioInmueble());
