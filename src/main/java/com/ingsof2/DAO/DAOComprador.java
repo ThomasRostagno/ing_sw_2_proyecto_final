@@ -93,8 +93,8 @@ public class DAOComprador implements BusinessObject<Comprador> {
 
     @Override
     public int update(Comprador comprador) {
-        String sqlUpdate = " UPDATE Comprador SET Nombre = ?, Apellido = ?, Telefono = ?, Sexo = ?, Direccion = ?, Fecha_Nacimiento = ?, Email = ?" +
-                " VALUES (?, ?, ?, ?, ?, ?, ?) WHERE (DNI = '" + comprador.getDni() + "') AND ('" + "Sexo =" + comprador.getSexo() + "')";
+        String sqlUpdate = " UPDATE Comprador SET Nombre = ?, Apellido = ?, Telefono = ?, Direccion = ?, Fecha_Nacimiento = ?, Email = ?" +
+                " VALUES (?, ?, ?, ?, ?, ?, ?) WHERE (DNI = '" + comprador.getDni() + "') AND (Sexo ='" + comprador.getSexo() + "')";
         int exito = 0;
         Connection connection = Database.getInstance().getConnection();
         PreparedStatement statement;
@@ -103,10 +103,9 @@ public class DAOComprador implements BusinessObject<Comprador> {
             statement.setString(1, comprador.getNombre());
             statement.setString(2, comprador.getApellido());
             statement.setString(3, comprador.getTelefono());
-            statement.setString(4, comprador.getSexo());
-            statement.setString(5, comprador.getDireccion());
-            statement.setString(6, comprador.getFechaNac());
-            statement.setString(7, comprador.getEmail());
+            statement.setString(4, comprador.getDireccion());
+            statement.setString(5, comprador.getFechaNac());
+            statement.setString(6, comprador.getEmail());
             statement.executeUpdate();
             exito = 1;
 

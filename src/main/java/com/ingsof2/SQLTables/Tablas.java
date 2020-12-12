@@ -126,8 +126,10 @@ public class Tablas {
                     "Fecha_Nacimiento VARCHAR(255) NOT NULL," +
                     "Email VARCHAR(255) NOT NULL," +
                     "DNI_Inquilino VARCHAR(255)," +
+                    "Sexo_Inquilino VARCHAR(255)," +
                     "Status INT NOT NULL," +
-                    "PRIMARY KEY(DNI,Sexo)" +
+                    "PRIMARY KEY(DNI,Sexo)," +
+                    "FOREIGN KEY(DNI,Sexo) REFERENCES Inquilino(DNI_Inquilino,Sexo_Inquilino)" +
                     ")");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -163,6 +165,29 @@ public class Tablas {
         Database.getInstance().disconnect();
     }
 
+    /*Creacion RelationalDuenoInmueble*/
+    public void RelationalDuenoInmueble() {
+        Connection connection = Database.getInstance().getConnection();
+
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate("CREATE TABLE RelationalDuenoInmueble(" +
+                    "Direccion VARCHAR(255) NOT NULL," +
+                    "DNI_Dueno VARCHAR(255) ," +
+                    "Sexo_Dueno VARCHAR(255)," +
+                    "PRIMARY KEY(Direccion,DNI_Dueno,Sexo_Dueno)," +
+                    "FOREIGN KEY (DNI_Dueno,Sexo_Dueno) REFERENCES Dueno(DNI,Sexo)," +
+                    "FOREIGN KEY (Direccion) REFERENCES Inmueble(Direccion)" +
+                    ")");
+        } catch (
+                SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        Database.getInstance().disconnect();
+    }
+
     /*Creacion Inmueble*/
     public void TablaInmueble() {
         Connection connection = Database.getInstance().getConnection();
@@ -179,12 +204,15 @@ public class Tablas {
                     "Fecha_Construccion VARCHAR(255) NOT NULL," +
                     "Valor FLOAT NOT NULL," +
                     "Clasificacion VARCHAR(255) NOT NULL," +
-                    "DNI_Inquilino VARCHAR(255)," +
                     "DNI_Dueno VARCHAR(255) ," +
+                    "Sexo_Dueno VARCHAR(255)," +
                     "Codigo_Alquiler VARCHAR(255)," +
                     "Codigo_Zona VARCHAR(255)," +
                     "Status INT NOT NULL," +
-                    "PRIMARY KEY(Direccion)" +
+                    "PRIMARY KEY(Direccion)," +
+                    "FOREIGN KEY (DNI_Dueno,Sexo_Dueno) REFERENCES Dueno(DNI,Sexo)," +
+                    "FOREIGN KEY (Codigo_Alquiler) REFERENCES Alquiler(PersonID)," +
+                    "FOREIGN KEY (Codigo_Zona) REFERENCES Zona(PersonID)" +
                     ")");
         } catch (
                 SQLException throwables) {
@@ -229,11 +257,17 @@ public class Tablas {
                     "Fecha_Fin VARCHAR(255) NOT NULL," +
                     "Precio FLOAT NOT NULL," +
                     "DNI_Inquilino VARCHAR(255) NOT NULL," +
+                    "Sexo_Inquilino VARCHAR(255) NOT NULL," +
                     "Domicilio_Inmueble VARCHAR(255)," +
                     "DNI_Garante VARCHAR(255) NOT NULL," +
+                    "Sexo_Garante VARCHAR(255) NOT NULL," +
                     "DNI_Escribano VARCHAR(255) NOT NULL," +
+                    "Sexo_Escribano VARCHAR(255) NOT NULL," +
                     "Status INT NOT NULL," +
-                    "PRIMARY KEY(Codigo)" +
+                    "PRIMARY KEY(Codigo)," +
+                    "FOREIGN KEY(DNI_Inquilino,Sexo_Inquilino) REFERENCES Inquilino(DNI,Sexo)," +
+                    "FOREIGN KEY(DNI_Garante,Sexo_Garante) REFERENCES Garante(DNI,Sexo)," +
+                    "FOREIGN KEY(DNI_Escribano,Sexo_Escribano) REFERENCES Escribano(DNI,Sexo)" +
                     ")");
             System.out.println("Create Alquiler");
         } catch (SQLException throwables) {
@@ -257,10 +291,14 @@ public class Tablas {
                     "Comision INT NOT NULL," +
                     "Precio FLOAT NOT NULL," +
                     "DNI_Comprador VARCHAR(255) NOT NULL," +
+                    "Sexo_Comprador VARCHAR(255) NOT NULL," +
                     "Domicilio_Inmueble VARCHAR(255)," +
                     "DNI_Vendedor VARCHAR(255) NOT NULL," +
+                    "Sexo_Vendedor VARCHAR(255) NOT NULL," +
                     "Status INT NOT NULL," +
-                    "PRIMARY KEY(Codigo)" +
+                    "PRIMARY KEY(Codigo)," +
+                    "FOREIGN KEY(DNI_Comprador,Sexo_Comprador) REFERENCES Comprador(DNI,Sexo)," +
+                    "FOREIGN KEY(DNI_Vendedor,Sexo_Vendedor) REFERENCES Vendedor(DNI,Sexo)" +
                     ")");
             System.out.println("Create Venta");
         } catch (SQLException throwables) {
@@ -351,6 +389,20 @@ public class Tablas {
         try {
             statement = connection.createStatement();
             statement.executeUpdate("DROP TABLE Escribano");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        Database.getInstance().disconnect();
+    }
+
+    public void DropRelationalDuenoInmueble(){
+        Connection connection = Database.getInstance().getConnection();
+
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate("DROP TABLE RelationalDuenoInmueble");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
