@@ -51,14 +51,6 @@ public class Garante extends Persona {
         return new Object[]{"Nombre", "Apellido", "DNI", "Telefono", "Sexo", "Direccion", "Fecha de Nacimiento", "Email", "Inquilino"};
     }
 
-    public String getDniInquilino() {
-        return dniInquilino;
-    }
-
-    public void setDniInquilino(String dniInquilino) {
-        this.dniInquilino = dniInquilino;
-    }
-
     private Object[] toObject() {
         return new Object[]{getNombre(), getApellido(), getDni(), getTelefono(), getSexo(), getDireccion(), getFechaNac(), getEmail(), getDniInquilino()};
     }

@@ -205,7 +205,7 @@ public class MainFrame extends JFrame {
                 Alquiler aux = registrarAlquiler.saveFields();
 
                 if (aux != null && inquilino != null && inmueble != null && garante != null && escribano != null) {
-                    Alquiler alquiler = new Alquiler(contrato, aux.getFechaFin(), inquilino.getDni(), inmueble.getDireccion(), garante.getDni(), escribano.getDni());
+                    Alquiler alquiler = new Alquiler(contrato, aux.getFechaFin(), inquilino.getDni(), inquilino.getSexo(), inmueble.getDireccion(), garante.getDni(), garante.getSexo(), escribano.getDni(), escribano.getSexo());
 
                     BusinessObject<Alquiler> businessObject = new DAOAlquiler();
 
@@ -513,7 +513,7 @@ public class MainFrame extends JFrame {
                 Venta aux = registrarVenta.saveFields();
 
                 if (aux != null && comprador != null && inmueble != null && vendedor != null) {
-                    Venta venta = new Venta(contrato, aux.getComision(), comprador.getDni(), inmueble.getDireccion(), vendedor.getDni());
+                    Venta venta = new Venta(contrato, aux.getComision(), comprador.getDni(), comprador.getSexo(), inmueble.getDireccion(), vendedor.getDni(), vendedor.getSexo());
 
                     BusinessObject<Venta> businessObject = new DAOVenta();
 

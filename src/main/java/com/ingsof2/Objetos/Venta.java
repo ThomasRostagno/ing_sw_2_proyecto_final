@@ -51,6 +51,7 @@ public class Venta extends Contrato {
 
     public void setSexoVendedor(String sexoVendedor) {
         this.sexoVendedor = sexoVendedor;
+    }
 
     public static Object[][] getDataVector(List<Venta> ventas) {
         Object[][] objects = new Object[ventas.size()][0];
