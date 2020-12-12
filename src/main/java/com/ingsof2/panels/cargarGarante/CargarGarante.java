@@ -402,6 +402,7 @@ public class CargarGarante extends JPanel {
                     direccionTextField.getText(),
                     fechaDeNacimientoTextField.getText(),
                     emailTextField.getText(),
+                    null,
                     null);
         } else {
             ApiException.showException(new ApiException(ErrorCode.INVALID_FIELDS));
