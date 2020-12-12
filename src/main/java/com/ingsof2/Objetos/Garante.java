@@ -5,18 +5,37 @@ import java.util.List;
 public class Garante extends Persona {
 
     private String dniInquilino;
+    private String sexoInquilino;
 
     public Garante() {
     }
 
-    public Garante(Persona aux, String dniInquilino) {
+    public Garante(Persona aux, String dniInquilino, String sexoInquilino) {
         super(aux);
+        this.dniInquilino = dniInquilino;
+        this.sexoInquilino = sexoInquilino;
+    }
+
+    public Garante(String nombre, String apellido, String telefono, String dni, String sexo, String direccion, String fecha_nac, String email, String dniInquilino, String sexoInquilino) {
+        super(nombre, apellido, telefono, dni, sexo, direccion, fecha_nac, email);
+        this.dniInquilino = dniInquilino;
+        this.sexoInquilino = sexoInquilino;
+    }
+
+    public String getDniInquilino() {
+        return dniInquilino;
+    }
+
+    public void setDniInquilino(String dniInquilino) {
         this.dniInquilino = dniInquilino;
     }
 
-    public Garante(String nombre, String apellido, String telefono, String dni, String sexo, String direccion, String fecha_nac, String email, String dniInquilino) {
-        super(nombre, apellido, telefono, dni, sexo, direccion, fecha_nac, email);
-        this.dniInquilino = dniInquilino;
+    public String getSexoInquilino() {
+        return sexoInquilino;
+    }
+
+    public void setSexoInquilino(String sexoInquilino) {
+        this.sexoInquilino = sexoInquilino;
     }
 
     public static Object[][] getDataVector(List<Garante> garantes) {

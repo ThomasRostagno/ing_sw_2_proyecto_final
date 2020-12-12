@@ -8,9 +8,12 @@ import java.util.List;
 public class Alquiler extends Contrato {
     private String fechaFin;
     private String dniInquilino;
+    private String sexoInquilino;
     private String domicilioInmueble;
     private String dniGarante;
+    private String sexoGarante;
     private String dniEscribano;
+    private String sexoEscribano;
 
     public Alquiler() {
     }
@@ -19,27 +22,36 @@ public class Alquiler extends Contrato {
         super(alquiler.getCodigo(), alquiler.getFecha(), alquiler.getPrecio(), alquiler.getTipo());
         this.fechaFin = alquiler.fechaFin;
         this.dniInquilino = alquiler.dniInquilino;
+        this.sexoInquilino = alquiler.sexoInquilino;
         this.domicilioInmueble = alquiler.domicilioInmueble;
         this.dniGarante = alquiler.dniGarante;
+        this.sexoGarante = alquiler.sexoGarante;
         this.dniEscribano = alquiler.dniEscribano;
+        this.sexoEscribano = alquiler.sexoEscribano;
     }
 
-    public Alquiler(Contrato contrato, String fechaFin, String dniInquilino, String domicilioInmueble, String dniGarante, String dniEscribano) {
+    public Alquiler(Contrato contrato, String fechaFin, String dniInquilino, String sexoInquilino, String domicilioInmueble, String dniGarante, String sexoGarante, String dniEscribano, String sexoEscribano) {
         super(contrato);
         this.fechaFin = fechaFin;
         this.dniInquilino = dniInquilino;
+        this.sexoInquilino = sexoInquilino;
         this.domicilioInmueble = domicilioInmueble;
         this.dniGarante = dniGarante;
+        this.sexoGarante = sexoGarante;
         this.dniEscribano = dniEscribano;
+        this.sexoEscribano = sexoEscribano;
     }
 
-    public Alquiler(String codigo, String fecha, float precio, int tipo, String fechaFin, String dniInquilino, String domicilioInmueble, String dniGarante, String dniEscribano) {
+    public Alquiler(String codigo, String fecha, float precio, int tipo, String fechaFin, String dniInquilino, String sexoInquilino, String domicilioInmueble, String dniGarante, String sexoGarante, String dniEscribano, String sexoEscribano) {
         super(codigo, fecha, precio, tipo);
         this.fechaFin = fechaFin;
         this.dniInquilino = dniInquilino;
+        this.sexoInquilino = sexoInquilino;
         this.domicilioInmueble = domicilioInmueble;
         this.dniGarante = dniGarante;
+        this.sexoGarante = sexoGarante;
         this.dniEscribano = dniEscribano;
+        this.sexoEscribano = sexoEscribano;
     }
 
     public static Object[][] getDataVector(List<Alquiler> alquileres) {
@@ -94,6 +106,30 @@ public class Alquiler extends Contrato {
             }
         }
         return alquileres;
+    }
+
+    public String getSexoInquilino() {
+        return sexoInquilino;
+    }
+
+    public void setSexoInquilino(String sexoInquilino) {
+        this.sexoInquilino = sexoInquilino;
+    }
+
+    public String getSexoGarante() {
+        return sexoGarante;
+    }
+
+    public void setSexoGarante(String sexoGarante) {
+        this.sexoGarante = sexoGarante;
+    }
+
+    public String getSexoEscribano() {
+        return sexoEscribano;
+    }
+
+    public void setSexoEscribano(String sexoEscribano) {
+        this.sexoEscribano = sexoEscribano;
     }
 
     public String getFechaFin() {

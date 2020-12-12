@@ -28,9 +28,12 @@ public class DAOAlquiler implements BusinessObject<Alquiler> {
                 alquiler.setFechaFin(rs.getString("Fecha_Fin"));
                 alquiler.setPrecio(rs.getFloat("Precio"));
                 alquiler.setDniInquilino(rs.getString("DNI_Inquilino"));
+                alquiler.setSexoInquilino(rs.getString("Sexo_Inquilino"));
                 alquiler.setDomicilioInmueble(rs.getString("Domicilio_Inmueble"));
                 alquiler.setDniGarante(rs.getString("DNI_Garante"));
+                alquiler.setSexoGarante(rs.getString("Sexo_Garante"));
                 alquiler.setDniEscribano(rs.getString("DNI_Escribano"));
+                alquiler.setSexoEscribano(rs.getString("Sexo_Escribano"));
 
 
                 alquileres.add(alquiler);
@@ -58,9 +61,12 @@ public class DAOAlquiler implements BusinessObject<Alquiler> {
                 alquiler.setFechaFin(rs.getString("Fecha_Fin"));
                 alquiler.setPrecio(rs.getFloat("Precio"));
                 alquiler.setDniInquilino(rs.getString("DNI_Inquilino"));
+                alquiler.setSexoGarante(rs.getString("Sexo_Inquilino"));
                 alquiler.setDomicilioInmueble(rs.getString("Domicilio_Inmueble"));
                 alquiler.setDniGarante(rs.getString("DNI_Garante"));
+                alquiler.setSexoGarante(rs.getString("Sexo_Garante"));
                 alquiler.setDniEscribano(rs.getString("DNI_Escribano"));
+                alquiler.setSexoEscribano(rs.getString("Sexo_Escribano"));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -70,8 +76,8 @@ public class DAOAlquiler implements BusinessObject<Alquiler> {
 
     @Override
     public int create(Alquiler alquiler) {
-        String sqlInsert = " INSERT INTO Alquiler (Codigo, Tipo, Fecha_Contrato, Fecha_Fin, Precio, DNI_Inquilino, Domicilio_Inmueble, DNI_Garante, DNI_Escribano, Status)" +
-                " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sqlInsert = " INSERT INTO Alquiler (Codigo, Tipo, Fecha_Contrato, Fecha_Fin, Precio, DNI_Inquilino, Sexo_Inquilino, Domicilio_Inmueble, DNI_Garante, Sexo_Garante, DNI_Escribano, Sexo_Escribano, Status)" +
+                " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         int exito = 0;
         Connection connection = Database.getInstance().getConnection();
         PreparedStatement statement;
@@ -83,10 +89,13 @@ public class DAOAlquiler implements BusinessObject<Alquiler> {
             statement.setString(4, alquiler.getFechaFin());
             statement.setFloat(5, alquiler.getPrecio());
             statement.setString(6, alquiler.getDniInquilino());
-            statement.setString(7, alquiler.getDomicilioInmueble());
-            statement.setString(8, alquiler.getDniGarante());
-            statement.setString(9, alquiler.getDniEscribano());
-            statement.setInt(10, 1);
+            statement.setString(7, alquiler.getSexoInquilino());
+            statement.setString(8, alquiler.getDomicilioInmueble());
+            statement.setString(9, alquiler.getDniGarante());
+            statement.setString(10, alquiler.getSexoGarante());
+            statement.setString(11, alquiler.getDniEscribano());
+            statement.setString(12, alquiler.getSexoEscribano());
+            statement.setInt(13, 1);
             statement.executeUpdate();
             exito = 1;
 
@@ -99,8 +108,8 @@ public class DAOAlquiler implements BusinessObject<Alquiler> {
 
     @Override
     public int update(Alquiler alquiler) {
-        String sqlUpdate = " UPDATE Alquiler SET Tipo = ?, Fecha_Contrato = ?, Fecha_Fin = ?, Precio = ?, DNI_Inquilino = ?, Domicilio_Inmueble = ?, DNI_Garante = ?, DNI_Escribano =?" +
-                " VALUES (?, ?, ?, ?, ?, ?, ?, ?) WHERE (Codigo = '" + alquiler.getCodigo() + "')";
+        String sqlUpdate = " UPDATE Alquiler SET Tipo = ?, Fecha_Contrato = ?, Fecha_Fin = ?, Precio = ?, DNI_Inquilino = ?, Sexo_Inquilino = ?, Domicilio_Inmueble = ?, DNI_Garante = ?, Sexo_Garante = ?, DNI_Escribano =?, Sexo_Escribano = ?" +
+                " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) WHERE (Codigo = '" + alquiler.getCodigo() + "')";
         int exito = 0;
         Connection connection = Database.getInstance().getConnection();
         PreparedStatement statement;
@@ -111,9 +120,12 @@ public class DAOAlquiler implements BusinessObject<Alquiler> {
             statement.setString(3, alquiler.getFechaFin());
             statement.setFloat(4, alquiler.getPrecio());
             statement.setString(5, alquiler.getDniInquilino());
-            statement.setString(6, alquiler.getDomicilioInmueble());
-            statement.setString(7, alquiler.getDniGarante());
-            statement.setString(8, alquiler.getDniEscribano());
+            statement.setString(6, alquiler.getSexoInquilino());
+            statement.setString(7, alquiler.getDomicilioInmueble());
+            statement.setString(8, alquiler.getDniGarante());
+            statement.setString(9, alquiler.getSexoGarante());
+            statement.setString(10, alquiler.getDniEscribano());
+            statement.setString(11, alquiler.getSexoEscribano());
             statement.executeUpdate();
             exito = 1;
 
