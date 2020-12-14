@@ -109,7 +109,7 @@ public class DAOAlquiler implements BusinessObject<Alquiler> {
     @Override
     public int update(Alquiler alquiler) {
         String sqlUpdate = " UPDATE Alquiler SET Tipo = ?, Fecha_Contrato = ?, Fecha_Fin = ?, Precio = ?, DNI_Inquilino = ?, Sexo_Inquilino = ?, Domicilio_Inmueble = ?, DNI_Garante = ?, Sexo_Garante = ?, DNI_Escribano =?, Sexo_Escribano = ?" +
-                " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) WHERE (Codigo = '" + alquiler.getCodigo() + "')";
+                " WHERE (Codigo = '" + alquiler.getCodigo() + "')";
         int exito = 0;
         Connection connection = Database.getInstance().getConnection();
         PreparedStatement statement;

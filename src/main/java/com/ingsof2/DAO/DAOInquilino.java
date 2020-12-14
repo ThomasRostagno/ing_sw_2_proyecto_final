@@ -122,7 +122,7 @@ public class DAOInquilino implements BusinessObject<Inquilino> {
     @Override
     public int delete(Inquilino inquilino) {
         String sqlDelete = " UPDATE Inquilino SET Status = 0 " +
-                "WHERE (DNI = '" + inquilino.getDni() + "') AND ('" + "Sexo =" + inquilino.getSexo() + "')";
+                " WHERE (DNI = '" + inquilino.getDni() + "') AND (Sexo = '" + inquilino.getSexo() + "')";
         int exito = 0;
         Connection connection = Database.getInstance().getConnection();
         PreparedStatement statement;
