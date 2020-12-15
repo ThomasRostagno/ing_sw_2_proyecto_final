@@ -94,7 +94,7 @@ public class DAOVendedor implements BusinessObject<Vendedor> {
     @Override
     public int update(Vendedor vendedor) {
         String sqlUpdate = " UPDATE Vendedor SET Nombre = ?, Apellido = ?, Telefono = ?, Direccion = ?, Fecha_Nacimiento = ?, Email = ?" +
-                " VALUES (?, ?, ?, ?, ?, ?, ?) WHERE (DNI = '" + vendedor.getDni() + "') AND (Sexo ='" + vendedor.getSexo() + "')";
+                " WHERE (DNI = '" + vendedor.getDni() + "') AND (Sexo ='" + vendedor.getSexo() + "')";
         int exito = 0;
         Connection connection = Database.getInstance().getConnection();
         PreparedStatement statement;

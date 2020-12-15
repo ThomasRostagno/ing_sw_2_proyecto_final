@@ -109,7 +109,7 @@ public class DAOEscribano implements BusinessObject<Escribano> {
             statement.setString(4, escribano.getDireccion());
             statement.setString(5, escribano.getFechaNac());
             statement.setString(6, escribano.getEmail());
-            statement.setString(7,escribano.getMatricula());
+            statement.setString(7, escribano.getMatricula());
             statement.executeUpdate();
             exito = 1;
 

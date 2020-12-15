@@ -80,7 +80,7 @@ public class DAOZona implements BusinessObject<Zona> {
     public int update(Zona zona) {
         //TODO: borrar este comentario
         String sqlUpdate = " UPDATE Zona SET Nombre = ?, Descripcion = ?" +
-                " VALUES (?, ?) WHERE (Codigo = '" + zona.getCodigo() + "')";
+                "WHERE (Codigo = '" + zona.getCodigo() + "')";
         int exito = 0;
         Connection connection = Database.getInstance().getConnection();
         PreparedStatement statement;
@@ -101,7 +101,7 @@ public class DAOZona implements BusinessObject<Zona> {
     @Override
     public int delete(Zona zona) {
         String sqlDelete = " UPDATE Zona SET Status = 0 " +
-                "WHERE (DNI = '" + zona.getCodigo() + "')";
+                "WHERE (Codigo = '" + zona.getCodigo() + "')";
         int exito = 0;
         Connection connection = Database.getInstance().getConnection();
         PreparedStatement statement;
