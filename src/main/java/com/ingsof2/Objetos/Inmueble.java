@@ -62,7 +62,7 @@ public class Inmueble {
     }
 
     public static Object[] getHeaders() {
-        return new Object[]{"Tipo", "Condicion", "Direccion", "Superficie", "Ambientes", "Fecha de Construccion", "Antiguedad", "Valor", "Clasificacion", "Inquilino", "Dueño", "Alquiler", "Zona"};
+        return new Object[]{"Tipo", "Condicion", "Direccion", "Superficie", "Ambientes", "Fecha de Construccion", "Antiguedad", "Valor", "Clasificacion", "DNI Dueño", "Sexo Dueño", "Alquiler", "Zona"};
     }
 
     public String getTipo() {

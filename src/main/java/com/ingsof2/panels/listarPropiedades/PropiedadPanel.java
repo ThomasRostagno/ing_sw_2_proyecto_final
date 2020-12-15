@@ -58,11 +58,8 @@ public class PropiedadPanel extends JPanel {
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table.getTableHeader().setReorderingAllowed(false);
 
-        table.getColumn("Inquilino").setCellRenderer(new ButtonRenderer());
-        table.getColumn("Inquilino").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOInquilino()));
-
-        table.getColumn("Dueño").setCellRenderer(new ButtonRenderer());
-        table.getColumn("Dueño").setCellEditor(new ButtonEditor(new JCheckBox(), new DAODuenio()));
+        table.getColumn("DNI Dueño").setCellRenderer(new ButtonRenderer());
+        table.getColumn("DNI Dueño").setCellEditor(new ButtonEditor(new JCheckBox(), new DAODuenio()));
 
         table.getColumn("Alquiler").setCellRenderer(new ButtonRenderer());
         table.getColumn("Alquiler").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOAlquiler()));

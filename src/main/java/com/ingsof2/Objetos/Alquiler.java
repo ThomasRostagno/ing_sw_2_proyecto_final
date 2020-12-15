@@ -65,7 +65,7 @@ public class Alquiler extends Contrato {
     }
 
     public static Object[] getHeaders() {
-        return new Object[]{"Codigo", "Fecha", "Precio", "Tipo", "Fecha Fin", "Inquilino", "Direccion Inmueble", "Garante", "Escribano"};
+        return new Object[]{"Codigo", "Fecha", "Precio", "Tipo", "Fecha Fin", "DNI Inquilino", "Sexo Inquilino", "Direccion Inmueble", "DNI Garante", "Sexo Garante", "DNI Escribano", "Sexo Escribano"};
     }
 
     /**

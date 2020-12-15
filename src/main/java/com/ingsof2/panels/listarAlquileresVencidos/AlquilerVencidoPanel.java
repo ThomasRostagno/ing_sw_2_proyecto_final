@@ -50,19 +50,20 @@ public class AlquilerVencidoPanel extends JPanel {
         table = new JTable(dm);
 
         table.setFocusable(false);
-        table.setRowSelectionAllowed(false);
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        table.getTableHeader().setReorderingAllowed(false);
 
-        table.getColumn("Inquilino").setCellRenderer(new ButtonRenderer());
-        table.getColumn("Inquilino").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOInquilino()));
+        table.getColumn("DNI Inquilino").setCellRenderer(new ButtonRenderer());
+        table.getColumn("DNI Inquilino").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOInquilino()));
 
         table.getColumn("Direccion Inmueble").setCellRenderer(new ButtonRenderer());
         table.getColumn("Direccion Inmueble").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOInmueble()));
 
-        table.getColumn("Garante").setCellRenderer(new ButtonRenderer());
-        table.getColumn("Garante").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOGarante()));
+        table.getColumn("DNI Garante").setCellRenderer(new ButtonRenderer());
+        table.getColumn("DNI Garante").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOGarante()));
 
-        table.getColumn("Escribano").setCellRenderer(new ButtonRenderer());
-        table.getColumn("Escribano").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOEscribano()));
+        table.getColumn("DNI Escribano").setCellRenderer(new ButtonRenderer());
+        table.getColumn("DNI Escribano").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOEscribano()));
 
         JScrollPane scrollPane = new JScrollPane(table);
 

@@ -1,5 +1,6 @@
 package com.ingsof2.panels.delete;
 
+import com.ingsof2.Main;
 import com.ingsof2.exceptions.ApiException;
 import com.ingsof2.utils.Constants;
 import com.ingsof2.utils.ErrorCode;
@@ -15,23 +16,33 @@ import java.io.IOException;
 public class DeletePanel extends JPanel {
 
     private final JLabel cancelarAlquilerLabel = new JLabel("Cancelar alquiler");
+    private final JLabel eliminarVentaLabel = new JLabel("Eliminar venta");
     private final JLabel eliminarInquilinoLabel = new JLabel("Eliminar inquilino");
-    private final JLabel eliminarEscribanoLabel = new JLabel("Eliminar escribano");
+    private final JLabel eliminarGaranteLabel = new JLabel("Eliminar garante");
     private final JLabel eliminarPropiedadLabel = new JLabel("Eliminar propiedad");
+    private final JLabel eliminarEscribanoLabel = new JLabel("Eliminar escribano");
     private final JLabel eliminarDuenioLabel = new JLabel("Eliminar dueño");
+    private final JLabel eliminarCompradorLabel = new JLabel("Eliminar comprador");
+    private final JLabel eliminarVendedorLabel = new JLabel("Eliminar vendedor");
+    private final JLabel eliminarZonaLabel = new JLabel("Eliminar zona");
 
     private final JButton cancelarAlquilerButton = new JButton("Button");
+    private final JButton eliminarVentaButton = new JButton("Button");
     private final JButton eliminarInquilinoButton = new JButton("Button");
-    private final JButton eliminarEscribanoButton = new JButton("Button");
+    private final JButton eliminarGaranteButton = new JButton("Button");
     private final JButton eliminarPropiedadButton = new JButton("Button");
+    private final JButton eliminarEscribanoButton = new JButton("Button");
     private final JButton eliminarDuenioButton = new JButton("Button");
+    private final JButton eliminarCompradorButton = new JButton("Button");
+    private final JButton eliminarVendedorButton = new JButton("Button");
+    private final JButton eliminarZonaButton = new JButton("Button");
 
     private final int rows = 5;
 
     private final int xPad = Constants.X_PAD;
     private final int yPad = Constants.Y_PAD;
 
-    private final double x = eliminarPropiedadLabel.getPreferredSize().getWidth() + xPad + eliminarPropiedadButton.getPreferredSize().getWidth();
+    private final double x = eliminarPropiedadLabel.getPreferredSize().getWidth() + xPad + eliminarPropiedadButton.getPreferredSize().getWidth() + xPad + eliminarCompradorLabel.getPreferredSize().getWidth() + xPad + eliminarCompradorButton.getPreferredSize().getWidth();
     private final double y = eliminarPropiedadButton.getPreferredSize().getHeight() * rows + (rows - 1) * yPad;
 
     private final int initialX = (int) (Constants.WIDTH / 2 - x / 2);
@@ -50,14 +61,34 @@ public class DeletePanel extends JPanel {
         }
 
         cancelarAlquilerButton.addActionListener(e -> {
+            Main.mainFrame.goCancelarAlquiler();
+        });
+        eliminarVentaButton.addActionListener(e -> {
+            Main.mainFrame.goEliminarVenta();
         });
         eliminarInquilinoButton.addActionListener(e -> {
+            Main.mainFrame.goEliminarInquilino();
         });
-        eliminarEscribanoButton.addActionListener(e -> {
+        eliminarGaranteButton.addActionListener(e -> {
+            Main.mainFrame.goEliminarGarante();
         });
         eliminarPropiedadButton.addActionListener(e -> {
+            Main.mainFrame.goEliminarPropiedad();
+        });
+        eliminarEscribanoButton.addActionListener(e -> {
+            Main.mainFrame.goEliminarEscribano();
         });
         eliminarDuenioButton.addActionListener(e -> {
+            Main.mainFrame.goEliminarDuenio();
+        });
+        eliminarCompradorButton.addActionListener(e -> {
+            Main.mainFrame.goEliminarComprador();
+        });
+        eliminarVendedorButton.addActionListener(e -> {
+            Main.mainFrame.goEliminarVendedor();
+        });
+        eliminarZonaButton.addActionListener(e -> {
+            Main.mainFrame.goEliminarZona();
         });
 
         setLayout(new SpringLayout());
@@ -65,19 +96,34 @@ public class DeletePanel extends JPanel {
         add(cancelarAlquilerLabel);
         add(cancelarAlquilerButton);
 
+        add(eliminarVentaLabel);
+        add(eliminarVentaButton);
+
         add(eliminarInquilinoLabel);
         add(eliminarInquilinoButton);
 
-        add(eliminarEscribanoLabel);
-        add(eliminarEscribanoButton);
+        add(eliminarGaranteLabel);
+        add(eliminarGaranteButton);
 
         add(eliminarPropiedadLabel);
         add(eliminarPropiedadButton);
 
+        add(eliminarEscribanoLabel);
+        add(eliminarEscribanoButton);
+
         add(eliminarDuenioLabel);
         add(eliminarDuenioButton);
 
-        SpringUtilities.makeCompactGrid(this, rows, 2, initialX, initialY, xPad, yPad);
+        add(eliminarCompradorLabel);
+        add(eliminarCompradorButton);
+
+        add(eliminarVendedorLabel);
+        add(eliminarVendedorButton);
+
+        add(eliminarZonaLabel);
+        add(eliminarZonaButton);
+
+        SpringUtilities.makeCompactGrid(this, rows, 4, initialX, initialY, xPad, yPad);
 
     }
 

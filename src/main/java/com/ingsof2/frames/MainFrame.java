@@ -273,7 +273,7 @@ public class MainFrame extends JFrame {
 
                             if (businessObject.create(inquilino) == 1) {
                                 showAltaExitosa();
-                                goSeleccionarEscribano(inquilinoSeleccionadoButton);
+                                goSeleccionarInquilino(inquilinoSeleccionadoButton);
                             }
                         }
                     }
@@ -888,36 +888,6 @@ public class MainFrame extends JFrame {
         repaint();
     }
 
-    public void goModificarInquilino() {
-    }
-
-    public void goModificarGarante() {
-    }
-
-    public void goModificarAlquiler() {
-    }
-
-    public void goModificarVenta() {
-    }
-
-    public void goModificarPropiedad() {
-    }
-
-    public void goModificarEscribano() {
-    }
-
-    public void goModificarDuenio() {
-    }
-
-    public void goModificarComprador() {
-    }
-
-    public void goModificarVendedor() {
-    }
-
-    public void goModificarZona() {
-    }
-
     public void goShow() {
         showPanel = new ShowPanel();
         cancelButtonPanel = new CancelButtonPanel();
@@ -1147,7 +1117,7 @@ public class MainFrame extends JFrame {
                 Duenio duenio = listarDuenios.getDuenio();
                 if (duenio != null) {
 
-                    cargarDuenio = new CargarDuenio();
+                    cargarDuenio = new CargarDuenio(duenio);
                     getContentPane().removeAll();
                     getContentPane().add(cargarDuenio, BorderLayout.CENTER);
                     getContentPane().add(new GenericNextBackButtonPanel(new ButtonsInterface() {
@@ -1190,7 +1160,7 @@ public class MainFrame extends JFrame {
                 Comprador comprador = listarCompradores.getComprador();
                 if (comprador != null) {
 
-                    cargarComprador = new CargarComprador();
+                    cargarComprador = new CargarComprador(comprador);
                     getContentPane().removeAll();
                     getContentPane().add(cargarComprador, BorderLayout.CENTER);
                     getContentPane().add(new GenericNextBackButtonPanel(new ButtonsInterface() {
@@ -1233,7 +1203,7 @@ public class MainFrame extends JFrame {
                 Vendedor vendedor = listarVendedores.getVendedor();
                 if (vendedor != null) {
 
-                    cargarVendedor = new CargarVendedor();
+                    cargarVendedor = new CargarVendedor(vendedor);
                     getContentPane().removeAll();
                     getContentPane().add(cargarVendedor, BorderLayout.CENTER);
                     getContentPane().add(new GenericNextBackButtonPanel(new ButtonsInterface() {
@@ -1276,7 +1246,7 @@ public class MainFrame extends JFrame {
                 Zona zona = listarZonas.getZona();
                 if (zona != null) {
 
-                    cargarZona = new CargarZona();
+                    cargarZona = new CargarZona(zona);
                     getContentPane().removeAll();
                     getContentPane().add(cargarZona, BorderLayout.CENTER);
                     getContentPane().add(new GenericNextBackButtonPanel(new ButtonsInterface() {
@@ -1322,9 +1292,49 @@ public class MainFrame extends JFrame {
     }
 
     public void goEliminarInquilino() {
+        listarInquilinos = new ListarInquilinos();
+        backButtonDeletePanel = new BackButtonDeletePanel(new ButtonsInterface() {
+            @Override
+            public void next() {
+                Inquilino inquilino = listarInquilinos.getInquilino();
+                if (inquilino != null) {
+                    BusinessObject<Inquilino> businessObject = new DAOInquilino();
+
+                    if (businessObject.delete(inquilino) == 1) {
+                        showEliminarExitosa();
+                        goDelete();
+                    }
+                }
+            }
+        });
+        getContentPane().removeAll();
+        getContentPane().add(listarInquilinos, BorderLayout.CENTER);
+        getContentPane().add(backButtonDeletePanel, BorderLayout.PAGE_END);
+        revalidate();
+        repaint();
     }
 
     public void goEliminarGarante() {
+        listarGarantes = new ListarGarantes();
+        backButtonDeletePanel = new BackButtonDeletePanel(new ButtonsInterface() {
+            @Override
+            public void next() {
+                Garante garante = listarGarantes.getGarante();
+                if (garante != null) {
+                    BusinessObject<Garante> businessObject = new DAOGarante();
+
+                    if (businessObject.delete(garante) == 1) {
+                        showEliminarExitosa();
+                        goDelete();
+                    }
+                }
+            }
+        });
+        getContentPane().removeAll();
+        getContentPane().add(listarGarantes, BorderLayout.CENTER);
+        getContentPane().add(backButtonDeletePanel, BorderLayout.PAGE_END);
+        revalidate();
+        repaint();
     }
 
     public void goCancelarAlquiler() {
@@ -1334,21 +1344,141 @@ public class MainFrame extends JFrame {
     }
 
     public void goEliminarPropiedad() {
+        listarPropiedades = new ListarPropiedades();
+        backButtonDeletePanel = new BackButtonDeletePanel(new ButtonsInterface() {
+            @Override
+            public void next() {
+                Inmueble inmueble = listarPropiedades.getPropiedad();
+                if (inmueble != null) {
+                    BusinessObject<Inmueble> businessObject = new DAOInmueble();
+
+                    if (businessObject.delete(inmueble) == 1) {
+                        showEliminarExitosa();
+                        goDelete();
+                    }
+                }
+            }
+        });
+        getContentPane().removeAll();
+        getContentPane().add(listarPropiedades, BorderLayout.CENTER);
+        getContentPane().add(backButtonDeletePanel, BorderLayout.PAGE_END);
+        revalidate();
+        repaint();
     }
 
     public void goEliminarEscribano() {
+        listarEscribanos = new ListarEscribanos();
+        backButtonDeletePanel = new BackButtonDeletePanel(new ButtonsInterface() {
+            @Override
+            public void next() {
+                Escribano escribano = listarEscribanos.getEscribano();
+                if (escribano != null) {
+                    BusinessObject<Escribano> businessObject = new DAOEscribano();
+
+                    if (businessObject.delete(escribano) == 1) {
+                        showEliminarExitosa();
+                        goDelete();
+                    }
+                }
+            }
+        });
+        getContentPane().removeAll();
+        getContentPane().add(listarEscribanos, BorderLayout.CENTER);
+        getContentPane().add(backButtonDeletePanel, BorderLayout.PAGE_END);
+        revalidate();
+        repaint();
     }
 
     public void goEliminarDuenio() {
+        listarDuenios = new ListarDuenios();
+        backButtonDeletePanel = new BackButtonDeletePanel(new ButtonsInterface() {
+            @Override
+            public void next() {
+                Duenio duenio = listarDuenios.getDuenio();
+                if (duenio != null) {
+                    BusinessObject<Duenio> businessObject = new DAODuenio();
+
+                    if (businessObject.delete(duenio) == 1) {
+                        showEliminarExitosa();
+                        goDelete();
+                    }
+                }
+            }
+        });
+        getContentPane().removeAll();
+        getContentPane().add(listarDuenios, BorderLayout.CENTER);
+        getContentPane().add(backButtonDeletePanel, BorderLayout.PAGE_END);
+        revalidate();
+        repaint();
     }
 
     public void goEliminarComprador() {
+        listarCompradores = new ListarCompradores();
+        backButtonDeletePanel = new BackButtonDeletePanel(new ButtonsInterface() {
+            @Override
+            public void next() {
+                Comprador comprador = listarCompradores.getComprador();
+                if (comprador != null) {
+                    BusinessObject<Comprador> businessObject = new DAOComprador();
+
+                    if (businessObject.delete(comprador) == 1) {
+                        showEliminarExitosa();
+                        goDelete();
+                    }
+                }
+            }
+        });
+        getContentPane().removeAll();
+        getContentPane().add(listarCompradores, BorderLayout.CENTER);
+        getContentPane().add(backButtonDeletePanel, BorderLayout.PAGE_END);
+        revalidate();
+        repaint();
     }
 
     public void goEliminarVendedor() {
+        listarVendedores = new ListarVendedores();
+        backButtonDeletePanel = new BackButtonDeletePanel(new ButtonsInterface() {
+            @Override
+            public void next() {
+                Vendedor vendedor = listarVendedores.getVendedor();
+                if (vendedor != null) {
+                    BusinessObject<Vendedor> businessObject = new DAOVendedor();
+
+                    if (businessObject.delete(vendedor) == 1) {
+                        showEliminarExitosa();
+                        goDelete();
+                    }
+                }
+            }
+        });
+        getContentPane().removeAll();
+        getContentPane().add(listarVendedores, BorderLayout.CENTER);
+        getContentPane().add(backButtonDeletePanel, BorderLayout.PAGE_END);
+        revalidate();
+        repaint();
     }
 
     public void goEliminarZona() {
+        listarZonas = new ListarZonas();
+        backButtonDeletePanel = new BackButtonDeletePanel(new ButtonsInterface() {
+            @Override
+            public void next() {
+                Zona zona = listarZonas.getZona();
+                if (zona != null) {
+                    BusinessObject<Zona> businessObject = new DAOZona();
+
+                    if (businessObject.delete(zona) == 1) {
+                        showEliminarExitosa();
+                        goDelete();
+                    }
+                }
+            }
+        });
+        getContentPane().removeAll();
+        getContentPane().add(listarZonas, BorderLayout.CENTER);
+        getContentPane().add(backButtonDeletePanel, BorderLayout.PAGE_END);
+        revalidate();
+        repaint();
     }
 
     private void showAltaExitosa() {

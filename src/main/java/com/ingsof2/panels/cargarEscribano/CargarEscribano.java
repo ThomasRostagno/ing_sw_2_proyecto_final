@@ -149,6 +149,7 @@ public class CargarEscribano extends JPanel {
         fechaDeNacimientoTextField.setText(escribano.getFechaNac());
         telefonoTextField.setText(escribano.getTelefono());
         emailTextField.setText(escribano.getEmail());
+        matriculaTextField.setText(escribano.getMatricula());
     }
 
     private void setSizes() {

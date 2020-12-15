@@ -11,8 +11,7 @@ public class Tablas {
      * Querys de Creacion de Tablas de la DB
      **/
 
-    /*Creacion Inquilino*/
-    public void TablaInquilino() {
+    public static void tablaInquilino() {
         Connection connection = Database.getInstance().getConnection();
         Statement statement;
         try {
@@ -35,8 +34,7 @@ public class Tablas {
         Database.getInstance().disconnect();
     }
 
-    /*Creacion Comprador*/
-    public void TablaComprador() {
+    public static void tablaComprador() {
         Connection connection = Database.getInstance().getConnection();
         Statement statement;
         try {
@@ -59,8 +57,7 @@ public class Tablas {
         Database.getInstance().disconnect();
     }
 
-    /*Creacion Inquilino*/
-    public void TablaVendedor() {
+    public static void tablaVendedor() {
         Connection connection = Database.getInstance().getConnection();
         Statement statement;
         try {
@@ -83,8 +80,7 @@ public class Tablas {
         Database.getInstance().disconnect();
     }
 
-    /*Creacion Duenio*/ //Es Duenio
-    public void TablaDuenio() {
+    public static void tablaDuenio() {
         Connection connection = Database.getInstance().getConnection();
 
         Statement statement;
@@ -109,37 +105,7 @@ public class Tablas {
         Database.getInstance().disconnect();
     }
 
-    /*Creacion Garante*/
-    public void TablaGarante() {
-        Connection connection = Database.getInstance().getConnection();
-
-        Statement statement;
-        try {
-            statement = connection.createStatement();
-            statement.executeUpdate("CREATE TABLE Garante(" +
-                    "Nombre VARCHAR(255) NOT NULL," +
-                    "Apellido VARCHAR(255) NOT NULL," +
-                    "Telefono VARCHAR(255) NOT NULL," +
-                    "DNI VARCHAR(255) NOT NULL," +
-                    "Sexo VARCHAR(255) NOT NULL," +
-                    "Direccion VARCHAR(255) NOT NULL," +
-                    "Fecha_Nacimiento VARCHAR(255) NOT NULL," +
-                    "Email VARCHAR(255) NOT NULL," +
-                    "DNI_Inquilino VARCHAR(255)," +
-                    "Sexo_Inquilino VARCHAR(255)," +
-                    "Status INT NOT NULL," +
-                    "PRIMARY KEY(DNI,Sexo)," +
-                    "FOREIGN KEY(DNI,Sexo) REFERENCES Inquilino(DNI_Inquilino,Sexo_Inquilino)" +
-                    ")");
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-
-        Database.getInstance().disconnect();
-    }
-
-    /*Creacion Escribano*/
-    public void TablaEscribano() {
+    public static void tablaEscribano() {
         Connection connection = Database.getInstance().getConnection();
 
         Statement statement;
@@ -165,65 +131,7 @@ public class Tablas {
         Database.getInstance().disconnect();
     }
 
-    /*Creacion RelationalDuenoInmueble*/
-    public void RelationalDuenoInmueble() {
-        Connection connection = Database.getInstance().getConnection();
-
-        Statement statement;
-        try {
-            statement = connection.createStatement();
-            statement.executeUpdate("CREATE TABLE RelationalDuenoInmueble(" +
-                    "Direccion VARCHAR(255) NOT NULL," +
-                    "DNI_Dueno VARCHAR(255) ," +
-                    "Sexo_Dueno VARCHAR(255)," +
-                    "PRIMARY KEY(Direccion,DNI_Dueno,Sexo_Dueno)," +
-                    "FOREIGN KEY (DNI_Dueno,Sexo_Dueno) REFERENCES Dueno(DNI,Sexo)," +
-                    "FOREIGN KEY (Direccion) REFERENCES Inmueble(Direccion)" +
-                    ")");
-        } catch (
-                SQLException throwables) {
-            throwables.printStackTrace();
-        }
-
-        Database.getInstance().disconnect();
-    }
-
-    /*Creacion Inmueble*/
-    public void TablaInmueble() {
-        Connection connection = Database.getInstance().getConnection();
-
-        Statement statement;
-        try {
-            statement = connection.createStatement();
-            statement.executeUpdate("CREATE TABLE Inmueble(" +
-                    "Tipo VARCHAR(255) NOT NULL," +
-                    "Condicion VARCHAR(255) NOT NULL," +
-                    "Direccion VARCHAR(255) NOT NULL," +
-                    "Superficie INT NOT NULL," +
-                    "Num_Ambientes INT NOT NULL," +
-                    "Fecha_Construccion VARCHAR(255) NOT NULL," +
-                    "Valor FLOAT NOT NULL," +
-                    "Clasificacion VARCHAR(255) NOT NULL," +
-                    "DNI_Dueno VARCHAR(255) ," +
-                    "Sexo_Dueno VARCHAR(255)," +
-                    "Codigo_Alquiler VARCHAR(255)," +
-                    "Codigo_Zona VARCHAR(255)," +
-                    "Status INT NOT NULL," +
-                    "PRIMARY KEY(Direccion)," +
-                    "FOREIGN KEY (DNI_Dueno,Sexo_Dueno) REFERENCES Dueno(DNI,Sexo)," +
-                    "FOREIGN KEY (Codigo_Alquiler) REFERENCES Alquiler(PersonID)," +
-                    "FOREIGN KEY (Codigo_Zona) REFERENCES Zona(PersonID)" +
-                    ")");
-        } catch (
-                SQLException throwables) {
-            throwables.printStackTrace();
-        }
-
-        Database.getInstance().disconnect();
-    }
-
-    /*Creacion Zona*/
-    public void TablaZona() {
+    public static void tablaZona() {
         Connection connection = Database.getInstance().getConnection();
 
         Statement statement;
@@ -243,8 +151,35 @@ public class Tablas {
         Database.getInstance().disconnect();
     }
 
-    /*Creacion Alquiler*/
-    public void TablaAlquiler() {
+    public static void tablaGarante() {
+        Connection connection = Database.getInstance().getConnection();
+
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate("CREATE TABLE Garante(" +
+                    "Nombre VARCHAR(255) NOT NULL," +
+                    "Apellido VARCHAR(255) NOT NULL," +
+                    "Telefono VARCHAR(255) NOT NULL," +
+                    "DNI VARCHAR(255) NOT NULL," +
+                    "Sexo VARCHAR(255) NOT NULL," +
+                    "Direccion VARCHAR(255) NOT NULL," +
+                    "Fecha_Nacimiento VARCHAR(255) NOT NULL," +
+                    "Email VARCHAR(255) NOT NULL," +
+                    "DNI_Inquilino VARCHAR(255)," +
+                    "Sexo_Inquilino VARCHAR(255)," +
+                    "Status INT NOT NULL," +
+                    "PRIMARY KEY(DNI,Sexo)," +
+                    "FOREIGN KEY(DNI_Inquilino,Sexo_Inquilino) REFERENCES Inquilino(DNI,Sexo)" +
+                    ")");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        Database.getInstance().disconnect();
+    }
+
+    public static void tablaAlquiler() {
         Connection connection = Database.getInstance().getConnection();
 
         Statement statement;
@@ -277,8 +212,7 @@ public class Tablas {
         Database.getInstance().disconnect();
     }
 
-    /*Creacion Venta*/
-    public void TablaVenta() {
+    public static void tablaVenta() {
         Connection connection = Database.getInstance().getConnection();
 
         Statement statement;
@@ -308,11 +242,66 @@ public class Tablas {
         Database.getInstance().disconnect();
     }
 
+    public static void tablaInmueble() {
+        Connection connection = Database.getInstance().getConnection();
+
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate("CREATE TABLE Inmueble(" +
+                    "Tipo VARCHAR(255) NOT NULL," +
+                    "Condicion VARCHAR(255) NOT NULL," +
+                    "Direccion VARCHAR(255) NOT NULL," +
+                    "Superficie INT NOT NULL," +
+                    "Num_Ambientes INT NOT NULL," +
+                    "Fecha_Construccion VARCHAR(255) NOT NULL," +
+                    "Valor FLOAT NOT NULL," +
+                    "Clasificacion VARCHAR(255) NOT NULL," +
+                    "DNI_Dueno VARCHAR(255) ," +
+                    "Sexo_Dueno VARCHAR(255)," +
+                    "Codigo_Alquiler VARCHAR(255)," +
+                    "Codigo_Zona VARCHAR(255)," +
+                    "Status INT NOT NULL," +
+                    "PRIMARY KEY(Direccion)," +
+                    "FOREIGN KEY (DNI_Dueno,Sexo_Dueno) REFERENCES Dueno(DNI,Sexo)," +
+                    "FOREIGN KEY (Codigo_Alquiler) REFERENCES Alquiler(Codigo)," +
+                    "FOREIGN KEY (Codigo_Zona) REFERENCES Zona(Codigo)" +
+                    ")");
+        } catch (
+                SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        Database.getInstance().disconnect();
+    }
+
+    public static void relationalDuenoInmueble() {
+        Connection connection = Database.getInstance().getConnection();
+
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate("CREATE TABLE RelationalDuenoInmueble(" +
+                    "Direccion VARCHAR(255) NOT NULL," +
+                    "DNI_Dueno VARCHAR(255) ," +
+                    "Sexo_Dueno VARCHAR(255)," +
+                    "PRIMARY KEY(Direccion,DNI_Dueno,Sexo_Dueno)," +
+                    "FOREIGN KEY (DNI_Dueno,Sexo_Dueno) REFERENCES Dueno(DNI,Sexo)," +
+                    "FOREIGN KEY (Direccion) REFERENCES Inmueble(Direccion)" +
+                    ")");
+        } catch (
+                SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        Database.getInstance().disconnect();
+    }
+
     /**
      * Querys de Drop de las Tablas de la BD
      **/
 
-    public void DropInquilino() {
+    public static void dropInquilino() {
         Connection connection = Database.getInstance().getConnection();
 
         Statement statement;
@@ -326,7 +315,7 @@ public class Tablas {
         Database.getInstance().disconnect();
     }
 
-    public void DropComprador() {
+    public static void dropComprador() {
         Connection connection = Database.getInstance().getConnection();
 
         Statement statement;
@@ -340,7 +329,7 @@ public class Tablas {
         Database.getInstance().disconnect();
     }
 
-    public void DropVendedor() {
+    public static void dropVendedor() {
         Connection connection = Database.getInstance().getConnection();
 
         Statement statement;
@@ -354,7 +343,7 @@ public class Tablas {
         Database.getInstance().disconnect();
     }
 
-    public void DropDuenio() {
+    public static void dropDuenio() {
         Connection connection = Database.getInstance().getConnection();
 
         Statement statement;
@@ -368,7 +357,7 @@ public class Tablas {
         Database.getInstance().disconnect();
     }
 
-    public void DropGarante() {
+    public static void dropGarante() {
         Connection connection = Database.getInstance().getConnection();
 
         Statement statement;
@@ -382,7 +371,7 @@ public class Tablas {
         Database.getInstance().disconnect();
     }
 
-    public void DropEscribano() {
+    public static void dropEscribano() {
         Connection connection = Database.getInstance().getConnection();
 
         Statement statement;
@@ -396,7 +385,7 @@ public class Tablas {
         Database.getInstance().disconnect();
     }
 
-    public void DropRelationalDuenoInmueble(){
+    public static void dropRelationalDuenoInmueble(){
         Connection connection = Database.getInstance().getConnection();
 
         Statement statement;
@@ -410,7 +399,7 @@ public class Tablas {
         Database.getInstance().disconnect();
     }
 
-    public void DropInmueble() {
+    public static void dropInmueble() {
         Connection connection = Database.getInstance().getConnection();
 
         Statement statement;
@@ -424,7 +413,7 @@ public class Tablas {
         Database.getInstance().disconnect();
     }
 
-    public void DropZona() {
+    public static void dropZona() {
         Connection connection = Database.getInstance().getConnection();
 
         Statement statement;
@@ -438,7 +427,7 @@ public class Tablas {
         Database.getInstance().disconnect();
     }
 
-    public void DropAlquiler() {
+    public static void dropAlquiler() {
         Connection connection = Database.getInstance().getConnection();
 
         Statement statement;
@@ -453,7 +442,7 @@ public class Tablas {
         Database.getInstance().disconnect();
     }
 
-    public void DropVenta() {
+    public static void dropVenta() {
         Connection connection = Database.getInstance().getConnection();
 
         Statement statement;
@@ -468,5 +457,29 @@ public class Tablas {
         Database.getInstance().disconnect();
     }
 
+    public static void dropAllAndCreate() {
+        dropRelationalDuenoInmueble();
+        dropInmueble();
+        dropVenta();
+        dropAlquiler();
+        dropGarante();
+        dropInquilino();
+        dropComprador();
+        dropVendedor();
+        dropDuenio();
+        dropEscribano();
+        dropZona();
 
+        tablaInquilino();
+        tablaComprador();
+        tablaVendedor();
+        tablaDuenio();
+        tablaEscribano();
+        tablaZona();
+        tablaGarante();
+        tablaAlquiler();
+        tablaVenta();
+        tablaInmueble();
+        relationalDuenoInmueble();
+    }
 }

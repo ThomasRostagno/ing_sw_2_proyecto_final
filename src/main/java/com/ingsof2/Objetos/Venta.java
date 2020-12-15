@@ -63,7 +63,7 @@ public class Venta extends Contrato {
     }
 
     public static Object[] getHeaders() {
-        return new Object[]{"Código", "Fecha", "Precio", "Tipo", "Comisión", "Comprador", "Dirección Inmueble", "Vendedor"};
+        return new Object[]{"Código", "Fecha", "Precio", "Tipo", "Comisión", "DNI Comprador", "Sexo Comprador", "Dirección Inmueble", "DNI Vendedor", "Sexo Vendedor"};
     }
 
     public int getComision() {

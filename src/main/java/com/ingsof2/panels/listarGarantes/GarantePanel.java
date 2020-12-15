@@ -60,8 +60,8 @@ public class GarantePanel extends JPanel {
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table.getTableHeader().setReorderingAllowed(false);
 
-        table.getColumn("Inquilino").setCellRenderer(new ButtonRenderer());
-        table.getColumn("Inquilino").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOInquilino()));
+        table.getColumn("DNI Inquilino").setCellRenderer(new ButtonRenderer());
+        table.getColumn("DNI Inquilino").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOInquilino()));
 
         JScrollPane scrollPane = new JScrollPane(table);
 

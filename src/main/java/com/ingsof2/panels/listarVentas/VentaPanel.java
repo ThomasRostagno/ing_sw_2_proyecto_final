@@ -53,16 +53,17 @@ public class VentaPanel extends JPanel {
         table = new JTable(dm);
 
         table.setFocusable(false);
-        table.setRowSelectionAllowed(false);
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        table.getTableHeader().setReorderingAllowed(false);
 
-        table.getColumn("Comprador").setCellRenderer(new ButtonRenderer());
-        table.getColumn("Comprador").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOComprador()));
+        table.getColumn("DNI Comprador").setCellRenderer(new ButtonRenderer());
+        table.getColumn("DNI Comprador").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOComprador()));
 
         table.getColumn("Dirección Inmueble").setCellRenderer(new ButtonRenderer());
         table.getColumn("Dirección Inmueble").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOInmueble()));
 
-        table.getColumn("Vendedor").setCellRenderer(new ButtonRenderer());
-        table.getColumn("Vendedor").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOVendedor()));
+        table.getColumn("DNI Vendedor").setCellRenderer(new ButtonRenderer());
+        table.getColumn("DNI Vendedor").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOVendedor()));
 
         JScrollPane scrollPane = new JScrollPane(table);
 
@@ -85,28 +86,36 @@ public class VentaPanel extends JPanel {
         gridBagConstraints.gridheight = 4;
         add(scrollPane, gridBagConstraints);
 
+        campoABuscarLabel.setMinimumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
         campoABuscarLabel.setPreferredSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
+        campoABuscarLabel.setMaximumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.gridwidth = 1;
         gridBagConstraints.gridheight = 1;
         add(campoABuscarLabel, gridBagConstraints);
 
+        campoABuscarComboBox.setMinimumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
         campoABuscarComboBox.setPreferredSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
+        campoABuscarComboBox.setMaximumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.gridwidth = 1;
         gridBagConstraints.gridheight = 1;
         add(campoABuscarComboBox, gridBagConstraints);
 
+        valorLabel.setMinimumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
         valorLabel.setPreferredSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
+        valorLabel.setMaximumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.gridwidth = 1;
         gridBagConstraints.gridheight = 1;
         add(valorLabel, gridBagConstraints);
 
+        valorTextField.setMinimumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
         valorTextField.setPreferredSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
+        valorTextField.setMaximumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.gridwidth = 1;

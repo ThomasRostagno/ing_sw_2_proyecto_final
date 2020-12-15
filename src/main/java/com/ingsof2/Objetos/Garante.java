@@ -48,7 +48,7 @@ public class Garante extends Persona {
     }
 
     public static Object[] getHeaders() {
-        return new Object[]{"Nombre", "Apellido", "DNI", "Telefono", "Sexo", "Direccion", "Fecha de Nacimiento", "Email", "Inquilino"};
+        return new Object[]{"Nombre", "Apellido", "DNI", "Telefono", "Sexo", "Direccion", "Fecha de Nacimiento", "Email", "DNI Inquilino", "Sexo Inquilino"};
     }
 
     private Object[] toObject() {

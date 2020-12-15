@@ -46,7 +46,7 @@ public class ShowPanel extends JPanel {
     private final int xPad = Constants.X_PAD;
     private final int yPad = Constants.Y_PAD;
 
-    private final double x = listarAlquileresEnVigenciaLabel.getPreferredSize().getWidth() + xPad + listarAlquileresEnVigenciaButton.getPreferredSize().getWidth() + xPad + listarPropiedadesLabel.getPreferredSize().getWidth() + xPad + listarPropiedadesButton.getPreferredSize().getWidth();
+    private final double x = listarAlquileresEnVigenciaLabel.getPreferredSize().getWidth() + xPad + listarAlquileresEnVigenciaButton.getPreferredSize().getWidth() + xPad + listarCompradoresLabel.getPreferredSize().getWidth() + xPad + listarCompradoresButton.getPreferredSize().getWidth();
     private final double y = listarAlquileresEnVigenciaButton.getPreferredSize().getHeight() * rows + (rows - 1) * yPad;
 
     private final int initialX = (int) (Constants.WIDTH / 2 - x / 2);
