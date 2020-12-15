@@ -124,7 +124,7 @@ public class DAOInmueble implements BusinessObject<Inmueble> {
     @Override
     public int update(Inmueble inmueble) {
         String sqlUpdate = " UPDATE Inmueble SET Tipo = ?, Condicion = ?, Superficie = ?, Num_Ambientes = ?, Fecha_Construccion = ?, Valor = ?, Clasificacion = ?, DNI_Dueno = ?, Sexo_Dueno = ?, Codigo_Alquiler = ?, Codigo_Zona = ?" +
-                " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) WHERE (Direccion = '" + inmueble.getDireccion() + "')";
+                " WHERE (Direccion = '" + inmueble.getDireccion() + "')";
         int exito = 0;
         Connection connection = Database.getInstance().getConnection();
         PreparedStatement statement;
@@ -153,6 +153,19 @@ public class DAOInmueble implements BusinessObject<Inmueble> {
 
     @Override
     public int delete(Inmueble inmueble) {
-        return 0;
+        String sqlDelete = " UPDATE Inmueble SET Status = 0 " +
+                "WHERE (Direccion = '" + inmueble.getDireccion() + "')";
+        int exito = 0;
+        Connection connection = Database.getInstance().getConnection();
+        PreparedStatement statement;
+        try {
+            statement = connection.prepareStatement(sqlDelete);
+            statement.executeUpdate();
+            exito = 1;
+        } catch (SQLException throwables) {
+            ApiException.showException(new ApiException(ErrorCode.FAIL_SAVING_IN_DB));
+        }
+        Database.getInstance().disconnect();
+        return exito;
     }
 }

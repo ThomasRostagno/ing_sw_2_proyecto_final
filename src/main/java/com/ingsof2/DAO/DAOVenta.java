@@ -102,7 +102,7 @@ public class DAOVenta implements BusinessObject<Venta> {
     @Override
     public int update(Venta venta) {
         String sqlUpdate = " UPDATE Venta SET Tipo = ?, Fecha_Contrato = ?, Comision = ?, Precio = ?, DNIComprador = ?, Sexo_Comprador = ?, Domicilio_Inmueble = ?, DNI_Vendedor = ?, Sexo_Vendedor = ?" +
-                " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) WHERE (Codigo = '" + venta.getCodigo() + "')";
+                " WHERE (Codigo = '" + venta.getCodigo() + "')";
         int exito = 0;
         Connection connection = Database.getInstance().getConnection();
         PreparedStatement statement;
