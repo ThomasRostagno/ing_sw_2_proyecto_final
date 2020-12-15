@@ -57,13 +57,13 @@ public class VentaPanel extends JPanel {
         table.getTableHeader().setReorderingAllowed(false);
 
         table.getColumn("DNI Comprador").setCellRenderer(new ButtonRenderer());
-        table.getColumn("DNI Comprador").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOComprador()));
+        table.getColumn("DNI Comprador").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOComprador(), true));
 
         table.getColumn("Dirección Inmueble").setCellRenderer(new ButtonRenderer());
-        table.getColumn("Dirección Inmueble").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOInmueble()));
+        table.getColumn("Dirección Inmueble").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOInmueble(), false));
 
         table.getColumn("DNI Vendedor").setCellRenderer(new ButtonRenderer());
-        table.getColumn("DNI Vendedor").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOVendedor()));
+        table.getColumn("DNI Vendedor").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOVendedor(), true));
 
         JScrollPane scrollPane = new JScrollPane(table);
 
@@ -147,10 +147,12 @@ public class VentaPanel extends JPanel {
 
         protected JButton button;
         private String label;
+        private String label2;
         private boolean isPushed;
+        private boolean isLabel2;
         private BusinessObject businessObject;
 
-        public ButtonEditor(JCheckBox checkBox, BusinessObject businessObject) {
+        public ButtonEditor(JCheckBox checkBox, BusinessObject businessObject, boolean isLabel2) {
             super(checkBox);
             this.businessObject = businessObject;
             button = new JButton();
@@ -161,6 +163,8 @@ public class VentaPanel extends JPanel {
                     fireEditingStopped();
                 }
             });
+
+            this.isLabel2 = isLabel2;
         }
 
         @Override
@@ -173,6 +177,10 @@ public class VentaPanel extends JPanel {
                 button.setBackground(table.getBackground());
             }
             label = (value == null) ? "" : value.toString();
+            if (isLabel2) {
+                label2 = (value == null) ? "" : table.getValueAt(row, column + 1).toString();
+            }
+
             button.setText(label);
             isPushed = true;
             return button;
@@ -180,8 +188,17 @@ public class VentaPanel extends JPanel {
 
         @Override
         public Object getCellEditorValue() {
+
+            String[] ids;
+
+            if (isLabel2) {
+                ids = new String[]{label, label2};
+            } else {
+                ids = new String[]{label};
+            }
+
             if (isPushed) {
-                Object object = businessObject.readOne(label);
+                Object object = businessObject.readOne(ids);
 
                 Utils.showInformation(Main.mainFrame, object);
             }

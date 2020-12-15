@@ -2,6 +2,7 @@ package com.ingsof2.panels.cargarPropiedad;
 
 import com.ingsof2.DAO.BusinessObject;
 import com.ingsof2.DAO.DAOZona;
+import com.ingsof2.Main;
 import com.ingsof2.Objetos.*;
 import com.ingsof2.exceptions.ApiException;
 import com.ingsof2.utils.Constants;
@@ -32,6 +33,8 @@ public class CargarPropiedad extends JPanel {
     private JLabel clasificacionLabel = new JLabel("Clasificación:");
     private JLabel valorLabel = new JLabel("Valor:");
     private JLabel zonaLabel = new JLabel("Zona:");
+    private JLabel duenioLabel = new JLabel("Dueño:");
+    private JLabel duenioSeleccionadoLabel = new JLabel("Dueño seleccionado:");
 
     private JComboBox<String> tipoComboBox = new JComboBox<>();
     private JComboBox<String> condicionComboBox = new JComboBox<>();
@@ -43,8 +46,10 @@ public class CargarPropiedad extends JPanel {
     private JComboBox<String> clasificacionComboBox = new JComboBox<>();
     private JTextField valorTextField = new JTextField();
     private JComboBox<Zona> zonaComboBox = new JComboBox<>();
+    private JButton duenioButton = new JButton("Button");
+    private JButton duenioSeleccionadoButton = new JButton("Dueño");
 
-    private final int rows = 5;
+    private final int rows = 6;
 
     private final int margin = Constants.MARGIN;
 
@@ -83,6 +88,10 @@ public class CargarPropiedad extends JPanel {
         clasificacionComboBox.addItem(CondicionesDePropiedad.COMERCIAL.getCondicion());
         clasificacionComboBox.addItem(CondicionesDePropiedad.EVENTOS.getCondicion());
         clasificacionComboBox.addItem(CondicionesDePropiedad.NO_HABITABLE.getCondicion());
+
+        duenioButton.addActionListener(e -> {
+            Main.mainFrame.goSeleccionarDuenio(duenioSeleccionadoButton);
+        });
 
         BusinessObject<Zona> businessObject = new DAOZona();
 
@@ -123,6 +132,10 @@ public class CargarPropiedad extends JPanel {
         add(valorTextField);
         add(zonaLabel);
         add(zonaComboBox);
+        add(duenioLabel);
+        add(duenioButton);
+        add(duenioSeleccionadoLabel);
+        add(duenioSeleccionadoButton);
 
         SpringUtilities.makeCompactGrid(this, rows, 4, initialX, initialY, xPad, yPad);
     }
@@ -416,6 +429,7 @@ public class CargarPropiedad extends JPanel {
         });
 
         zonaComboBox.addActionListener(e -> Constants.comboBoxValidator(zonaComboBox));
+        duenioSeleccionadoButton.setEnabled(false);
     }
 
     private boolean validateFields() {

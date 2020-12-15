@@ -8,9 +8,9 @@ import java.awt.*;
 
 public class GenericNextBackCreateButtonPanel extends JPanel {
 
-    private final JButton backButton = new JButton("Back");
-    private final JButton createButton = new JButton("Create");
-    private final JButton nextButton = new JButton("Next");
+    private final JButton backButton = new JButton("Atrás");
+    private final JButton createButton = new JButton("Crear");
+    private final JButton nextButton = new JButton("Siguiente");
 
     public GenericNextBackCreateButtonPanel(ButtonsInterface buttonsInterface) {
         Color backgroundColor = Constants.BUTTONS_BACKGROUND;

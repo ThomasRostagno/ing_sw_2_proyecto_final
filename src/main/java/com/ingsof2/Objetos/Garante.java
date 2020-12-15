@@ -52,7 +52,7 @@ public class Garante extends Persona {
     }
 
     private Object[] toObject() {
-        return new Object[]{getNombre(), getApellido(), getDni(), getTelefono(), getSexo(), getDireccion(), getFechaNac(), getEmail(), getDniInquilino()};
+        return new Object[]{getNombre(), getApellido(), getDni(), getTelefono(), getSexo(), getDireccion(), getFechaNac(), getEmail(), getDniInquilino(), getSexoInquilino()};
     }
 
     @Override

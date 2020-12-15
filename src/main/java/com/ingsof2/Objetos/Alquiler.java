@@ -89,25 +89,6 @@ public class Alquiler extends Contrato {
         return alquileres;
     }
 
-    /**
-     * Entra una lista de alquileres y un anio, remuevo los alquileres que no se iniciaron ese anio
-     **/
-    public static List<Alquiler> alquileresPorAnio(List<Alquiler> alquileres, String anio) {
-        //Convierto anio de String a entero
-        int anioint = Integer.parseInt(anio);
-        for (int i = alquileres.size() - 1; i >= 0; i--) {
-            //Recupero la fecha de inicio en un String, luego lo hago Date y luego recupero anio. Esto se puede mejorar, ya que gasto mucha memoria asi creo.
-            String stringDateAlquier = alquileres.get(i).getFecha();
-            LocalDate dateAlquiler = Utils.stringToLocalDate(stringDateAlquier);
-            int dateYearAlquiler = dateAlquiler.getYear();
-            /**Condicional, remueve si los anios son distintos**/
-            if (!(dateYearAlquiler == anioint)) {
-                alquileres.remove(i);
-            }
-        }
-        return alquileres;
-    }
-
     public String getSexoInquilino() {
         return sexoInquilino;
     }
@@ -173,6 +154,6 @@ public class Alquiler extends Contrato {
     }
 
     private Object[] toObject() {
-        return new Object[]{getCodigo(), getFecha(), getPrecio(), getTipo(), getFechaFin(), getDniInquilino(), getDomicilioInmueble(), getDniGarante(), getDniEscribano()};
+        return new Object[]{getCodigo(), getFecha(), getPrecio(), getTipo(), getFechaFin(), getDniInquilino(), getSexoInquilino(), getDomicilioInmueble(), getDniGarante(), getSexoGarante(), getDniEscribano(), getSexoEscribano()};
     }
 }

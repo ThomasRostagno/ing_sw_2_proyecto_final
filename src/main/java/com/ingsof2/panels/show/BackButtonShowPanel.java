@@ -10,8 +10,8 @@ import java.awt.*;
 
 public class BackButtonShowPanel extends JPanel {
 
-    private final JButton backButton = new JButton("Back");
-    private final JButton nextButton = new JButton("Next");
+    private final JButton backButton = new JButton("Atrás");
+    private final JButton nextButton = new JButton("Siguiente");
 
     public BackButtonShowPanel() {
         setBackground(Constants.BUTTONS_BACKGROUND);

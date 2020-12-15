@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class ExitButtonPanel extends JPanel {
 
-    private final JButton exitButton = new JButton("Exit");
+    private final JButton exitButton = new JButton("Salir");
 
     public ExitButtonPanel() {
         exitButton.addActionListener(e -> {

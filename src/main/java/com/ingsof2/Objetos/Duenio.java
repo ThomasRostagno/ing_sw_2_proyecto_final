@@ -31,4 +31,19 @@ public class Duenio extends Persona {
     private Object[] toObject() {
         return new Object[]{getNombre(), getApellido(), getDni(), getTelefono(), getSexo(), getDireccion(), getFechaNac(), getEmail()};
     }
+
+    @Override
+    public String toString() {
+        String template = "\tDueño:\n" +
+                "Nombre: %s\n" +
+                "Apellido: %s\n" +
+                "Teléfono: %s\n" +
+                "DNI: %s\n" +
+                "Sexo: %s\n" +
+                "Direccción: %s\n" +
+                "Fecha de nacimiento: %s\n" +
+                "Email: %s\n";
+
+        return String.format(template, this.getNombre(), this.getApellido(), this.getTelefono(), this.getDni(), this.getSexo(), this.getDireccion(), this.getFechaNac(), this.getEmail());
+    }
 }

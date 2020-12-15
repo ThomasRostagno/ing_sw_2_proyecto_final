@@ -7,9 +7,9 @@ import java.awt.*;
 
 public class MainButtons extends JPanel {
 
-    private final JButton addButton = new JButton("Add");
-    private final JButton showButton = new JButton("Show");
-    private final JButton deleteButton = new JButton("Delete");
+    private final JButton addButton = new JButton("Agregar");
+    private final JButton showButton = new JButton("Mostrar");
+    private final JButton deleteButton = new JButton("Eliminar");
 
     public MainButtons() {
 

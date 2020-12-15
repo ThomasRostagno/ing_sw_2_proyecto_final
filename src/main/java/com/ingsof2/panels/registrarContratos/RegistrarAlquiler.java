@@ -33,10 +33,10 @@ public class RegistrarAlquiler extends JPanel {
     private JButton inmuebleButton = new JButton("Button");
     private JButton garanteButton = new JButton("Button");
     private JButton escribanoButton = new JButton("Button");
-    private JButton inquilinoSeleccionadoButton = new JButton("inquilino");
-    private JButton inmuebleSeleccionadoButton = new JButton("inmueble");
-    private JButton garanteSeleccionadoButton = new JButton("garante");
-    private JButton escribanoSeleccionadoButton = new JButton("escribano");
+    private JButton inquilinoSeleccionadoButton = new JButton("Inquilino");
+    private JButton inmuebleSeleccionadoButton = new JButton("Inmueble");
+    private JButton garanteSeleccionadoButton = new JButton("Garante");
+    private JButton escribanoSeleccionadoButton = new JButton("Escribano");
 
     private final int rows = 5;
 

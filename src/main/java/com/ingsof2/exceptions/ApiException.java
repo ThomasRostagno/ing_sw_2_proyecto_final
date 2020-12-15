@@ -1,5 +1,6 @@
 package com.ingsof2.exceptions;
 
+import com.ingsof2.Main;
 import com.ingsof2.utils.ErrorCode;
 
 import javax.swing.*;
@@ -20,7 +21,7 @@ public class ApiException extends Exception {
     }
 
     public static void showException(ApiException e) {
-        JOptionPane.showMessageDialog(new JFrame(), e.getDescription(), "Error",
+        JOptionPane.showMessageDialog(Main.mainFrame, e.getDescription(), "Error",
                 JOptionPane.ERROR_MESSAGE);
     }
 

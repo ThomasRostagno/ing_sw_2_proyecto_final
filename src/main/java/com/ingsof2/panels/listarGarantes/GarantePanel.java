@@ -61,7 +61,7 @@ public class GarantePanel extends JPanel {
         table.getTableHeader().setReorderingAllowed(false);
 
         table.getColumn("DNI Inquilino").setCellRenderer(new ButtonRenderer());
-        table.getColumn("DNI Inquilino").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOInquilino()));
+        table.getColumn("DNI Inquilino").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOInquilino(), true));
 
         JScrollPane scrollPane = new JScrollPane(table);
 
@@ -153,10 +153,12 @@ public class GarantePanel extends JPanel {
 
         protected JButton button;
         private String label;
+        private String label2;
         private boolean isPushed;
+        private boolean isLabel2;
         private BusinessObject businessObject;
 
-        public ButtonEditor(JCheckBox checkBox, BusinessObject businessObject) {
+        public ButtonEditor(JCheckBox checkBox, BusinessObject businessObject, boolean isLabel2) {
             super(checkBox);
             this.businessObject = businessObject;
             button = new JButton();
@@ -167,6 +169,8 @@ public class GarantePanel extends JPanel {
                     fireEditingStopped();
                 }
             });
+
+            this.isLabel2 = isLabel2;
         }
 
         @Override
@@ -179,6 +183,10 @@ public class GarantePanel extends JPanel {
                 button.setBackground(table.getBackground());
             }
             label = (value == null) ? "" : value.toString();
+            if (isLabel2) {
+                label2 = (value == null) ? "" : table.getValueAt(row, column + 1).toString();
+            }
+
             button.setText(label);
             isPushed = true;
             return button;
@@ -186,8 +194,17 @@ public class GarantePanel extends JPanel {
 
         @Override
         public Object getCellEditorValue() {
+
+            String[] ids;
+
+            if (isLabel2) {
+                ids = new String[]{label, label2};
+            } else {
+                ids = new String[]{label};
+            }
+
             if (isPushed) {
-                Object object = businessObject.readOne(label);
+                Object object = businessObject.readOne(ids);
 
                 Utils.showInformation(Main.mainFrame, object);
             }
