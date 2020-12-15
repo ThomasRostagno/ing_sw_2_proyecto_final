@@ -14,7 +14,6 @@ public class Inmueble {
     private String clasificacion; //residencial, familiar, no habitable, etc
     private String dniDuenio;
     private String sexoDuenio;
-    private String codigoAlquiler;
     private String codigoZona;
 
     public Inmueble() {
@@ -32,11 +31,10 @@ public class Inmueble {
         this.clasificacion = inmueble.clasificacion;
         this.dniDuenio = inmueble.dniDuenio;
         this.sexoDuenio = inmueble.sexoDuenio;
-        this.codigoAlquiler = inmueble.codigoAlquiler;
         this.codigoZona = inmueble.codigoZona;
     }
 
-    public Inmueble(String tipo, String condicion, String direccion, int superficie, int numAmbientes, String fechaConstruccion, int antiguedad, float valor, String clasificacion, String dniDuenio, String sexoDuenio, String codigoAlquiler, String codigoZona) {
+    public Inmueble(String tipo, String condicion, String direccion, int superficie, int numAmbientes, String fechaConstruccion, int antiguedad, float valor, String clasificacion, String dniDuenio, String sexoDuenio, String codigoZona) {
         this.tipo = tipo;
         this.condicion = condicion;
         this.direccion = direccion;
@@ -48,7 +46,6 @@ public class Inmueble {
         this.clasificacion = clasificacion;
         this.dniDuenio = dniDuenio;
         this.sexoDuenio = sexoDuenio;
-        this.codigoAlquiler = codigoAlquiler;
         this.codigoZona = codigoZona;
     }
 
@@ -62,7 +59,7 @@ public class Inmueble {
     }
 
     public static Object[] getHeaders() {
-        return new Object[]{"Tipo", "Condicion", "Direccion", "Superficie", "Ambientes", "Fecha de Construccion", "Antiguedad", "Valor", "Clasificacion", "DNI Dueño", "Sexo Dueño", "Alquiler", "Zona"};
+        return new Object[]{"Tipo", "Condicion", "Direccion", "Superficie", "Ambientes", "Fecha de Construccion", "Antiguedad", "Valor", "Clasificacion", "DNI Dueño", "Sexo Dueño", "Zona"};
     }
 
     public String getTipo() {
@@ -153,14 +150,6 @@ public class Inmueble {
         this.sexoDuenio = sexoDuenio;
     }
 
-    public String getCodigoAlquiler() {
-        return codigoAlquiler;
-    }
-
-    public void setCodigoAlquiler(String codigoAlquiler) {
-        this.codigoAlquiler = codigoAlquiler;
-    }
-
     public String getCodigoZona() {
         return codigoZona;
     }
@@ -170,7 +159,7 @@ public class Inmueble {
     }
 
     private Object[] toObject() {
-        return new Object[]{getTipo(), getCondicion(), getDireccion(), getSuperficie(), getNumAmbientes(), getFechaConstruccion(), getAntiguedad(), getValor(), getClasificacion(), getDniDuenio(), getSexoDuenio(), getCodigoAlquiler(), getCodigoZona()};
+        return new Object[]{getTipo(), getCondicion(), getDireccion(), getSuperficie(), getNumAmbientes(), getFechaConstruccion(), getAntiguedad(), getValor(), getClasificacion(), getDniDuenio(), getSexoDuenio(), getCodigoZona()};
     }
 
     /**

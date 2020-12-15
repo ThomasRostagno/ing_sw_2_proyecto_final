@@ -31,20 +31,20 @@ public class ShowPanel extends JPanel {
     private final JLabel listarVendedoresLabel = new JLabel("Listar vendedores");
     private final JLabel listarZonasLabel = new JLabel("Listar zonas");
 
-    private final JButton listarAlquileresEnVigenciaButton = new JButton("Button");
-    private final JButton listarAlquileresAVencerButton = new JButton("Button");
-    private final JButton listarAlquileresVencidosButton = new JButton("Button");
-    private final JButton listarAlquileresPorAnioButton = new JButton("Button");
-    private final JButton listarVentasButton = new JButton("Button");
-    private final JButton listarVentasPorAnioButton = new JButton("Button");
-    private final JButton listarInquilinosButton = new JButton("Button");
-    private final JButton listarGarantesButton = new JButton("Button");
-    private final JButton listarPropiedadesButton = new JButton("Button");
-    private final JButton listarEscribanosButton = new JButton("Button");
-    private final JButton listarDueniosButton = new JButton("Button");
-    private final JButton listarCompradoresButton = new JButton("Button");
-    private final JButton listarVendedoresButton = new JButton("Button");
-    private final JButton listarZonasButton = new JButton("Button");
+    private final JButton listarAlquileresEnVigenciaButton = new JButton("Listar alquileres en vigencia");
+    private final JButton listarAlquileresAVencerButton = new JButton("Listar alquileres a vencer");
+    private final JButton listarAlquileresVencidosButton = new JButton("Listar alquileres vencidos");
+    private final JButton listarAlquileresPorAnioButton = new JButton("Listar alquileres por año");
+    private final JButton listarVentasButton = new JButton("Listar ventas");
+    private final JButton listarVentasPorAnioButton = new JButton("Listar ventas por año");
+    private final JButton listarInquilinosButton = new JButton("Listar inquilinos");
+    private final JButton listarGarantesButton = new JButton("Listar garantes");
+    private final JButton listarPropiedadesButton = new JButton("Listar propiedades");
+    private final JButton listarEscribanosButton = new JButton("Listar escribanos");
+    private final JButton listarDueniosButton = new JButton("Listar dueños");
+    private final JButton listarCompradoresButton = new JButton("Listar compradores");
+    private final JButton listarVendedoresButton = new JButton("Listar vendedores");
+    private final JButton listarZonasButton = new JButton("Listar zonas");
 
     private final int rows = 8;
 
@@ -97,7 +97,7 @@ public class ShowPanel extends JPanel {
             if (!Utils.isNullOrEmpty(offsetString)) {
                 int offset = Integer.parseInt(offsetString);
 
-                if (offset <= 2999 && offset >= 1900) {
+                if (offset <= 2099 && offset >= 1900) {
                     Main.mainFrame.goListarAlquileresPorAnio(offset);
                 } else {
                     ApiException.showException(new ApiException(ErrorCode.INVALID_FIELDS));
@@ -120,7 +120,7 @@ public class ShowPanel extends JPanel {
             if (!Utils.isNullOrEmpty(offsetString)) {
                 int offset = Integer.parseInt(offsetString);
 
-                if (offset <= 2999 && offset >= 1900) {
+                if (offset <= 2099 && offset >= 1900) {
                     Main.mainFrame.goListarVentasPorAnio(offset);
                 } else {
                     ApiException.showException(new ApiException(ErrorCode.INVALID_FIELDS));

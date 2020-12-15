@@ -4,38 +4,15 @@ import java.util.List;
 
 public class Garante extends Persona {
 
-    private String dniInquilino;
-    private String sexoInquilino;
-
     public Garante() {
     }
 
-    public Garante(Persona aux, String dniInquilino, String sexoInquilino) {
+    public Garante(Persona aux) {
         super(aux);
-        this.dniInquilino = dniInquilino;
-        this.sexoInquilino = sexoInquilino;
     }
 
-    public Garante(String nombre, String apellido, String telefono, String dni, String sexo, String direccion, String fecha_nac, String email, String dniInquilino, String sexoInquilino) {
+    public Garante(String nombre, String apellido, String telefono, String dni, String sexo, String direccion, String fecha_nac, String email) {
         super(nombre, apellido, telefono, dni, sexo, direccion, fecha_nac, email);
-        this.dniInquilino = dniInquilino;
-        this.sexoInquilino = sexoInquilino;
-    }
-
-    public String getDniInquilino() {
-        return dniInquilino;
-    }
-
-    public void setDniInquilino(String dniInquilino) {
-        this.dniInquilino = dniInquilino;
-    }
-
-    public String getSexoInquilino() {
-        return sexoInquilino;
-    }
-
-    public void setSexoInquilino(String sexoInquilino) {
-        this.sexoInquilino = sexoInquilino;
     }
 
     public static Object[][] getDataVector(List<Garante> garantes) {
@@ -48,11 +25,11 @@ public class Garante extends Persona {
     }
 
     public static Object[] getHeaders() {
-        return new Object[]{"Nombre", "Apellido", "DNI", "Telefono", "Sexo", "Direccion", "Fecha de Nacimiento", "Email", "DNI Inquilino", "Sexo Inquilino"};
+        return new Object[]{"Nombre", "Apellido", "DNI", "Telefono", "Sexo", "Direccion", "Fecha de Nacimiento", "Email"};
     }
 
     private Object[] toObject() {
-        return new Object[]{getNombre(), getApellido(), getDni(), getTelefono(), getSexo(), getDireccion(), getFechaNac(), getEmail(), getDniInquilino(), getSexoInquilino()};
+        return new Object[]{getNombre(), getApellido(), getDni(), getTelefono(), getSexo(), getDireccion(), getFechaNac(), getEmail()};
     }
 
     @Override
@@ -62,12 +39,11 @@ public class Garante extends Persona {
                 "Apellido: %s\n" +
                 "Teléfono: %s\n" +
                 "DNI: %s\n" +
-                "DNI Inquilino: %s\n" +
                 "Sexo: %s\n" +
                 "Direccción: %s\n" +
                 "Fecha de nacimiento: %s\n" +
                 "Email: %s\n";
 
-        return String.format(template, this.getNombre(), this.getApellido(), this.getTelefono(), this.getDni(), dniInquilino, this.getSexo(), this.getDireccion(), this.getFechaNac(), this.getEmail());
+        return String.format(template, this.getNombre(), this.getApellido(), this.getTelefono(), this.getDni(), this.getSexo(), this.getDireccion(), this.getFechaNac(), this.getEmail());
     }
 }

@@ -179,6 +179,59 @@ public class Tablas {
         Database.getInstance().disconnect();
     }
 
+    public static void tablaInmueble() {
+        Connection connection = Database.getInstance().getConnection();
+
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate("CREATE TABLE Inmueble(" +
+                    "Tipo VARCHAR(255) NOT NULL," +
+                    "Condicion VARCHAR(255) NOT NULL," +
+                    "Direccion VARCHAR(255) NOT NULL," +
+                    "Superficie INT NOT NULL," +
+                    "Num_Ambientes INT NOT NULL," +
+                    "Fecha_Construccion VARCHAR(255) NOT NULL," +
+                    "Valor FLOAT NOT NULL," +
+                    "Clasificacion VARCHAR(255) NOT NULL," +
+                    "DNI_Dueno VARCHAR(255) ," +
+                    "Sexo_Dueno VARCHAR(255)," +
+                    "Codigo_Zona VARCHAR(255)," +
+                    "Status INT NOT NULL," +
+                    "PRIMARY KEY(Direccion)," +
+                    "FOREIGN KEY (DNI_Dueno,Sexo_Dueno) REFERENCES Dueno(DNI,Sexo)," +
+                    "FOREIGN KEY (Codigo_Zona) REFERENCES Zona(Codigo)" +
+                    ")");
+        } catch (
+                SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        Database.getInstance().disconnect();
+    }
+
+    public static void relationalDuenoInmueble() {
+        Connection connection = Database.getInstance().getConnection();
+
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate("CREATE TABLE RelationalDuenoInmueble(" +
+                    "Direccion VARCHAR(255) NOT NULL," +
+                    "DNI_Dueno VARCHAR(255) ," +
+                    "Sexo_Dueno VARCHAR(255)," +
+                    "PRIMARY KEY(Direccion,DNI_Dueno,Sexo_Dueno)," +
+                    "FOREIGN KEY (DNI_Dueno,Sexo_Dueno) REFERENCES Dueno(DNI,Sexo)," +
+                    "FOREIGN KEY (Direccion) REFERENCES Inmueble(Direccion)" +
+                    ")");
+        } catch (
+                SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        Database.getInstance().disconnect();
+    }
+
     public static void tablaAlquiler() {
         Connection connection = Database.getInstance().getConnection();
 
@@ -202,7 +255,8 @@ public class Tablas {
                     "PRIMARY KEY(Codigo)," +
                     "FOREIGN KEY(DNI_Inquilino,Sexo_Inquilino) REFERENCES Inquilino(DNI,Sexo)," +
                     "FOREIGN KEY(DNI_Garante,Sexo_Garante) REFERENCES Garante(DNI,Sexo)," +
-                    "FOREIGN KEY(DNI_Escribano,Sexo_Escribano) REFERENCES Escribano(DNI,Sexo)" +
+                    "FOREIGN KEY(DNI_Escribano,Sexo_Escribano) REFERENCES Escribano(DNI,Sexo)," +
+                    "FOREIGN KEY(Domicilio_Inmueble) REFERENCES Inmueble(Direccion)" +
                     ")");
             System.out.println("Create Alquiler");
         } catch (SQLException throwables) {
@@ -232,65 +286,11 @@ public class Tablas {
                     "Status INT NOT NULL," +
                     "PRIMARY KEY(Codigo)," +
                     "FOREIGN KEY(DNI_Comprador,Sexo_Comprador) REFERENCES Comprador(DNI,Sexo)," +
-                    "FOREIGN KEY(DNI_Vendedor,Sexo_Vendedor) REFERENCES Vendedor(DNI,Sexo)" +
+                    "FOREIGN KEY(DNI_Vendedor,Sexo_Vendedor) REFERENCES Vendedor(DNI,Sexo)," +
+                    "FOREIGN KEY(Domicilio_Inmueble) REFERENCES Inmueble(Direccion)" +
                     ")");
             System.out.println("Create Venta");
         } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-
-        Database.getInstance().disconnect();
-    }
-
-    public static void tablaInmueble() {
-        Connection connection = Database.getInstance().getConnection();
-
-        Statement statement;
-        try {
-            statement = connection.createStatement();
-            statement.executeUpdate("CREATE TABLE Inmueble(" +
-                    "Tipo VARCHAR(255) NOT NULL," +
-                    "Condicion VARCHAR(255) NOT NULL," +
-                    "Direccion VARCHAR(255) NOT NULL," +
-                    "Superficie INT NOT NULL," +
-                    "Num_Ambientes INT NOT NULL," +
-                    "Fecha_Construccion VARCHAR(255) NOT NULL," +
-                    "Valor FLOAT NOT NULL," +
-                    "Clasificacion VARCHAR(255) NOT NULL," +
-                    "DNI_Dueno VARCHAR(255) ," +
-                    "Sexo_Dueno VARCHAR(255)," +
-                    "Codigo_Alquiler VARCHAR(255)," +
-                    "Codigo_Zona VARCHAR(255)," +
-                    "Status INT NOT NULL," +
-                    "PRIMARY KEY(Direccion)," +
-                    "FOREIGN KEY (DNI_Dueno,Sexo_Dueno) REFERENCES Dueno(DNI,Sexo)," +
-                    "FOREIGN KEY (Codigo_Alquiler) REFERENCES Alquiler(Codigo)," +
-                    "FOREIGN KEY (Codigo_Zona) REFERENCES Zona(Codigo)" +
-                    ")");
-        } catch (
-                SQLException throwables) {
-            throwables.printStackTrace();
-        }
-
-        Database.getInstance().disconnect();
-    }
-
-    public static void relationalDuenoInmueble() {
-        Connection connection = Database.getInstance().getConnection();
-
-        Statement statement;
-        try {
-            statement = connection.createStatement();
-            statement.executeUpdate("CREATE TABLE RelationalDuenoInmueble(" +
-                    "Direccion VARCHAR(255) NOT NULL," +
-                    "DNI_Dueno VARCHAR(255) ," +
-                    "Sexo_Dueno VARCHAR(255)," +
-                    "PRIMARY KEY(Direccion,DNI_Dueno,Sexo_Dueno)," +
-                    "FOREIGN KEY (DNI_Dueno,Sexo_Dueno) REFERENCES Dueno(DNI,Sexo)," +
-                    "FOREIGN KEY (Direccion) REFERENCES Inmueble(Direccion)" +
-                    ")");
-        } catch (
-                SQLException throwables) {
             throwables.printStackTrace();
         }
 

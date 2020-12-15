@@ -41,7 +41,7 @@ public class GarantePanel extends JPanel {
         DefaultTableModel dm = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return column >= 8;
+                return false;
             }
         };
 
@@ -60,9 +60,6 @@ public class GarantePanel extends JPanel {
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table.getTableHeader().setReorderingAllowed(false);
 
-        table.getColumn("DNI Inquilino").setCellRenderer(new ButtonRenderer());
-        table.getColumn("DNI Inquilino").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOInquilino(), true));
-
         JScrollPane scrollPane = new JScrollPane(table);
 
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -70,8 +67,6 @@ public class GarantePanel extends JPanel {
         scrollPane.getVerticalScrollBar().setUnitIncrement(20);
 
         table.setPreferredScrollableViewportSize(table.getPreferredSize());
-
-        table.getColumnModel().getColumn(8).setPreferredWidth(100);
 
         Utils.setFilter(table, valorTextField, campoABuscarComboBox);
 
@@ -127,95 +122,5 @@ public class GarantePanel extends JPanel {
         ApiException.showException(new ApiException(ErrorCode.FAIL_SELECTING_GARANTE));
 
         return null;
-    }
-
-    static class ButtonRenderer extends JButton implements TableCellRenderer {
-
-        public ButtonRenderer() {
-            setOpaque(true);
-        }
-
-        @Override
-        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-            if (isSelected) {
-                setForeground(table.getSelectionForeground());
-                setBackground(table.getSelectionBackground());
-            } else {
-                setForeground(table.getForeground());
-                setBackground(UIManager.getColor("Button.background"));
-            }
-            setText((value == null) ? "" : value.toString());
-            return this;
-        }
-    }
-
-    static class ButtonEditor extends DefaultCellEditor {
-
-        protected JButton button;
-        private String label;
-        private String label2;
-        private boolean isPushed;
-        private boolean isLabel2;
-        private BusinessObject businessObject;
-
-        public ButtonEditor(JCheckBox checkBox, BusinessObject businessObject, boolean isLabel2) {
-            super(checkBox);
-            this.businessObject = businessObject;
-            button = new JButton();
-            button.setOpaque(true);
-            button.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    fireEditingStopped();
-                }
-            });
-
-            this.isLabel2 = isLabel2;
-        }
-
-        @Override
-        public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-            if (isSelected) {
-                button.setForeground(table.getSelectionForeground());
-                button.setBackground(table.getSelectionBackground());
-            } else {
-                button.setForeground(table.getForeground());
-                button.setBackground(table.getBackground());
-            }
-            label = (value == null) ? "" : value.toString();
-            if (isLabel2) {
-                label2 = (value == null) ? "" : table.getValueAt(row, column + 1).toString();
-            }
-
-            button.setText(label);
-            isPushed = true;
-            return button;
-        }
-
-        @Override
-        public Object getCellEditorValue() {
-
-            String[] ids;
-
-            if (isLabel2) {
-                ids = new String[]{label, label2};
-            } else {
-                ids = new String[]{label};
-            }
-
-            if (isPushed) {
-                Object object = businessObject.readOne(ids);
-
-                Utils.showInformation(Main.mainFrame, object);
-            }
-            isPushed = false;
-            return label;
-        }
-
-        @Override
-        public boolean stopCellEditing() {
-            isPushed = false;
-            return super.stopCellEditing();
-        }
     }
 }

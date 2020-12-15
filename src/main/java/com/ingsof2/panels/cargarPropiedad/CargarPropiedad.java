@@ -46,7 +46,7 @@ public class CargarPropiedad extends JPanel {
     private JComboBox<String> clasificacionComboBox = new JComboBox<>();
     private JTextField valorTextField = new JTextField();
     private JComboBox<Zona> zonaComboBox = new JComboBox<>();
-    private JButton duenioButton = new JButton("Button");
+    private JButton duenioButton = new JButton("Dueño");
     private JButton duenioSeleccionadoButton = new JButton("Dueño");
 
     private final int rows = 6;
@@ -441,7 +441,8 @@ public class CargarPropiedad extends JPanel {
                 Constants.fechaValidator(fechaDeConstruccionTextField) &&
                 Constants.floatValidator(valorTextField) &&
                 Constants.comboBoxValidator(clasificacionComboBox) &&
-                Constants.comboBoxValidator(zonaComboBox);
+                Constants.comboBoxValidator(zonaComboBox) &&
+                Constants.buttonValidator(duenioSeleccionadoButton);
     }
 
     public Inmueble saveFields() {
@@ -458,7 +459,6 @@ public class CargarPropiedad extends JPanel {
                     antiguedad,
                     Float.parseFloat(valorTextField.getText()),
                     clasificacionComboBox.getItemAt(clasificacionComboBox.getSelectedIndex()),
-                    null,
                     null,
                     null,
                     zonaComboBox.getItemAt(zonaComboBox.getSelectedIndex()).getCodigo());

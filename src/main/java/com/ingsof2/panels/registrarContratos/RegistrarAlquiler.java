@@ -29,10 +29,10 @@ public class RegistrarAlquiler extends JPanel {
     private JLabel escribanoSeleccionadoLabel = new JLabel("Escribano seleccionado:");
 
     private JTextField fechaDeFinTextField = new JTextField();
-    private JButton inquilinoButton = new JButton("Button");
-    private JButton inmuebleButton = new JButton("Button");
-    private JButton garanteButton = new JButton("Button");
-    private JButton escribanoButton = new JButton("Button");
+    private JButton inquilinoButton = new JButton("Inquilino");
+    private JButton inmuebleButton = new JButton("Inmueble");
+    private JButton garanteButton = new JButton("Garante");
+    private JButton escribanoButton = new JButton("Escribano");
     private JButton inquilinoSeleccionadoButton = new JButton("Inquilino");
     private JButton inmuebleSeleccionadoButton = new JButton("Inmueble");
     private JButton garanteSeleccionadoButton = new JButton("Garante");
@@ -147,7 +147,11 @@ public class RegistrarAlquiler extends JPanel {
     }
 
     private boolean validateFields() {
-        return Constants.fechaValidator(fechaDeFinTextField) && Constants.buttonValidator(inquilinoSeleccionadoButton) && Constants.buttonValidator(inmuebleSeleccionadoButton) && Constants.buttonValidator(garanteSeleccionadoButton) && Constants.buttonValidator(escribanoSeleccionadoButton);
+        return Constants.fechaValidator(fechaDeFinTextField) &&
+                Constants.buttonValidator(inquilinoSeleccionadoButton) &&
+                Constants.buttonValidator(inmuebleSeleccionadoButton) &&
+                Constants.buttonValidator(garanteSeleccionadoButton) &&
+                Constants.buttonValidator(escribanoSeleccionadoButton);
     }
 
     public Alquiler saveFields() {

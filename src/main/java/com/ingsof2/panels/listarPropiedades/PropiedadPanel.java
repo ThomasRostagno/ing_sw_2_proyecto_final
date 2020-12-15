@@ -61,9 +61,6 @@ public class PropiedadPanel extends JPanel {
         table.getColumn("DNI Dueño").setCellRenderer(new ButtonRenderer());
         table.getColumn("DNI Dueño").setCellEditor(new ButtonEditor(new JCheckBox(), new DAODuenio(), true));
 
-        table.getColumn("Alquiler").setCellRenderer(new ButtonRenderer());
-        table.getColumn("Alquiler").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOAlquiler(), false));
-
         table.getColumn("Zona").setCellRenderer(new ButtonRenderer());
         table.getColumn("Zona").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOZona(), false));
 
@@ -78,7 +75,6 @@ public class PropiedadPanel extends JPanel {
         table.getColumnModel().getColumn(9).setPreferredWidth(100);
         table.getColumnModel().getColumn(10).setPreferredWidth(100);
         table.getColumnModel().getColumn(11).setPreferredWidth(100);
-        table.getColumnModel().getColumn(12).setPreferredWidth(100);
 
         Utils.setFilter(table, valorTextField, campoABuscarComboBox);
 

@@ -54,6 +54,7 @@ public class MainFrame extends JFrame {
     private ButtonsAddPanel buttonsAddPanel;
     private GenericNextBackButtonPanel nextBackButtonRegistrarAlquilerPanel;
     private GenericNextBackButtonPanel nextBackButtonRegistrarVentaPanel;
+    private GenericNextBackButtonPanel nextBackButtonRegistrarPropiedadPanel;
     private ShowPanel showPanel;
     private BackButtonShowPanel backButtonShowPanel;
     private DeletePanel deletePanel;
@@ -212,14 +213,10 @@ public class MainFrame extends JFrame {
                 if (aux != null && inquilino != null && inmueble != null && garante != null && escribano != null) {
                     Alquiler alquiler = new Alquiler(contrato, aux.getFechaFin(), inquilino.getDni(), inquilino.getSexo(), inmueble.getDireccion(), garante.getDni(), garante.getSexo(), escribano.getDni(), escribano.getSexo());
 
-                    inmueble.setCodigoAlquiler(alquiler.getCodigo());
-
                     BusinessObject<Alquiler> businessObject = new DAOAlquiler();
-                    BusinessObject<Inmueble> inmuebleBusinessObject = new DAOInmueble();
 
-                    if (businessObject.create(alquiler) == 1 && inmuebleBusinessObject.update(inmueble) == 1) {
+                    if (businessObject.create(alquiler) == 1) {
                         showAltaExitosa();
-                        showModificarExitosa();
                         goAdd();
                     }
                 }
@@ -338,14 +335,15 @@ public class MainFrame extends JFrame {
             @Override
             public void create() {
                 cargarPropiedad = new CargarPropiedad();
-                getContentPane().removeAll();
-                getContentPane().add(cargarPropiedad, BorderLayout.CENTER);
-                getContentPane().add(new GenericNextBackButtonPanel(new ButtonsInterface() {
+                nextBackButtonRegistrarPropiedadPanel = new GenericNextBackButtonPanel(new ButtonsInterface() {
                     @Override
                     public void next() {
                         Inmueble inmueble = cargarPropiedad.saveFields();
 
                         if (inmueble != null) {
+                            inmueble.setDniDuenio(duenio.getDni());
+                            inmueble.setSexoDuenio(duenio.getSexo());
+
                             BusinessObject<Inmueble> businessObject = new DAOInmueble();
 
                             if (businessObject.create(inmueble) == 1) {
@@ -359,7 +357,10 @@ public class MainFrame extends JFrame {
                     public void back() {
                         goSeleccionarInmuebleAlquiler(inmuebleSeleccionadoButton);
                     }
-                }), BorderLayout.PAGE_END);
+                });
+                getContentPane().removeAll();
+                getContentPane().add(cargarPropiedad, BorderLayout.CENTER);
+                getContentPane().add(nextBackButtonRegistrarPropiedadPanel, BorderLayout.PAGE_END);
                 revalidate();
                 repaint();
             }
@@ -524,14 +525,11 @@ public class MainFrame extends JFrame {
                 if (aux != null && comprador != null && inmueble != null && vendedor != null) {
                     Venta venta = new Venta(contrato, aux.getComision(), comprador.getDni(), comprador.getSexo(), inmueble.getDireccion(), vendedor.getDni(), vendedor.getSexo());
 
-                    inmueble.setCodigoAlquiler(venta.getCodigo());
 
                     BusinessObject<Venta> businessObject = new DAOVenta();
-                    BusinessObject<Inmueble> inmuebleBusinessObject = new DAOInmueble();
 
-                    if (businessObject.create(venta) == 1 && inmuebleBusinessObject.update(inmueble) == 1) {
+                    if (businessObject.create(venta) == 1) {
                         showAltaExitosa();
-                        showModificarExitosa();
                         goAdd();
                     }
                 }
@@ -650,14 +648,15 @@ public class MainFrame extends JFrame {
             @Override
             public void create() {
                 cargarPropiedad = new CargarPropiedad();
-                getContentPane().removeAll();
-                getContentPane().add(cargarPropiedad, BorderLayout.CENTER);
-                getContentPane().add(new GenericNextBackButtonPanel(new ButtonsInterface() {
+                nextBackButtonRegistrarPropiedadPanel = new GenericNextBackButtonPanel(new ButtonsInterface() {
                     @Override
                     public void next() {
                         Inmueble inmueble = cargarPropiedad.saveFields();
 
                         if (inmueble != null) {
+                            inmueble.setDniDuenio(duenio.getDni());
+                            inmueble.setSexoDuenio(duenio.getSexo());
+
                             BusinessObject<Inmueble> businessObject = new DAOInmueble();
 
                             if (businessObject.create(inmueble) == 1) {
@@ -671,7 +670,10 @@ public class MainFrame extends JFrame {
                     public void back() {
                         goSeleccionarInmuebleVenta(inmuebleSeleccionadoButton);
                     }
-                }), BorderLayout.PAGE_END);
+                });
+                getContentPane().removeAll();
+                getContentPane().add(cargarPropiedad, BorderLayout.CENTER);
+                getContentPane().add(nextBackButtonRegistrarPropiedadPanel, BorderLayout.PAGE_END);
                 revalidate();
                 repaint();
             }
@@ -759,7 +761,7 @@ public class MainFrame extends JFrame {
 
     public void goCargarPropiedad() {
         cargarPropiedad = new CargarPropiedad();
-        buttonsAddPanel = new ButtonsAddPanel(new ButtonsInterface() {
+        nextBackButtonRegistrarPropiedadPanel = new GenericNextBackButtonPanel(new ButtonsInterface() {
             @Override
             public void next() {
                 Inmueble inmueble = cargarPropiedad.saveFields();
@@ -776,10 +778,15 @@ public class MainFrame extends JFrame {
                     }
                 }
             }
+
+            @Override
+            public void back() {
+                goAdd();
+            }
         });
         getContentPane().removeAll();
         getContentPane().add(cargarPropiedad, BorderLayout.CENTER);
-        getContentPane().add(buttonsAddPanel, BorderLayout.PAGE_END);
+        getContentPane().add(nextBackButtonRegistrarPropiedadPanel, BorderLayout.PAGE_END);
         revalidate();
         repaint();
     }
@@ -804,7 +811,7 @@ public class MainFrame extends JFrame {
 
                     getContentPane().removeAll();
                     getContentPane().add(cargarPropiedad, BorderLayout.CENTER);
-                    getContentPane().add(buttonsAddPanel, BorderLayout.PAGE_END);
+                    getContentPane().add(nextBackButtonRegistrarPropiedadPanel, BorderLayout.PAGE_END);
                     revalidate();
                     repaint();
                 }
@@ -843,7 +850,7 @@ public class MainFrame extends JFrame {
             public void back() {
                 getContentPane().removeAll();
                 getContentPane().add(cargarPropiedad, BorderLayout.CENTER);
-                getContentPane().add(buttonsAddPanel, BorderLayout.PAGE_END);
+                getContentPane().add(nextBackButtonRegistrarPropiedadPanel, BorderLayout.PAGE_END);
                 revalidate();
                 repaint();
             }
@@ -1148,6 +1155,9 @@ public class MainFrame extends JFrame {
                             Inmueble inmueble = cargarPropiedad.saveFields();
 
                             if (inmueble != null) {
+                                inmueble.setDniDuenio(duenio.getDni());
+                                inmueble.setSexoDuenio(duenio.getSexo());
+
                                 BusinessObject<Inmueble> businessObject = new DAOInmueble();
 
                                 if (businessObject.update(inmueble) == 1) {
