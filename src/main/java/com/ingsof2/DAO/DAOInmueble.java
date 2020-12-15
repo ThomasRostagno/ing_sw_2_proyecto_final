@@ -35,7 +35,6 @@ public class DAOInmueble implements BusinessObject<Inmueble> {
                 inmueble.setClasificacion(rs.getString("Clasificacion"));
                 inmueble.setDniDuenio(rs.getString("DNI_Dueno"));
                 inmueble.setSexoDuenio(rs.getString("Sexo_Dueno"));
-                inmueble.setCodigoAlquiler(rs.getString("Codigo_Alquiler"));
                 inmueble.setCodigoZona(rs.getString("Codigo_Zona"));
 
                 /**Calculo Antiguedad**/
@@ -73,7 +72,6 @@ public class DAOInmueble implements BusinessObject<Inmueble> {
                 inmueble.setClasificacion(rs.getString("Clasificacion"));
                 inmueble.setDniDuenio(rs.getString("DNI_Dueno"));
                 inmueble.setSexoDuenio(rs.getString("Sexo_Dueno"));
-                inmueble.setCodigoAlquiler(rs.getString("Codigo_Alquiler"));
                 inmueble.setCodigoZona(rs.getString("Codigo_Zona"));
 
                 /**Calculo Antiguedad**/
@@ -90,8 +88,8 @@ public class DAOInmueble implements BusinessObject<Inmueble> {
 
     @Override
     public int create(Inmueble inmueble) {
-        String sqlInsert = " INSERT INTO Inmueble (Tipo, Condicion, Direccion, Superficie, Num_Ambientes, Fecha_Construccion, Valor, Clasificacion, DNI_Dueno, Sexo_Dueno, Codigo_Alquiler, Codigo_Zona, Status)" +
-                " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sqlInsert = " INSERT INTO Inmueble (Tipo, Condicion, Direccion, Superficie, Num_Ambientes, Fecha_Construccion, Valor, Clasificacion, DNI_Dueno, Sexo_Dueno, Codigo_Zona, Status)" +
+                " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         int exito = 0;
         Connection connection = Database.getInstance().getConnection();
         PreparedStatement statement;
@@ -107,9 +105,8 @@ public class DAOInmueble implements BusinessObject<Inmueble> {
             statement.setString(8, inmueble.getClasificacion());
             statement.setString(9, inmueble.getDniDuenio());
             statement.setString(10, inmueble.getSexoDuenio());
-            statement.setString(11, inmueble.getCodigoAlquiler());
-            statement.setString(12, inmueble.getCodigoZona());
-            statement.setInt(13, 1);
+            statement.setString(11, inmueble.getCodigoZona());
+            statement.setInt(12, 1);
             statement.executeUpdate();
             exito = 1;
 
@@ -123,7 +120,7 @@ public class DAOInmueble implements BusinessObject<Inmueble> {
 
     @Override
     public int update(Inmueble inmueble) {
-        String sqlUpdate = " UPDATE Inmueble SET Tipo = ?, Condicion = ?, Superficie = ?, Num_Ambientes = ?, Fecha_Construccion = ?, Valor = ?, Clasificacion = ?, DNI_Dueno = ?, Sexo_Dueno = ?, Codigo_Alquiler = ?, Codigo_Zona = ?" +
+        String sqlUpdate = " UPDATE Inmueble SET Tipo = ?, Condicion = ?, Superficie = ?, Num_Ambientes = ?, Fecha_Construccion = ?, Valor = ?, Clasificacion = ?, DNI_Dueno = ?, Sexo_Dueno = ?, Codigo_Zona = ?" +
                 " WHERE (Direccion = '" + inmueble.getDireccion() + "')";
         int exito = 0;
         Connection connection = Database.getInstance().getConnection();
@@ -132,15 +129,14 @@ public class DAOInmueble implements BusinessObject<Inmueble> {
             statement = connection.prepareStatement(sqlUpdate);
             statement.setString(1, inmueble.getTipo());
             statement.setString(2, inmueble.getCondicion());
-            statement.setInt(4, inmueble.getSuperficie());
-            statement.setInt(5, inmueble.getNumAmbientes());
-            statement.setString(6, inmueble.getFechaConstruccion());
-            statement.setFloat(7, inmueble.getValor());
-            statement.setString(8, inmueble.getClasificacion());
-            statement.setString(9, inmueble.getDniDuenio());
-            statement.setString(10, inmueble.getSexoDuenio());
-            statement.setString(11, inmueble.getCodigoAlquiler());
-            statement.setString(12, inmueble.getCodigoZona());
+            statement.setInt(3, inmueble.getSuperficie());
+            statement.setInt(4, inmueble.getNumAmbientes());
+            statement.setString(5, inmueble.getFechaConstruccion());
+            statement.setFloat(6, inmueble.getValor());
+            statement.setString(7, inmueble.getClasificacion());
+            statement.setString(8, inmueble.getDniDuenio());
+            statement.setString(9, inmueble.getSexoDuenio());
+            statement.setString(10, inmueble.getCodigoZona());
             statement.executeUpdate();
             exito = 1;
 

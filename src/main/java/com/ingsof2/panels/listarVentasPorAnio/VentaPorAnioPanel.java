@@ -1,11 +1,10 @@
-package com.ingsof2.panels.listarPropiedades;
+package com.ingsof2.panels.listarVentasPorAnio;
 
 import com.ingsof2.DAO.*;
 import com.ingsof2.Main;
-import com.ingsof2.Objetos.Inmueble;
-import com.ingsof2.exceptions.ApiException;
+import com.ingsof2.Objetos.Alquiler;
+import com.ingsof2.Objetos.Venta;
 import com.ingsof2.utils.Constants;
-import com.ingsof2.utils.ErrorCode;
 import com.ingsof2.utils.Utils;
 
 import javax.swing.*;
@@ -16,7 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-public class PropiedadPanel extends JPanel {
+public class VentaPorAnioPanel extends JPanel {
 
     private final JTable table;
 
@@ -26,9 +25,9 @@ public class PropiedadPanel extends JPanel {
     private JComboBox<String> campoABuscarComboBox = new JComboBox<>();
     private JTextField valorTextField = new JTextField();
 
-    public PropiedadPanel() {
+    public VentaPorAnioPanel(int offset) {
 
-        for (Object header : Inmueble.getHeaders()) {
+        for (Object header : Venta.getHeaders()) {
             campoABuscarComboBox.addItem(header.toString());
         }
 
@@ -39,16 +38,14 @@ public class PropiedadPanel extends JPanel {
         DefaultTableModel dm = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return column >= 9;
+                return column >= 5;
             }
         };
 
-        BusinessObject<Inmueble> businessObject = new DAOInmueble();
+        BusinessObject<Venta> businessObject = new DAOVenta();
 
-        List<Inmueble> inmuebles = businessObject.readAll();
-
-        Object[][] objects = Inmueble.getDataVector(inmuebles);
-        Object[] headers = Inmueble.getHeaders();
+        Object[][] objects = Venta.getDataVector(Utils.filterVentasPorAnio(businessObject.readAll(), offset));;
+        Object[] headers = Venta.getHeaders();
 
         dm.setDataVector(objects, headers);
 
@@ -58,11 +55,14 @@ public class PropiedadPanel extends JPanel {
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table.getTableHeader().setReorderingAllowed(false);
 
-        table.getColumn("DNI Dueño").setCellRenderer(new ButtonRenderer());
-        table.getColumn("DNI Dueño").setCellEditor(new ButtonEditor(new JCheckBox(), new DAODuenio(), true));
+        table.getColumn("DNI Comprador").setCellRenderer(new ButtonRenderer());
+        table.getColumn("DNI Comprador").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOComprador(), true));
 
-        table.getColumn("Zona").setCellRenderer(new ButtonRenderer());
-        table.getColumn("Zona").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOZona(), false));
+        table.getColumn("Dirección Inmueble").setCellRenderer(new ButtonRenderer());
+        table.getColumn("Dirección Inmueble").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOInmueble(), false));
+
+        table.getColumn("DNI Vendedor").setCellRenderer(new ButtonRenderer());
+        table.getColumn("DNI Vendedor").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOVendedor(), true));
 
         JScrollPane scrollPane = new JScrollPane(table);
 
@@ -72,9 +72,9 @@ public class PropiedadPanel extends JPanel {
 
         table.setPreferredScrollableViewportSize(table.getPreferredSize());
 
-        table.getColumnModel().getColumn(9).setPreferredWidth(100);
-        table.getColumnModel().getColumn(10).setPreferredWidth(100);
-        table.getColumnModel().getColumn(11).setPreferredWidth(100);
+        table.getColumnModel().getColumn(5).setPreferredWidth(100);
+        table.getColumnModel().getColumn(6).setPreferredWidth(100);
+        table.getColumnModel().getColumn(7).setPreferredWidth(100);
 
         Utils.setFilter(table, valorTextField, campoABuscarComboBox);
 
@@ -85,49 +85,41 @@ public class PropiedadPanel extends JPanel {
         gridBagConstraints.gridheight = 4;
         add(scrollPane, gridBagConstraints);
 
+        campoABuscarLabel.setMinimumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
         campoABuscarLabel.setPreferredSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
+        campoABuscarLabel.setMaximumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.gridwidth = 1;
         gridBagConstraints.gridheight = 1;
         add(campoABuscarLabel, gridBagConstraints);
 
+        campoABuscarComboBox.setMinimumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
         campoABuscarComboBox.setPreferredSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
+        campoABuscarComboBox.setMaximumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.gridwidth = 1;
         gridBagConstraints.gridheight = 1;
         add(campoABuscarComboBox, gridBagConstraints);
 
+        valorLabel.setMinimumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
         valorLabel.setPreferredSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
+        valorLabel.setMaximumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.gridwidth = 1;
         gridBagConstraints.gridheight = 1;
         add(valorLabel, gridBagConstraints);
 
+        valorTextField.setMinimumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
         valorTextField.setPreferredSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
+        valorTextField.setMaximumSize(new Dimension(Constants.TEXTFIELD_WIDTH, Constants.TEXTFIELD_HEIGHT));
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.gridwidth = 1;
         gridBagConstraints.gridheight = 1;
         add(valorTextField, gridBagConstraints);
-    }
-
-    public Inmueble getPropiedad() {
-        int row = table.getSelectedRow();
-        int direccionColumn = 2;
-
-        if (row != -1) {
-            String direccion = table.getValueAt(row, direccionColumn).toString();
-
-            BusinessObject<Inmueble> businessObject = new DAOInmueble();
-
-            return businessObject.readOne(direccion);
-        }
-        ApiException.showException(new ApiException(ErrorCode.FAIL_SELECTING_PROPIEDAD));
-
-        return null;
     }
 
     static class ButtonRenderer extends JButton implements TableCellRenderer {

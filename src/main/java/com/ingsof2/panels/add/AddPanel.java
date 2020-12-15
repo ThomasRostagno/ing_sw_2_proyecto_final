@@ -25,15 +25,15 @@ public class AddPanel extends JPanel {
     private final JLabel cargarVendedorLabel = new JLabel("Cargar vendedor");
     private final JLabel cargarZonaLabel = new JLabel("Cargar zona");
 
-    private final JButton registrarContratoButton = new JButton("Button");
-    private final JButton cargarInquilinoButton = new JButton("Button");
-    private final JButton cargarGaranteButton = new JButton("Button");
-    private final JButton cargarEscribanoButton = new JButton("Button");
-    private final JButton cargarPropiedadButton = new JButton("Button");
-    private final JButton cargarDuenioButton = new JButton("Button");
-    private final JButton cargarCompradorButton = new JButton("Button");
-    private final JButton cargarVendedorButton = new JButton("Button");
-    private final JButton cargarZonaButton = new JButton("Button");
+    private final JButton registrarContratoButton = new JButton("Registrar contrato");
+    private final JButton cargarInquilinoButton = new JButton("Cargar inquilino");
+    private final JButton cargarGaranteButton = new JButton("Cargar garante");
+    private final JButton cargarEscribanoButton = new JButton("Cargar escribano");
+    private final JButton cargarPropiedadButton = new JButton("Cargar propiedad");
+    private final JButton cargarDuenioButton = new JButton("Cargar dueño");
+    private final JButton cargarCompradorButton = new JButton("Cargar comprador");
+    private final JButton cargarVendedorButton = new JButton("Cargar vendedor");
+    private final JButton cargarZonaButton = new JButton("Cargar zona");
 
     private final int rows = 9;
 

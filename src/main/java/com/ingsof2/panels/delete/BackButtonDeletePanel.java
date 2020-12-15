@@ -9,8 +9,8 @@ import java.awt.*;
 
 public class BackButtonDeletePanel extends JPanel {
 
-    private final JButton backButton = new JButton("Back");
-    private final JButton nextButton = new JButton("Next");
+    private final JButton backButton = new JButton("Atrás");
+    private final JButton nextButton = new JButton("Siguiente");
 
     public BackButtonDeletePanel(ButtonsInterface buttonsInterface) {
         Color backgroundColor = Constants.BUTTONS_BACKGROUND;

@@ -27,9 +27,9 @@ public class RegistrarVenta extends JPanel {
     private JLabel vendedorSeleccionadoLabel = new JLabel("Vendedor seleccionado:");
 
     private JTextField comisionTextField = new JTextField();
-    private JButton compradorButton = new JButton("Button");
-    private JButton inmuebleButton = new JButton("Button");
-    private JButton vendedorButton = new JButton("Button");
+    private JButton compradorButton = new JButton("Comprador");
+    private JButton inmuebleButton = new JButton("Inmueble");
+    private JButton vendedorButton = new JButton("Vendedor");
     private JButton compradorSeleccionadoButton = new JButton("comprador");
     private JButton inmuebleSeleccionadoButton = new JButton("inmueble");
     private JButton vendedorSeleccionadoButton = new JButton("vendedor");

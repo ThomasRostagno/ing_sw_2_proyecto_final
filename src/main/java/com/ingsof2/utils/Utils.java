@@ -1,6 +1,7 @@
 package com.ingsof2.utils;
 
 import com.ingsof2.Objetos.Alquiler;
+import com.ingsof2.Objetos.Venta;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -42,10 +43,10 @@ public enum Utils {
         return (int) ChronoUnit.DAYS.between(today, agefvigencia) > 0;
     }
 
-    public static boolean isPorVencer(int dd, int mm, int yy) {
+    public static boolean isPorVencer(int dd, int mm, int yy, int offset) {
         LocalDate today = LocalDate.now();
-        LocalDate agefvigencia = LocalDate.of(yy, mm, dd);
-        return (int) ChronoUnit.DAYS.between(today, agefvigencia) > 0 && (int) ChronoUnit.DAYS.between(today, agefvigencia) <= 90;
+        LocalDate ageOfVigencia = LocalDate.of(yy, mm, dd);
+        return (int) ChronoUnit.DAYS.between(today, ageOfVigencia) > 0 && (int) ChronoUnit.DAYS.between(today, ageOfVigencia) <= offset;
     }
 
     public static List<Alquiler> filterAlquileresEnVigencia(List<Alquiler> alquileres) {
@@ -64,7 +65,7 @@ public enum Utils {
         return alquileres;
     }
 
-    public static List<Alquiler> filterAlquileresAVencer(List<Alquiler> alquileres) {
+    public static List<Alquiler> filterAlquileresAVencer(List<Alquiler> alquileres, int offset) {
         for (int i = alquileres.size() - 1; i >= 0; i--) {
             String date = alquileres.get(i).getFechaFin();
             String[] dateArray = date.split("/");
@@ -73,7 +74,7 @@ public enum Utils {
             int mm = Integer.parseInt(dateArray[1]);
             int yy = Integer.parseInt(dateArray[2]);
 
-            if (!isPorVencer(dd, mm, yy)) {
+            if (!isPorVencer(dd, mm, yy, offset)) {
                 alquileres.remove(i);
             }
         }
@@ -94,6 +95,42 @@ public enum Utils {
             }
         }
         return alquileres;
+    }
+
+    /**
+     * Entra una lista de alquileres y un anio, remuevo los alquileres que no se iniciaron ese anio
+     **/
+    public static List<Alquiler> filterAlquileresPorAnio(List<Alquiler> alquileres, int anio) {
+        //Convierto anio de String a entero
+        for (int i = alquileres.size() - 1; i >= 0; i--) {
+            //Recupero la fecha de inicio en un String, luego lo hago Date y luego recupero anio. Esto se puede mejorar, ya que gasto mucha memoria asi creo.
+            String stringDateAlquier = alquileres.get(i).getFecha();
+            LocalDate dateAlquiler = Utils.stringToLocalDate(stringDateAlquier);
+            int dateYearAlquiler = dateAlquiler.getYear();
+            /**Condicional, remueve si los anios son distintos**/
+            if (!(dateYearAlquiler == anio)) {
+                alquileres.remove(i);
+            }
+        }
+        return alquileres;
+    }
+
+    /**
+     * Entra una lista de ventas y un anio, remuevo las ventas que no se iniciaron ese anio
+     **/
+    public static List<Venta> filterVentasPorAnio(List<Venta> ventas, int anio) {
+        //Convierto anio de String a entero
+        for (int i = ventas.size() - 1; i >= 0; i--) {
+            //Recupero la fecha de inicio en un String, luego lo hago Date y luego recupero anio. Esto se puede mejorar, ya que gasto mucha memoria asi creo.
+            String stringDateVenta = ventas.get(i).getFecha();
+            LocalDate dateVenta = Utils.stringToLocalDate(stringDateVenta);
+            int dateYearVenta = dateVenta.getYear();
+            /**Condicional, remueve si los anios son distintos**/
+            if (!(dateYearVenta == anio)) {
+                ventas.remove(i);
+            }
+        }
+        return ventas;
     }
 
     public static void showInformation(JFrame frame, Object object) {

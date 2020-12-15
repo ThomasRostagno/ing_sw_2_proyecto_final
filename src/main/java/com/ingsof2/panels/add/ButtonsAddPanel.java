@@ -8,8 +8,8 @@ import java.awt.*;
 
 public class ButtonsAddPanel extends JPanel {
 
-    private final JButton backButton = new JButton("Back");
-    private final JButton nextButton = new JButton("Next");
+    private final JButton backButton = new JButton("Atrás");
+    private final JButton nextButton = new JButton("Siguiente");
 
     public ButtonsAddPanel(ButtonsInterface buttonsInterface) {
         Color backgroundColor = Constants.BUTTONS_BACKGROUND;

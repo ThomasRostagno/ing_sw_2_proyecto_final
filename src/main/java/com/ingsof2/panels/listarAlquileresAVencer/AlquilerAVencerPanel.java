@@ -23,7 +23,7 @@ public class AlquilerAVencerPanel extends JPanel {
     private JComboBox<String> campoABuscarComboBox = new JComboBox<>();
     private JTextField valorTextField = new JTextField();
 
-    public AlquilerAVencerPanel() {
+    public AlquilerAVencerPanel(int offset) {
 
         for (Object header : Alquiler.getHeaders()) {
             campoABuscarComboBox.addItem(header.toString());
@@ -36,13 +36,13 @@ public class AlquilerAVencerPanel extends JPanel {
         DefaultTableModel dm = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return column >= 5;
+                return column == 5 || column == 7 || column == 8 || column == 10;
             }
         };
 
         BusinessObject<Alquiler> businessObject = new DAOAlquiler();
 
-        Object[][] objects = Alquiler.getDataVector(Utils.filterAlquileresAVencer(businessObject.readAll()));
+        Object[][] objects = Alquiler.getDataVector(Utils.filterAlquileresAVencer(businessObject.readAll(), offset));
         Object[] headers = Alquiler.getHeaders();
 
         dm.setDataVector(objects, headers);
@@ -54,16 +54,16 @@ public class AlquilerAVencerPanel extends JPanel {
         table.getTableHeader().setReorderingAllowed(false);
 
         table.getColumn("DNI Inquilino").setCellRenderer(new ButtonRenderer());
-        table.getColumn("DNI Inquilino").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOInquilino()));
+        table.getColumn("DNI Inquilino").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOInquilino(), true));
 
         table.getColumn("Direccion Inmueble").setCellRenderer(new ButtonRenderer());
-        table.getColumn("Direccion Inmueble").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOInmueble()));
+        table.getColumn("Direccion Inmueble").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOInmueble(), false));
 
         table.getColumn("DNI Garante").setCellRenderer(new ButtonRenderer());
-        table.getColumn("DNI Garante").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOGarante()));
+        table.getColumn("DNI Garante").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOGarante(), true));
 
         table.getColumn("DNI Escribano").setCellRenderer(new ButtonRenderer());
-        table.getColumn("DNI Escribano").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOEscribano()));
+        table.getColumn("DNI Escribano").setCellEditor(new ButtonEditor(new JCheckBox(), new DAOEscribano(), true));
 
         JScrollPane scrollPane = new JScrollPane(table);
 
@@ -140,10 +140,12 @@ public class AlquilerAVencerPanel extends JPanel {
 
         protected JButton button;
         private String label;
+        private String label2;
         private boolean isPushed;
+        private boolean isLabel2;
         private BusinessObject businessObject;
 
-        public ButtonEditor(JCheckBox checkBox, BusinessObject businessObject) {
+        public ButtonEditor(JCheckBox checkBox, BusinessObject businessObject, boolean isLabel2) {
             super(checkBox);
             this.businessObject = businessObject;
             button = new JButton();
@@ -154,6 +156,8 @@ public class AlquilerAVencerPanel extends JPanel {
                     fireEditingStopped();
                 }
             });
+
+            this.isLabel2 = isLabel2;
         }
 
         @Override
@@ -166,6 +170,10 @@ public class AlquilerAVencerPanel extends JPanel {
                 button.setBackground(table.getBackground());
             }
             label = (value == null) ? "" : value.toString();
+            if (isLabel2) {
+                label2 = (value == null) ? "" : table.getValueAt(row, column + 1).toString();
+            }
+
             button.setText(label);
             isPushed = true;
             return button;
@@ -173,8 +181,17 @@ public class AlquilerAVencerPanel extends JPanel {
 
         @Override
         public Object getCellEditorValue() {
+
+            String[] ids;
+
+            if (isLabel2) {
+                ids = new String[]{label, label2};
+            } else {
+                ids = new String[]{label};
+            }
+
             if (isPushed) {
-                Object object = businessObject.readOne(label);
+                Object object = businessObject.readOne(ids);
 
                 Utils.showInformation(Main.mainFrame, object);
             }

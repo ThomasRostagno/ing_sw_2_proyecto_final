@@ -401,9 +401,8 @@ public class CargarGarante extends JPanel {
                     sexoComboBox.getItemAt(sexoComboBox.getSelectedIndex()),
                     direccionTextField.getText(),
                     fechaDeNacimientoTextField.getText(),
-                    emailTextField.getText(),
-                    null,
-                    null);
+                    emailTextField.getText()
+            );
         } else {
             ApiException.showException(new ApiException(ErrorCode.INVALID_FIELDS));
             return null;

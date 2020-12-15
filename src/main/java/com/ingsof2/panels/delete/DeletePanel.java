@@ -26,16 +26,16 @@ public class DeletePanel extends JPanel {
     private final JLabel eliminarVendedorLabel = new JLabel("Eliminar vendedor");
     private final JLabel eliminarZonaLabel = new JLabel("Eliminar zona");
 
-    private final JButton cancelarAlquilerButton = new JButton("Button");
-    private final JButton eliminarVentaButton = new JButton("Button");
-    private final JButton eliminarInquilinoButton = new JButton("Button");
-    private final JButton eliminarGaranteButton = new JButton("Button");
-    private final JButton eliminarPropiedadButton = new JButton("Button");
-    private final JButton eliminarEscribanoButton = new JButton("Button");
-    private final JButton eliminarDuenioButton = new JButton("Button");
-    private final JButton eliminarCompradorButton = new JButton("Button");
-    private final JButton eliminarVendedorButton = new JButton("Button");
-    private final JButton eliminarZonaButton = new JButton("Button");
+    private final JButton cancelarAlquilerButton = new JButton("Cancelar alquiler");
+    private final JButton eliminarVentaButton = new JButton("Eliminar venta");
+    private final JButton eliminarInquilinoButton = new JButton("Eliminar inquilino");
+    private final JButton eliminarGaranteButton = new JButton("Eliminar garante");
+    private final JButton eliminarPropiedadButton = new JButton("Eliminar propiedad");
+    private final JButton eliminarEscribanoButton = new JButton("Eliminar escribano");
+    private final JButton eliminarDuenioButton = new JButton("Eliminar dueño");
+    private final JButton eliminarCompradorButton = new JButton("Eliminar comprador");
+    private final JButton eliminarVendedorButton = new JButton("Eliminar vendedor");
+    private final JButton eliminarZonaButton = new JButton("Eliminar zona");
 
     private final int rows = 5;
 

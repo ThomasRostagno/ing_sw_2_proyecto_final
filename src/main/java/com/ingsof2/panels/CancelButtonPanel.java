@@ -8,7 +8,7 @@ import java.awt.*;
 
 public class CancelButtonPanel extends JPanel {
 
-    private final JButton cancelButton = new JButton("Cancel");
+    private final JButton cancelButton = new JButton("Cancelar");
 
     public CancelButtonPanel() {
         setBackground(Constants.BUTTONS_BACKGROUND);
